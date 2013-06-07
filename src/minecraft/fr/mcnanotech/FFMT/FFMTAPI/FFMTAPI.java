@@ -21,14 +21,14 @@ public class FFMTAPI
 	{
 		FFMTlog = event.getModLog();
 		ModMetadata meta = event.getModMetadata();
-        meta.modId       = "FFMTAPI";
-        meta.name        = "FFMT API";
-        meta.version     = "1.0.0";
-        meta.authorList  = Arrays.asList("kevin_68", "robin4002", "elias54");
-        meta.description = "simplify your coder life";
-        meta.url         = "http://forge.mcnanotech.fr/";
-        meta.screenshots = new String[0];
-        meta.logoFile    = "/ffmt_logo.png";
+		meta.modId       = "FFMTAPI";
+		meta.name        = "FFMT API";
+		meta.version     = "1.0.0";
+		meta.authorList  = Arrays.asList("kevin_68", "robin4002", "elias54");
+		meta.description = "simplify your coder life";
+		meta.url         = "http://forge.mcnanotech.fr/";
+		meta.screenshots = new String[0];
+		meta.logoFile    = "/ffmt_logo.png";
 		
 	}
 	
