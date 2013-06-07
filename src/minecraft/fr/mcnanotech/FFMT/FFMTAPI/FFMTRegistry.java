@@ -12,8 +12,8 @@ public class FFMTRegistry
 	
 	/**
 	 * Add smelting for blocks/items with metadata
-	 * @param input
-	 * @param metadata
+	 * @param input (block or items id)
+	 * @param metadata 
 	 * @param output
 	 * @param xp
 	 */
@@ -25,7 +25,7 @@ public class FFMTRegistry
 		}
 		catch (Exception e)
 		{
-			System.err.println("[FFMT API]Failed to register smelting whith metadata");
+			FFMTAPI.FFMTlog.severe("Failed to register smelting whith metadata");
 		}
 	}
 	
@@ -61,12 +61,12 @@ public class FFMTRegistry
 			}
 			if (type < 0 || type > 3)
 			{
-				System.err.println("[FFMT API]Failed to register armor crafting, wrong 'type'");
+				FFMTAPI.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
 			}
 		}
 		catch (Exception e)
 		{
-			System.err.println("[FFMT API]Failed to register armor crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class FFMTRegistry
 		}
 		catch (Exception e)
 		{
-			System.err.println("[FFMT API]Failed to register armor crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 	
@@ -132,12 +132,12 @@ public class FFMTRegistry
 			}
 			if (type < 0 || type > 4)
 			{
-				System.err.println("[FFMT API]Failed to register tools crafting, wrong 'type'");
+				FFMTAPI.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
 			}
 		}
 		catch (Exception e)
 		{
-			System.err.println("[FFMT API]Failed to register tools crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
 	
