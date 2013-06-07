@@ -2,10 +2,10 @@
 
 Made by kevin_68, robin4002
 
-He adds:
--Smelting with metadata
--Helper for:
- -Armors crafting
- -Tools crafting
+He adds:<br>
+-Smelting with metadata<br>
+-Helper for:<br>
+ -Armors crafting<br>
+ -Tools crafting<br>
  
 That's all for now
