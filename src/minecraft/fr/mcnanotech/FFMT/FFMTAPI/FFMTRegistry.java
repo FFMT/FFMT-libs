@@ -56,7 +56,7 @@ public class FFMTRegistry
 		}
 		catch (Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register smelting whith metadata");
+			FFMTAPI.FFMTlog.severe("Failed to register smelting whith metadata");
 		}
 	}
 	
@@ -92,12 +92,12 @@ public class FFMTRegistry
 			}
 			if (type < 0 || type > 3)
 			{
-				FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register armor crafting, wrong 'type'");
+				FFMTAPI.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
 			}
 		}
 		catch (Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register armor crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 	
@@ -120,7 +120,7 @@ public class FFMTRegistry
 		}
 		catch (Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register armor crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 	
@@ -163,12 +163,12 @@ public class FFMTRegistry
 			}
 			if (type < 0 || type > 4)
 			{
-				FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register tools crafting, wrong 'type'");
+				FFMTAPI.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
 			}
 		}
 		catch (Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("[FFMT API]Failed to register tools crafting");
+			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
 	
