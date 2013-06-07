@@ -4,11 +4,42 @@ import java.io.EOFException;
 
 import cpw.mods.fml.common.Mod.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class FFMTRegistry 
 {
+	public static Minecraft mc = Minecraft.getMinecraft();
+	
+	public static Minecraft getMinecraftInstance()
+	{
+		return mc;
+	}
+	
+	/**
+	 * Adding version checker (IS NOT COMPATIBLE IN SERVER VERSION)
+	 * @param modName (the mod name)
+	 * @param version (the version of your mod)
+	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
+	 * @param download (the download link)
+	 */
+	public static void registerVersionCheck(String modName, double version, String versiondoc, String download)
+	{
+		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
+	}
+	
+	/**
+	 * Adding version checker WITH METADATA (coming soon)
+	 * @param modName (the mod name)
+	 * @param version (the version of your mod)
+	 * @param versiondoc (the .xml version file for metadata version check)
+	 * @param download (the download link)
+	 */
+	public static void registerVersionCheckWithMetadata(String modName, double version, String versiondoc, String download)
+	{
+		//FFMTVersionChecker.checkerXMLSSP(modName, version, versiondoc, download, mc);
+	}
 	
 	/**
 	 * Add smelting for blocks/items with metadata
