@@ -23,6 +23,7 @@
 /src/minecraft/mcpmod.info
 /src/minecraft/gfx/*
 /src/minecraft/lang/*
+/src/minecraft/Thumbs.db
 
 *.bat
 *.sh
