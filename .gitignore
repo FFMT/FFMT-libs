@@ -24,6 +24,7 @@
 /src/minecraft/gfx/*
 /src/minecraft/lang/*
 /src/minecraft/Thumbs.db
+/src/minecraft/mcp.png
 
 *.bat
 *.sh
