@@ -18,7 +18,7 @@
 /src/minecraft/paulscode/*
 /src/minecraft/*.cfg
 /src/minecraft/fmlversion.properties
-/src/minecraft/*.png
+/src/minecraft/forge_logo.png
 /src/minecraft/Start.java
 /src/minecraft/mcpmod.info
 /src/minecraft/gfx/*
