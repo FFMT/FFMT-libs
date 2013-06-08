@@ -1,12 +1,13 @@
 package fr.mcnanotech.FFMT.FFMTAPI;
 
-import java.io.EOFException;
-
-import cpw.mods.fml.common.Mod.Item;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.world.biome.BiomeGenBase;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class FFMTRegistry 
 {
@@ -17,6 +18,68 @@ public class FFMTRegistry
 		return mc;
 	}
 	
+	/**
+	 * Add another entity other than mob
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @author elias54
+	 */
+	public static void addOtherEntity(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
+	{
+		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+	}
+	
+	/**
+	 * Add a mob too easy without specific biomes
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
+	 * @author elias54
+	 */
+	public static void addMobWithSpawn(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
+	{
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
+		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType);
+	}
+	/**
+	 * Add a mob too easy with specific biomes
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
+	 * @param creatureType (The famous EnumCreatureType attribute)
+	 * @param biome (Biome where you want to spawn the mob)
+	 * @author elias54
+	 */
+	public static void addMobWithSpawnAndBiome(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
+	{
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
+		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
+	}
 	/**
 	 * Adding version checker (IS NOT COMPATIBLE IN SERVER VERSION)
 	 * @param modName (the mod name)
