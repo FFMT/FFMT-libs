@@ -1,6 +1,6 @@
 # FFMT API
 
-Made by kevin_68, robin4002
+Made by kevin_68, robin4002, elias54
 
 ####He adds:<br>
 * Smelting with metadata<br>
