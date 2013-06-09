@@ -8,6 +8,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class FFMTRegistry 
 {
@@ -86,18 +88,21 @@ public class FFMTRegistry
 	 * @param version (the version of your mod)
 	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
 	 * @param download (the download link)
+	 * @author elias54
 	 */
+	@SideOnly(Side.CLIENT)
 	public static void registerVersionCheck(String modName, double version, String versiondoc, String download)
 	{
 		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
 	}
 	
 	/**
-	 * Adding version checker WITH METADATA (coming soon)
+	 * Adding version checker with metadata (coming soon)
 	 * @param modName (the mod name)
 	 * @param version (the version of your mod)
 	 * @param versiondoc (the .xml version file for metadata version check)
 	 * @param download (the download link)
+	 * @author elias54
 	 */
 	public static void registerVersionCheckWithMetadata(String modName, double version, String versiondoc, String download)
 	{
