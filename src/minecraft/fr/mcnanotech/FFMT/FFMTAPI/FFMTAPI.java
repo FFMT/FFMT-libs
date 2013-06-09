@@ -1,8 +1,10 @@
 package fr.mcnanotech.FFMT.FFMTAPI;
 
 import java.util.Arrays;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Metadata;
@@ -24,12 +26,15 @@ public class FFMTAPI
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
 	{
-		FFMTlog = event.getModLog();
+		FFMTlog = FMLLog.getLogger();
+		FFMTlog.log(Level.INFO, "TEST PRE INIT");
 	}
 	
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
+
+		FFMTlog.log(Level.INFO, "TEST INIT");
 		meta.modId       = "FFMTAPI";
 		meta.name        = "FFMT API";
 		meta.version     = "1.0.0";
