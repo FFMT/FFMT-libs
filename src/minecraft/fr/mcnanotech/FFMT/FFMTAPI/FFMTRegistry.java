@@ -2,6 +2,7 @@ package fr.mcnanotech.FFMT.FFMTAPI;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -18,6 +19,41 @@ public class FFMTRegistry
 	public static Minecraft getMinecraftInstance()
 	{
 		return mc;
+	}
+	
+	/**
+	 * Spawn smoke (ENTITY ONLY)
+	 * @param speed
+	 * @param entity
+	 * @param velX
+	 * @param velY
+	 * @param velZ
+	 */
+	public static void smoke(int speed, EntityLiving entity, int velX, int velY, int velZ)
+	{
+		for(int i = 0; i < speed; i++)
+		{
+			entity.worldObj.spawnParticle("smoke", entity.posX, entity.posY, entity.posZ, velX, velY, velZ);
+		}
+	}
+	
+	/**
+	 * Spawn smoke with XYZ coords (ENTITY ONLY)
+	 * @param speed
+	 * @param entity
+	 * @param xVel
+	 * @param yVel
+	 * @param zVel
+	 * @param xPosition
+	 * @param yPosition
+	 * @param zPosition
+	 */
+	public static void smokeWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
+	{
+		for(int i = 0; i < speed; i++)
+		{
+			entity.worldObj.spawnParticle("smoke", entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel);
+		}
 	}
 	
 	/**
