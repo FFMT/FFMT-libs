@@ -30,6 +30,7 @@ public class FFMTRegistry
 	/**
 	 * Change entity.entityName.name in entityName
 	 * @param entityName
+	 * @param language (If not specified, by default is en_US)
 	 * @author Kevin_68
 	 */
 	@UnTested
@@ -37,13 +38,7 @@ public class FFMTRegistry
 	{
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", "en_US", entityName);
 	}
-	
-	/**
-	 * Change entity.entityName.name in entityName
-	 * @param entityName
-	 * @param language (If not specified, by default is en_US)
-	 * @author Kevin_68
-	 */
+
 	@UnTested
 	public static void addMobName(String entityName, String language)
 	{
@@ -155,7 +150,6 @@ public class FFMTRegistry
 	 * @param maxSpawn (Maximum spawn per chunk)
 	 * @author elias54
 	 */
-	@UnknownTestStatus
 	public static void addMobWithSpawn(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
@@ -182,7 +176,6 @@ public class FFMTRegistry
 	 * @param biome (Biome where you want to spawn the mob)
 	 * @author elias54
 	 */
-	@UnknownTestStatus
 	public static void addMobWithSpawnAndBiome(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
