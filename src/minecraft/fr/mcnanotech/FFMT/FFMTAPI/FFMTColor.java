@@ -1,6 +1,6 @@
 package fr.mcnanotech.FFMT.FFMTAPI;
 
-public class FFMTColour {
+public class FFMTColor {
 
 	/** RED **/
 	public static String red;
@@ -26,7 +26,7 @@ public class FFMTColour {
 	public static int blackInt;
 	public static String black;
 	
-	public FFMTColour()
+	public FFMTColor()
 	{
 		/** RED **/
 		red = "\247c";
@@ -51,9 +51,9 @@ public class FFMTColour {
 		black = "\2470";
 	}
 	
-	public static FFMTColour instance()
+	public static FFMTColor instance()
 	{
-		return new FFMTColour();
+		return new FFMTColor();
 	}
 	
 }

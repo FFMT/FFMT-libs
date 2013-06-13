@@ -23,7 +23,7 @@ public class FFMTAPI
 	public static Logger FFMTlog;
 	@Metadata("FFMTAPI")
 	public static ModMetadata meta;
-	public static FFMTColour getColor = new FFMTColour();
+	public static FFMTColor getColor = new FFMTColor();
 	
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
