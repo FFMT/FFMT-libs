@@ -1,14 +1,18 @@
 package fr.mcnanotech.FFMT.FFMTAPI;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -22,7 +26,57 @@ public class FFMTRegistry
 	}
 	
 	/**
-	 * Spawn smoke (ENTITY ONLY)
+	 * Change entity.entityName.name in entityName
+	 * @param entityName
+	 * @author Kevin_68
+	 */
+	public static void addMobName(String entityName)
+	{
+		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", "en_US", entityName);
+	}
+	
+	/**
+	 * Change entity.entityName.name in entityName
+	 * @param entityName
+	 * @param language (If not specified, by default is en_US)
+	 * @author Kevin_68
+	 */
+	public static void addMobName(String entityName, String language)
+	{
+		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", language, entityName);
+	}
+	
+	
+	/**
+	 * Spawn particles (Blocks only)
+	 * @param speed
+	 * @param particles (ex: "smoke", "largesmoke", "enchantmenttable", ...)
+	 * @param world
+	 * @param posX
+	 * @param posY
+	 * @param posZ
+	 * @param random
+	 * @param velX
+	 * @param velY
+	 * @param velZ
+	 * @author Kevin_68
+	 */
+	@SideOnly(Side.CLIENT)
+	public static void spawnParticles(int speed, String particles, World world, int x, int y, int z, Random random, int velX, int velY, int velZ)
+	{
+		float var7 = (float)x + random.nextFloat() ;
+		float var8 = (float)y + random.nextFloat() * 0.1F;
+		float var9 = (float)z + random.nextFloat() ;
+		
+		for(int i = 0; i < speed; i++)
+		{
+			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, velX, velY, velZ);
+		}
+	}
+	
+	
+	/**
+	 * Spawn smoke particles(ENTITY ONLY)
 	 * @param speed
 	 * @param entity
 	 * @param velX
@@ -30,13 +84,14 @@ public class FFMTRegistry
 	 * @param velZ
 	 * @author elias54
 	 */
-	public static void smoke(int speed, EntityLiving entity, int velX, int velY, int velZ)
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, int velX, int velY, int velZ)
 	{
 		for(int i = 0; i < speed; i++)
 		{
 			entity.worldObj.spawnParticle("smoke", entity.posX, entity.posY, entity.posZ, velX, velY, velZ);
 		}
 	}
+	
 	
 	/**
 	 * Spawn smoke with XYZ coords (ENTITY ONLY)
@@ -50,13 +105,14 @@ public class FFMTRegistry
 	 * @param zPosition
 	 * @author elias54
 	 */
-	public static void smokeWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
+	public static void spawnSmokeParticlesWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
 	{
 		for(int i = 0; i < speed; i++)
 		{
 			entity.worldObj.spawnParticle("smoke", entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel);
 		}
 	}
+	
 	
 	/**
 	 * Add another entity other than mob
@@ -73,6 +129,7 @@ public class FFMTRegistry
 	{
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
+	
 	
 	/**
 	 * Add a mob too easy without specific biomes
@@ -96,6 +153,8 @@ public class FFMTRegistry
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType);
 	}
+	
+	
 	/**
 	 * Add a mob too easy with specific biomes
 	 * @param entityClass (The entity class)
@@ -120,6 +179,8 @@ public class FFMTRegistry
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
 	}
+	
+	
 	/**
 	 * Adding version checker (IS NOT COMPATIBLE IN SERVER VERSION)
 	 * @param modName (the mod name)
@@ -134,18 +195,6 @@ public class FFMTRegistry
 		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
 	}
 	
-	/**
-	 * Adding version checker with metadata (coming soon)
-	 * @param modName (the mod name)
-	 * @param version (the version of your mod)
-	 * @param versiondoc (the .xml version file for metadata version check)
-	 * @param download (the download link)
-	 * @author elias54
-	 */
-	public static void registerVersionCheckWithMetadata(String modName, double version, String versiondoc, String download)
-	{
-		//FFMTVersionChecker.checkerXMLSSP(modName, version, versiondoc, download, mc);
-	}
 	
 	/**
 	 * Add smelting for blocks/items with metadata
@@ -166,6 +215,7 @@ public class FFMTRegistry
 			FFMTAPI.FFMTlog.severe("Failed to register smelting whith metadata");
 		}
 	}
+	
 	
 	/**
 	 * Helper for crafting armors
@@ -209,6 +259,7 @@ public class FFMTRegistry
 		}
 	}
 	
+	
 	/**
 	 * Helper for crafting all armors
 	 * @param material
@@ -232,6 +283,7 @@ public class FFMTRegistry
 			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
+	
 	
 	/**
 	 * Helper for crafting tools

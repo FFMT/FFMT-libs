@@ -22,21 +22,20 @@ public class FFMTAPI
 	public static Logger FFMTlog;
 	@Metadata("FFMTAPI")
 	public static ModMetadata meta;
-	
 	public static FFMTColour getColor = new FFMTColour();
 	
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
 	{
+		FFMTlog.log(Level.INFO, "PreInitialization");
 		FFMTlog = FMLLog.getLogger();
-		FFMTlog.log(Level.INFO, "TEST PRE INIT");
 	}
 	
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
 
-		FFMTlog.log(Level.INFO, "TEST INIT");
+		FFMTlog.log(Level.INFO, "Initialization");
 		meta.modId       = "FFMTAPI";
 		meta.name        = "FFMT API";
 		meta.version     = "1.0.0";
