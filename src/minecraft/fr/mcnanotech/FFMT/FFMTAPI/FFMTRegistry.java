@@ -28,6 +28,7 @@ public class FFMTRegistry
 	 * @param velX
 	 * @param velY
 	 * @param velZ
+	 * @author elias54
 	 */
 	public static void smoke(int speed, EntityLiving entity, int velX, int velY, int velZ)
 	{
@@ -47,6 +48,7 @@ public class FFMTRegistry
 	 * @param xPosition
 	 * @param yPosition
 	 * @param zPosition
+	 * @author elias54
 	 */
 	public static void smokeWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
 	{
@@ -151,6 +153,7 @@ public class FFMTRegistry
 	 * @param metadata
 	 * @param output
 	 * @param xp
+	 * @author Kevin_68
 	 */
 	public static void addSmeltingWithMetadata(int input, int metadata, ItemStack output, float xp)
 	{
@@ -173,6 +176,7 @@ public class FFMTRegistry
 	 * Leggings:2  
 	 * Boots:3 
 	 * @param output
+	 * @author Kevin_68
 	 */
 	public static void addArmorCrafting(ItemStack material, int type, ItemStack output)
 	{
@@ -212,6 +216,7 @@ public class FFMTRegistry
 	 * @param outputChestPlate
 	 * @param outputLeggings
 	 * @param outputBoots
+	 * @author Kevin_68
 	 */
 	public static void addAllArmorCrafting(ItemStack material, ItemStack outputHelmet, ItemStack outputChestPlate, ItemStack outputLeggings, ItemStack outputBoots)
 	{
@@ -238,6 +243,7 @@ public class FFMTRegistry
 	 * Pickaxe:3
 	 * Sword:4
 	 * @param output
+	 * @author Kevin_68
 	 */
 	public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
 	{
