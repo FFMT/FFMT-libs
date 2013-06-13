@@ -15,6 +15,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnTested;
+import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
 
 public class FFMTRegistry 
 {
@@ -30,6 +32,7 @@ public class FFMTRegistry
 	 * @param entityName
 	 * @author Kevin_68
 	 */
+	@UnTested
 	public static void addMobName(String entityName)
 	{
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", "en_US", entityName);
@@ -41,6 +44,7 @@ public class FFMTRegistry
 	 * @param language (If not specified, by default is en_US)
 	 * @author Kevin_68
 	 */
+	@UnTested
 	public static void addMobName(String entityName, String language)
 	{
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", language, entityName);
@@ -61,6 +65,7 @@ public class FFMTRegistry
 	 * @param velZ
 	 * @author Kevin_68
 	 */
+	@UnTested
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int x, int y, int z, Random random, int velX, int velY, int velZ)
 	{
@@ -84,6 +89,7 @@ public class FFMTRegistry
 	 * @param velZ
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	public static void spawnSmokeParticles(int speed, EntityLiving entity, int velX, int velY, int velZ)
 	{
 		for(int i = 0; i < speed; i++)
@@ -105,6 +111,7 @@ public class FFMTRegistry
 	 * @param zPosition
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	public static void spawnSmokeParticlesWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
 	{
 		for(int i = 0; i < speed; i++)
@@ -125,6 +132,7 @@ public class FFMTRegistry
 	 * @param sendsVelocityUpdates (Send velocity updates or not)
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	public static void addOtherEntity(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
 	{
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
@@ -147,6 +155,7 @@ public class FFMTRegistry
 	 * @param maxSpawn (Maximum spawn per chunk)
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	public static void addMobWithSpawn(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
@@ -173,6 +182,7 @@ public class FFMTRegistry
 	 * @param biome (Biome where you want to spawn the mob)
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	public static void addMobWithSpawnAndBiome(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
@@ -189,6 +199,7 @@ public class FFMTRegistry
 	 * @param download (the download link)
 	 * @author elias54
 	 */
+	@UnknownTestStatus
 	@SideOnly(Side.CLIENT)
 	public static void registerVersionCheck(String modName, double version, String versiondoc, String download)
 	{
@@ -228,6 +239,7 @@ public class FFMTRegistry
 	 * @param output
 	 * @author Kevin_68
 	 */
+	@UnTested
 	public static void addArmorCrafting(ItemStack material, int type, ItemStack output)
 	{
 		try
@@ -269,6 +281,7 @@ public class FFMTRegistry
 	 * @param outputBoots
 	 * @author Kevin_68
 	 */
+	@UnTested
 	public static void addAllArmorCrafting(ItemStack material, ItemStack outputHelmet, ItemStack outputChestPlate, ItemStack outputLeggings, ItemStack outputBoots)
 	{
 		try
@@ -297,6 +310,7 @@ public class FFMTRegistry
 	 * @param output
 	 * @author Kevin_68
 	 */
+	@UnTested
 	public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
 	{
 		try
