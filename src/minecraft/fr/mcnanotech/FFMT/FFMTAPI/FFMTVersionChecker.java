@@ -23,6 +23,9 @@ import org.w3c.dom.NodeList;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * @author elias54
+ */
 public class FFMTVersionChecker
 {
   static Minecraft minecraft;

@@ -1,5 +1,8 @@
 package fr.mcnanotech.FFMT.FFMTAPI;
 
+/**
+ * @author elias54
+ */
 public class FFMTColor {
 
 	/** RED **/

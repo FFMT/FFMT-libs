@@ -19,6 +19,9 @@ import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnTested;
 import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
 import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.IsWorking;
 
+/**
+ * @authors kevin_68, elias54
+ */
 public class FFMTRegistry 
 {
 	public static Minecraft mc = Minecraft.getMinecraft();
@@ -27,25 +30,40 @@ public class FFMTRegistry
 	{
 		return mc;
 	}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	/**
+	 * Correct name (ex:Mobs(entity.entityName.name -> entityName), CreativeTabs(itemGroup.creativeTabName -> creativeTabName))
+	 * @param name
+	 * @param removeBack
+	 * @param removeForward
+	 * @param language (If not specified, by default is en_US)
+	 */
+	@IsWorking
+	public static void correctName(String name, String removeback, String removeForward)
+	{
+		LanguageRegistry.instance().addStringLocalization(removeback + name + removeForward, "en_US", name);
+	}
 	
 	/**
-	 * Change entity.entityName.name in entityName
-	 * @param entityName
+	 * Correct name (ex:Mobs(entity.entityName.name -> entityName), CreativeTabs(itemGroup.creativeTabName -> creativeTabName))
+	 * @param name
+	 * @param removeBack
+	 * @param removeForward
 	 * @param language (If not specified, by default is en_US)
-	 * @author Kevin_68
 	 */
-	@UnTested
-	public static void addEntityName(String entityName)
+	@IsWorking
+	public static void correctName(String entityName, String removeback, String removeForward, String language)
 	{
-		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", "en_US", entityName);
+		LanguageRegistry.instance().addStringLocalization(removeback + entityName + removeForward, language, entityName);
 	}
 
-	@UnTested
-	public static void addEntityName(String entityName, String language)
-	{
-		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", language, entityName);
-	}
-	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
 	 * Spawn particles (Blocks only)
@@ -56,18 +74,44 @@ public class FFMTRegistry
 	 * @param posY
 	 * @param posZ
 	 * @param random
-	 * @param velX
-	 * @param velY
-	 * @param velZ
-	 * @author Kevin_68
+	 * @param velX (If not specified, by default is 0.0D)
+	 * @param velY (If not specified, by default is 0.0D)
+	 * @param velZ (If not specified, by default is 0.0D)
 	 */
 	@UnTested
 	@SideOnly(Side.CLIENT)
-	public static void spawnParticles(int speed, String particles, World world, int x, int y, int z, Random random, int velX, int velY, int velZ)
+	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random)
 	{
-		float var7 = (float)x + random.nextFloat() ;
-		float var8 = (float)y + random.nextFloat() * 0.1F;
-		float var9 = (float)z + random.nextFloat() ;
+		float var7 = (float)posX + random.nextFloat() ;
+		float var8 = (float)posY + random.nextFloat() * 0.1F;
+		float var9 = (float)posZ + random.nextFloat() ;
+		
+		for(int i = 0; i < speed; i++)
+		{
+			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, 0.0D, 0.0D, 0.0D);
+		}
+	}
+	
+	/**
+	 * Spawn particles (Blocks only)
+	 * @param speed
+	 * @param particles (ex: "smoke", "largesmoke", "enchantmenttable", ...)
+	 * @param world
+	 * @param posX
+	 * @param posY
+	 * @param posZ
+	 * @param random
+	 * @param velX (If not specified, by default is 0.0D)
+	 * @param velY (If not specified, by default is 0.0D)
+	 * @param velZ (If not specified, by default is 0.0D)
+	 */
+	@UnTested
+	@SideOnly(Side.CLIENT)
+	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)
+	{
+		float var7 = (float)posX + random.nextFloat() ;
+		float var8 = (float)posY + random.nextFloat() * 0.1F;
+		float var9 = (float)posZ + random.nextFloat() ;
 		
 		for(int i = 0; i < speed; i++)
 		{
@@ -75,7 +119,10 @@ public class FFMTRegistry
 		}
 	}
 	
-	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
 	 * @param speed
@@ -83,32 +130,32 @@ public class FFMTRegistry
 	 * @param velX
 	 * @param velY
 	 * @param velZ
-	 * @author elias54
+	 * @param xPosition (If not specified, by default is 0)
+	 * @param yPosition	(If not specified, by default is 0)
+	 * @param zPosition (If not specified, by default is 0)
 	 */
 	@UnknownTestStatus
-	public static void spawnSmokeParticles(int speed, EntityLiving entity, int velX, int velY, int velZ)
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ)
 	{
 		for(int i = 0; i < speed; i++)
 		{
 			entity.worldObj.spawnParticle("smoke", entity.posX, entity.posY, entity.posZ, velX, velY, velZ);
 		}
 	}
-	
-	
+
 	/**
-	 * Spawn smoke with XYZ coords (ENTITY ONLY)
+	 * Spawn smoke particles(ENTITY ONLY)
 	 * @param speed
 	 * @param entity
-	 * @param xVel
-	 * @param yVel
-	 * @param zVel
-	 * @param xPosition
-	 * @param yPosition
-	 * @param zPosition
-	 * @author elias54
+	 * @param velX
+	 * @param velY
+	 * @param velZ
+	 * @param xPosition (If not specified, by default is 0)
+	 * @param yPosition	(If not specified, by default is 0)
+	 * @param zPosition (If not specified, by default is 0)
 	 */
 	@UnknownTestStatus
-	public static void spawnSmokeParticlesWithXYZ(int speed, EntityLiving entity, int xVel, int yVel, int zVel, int xPosition, int yPosition, int zPosition)
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, double xVel, double yVel, double zVel, double xPosition, double yPosition, double zPosition)
 	{
 		for(int i = 0; i < speed; i++)
 		{
@@ -116,6 +163,9 @@ public class FFMTRegistry
 		}
 	}
 	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
 	 * Add another entity other than mob
@@ -126,7 +176,6 @@ public class FFMTRegistry
 	 * @param trackingRange (Number of tracking range)
 	 * @param updateFrequency (Number update frequency)
 	 * @param sendsVelocityUpdates (Send velocity updates or not)
-	 * @author elias54
 	 */
 	@UnknownTestStatus
 	public static void addOtherEntity(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
@@ -134,11 +183,15 @@ public class FFMTRegistry
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
 	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
-	 * Add a mob too easy without specific biomes
+	 * Add a mob too easy
 	 * @param entityClass (The entity class)
 	 * @param entityName (The entity name)
+	 * @param entityIngameName (The entity name rendered in game) (If not specified, by default is entity.entityName.name)
 	 * @param id (The entity ID)
 	 * @param mod (Mod instance)
 	 * @param trackingRange (Number of tracking range)
@@ -149,9 +202,10 @@ public class FFMTRegistry
 	 * @param weightedProb (Chance to spawn)
 	 * @param minSpawn (Minimum spawn per chunk)
 	 * @param maxSpawn (Maximum spawn per chunk)
-	 * @author elias54
+	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
 	 */
-	public static void addMobWithSpawn(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
+	@IsWorking
+	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
@@ -159,10 +213,10 @@ public class FFMTRegistry
 	}
 	
 	/**
-	 * Add a mob too easy with ingame name (if you are killed by the entity etc...)
+	 * Add a mob too easy
 	 * @param entityClass (The entity class)
 	 * @param entityName (The entity name)
-	 * @param entityIngameName (The entity name rendered in game)
+	 * @param entityIngameName (The entity name rendered in game) (If not specified, by default is entity.entityName.name)
 	 * @param id (The entity ID)
 	 * @param mod (Mod instance)
 	 * @param trackingRange (Number of tracking range)
@@ -173,10 +227,10 @@ public class FFMTRegistry
 	 * @param weightedProb (Chance to spawn)
 	 * @param minSpawn (Minimum spawn per chunk)
 	 * @param maxSpawn (Maximum spawn per chunk)
-	 * @author elias54
+	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
 	 */
-	
-	public static void addMobWithSpawnAndName(Class<? extends Entity> entityClass, String entityName, String entityIngameName,int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
+	@IsWorking
+	public static void addMob(Class<? extends Entity> entityClass, String entityName, String entityIngameName,int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
@@ -184,11 +238,11 @@ public class FFMTRegistry
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", entityIngameName);
 	}
 	
-	
 	/**
-	 * Add a mob too easy with specific biomes
+	 * Add a mob too easy
 	 * @param entityClass (The entity class)
 	 * @param entityName (The entity name)
+	 * @param entityIngameName (The entity name rendered in game) (If not specified, by default is entity.entityName.name)
 	 * @param id (The entity ID)
 	 * @param mod (Mod instance)
 	 * @param trackingRange (Number of tracking range)
@@ -199,25 +253,52 @@ public class FFMTRegistry
 	 * @param weightedProb (Chance to spawn)
 	 * @param minSpawn (Minimum spawn per chunk)
 	 * @param maxSpawn (Maximum spawn per chunk)
-	 * @param creatureType (The famous EnumCreatureType attribute)
-	 * @param biome (Biome where you want to spawn the mob)
-	 * @author elias54
+	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
 	 */
-	public static void addMobWithSpawnAndBiome(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
+	@IsWorking
+	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
 	}
 	
+	/**
+	 * Add a mob too easy
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param entityIngameName (The entity name rendered in game) (If not specified, by default is entity.entityName.name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
+	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
+	 */
+	@IsWorking
+	public static void addMob(Class<? extends Entity> entityClass, String entityName, String entityIngameName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
+	{
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
+		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
+		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", entityIngameName);
+	}
 	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Adding version checker (IS NOT COMPATIBLE IN SERVER VERSION)
 	 * @param modName (the mod name)
 	 * @param version (the version of your mod)
 	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
 	 * @param download (the download link)
-	 * @author elias54
 	 */
 	@UnknownTestStatus
 	@SideOnly(Side.CLIENT)
@@ -226,6 +307,9 @@ public class FFMTRegistry
 		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
 	}
 	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
 	 * Add smelting for blocks/items with metadata
@@ -233,7 +317,6 @@ public class FFMTRegistry
 	 * @param metadata
 	 * @param output
 	 * @param xp
-	 * @author Kevin_68
 	 */
 	@IsWorking
 	public static void addSmeltingWithMetadata(int input, int metadata, ItemStack output, float xp)
@@ -248,7 +331,10 @@ public class FFMTRegistry
 		}
 	}
 	
-	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Helper for crafting armors
 	 * @param material
@@ -258,9 +344,8 @@ public class FFMTRegistry
 	 * Leggings:2  
 	 * Boots:3 
 	 * @param output
-	 * @author Kevin_68
 	 */
-	@UnTested
+	@IsWorking
 	public static void addArmorCrafting(ItemStack material, int type, ItemStack output)
 	{
 		try
@@ -292,6 +377,9 @@ public class FFMTRegistry
 		}
 	}
 	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
 	 * Helper for crafting all armors
@@ -300,9 +388,8 @@ public class FFMTRegistry
 	 * @param outputChestPlate
 	 * @param outputLeggings
 	 * @param outputBoots
-	 * @author Kevin_68
 	 */
-	@UnTested
+	@IsWorking
 	public static void addAllArmorCrafting(ItemStack material, ItemStack outputHelmet, ItemStack outputChestPlate, ItemStack outputLeggings, ItemStack outputBoots)
 	{
 		try
@@ -318,7 +405,10 @@ public class FFMTRegistry
 		}
 	}
 	
-	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+//Separator
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Helper for crafting tools
 	 * @param material
@@ -329,9 +419,8 @@ public class FFMTRegistry
 	 * Pickaxe:3
 	 * Sword:4
 	 * @param output
-	 * @author Kevin_68
 	 */
-	@UnTested
+	@IsWorking
 	public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
 	{
 		try

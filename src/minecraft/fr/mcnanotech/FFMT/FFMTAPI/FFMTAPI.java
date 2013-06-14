@@ -18,6 +18,9 @@ import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.NotWorking;
 @Mod(modid = "FFMTAPI", name = "FFMT API", version = "1.0.0", useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
+/**
+ * @authors kevin_68, elias54, robin4002
+ */
 public class FFMTAPI 
 {
 	public static Logger FFMTlog;
@@ -28,8 +31,8 @@ public class FFMTAPI
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
 	{
-		FFMTlog.log(Level.INFO, "PreInitialization");
 		FFMTlog = FMLLog.getLogger();
+		FFMTlog.log(Level.INFO, "PreInitialization");
 	}
 	
 	@NotWorking
