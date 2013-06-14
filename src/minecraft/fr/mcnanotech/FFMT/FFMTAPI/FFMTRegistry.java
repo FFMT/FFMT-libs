@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnTested;
 import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
+import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.IsWorking;
 
 public class FFMTRegistry 
 {
@@ -234,6 +235,7 @@ public class FFMTRegistry
 	 * @param xp
 	 * @author Kevin_68
 	 */
+	@IsWorking
 	public static void addSmeltingWithMetadata(int input, int metadata, ItemStack output, float xp)
 	{
 		try
