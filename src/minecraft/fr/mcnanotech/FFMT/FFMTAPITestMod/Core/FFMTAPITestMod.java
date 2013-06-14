@@ -21,6 +21,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import fr.mcnanotech.FFMT.FFMTAPI.FFMTColor;
+import fr.mcnanotech.FFMT.FFMTAPI.FFMTEntityHelper;
 import fr.mcnanotech.FFMT.FFMTAPI.FFMTRegistry;
 import fr.mcnanotech.FFMT.FFMTAPITestMod.Entity.FFMTAPIMobTest;
 
@@ -69,7 +70,7 @@ public class FFMTAPITestMod
 		FFMTRegistry.addArmorCrafting(new ItemStack(Block.dirt), 2, new ItemStack(Item.legsGold));
 		FFMTRegistry.addArmorCrafting(new ItemStack(Block.dirt), 3, new ItemStack(Item.bootsGold));
 		FFMTRegistry.addSmeltingWithMetadata(Item.dyePowder.itemID, 1, new ItemStack(Item.diamond), 0.0F);
-		FFMTRegistry.addMob(FFMTAPIMobTest.class, "FFMT API Mob Test", 0, this, 100, 1, true, FFMTColor.blackInt, FFMTColor.greenLightInt, 10, 1, 5, EnumCreatureType.monster, BiomeGenBase.desert);
+		FFMTEntityHelper.addMob(FFMTAPIMobTest.class, "FFMT API Mob Test", 0, this, 100, 1, true, FFMTColor.blackInt, FFMTColor.greenLightInt, 10, 1, 5, EnumCreatureType.monster, BiomeGenBase.desert);
 		FFMTRegistry.correctName("FFMT API Mob Test", "entity.", ".name", "en_US");
 	}
 }
