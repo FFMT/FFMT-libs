@@ -34,13 +34,13 @@ public class FFMTRegistry
 	 * @author Kevin_68
 	 */
 	@UnTested
-	public static void addMobName(String entityName)
+	public static void addEntityName(String entityName)
 	{
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", "en_US", entityName);
 	}
 
 	@UnTested
-	public static void addMobName(String entityName, String language)
+	public static void addEntityName(String entityName, String language)
 	{
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", language, entityName);
 	}
@@ -155,6 +155,32 @@ public class FFMTRegistry
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType);
+	}
+	
+	/**
+	 * Add a mob too easy with ingame name (if you are killed by the entity etc...)
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param entityIngameName (The entity name rendered in game)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
+	 * @author elias54
+	 */
+	
+	public static void addMobWithSpawnAndName(Class<? extends Entity> entityClass, String entityName, String entityIngameName,int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
+	{
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
+		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType);
+		LanguageRegistry.instance().addStringLocalization("entity." + entityName + ".name", entityIngameName);
 	}
 	
 	
