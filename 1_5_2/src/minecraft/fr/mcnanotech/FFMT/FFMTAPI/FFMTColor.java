@@ -81,74 +81,74 @@ public class FFMTColor
 	{
 		/** BLACK **/
 		blackInt = 0;
-		black = "§0";
+		black = "\2470";
 
 		/** DARK BLUE **/
 		darkBlueInt = 170;
-		darkBlue = "§1";
+		darkBlue = "\2471";
 
 		/** DARK GREEN **/
 		darkGreenInt = 170000;
-		darkGreen = "§2";
+		darkGreen = "\2472";
 
 		/** DARK AQUA **/
 		darkAquaInt = 170170;
-		darkAqua = "§3";
+		darkAqua = "\2473";
 
 		/** DARK RED **/
 		darkRedInt = 170000000;
-		darkRed = "§4";
+		darkRed = "\2474";
 
 		/** PURPLE **/
 		purpleInt = 170000170;
-		purple = "§5";
+		purple = "\2475";
 
 		/** GOLD **/
 		goldInt = 255170000;
-		gold = "§6";
+		gold = "\2476";
 
 		/** GRAY **/
 		grayInt = 170170170;
-		gray = "§7";
+		gray = "\2477";
 
 		/** DARK GRAY **/
 		darkGrayInt = 85085085;
-		darkGray = "§8";
+		darkGray = "\2478";
 
 		/** BLUE **/
 		blueInt = 85085255;
-		blue = "§9";
+		blue = "\2479";
 
 		/** GREEN **/
 		greenInt = 85255085;
-		green = "§a";
+		green = "\247a";
 
 		/** AQUA **/
 		aquaInt = 85255255;
-		aqua = "§b";
+		aqua = "\247b";
 
 		/** RED **/
 		redInt = 255085085;
-		red = "§c";
+		red = "\247c";
 
 		/** LIGHT PURPLE **/
 		lightPurpleInt = 255085255;
-		lightPurple = "§d";
+		lightPurple = "\247d";
 
 		/** YELLOW **/
 		yellowInt = 255255085;
-		yellow = "§e";
+		yellow = "\247e";
 
 		/** WHITE **/
 		whiteInt = 255255255;
-		white = "§f";
+		white = "\247f";
 		
 		/** SPECIALS **/
-		obfuscated = "§k";
-		bold = "§l";
-		strike = "§m";
-		underline = "§n";
-		italic = "§o";
+		obfuscated = "\247k";
+		bold = "\247l";
+		strike = "\247m";
+		underline = "\247n";
+		italic = "\247o";
 	}
 
 	public static FFMTColor instance()
