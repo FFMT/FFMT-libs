@@ -25,6 +25,9 @@ public class FFMTColor
 	/** DARK RED **/
 	public static int darkRedInt;
 	public static String darkRed;
+	
+	/** DARK PURPLE **/
+	public static int darkPurpleInt;
 
 	/** PURPLE **/
 	public static int purpleInt;
@@ -61,6 +64,15 @@ public class FFMTColor
 	/** LIGHT PURPLE **/
 	public static int lightPurpleInt;
 	public static String lightPurple;
+	
+	/** LIGHT RED **/
+	public static int lightRedInt;
+	
+	/** LIGHT GREEN **/
+	public static int lightGreenInt;
+	
+	/** LIGHT BLUE **/
+	public static int lightBlueInt;
 
 	/** YELLOW **/
 	public static int yellowInt;
@@ -69,6 +81,9 @@ public class FFMTColor
 	/** WHITE **/
 	public static int whiteInt;
 	public static String white;
+	
+	/** PINK **/
+	public static int pinkInt;
 	
 	/** SPECIALS **/
 	public static String obfuscated;
@@ -102,6 +117,9 @@ public class FFMTColor
 		/** PURPLE **/
 		purpleInt = 170000170;
 		purple = "\2475";
+		
+		/** DARK PURPLE **/
+		darkPurpleInt = 122055139;
 
 		/** GOLD **/
 		goldInt = 255170000;
@@ -134,6 +152,15 @@ public class FFMTColor
 		/** LIGHT PURPLE **/
 		lightPurpleInt = 255085255;
 		lightPurple = "\247d";
+		
+		/** LIGHT RED **/
+		lightRedInt = 255099071;
+
+		/** LIGHT GREEN **/
+		lightGreenInt = 124252000;
+
+		/** LIGHT BLUE **/
+		lightBlueInt = 	135206250;
 
 		/** YELLOW **/
 		yellowInt = 255255085;
@@ -143,6 +170,9 @@ public class FFMTColor
 		whiteInt = 255255255;
 		white = "\247f";
 		
+		/** PINK **/
+		pinkInt = 255192203;
+
 		/** SPECIALS **/
 		obfuscated = "\247k";
 		bold = "\247l";
