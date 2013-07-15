@@ -85,6 +85,12 @@ public class FFMTColor
 	/** PINK **/
 	public static int pinkInt;
 	
+	/** ORANGE **/
+	public static int orangeInt;
+	
+	/** DARK ORANGE **/
+	public static int darkOrangeInt;
+	
 	/** SPECIALS **/
 	public static String obfuscated;
 	public static String bold;
@@ -172,6 +178,12 @@ public class FFMTColor
 		
 		/** PINK **/
 		pinkInt = 255192203;
+		
+		/** ORANGE **/
+		orangeInt = 255165000;
+		
+		/** DARK ORANGE **/
+		darkOrangeInt = 205102000;
 
 		/** SPECIALS **/
 		obfuscated = "\247k";
@@ -183,7 +195,12 @@ public class FFMTColor
 
 	public static FFMTColor instance()
 	{
-		return new FFMTColor();
+		return new FFMTColor(); 
+	}
+	
+	public static String test()
+	{
+		return black + "Black " + darkBlue + "Dark Blue " + darkGreen + "Dark Green " + darkAqua + "Dark Aqua " + darkRed + "Dark Red " + purple + "Purple " + gold + "Gold " + gray + "Gray " + darkGray + "Dark Gray " + blue + "Blue " + green + "Green " + aqua + "Aqua " + red + "Red " + lightPurple + "Light Purple " + yellow + "Yellow " + white + "White ";
 	}
 
 }

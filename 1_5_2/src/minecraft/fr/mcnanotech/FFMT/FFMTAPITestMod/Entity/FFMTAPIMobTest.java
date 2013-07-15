@@ -35,14 +35,12 @@ public class FFMTAPIMobTest extends EntityMob
     @SideOnly(Side.CLIENT)
     public void message(EntityPlayer player)
     {
-    	player.addChatMessage(FFMTColor.aqua + "test" + FFMTColor.black + "test" + FFMTColor.blue + "test" + FFMTColor.darkAqua + "test" + FFMTColor.darkBlue + "test" + FFMTColor.darkGray + "test" + FFMTColor.darkGreen + "test" + FFMTColor.darkRed + "test" + FFMTColor.gold + "test");
-    	player.addChatMessage(FFMTColor.gray + "test" + FFMTColor.green + "test" + FFMTColor.lightPurple + "test" + FFMTColor.purple + "test" + FFMTColor.red + "test" + FFMTColor.white + "test" + FFMTColor.yellow + "test");
-    	player.addChatMessage(FFMTColor.strike + "test");
-    	player.addChatMessage(FFMTColor.bold + "test");
-    	player.addChatMessage(FFMTColor.italic + "test");
-    	player.addChatMessage(FFMTColor.underline + "test");
-    	player.addChatMessage(FFMTColor.obfuscated + "test");
-
+    		player.addChatMessage(FFMTColor.test());
+    		player.addChatMessage(FFMTColor.obfuscated + "Obfuscated");
+    		player.addChatMessage(FFMTColor.bold + "Bold");
+    		player.addChatMessage(FFMTColor.strike + "Strike");
+    		player.addChatMessage(FFMTColor.underline + "Underline");
+    		player.addChatMessage(FFMTColor.italic + "Italic");
     }
 
 }
