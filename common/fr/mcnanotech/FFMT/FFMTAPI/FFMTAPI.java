@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.NotWorking;
 
-@Mod(modid = "FFMTAPI", name = "FFMT API", version = "1.0.1", useMetadata = true)
+@Mod(modid = "FFMTAPI", name = "FFMT API", version = "@VERSION@", useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 /**
@@ -31,7 +31,7 @@ public class FFMTAPI
 	public void preload(FMLPreInitializationEvent event)
 	{
 		FFMTlog = FMLLog.getLogger();
-		event.getModMetadata().version = "1.0.1";
+		event.getModMetadata().version = "@VERSION@";
 	}
 	
 	@EventHandler

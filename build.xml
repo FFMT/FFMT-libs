@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<project name="FFMT API" default="build">
+
+    <property file="build.properties" prefix="build_number"/>
+    <property file="build.properties" prefix="mc_version"/>
+    <property file="build.properties" prefix="forge_version"/>
+    <property file="build.properties" prefix="FFMTAPI_version"/>
+    <property name="forge.dir" value="forge"/>
+    <property name="mcp.dir" value="${forge.dir}/mcp"/>
+	<available property="forge-exists" file="${mcp.dir}"/>
+
+    <target name="clean">
+        <delete file="${mcp.dir}\src\minecraft\mcmod.info" />
+        <delete dir="${mcp.dir}\src\minecraft\fr\mcnanotech" />
+        <delete dir="${mcp.dir}\reobf\minecraft" />
+    </target>
+
+    <!-- Download forge -->
+    <target name="download-forge" unless="forge-exists">
+        <propertyfile file="build.properties">
+            <entry key="mc_version" type="string" default="error"/>
+        </propertyfile>
+        <propertyfile file="build.properties">
+            <entry key="forge_version" type="string" default="error"/>
+        </propertyfile>
+	    <property name="forge.name" value="minecraftforge-src-${mc_version.mc_version}-${forge_version.forge_version}.zip"/>
+
+        <get src="http://files.minecraftforge.net/${forge.name}" dest="" usetimestamp="True"/>
+    </target>
+
+    <!-- Setup forge -->
+	<target name="setup" depends="download-forge" unless="forge-exists">
+        <delete dir="${forge.dir}" failonerror="false"/>
+        <unzip dest="${forge.dir}/.." src="${forge.name}"/>
+        <delete file="${forge.name}"/>
+
+        <!-- Fix executable permissions -->
+        <chmod dir="${forge.dir}" perm="ugo+rx" includes="**.sh"/>
+
+        <!-- Install forge -->
+        <exec dir="${forge.dir}" executable="cmd" osfamily="windows">
+            <arg line="/c install.cmd"/>
+        </exec>
+
+        <exec dir="${forge.dir}" executable="sh" osfamily="unix">
+            <arg value="install.sh"/>
+        </exec>
+        </target>
+
+        <target name="increment_build_number">
+        <propertyfile file="build.properties">
+        <entry key="build_number" type="int" operation="+" default="1"/>
+        </propertyfile>
+    </target>
+
+    <!-- Copy source into mcp -->
+    <target name="prep">
+        <copy todir="${mcp.dir}\src\minecraft">
+            <fileset dir="common\" />
+        </copy>
+    </target>
+
+    <!-- Replace version token -->
+    <target name="replace_tokens">
+        <propertyfile file="build.properties">
+            <entry key="FFMTAPI_version" type="string" default="error"/>
+        </propertyfile>
+        <replace dir="${mcp.dir}\src\minecraft" token="@VERSION@" value="${FFMTAPI_version.FFMTAPI_version}" />
+    </target>
+
+    <!-- Recompile -->
+    <target name="recompile">
+        <exec dir="${mcp.dir}" executable="cmd" osfamily="windows"> 
+            <arg line="/c recompile.bat" />
+        </exec>
+        <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
+            <arg line="recompile.sh" />
+        </exec>
+    </target>
+
+    <!-- Reobfuscate -->
+    <target name="reobfuscate">
+        <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
+            <arg line="/c reobfuscate_srg.bat" />
+        </exec>
+        <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
+            <arg line="reobfuscate_srg.sh" />
+        </exec>
+    </target>
+
+    <target name="build">
+        <!-- Prep for the build -->
+        <antcall target="clean" />
+        <antcall target="download-forge" />
+        <antcall target="setup" />
+        <antcall target="increment_build_number" />
+        <antcall target="prep" />
+        <antcall target="recompile" />	
+        <antcall target="reobfuscate" />
+
+        <!-- Build the jar -->
+        <mkdir dir="release\" />
+        <jar destfile="release\FFMT-API-universal-${FFMTAPI_version.FFMTAPI_version}.${build_number.build_number}-mc${mc_version.mc_version}.jar">
+            <fileset dir="resources\" />
+            <fileset dir="${mcp.dir}\reobf\minecraft" />
+        </jar>
+
+        <!-- Clean up the MCP source now that we are done -->
+        <antcall target="clean" />
+    </target>
+</project>
+
