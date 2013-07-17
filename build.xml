@@ -95,6 +95,7 @@
         <antcall target="setup" />
         <antcall target="increment_build_number" />
         <antcall target="prep" />
+        <antcall target="replace_tokens" />
         <antcall target="recompile" />	
         <antcall target="reobfuscate" />
 
@@ -104,7 +105,10 @@
             <fileset dir="resources\" />
             <fileset dir="${mcp.dir}\reobf\minecraft" />
         </jar>
-
+        <zip destfile="release\FFMT-API-src-${FFMTAPI_version.FFMTAPI_version}.${build_number.build_number}-mc${mc_version.mc_version}.zip">
+            <fileset dir="resources\" />
+            <fileset dir="${mcp.dir}\src\minecraft" includes="fr/" />
+        </zip>
         <!-- Clean up the MCP source now that we are done -->
         <antcall target="clean" />
     </target>
