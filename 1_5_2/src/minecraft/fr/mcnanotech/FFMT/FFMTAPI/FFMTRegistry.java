@@ -19,12 +19,13 @@ import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
  */
 public class FFMTRegistry 
 {
+	/*
 	public static Minecraft mc = Minecraft.getMinecraft();
 	
 	public static Minecraft getMinecraftInstance()
 	{
 		return mc;
-	}
+	}*/
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 //Separator
@@ -120,13 +121,13 @@ public class FFMTRegistry
 	 * @param version (the version of your mod)
 	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
 	 * @param download (the download link)
-	 */
+	 *//*
 	@UnknownTestStatus
 	@SideOnly(Side.CLIENT)
 	public static void registerVersionCheck(String modName, double version, String versiondoc, String download)
 	{
 		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
-	}
+	}*/
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 //Separator
