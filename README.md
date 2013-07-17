@@ -1,13 +1,13 @@
 FFMT API
 ============
 
-#FRENCH
-##Comment installer
-###Version universel pour les utilisateurs :
+##FRENCH
+###Comment installer
+####Version universel pour les utilisateurs :
 * Téchargez la version universel [ici](http://dl.mcnanotech.fr/FFMT/API/download/)
 * Placez l'archive dans votre dossier .minecraft/mods/
 
-###Source pour le moddeur :
+####Source pour le moddeur :
 Méthode 1 :
 * Téchargez les sources [ici](http://dl.mcnanotech.fr/FFMT/API/download/).
 * Désarchivez le fichier dans votre dossier forge/mcp/src/minecraft/
@@ -20,8 +20,8 @@ Méthode 2 (plus complexe, mais mieux):
 * Ensuite cliquez droit à nouveau sur le projet Minecraft et faite "new source folder"
 * Sélectionnez le dossier "FFMT API" et faite la même chose pour "FFMT API resources"
 
-#ENGLISH
-##How to install
-###Universal for users :
+##ENGLISH
+###How to install
+####Universal for users :
 
-###Source for modder :
+####Source for modder :
