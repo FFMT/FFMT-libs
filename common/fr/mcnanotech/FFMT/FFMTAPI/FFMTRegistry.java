@@ -81,16 +81,17 @@ public class FFMTRegistry
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	
 	/**
-	 * Adding version checker (IS NOT COMPATIBLE IN SERVER VERSION)
-	 * @param modName (the mod name)
-	 * @param version (the version of your mod)
-	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
-	 * @param download (the download link)
+	 * Adding version checker rewritten by robin4002 original by elias
+	 * @param event (FMLPreInitializationEvent put it in preinit)
+	 * @param versionUrl (your txt url with the last version number)
+	 * @param downloadurl
+	 * @param modname
+	 * @param actuallyversion
 	 */
 	@UnknownTestStatus
-	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String modid, String actuallyversion)
+	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
 	{
-		FFMTVersionChecker.Checker(event, versionUrl, modid, actuallyversion);
+		FFMTVersionChecker.Check(event, versionUrl, downloadurl, modname, actuallyversion);
 	}
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	

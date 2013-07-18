@@ -32,6 +32,8 @@ public class FFMTAPI
 	{
 		FFMTlog = FMLLog.getLogger();
 		event.getModMetadata().version = "@VERSION@";
+		
+		FFMTRegistry.registerVersionCheck(event, "http://dl.mcnanotech.fr/FFMT/API/download/version.txt", "http://dl.mcnanotech.fr/FFMT/API/download/", "FFMT API", "@VERSION@");
 	}
 	
 	@EventHandler

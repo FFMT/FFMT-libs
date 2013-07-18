@@ -28,146 +28,27 @@ import org.w3c.dom.NodeList;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 /**
- * @author elias54
+ * @author robin4002, elias
  */
 public class FFMTVersionChecker
 {
-	static Minecraft minecraft;
-
-	public static void checkerSimpleSSP(String name, double version, String versiondoc, String download, Minecraft mc)
-	{
-		minecraft = mc;
-		System.out.println("");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("");
-		System.out.println("LOADING VERSION CHECKER");
-		System.out.println("Checking if " + name + " is up-to-date");
-		try
-		{
-			URL url = new URL(versiondoc);
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-			double newversion = 0.0D;
-			String str;
-			while((str = in.readLine()) != null)
-			{
-				if(str.contains("Version"))
-				{
-					newversion = Double.parseDouble(str.replaceAll("Version:", "").trim());
-				}
-
-			}
-
-			if(newversion > version)
-			{
-				System.out.println(name + " is out-of-date");
-				window(name, download);
-			} else
-			{
-				System.out.println(name + " is up-to-date");
-			}
-
-			in.close();
-		} catch(MalformedURLException e)
-		{} catch(IOException e)
-		{}
-
-		System.out.println("");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("");
-	}
-
-	public static void checkerXMLSSP(String name, double version, String versiondoc, String download, Minecraft mc)
-	{
-		minecraft = mc;
-		System.out.println("");
-		System.out.println("----------------------------------------");
-		System.out.println("");
-		System.out.println("Executing version checker with metadata...");
-		System.out.println("Checking if " + name + " is up-to-date");
-		try
-		{
-			URL url = new URL(versiondoc);
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = db.parse(url.openStream());
-			doc.getDocumentElement().normalize();
-			NodeList nList = doc.getElementsByTagName(name.replace(" ", "").trim());
-			String nValue = "";
-
-			for(int temp = 0; temp < nList.getLength(); temp++)
-			{
-				Node nNode = nList.item(temp);
-
-				if(nNode.getNodeType() == 1)
-				{
-					Element eElement = (Element)nNode;
-					nValue = eElement.getElementsByTagName("version").item(0).getChildNodes().item(0).getNodeValue();
-				}
-			}
-
-			double newversion = Double.parseDouble(nValue);
-
-			if(newversion > version)
-			{
-				System.out.println(name + " is out-of-date");
-				window(name, download);
-			} else
-			{
-				System.out.println(name + " is up-to-date");
-			}
-		} catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		System.out.println("");
-		System.out.println("----------------------------------------");
-		System.out.println("");
-	}
-
-	private static void window(String name, String download)
-	{
-		String url2 = download;
-		JFrame frame32 = new JFrame();
-		frame32.setVisible(true);
-		frame32.setDefaultCloseOperation(2);
-
-		if(JOptionPane.showConfirmDialog(frame32, name + " is out-of-date, would you like to update now?", "FFMT Update Checker", 2) == 0)
-		{
-			frame32.setVisible(false);
-			frame32.dispose();
-			minecraft.getMinecraft();
-			try
-			{
-				Desktop.getDesktop().browse(URI.create(url2));
-			} catch(IOException e)
-			{
-				e.printStackTrace();
-			}
-		} else
-		{
-			frame32.setVisible(false);
-			frame32.dispose();
-		}
-	}
-
-	public static void Checker(FMLPreInitializationEvent event, String versionUrl, String modid, String actuallyversion)
+	public static void Check(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
 	{
 		try
 		{
-			String lastversion1 = lastVersion(new URL(versionUrl));
-			String lastversion2 = lastversion1.substring(0, lastversion1.length() - 1);
-			if(!lastversion2.equals(actuallyversion))
+			String lastversion = lastVersion(new URL(versionUrl));
+			String lastversiondebug = lastversion.substring(0, lastversion.length() - 1);
+			if(!lastversiondebug.equals(actuallyversion))
 			{
-				event.getModLog().info("I AM OUT OF DATE");
+				event.getModLog().info("A new update for " + modname + " is available (" + lastversiondebug + ")");
 				Side side = FMLCommonHandler.instance().getEffectiveSide();
 				if(side.isClient())
 				{
-					
+					GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modname, lastversiondebug, downloadurl));
 				}
 			}
 		}
