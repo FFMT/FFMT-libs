@@ -1,0 +1,11 @@
+[
+{
+  "modid": "FFMTAPI",
+  "name": "FFMT API",
+  "description": "Simplify your coder life",
+  "logoFile": "/ffmt_logo.png",
+  "url": "http://forge.mcnanotech.fr/",
+  "updateUrl": "",
+  "authors": ["kevin_68", "robin4002", "elias54"]
+}
+]
