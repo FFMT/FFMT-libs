@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -19,42 +20,6 @@ import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
  */
 public class FFMTRegistry 
 {
-	/*
-	public static Minecraft mc = Minecraft.getMinecraft();
-	
-	public static Minecraft getMinecraftInstance()
-	{
-		return mc;
-	}*/
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-	/**
-	 * Correct name (ex:Mobs(entity.entityName.name -> entityName), CreativeTabs(itemGroup.creativeTabName -> creativeTabName))
-	 * @param name
-	 * @param removeBack
-	 * @param removeForward
-	 */
-	@IsWorking
-	public static void correctName(String name, String removeback, String removeForward)
-	{
-		LanguageRegistry.instance().addStringLocalization(removeback + name + removeForward, "en_US", name);
-	}
-	
-	/**
-	 * Correct name (ex:Mobs(entity.entityName.name -> entityName), CreativeTabs(itemGroup.creativeTabName -> creativeTabName))
-	 * @param name
-	 * @param removeBack
-	 * @param removeForward
-	 * @param language (If not specified, by default is en_US)
-	 */
-	@IsWorking
-	public static void correctName(String entityName, String removeback, String removeForward, String language)
-	{
-		LanguageRegistry.instance().addStringLocalization(removeback + entityName + removeForward, language, entityName);
-	}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 //Separator
@@ -121,13 +86,12 @@ public class FFMTRegistry
 	 * @param version (the version of your mod)
 	 * @param versiondoc (the .htm version file (Args in the htm file (eg) : Version : 0.1))
 	 * @param download (the download link)
-	 *//*
+	 */
 	@UnknownTestStatus
-	@SideOnly(Side.CLIENT)
-	public static void registerVersionCheck(String modName, double version, String versiondoc, String download)
+	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String modid, String actuallyversion)
 	{
-		FFMTVersionChecker.checkerSimpleSSP(modName, version, versiondoc, download, mc);
-	}*/
+		FFMTVersionChecker.Checker(event, versionUrl, modid, actuallyversion);
+	}
 	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 //Separator
@@ -299,5 +263,4 @@ public class FFMTRegistry
 			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
-	
 }
