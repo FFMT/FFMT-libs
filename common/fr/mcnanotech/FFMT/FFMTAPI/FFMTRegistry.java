@@ -88,7 +88,7 @@ public class FFMTRegistry
 	 * @param modname
 	 * @param actuallyversion
 	 */
-	@UnknownTestStatus
+	@IsWorking
 	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
 	{
 		FFMTVersionChecker.Check(event, versionUrl, downloadurl, modname, actuallyversion);
