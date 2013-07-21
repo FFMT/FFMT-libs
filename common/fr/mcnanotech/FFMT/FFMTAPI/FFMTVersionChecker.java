@@ -45,8 +45,7 @@ public class FFMTVersionChecker
 			if(!lastversiondebug.equals(actuallyversion))
 			{
 				event.getModLog().info("A new update for " + modname + " is available (" + lastversiondebug + ")");
-				Side side = FMLCommonHandler.instance().getEffectiveSide();
-				if(side.isClient())
+				if(event.getSide().isClient())
 				{
 					GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modname, lastversiondebug, downloadurl));
 				}
