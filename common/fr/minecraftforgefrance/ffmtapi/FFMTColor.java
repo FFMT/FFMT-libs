@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI;
+package fr.minecraftforgefrance.ffmtapi;
 
 /**
  * @author elias54, kevin_68

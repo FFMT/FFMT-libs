@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI.Interfaces;
+package fr.minecraftforgefrance.ffmtapi.interfaces;
 
 /**
  * If it work.

@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI;
+package fr.minecraftforgefrance.ffmtapi;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -14,7 +14,7 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.NotWorking;
+import fr.minecraftforgefrance.ffmtapi.interfaces.NotWorking;
 
 @Mod(modid = "FFMTAPI", name = "FFMT API", version = "@VERSION@", useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)

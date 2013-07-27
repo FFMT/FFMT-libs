@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI;
+package fr.minecraftforgefrance.ffmtapi;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;

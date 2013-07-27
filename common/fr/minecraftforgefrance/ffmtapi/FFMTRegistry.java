@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI;
+package fr.minecraftforgefrance.ffmtapi;
 
 import java.util.Random;
 
@@ -11,9 +11,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.IsWorking;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnTested;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
+import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
+import fr.minecraftforgefrance.ffmtapi.interfaces.UnTested;
+import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
 
 /**
  * @authors kevin_68, elias54

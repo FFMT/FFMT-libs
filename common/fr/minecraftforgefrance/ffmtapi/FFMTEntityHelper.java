@@ -1,4 +1,4 @@
-package fr.mcnanotech.FFMT.FFMTAPI;
+package fr.minecraftforgefrance.ffmtapi;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -6,8 +6,8 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.IsWorking;
-import fr.mcnanotech.FFMT.FFMTAPI.Interfaces.UnknownTestStatus;
+import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
+import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
 
 
 /**
