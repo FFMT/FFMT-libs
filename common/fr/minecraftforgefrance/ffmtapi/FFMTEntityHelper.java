@@ -1,12 +1,21 @@
 package fr.minecraftforgefrance.ffmtapi;
 
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
+import fr.minecraftforgefrance.ffmtapi.interfaces.UnTested;
 import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
 
 
@@ -15,7 +24,7 @@ import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
  */
 public class FFMTEntityHelper 
 {
-	
+	protected static Random rand = new Random();
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
 	 * @param speed
@@ -123,4 +132,61 @@ public class FFMTEntityHelper
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
 		EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
 	}
+	
+	/**
+	 * Set custom attack target ! (PUT THIS FUNCTION IN updateEntityActionState() METHOD !!!!)
+	 * @param world ("worldObj" from the entity)
+	 * @param entityHostAttack (The entity host the attack(like a entity instance))
+	 * @param classToAttack (The entity to attack)
+	 * @author elias54
+	 **/
+	@UnTested
+	public static void targetEntity(World world, EntityCreature entityHostAttack, Class <? extends EntityLivingBase> classToAttack)
+	{
+		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+		Entity entityToAttack = (Entity)list.get(rand.nextInt(list.size()));
+		if(!list.isEmpty())
+		{
+			entityHostAttack.setTarget(entityToAttack);
+		}
+	}
+	
+	/**
+	 * Return if the entity is in water
+	 * @param world ("worldObj" from the entity)
+	 * @param entity (Entity instance)
+	 * @author elias54
+	 */
+	@UnTested
+    public static boolean inWater(World world, Entity entity)
+    {
+        return world.handleMaterialAcceleration(entity.boundingBox, Material.water, entity);
+    }
+    
+    /**
+     * This is just the famous "onGround" provide from the class Entity
+     * @param entity (Entity instance)
+     * @author elias54
+     */
+	@UnTested
+	public static boolean entityOnGround(Entity entity)
+	{
+		return entity.onGround;
+	}
+	
+	/**
+	 * Throw entity problem exception
+	 * @param message (Your message exception)
+	 * @param throwable (The Throwable instance)
+	 * @author elias54
+	 */
+	@UnTested
+    public static void throwEntityException(String message, Throwable throwable)
+    {
+    	//is not realy deprecated, just eclipse not reconized the real version of this line :
+    	ObfuscationReflectionHelper.setPrivateValue(java.lang.Throwable.class, throwable, "detailMessage", message);
+        
+    	FMLCommonHandler.instance().raiseException(throwable, message, true);
+    }
+	
 }
