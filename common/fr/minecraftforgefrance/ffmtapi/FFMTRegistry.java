@@ -267,7 +267,17 @@ public class FFMTRegistry
 			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
+	
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+	/**
+	 * Remove a recipe
+	 * 
+	 * @param removestack 
+	 *            The removed ItemStack
+	 * @author Moritz
+	 * @see http://www.minecraftforge.net/forum/index.php/topic,7146.msg58748.html#msg58748
+	 */
 	public static void removeRecipe(ItemStack removestack)
 	{
 		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
@@ -296,6 +306,13 @@ public class FFMTRegistry
 		}
 	}
 
+	/**
+	 * Remove a recipe
+	 * 
+	 * @param id 
+	 *            The id of the block or item
+	 * @author robin4002
+	 */
 	public static void removeRecipe(int id)
 	{
 		ItemStack removestack = new ItemStack(id, 1, -1);
