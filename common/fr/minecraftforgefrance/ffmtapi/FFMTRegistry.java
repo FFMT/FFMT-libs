@@ -1,34 +1,38 @@
 package fr.minecraftforgefrance.ffmtapi;
 
+import java.util.List;
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
 import fr.minecraftforgefrance.ffmtapi.interfaces.UnTested;
-import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
 
 /**
  * @authors kevin_68, elias54
  */
-public class FFMTRegistry 
+public class FFMTRegistry
 {
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Spawn particles (Blocks only)
+	 * 
 	 * @param speed
-	 * @param particles (ex: "smoke", "largesmoke", "enchantmenttable", ...)
+	 * @param particles
+	 *            (ex: "smoke", "largesmoke", "enchantmenttable", ...)
 	 * @param world
 	 * @param posX
 	 * @param posY
@@ -39,51 +43,59 @@ public class FFMTRegistry
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random)
 	{
-		float var7 = (float)posX + random.nextFloat() ;
+		float var7 = (float)posX + random.nextFloat();
 		float var8 = (float)posY + random.nextFloat() * 0.1F;
-		float var9 = (float)posZ + random.nextFloat() ;
-		
+		float var9 = (float)posZ + random.nextFloat();
+
 		for(int i = 0; i < speed; i++)
 		{
 			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, 0.0D, 0.0D, 0.0D);
 		}
 	}
-	
+
 	/**
 	 * Spawn particles (Blocks only)
+	 * 
 	 * @param speed
-	 * @param particles (ex: "smoke", "largesmoke", "enchantmenttable", ...)
+	 * @param particles
+	 *            (ex: "smoke", "largesmoke", "enchantmenttable", ...)
 	 * @param world
 	 * @param posX
 	 * @param posY
 	 * @param posZ
 	 * @param random
-	 * @param velX (If not specified, by default is 0.0D)
-	 * @param velY (If not specified, by default is 0.0D)
-	 * @param velZ (If not specified, by default is 0.0D)
+	 * @param velX
+	 *            (If not specified, by default is 0.0D)
+	 * @param velY
+	 *            (If not specified, by default is 0.0D)
+	 * @param velZ
+	 *            (If not specified, by default is 0.0D)
 	 */
 	@UnTested
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)
 	{
-		float var7 = (float)posX + random.nextFloat() ;
+		float var7 = (float)posX + random.nextFloat();
 		float var8 = (float)posY + random.nextFloat() * 0.1F;
-		float var9 = (float)posZ + random.nextFloat() ;
-		
+		float var9 = (float)posZ + random.nextFloat();
+
 		for(int i = 0; i < speed; i++)
 		{
 			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, velX, velY, velZ);
 		}
 	}
-	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Adding version checker rewritten by robin4002 original by elias
-	 * @param event (FMLPreInitializationEvent put it in preinit)
-	 * @param versionUrl (your txt url with the last version number)
+	 * 
+	 * @param event
+	 *            (FMLPreInitializationEvent put it in preinit)
+	 * @param versionUrl
+	 *            (your txt url with the last version number)
 	 * @param downloadurl
 	 * @param modname
 	 * @param actuallyversion
@@ -93,13 +105,14 @@ public class FFMTRegistry
 	{
 		FFMTVersionChecker.Check(event, versionUrl, downloadurl, modname, actuallyversion);
 	}
-	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Add smelting for blocks/items with metadata
+	 * 
 	 * @param input
 	 * @param metadata
 	 * @param output
@@ -111,25 +124,22 @@ public class FFMTRegistry
 		try
 		{
 			FurnaceRecipes.smelting().addSmelting(input, metadata, output, xp);
-		}
-		catch (Exception e)
+		} catch(Exception e)
 		{
 			FFMTAPI.FFMTlog.severe("Failed to register smelting whith metadata");
 		}
 	}
-	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Helper for crafting armors
+	 * 
 	 * @param material
 	 * @param type
-	 * Helmet:0  
-	 * Chestplate:1  
-	 * Leggings:2  
-	 * Boots:3 
+	 *            Helmet:0 Chestplate:1 Leggings:2 Boots:3
 	 * @param output
 	 */
 	@IsWorking
@@ -137,39 +147,39 @@ public class FFMTRegistry
 	{
 		try
 		{
-			if (type == 0)
+			if(type == 0)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"XXX", "X X", 'X', material});
+				GameRegistry.addRecipe(output, new Object[]{"XXX", "X X", 'X', material});
 			}
-			if (type == 1)
+			if(type == 1)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"X X", "XXX", "XXX", 'X', material});
+				GameRegistry.addRecipe(output, new Object[]{"X X", "XXX", "XXX", 'X', material});
 			}
-			if (type == 2)
+			if(type == 2)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"XXX", "X X", "X X", 'X', material});
+				GameRegistry.addRecipe(output, new Object[]{"XXX", "X X", "X X", 'X', material});
 			}
-			if (type == 3)
+			if(type == 3)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"X X", "X X", 'X', material});
+				GameRegistry.addRecipe(output, new Object[]{"X X", "X X", 'X', material});
 			}
-			if (type < 0 || type > 3)
+			if(type < 0 || type > 3)
 			{
 				FFMTAPI.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
 			}
-		}
-		catch (Exception e)
+		} catch(Exception e)
 		{
 			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
-	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 	/**
 	 * Helper for crafting all armors
+	 * 
 	 * @param material
 	 * @param outputHelmet
 	 * @param outputChestPlate
@@ -181,30 +191,26 @@ public class FFMTRegistry
 	{
 		try
 		{
-			GameRegistry.addRecipe(outputHelmet, new Object[] {"XXX", "X X", 'X', material});
-			GameRegistry.addRecipe(outputChestPlate, new Object[] {"X X", "XXX", "XXX", 'X', material});
-			GameRegistry.addRecipe(outputLeggings, new Object[] {"XXX", "X X", "X X", 'X', material});
-			GameRegistry.addRecipe(outputBoots, new Object[] {"X X", "X X", 'X', material});
-		}
-		catch (Exception e)
+			GameRegistry.addRecipe(outputHelmet, new Object[]{"XXX", "X X", 'X', material});
+			GameRegistry.addRecipe(outputChestPlate, new Object[]{"X X", "XXX", "XXX", 'X', material});
+			GameRegistry.addRecipe(outputLeggings, new Object[]{"XXX", "X X", "X X", 'X', material});
+			GameRegistry.addRecipe(outputBoots, new Object[]{"X X", "X X", 'X', material});
+		} catch(Exception e)
 		{
 			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
-	
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-//Separator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	// Separator
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Helper for crafting tools
+	 * 
 	 * @param material
 	 * @param type
-	 * Axe:0
-	 * Shovel:1
-	 * Hoe:2
-	 * Pickaxe:3
-	 * Sword:4
+	 *            Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
 	 * @param output
 	 */
 	@IsWorking
@@ -212,56 +218,110 @@ public class FFMTRegistry
 	{
 		try
 		{
-			if (type == 0)
+			if(type == 0)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"XX", "XS", " S", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(output, new Object[] {"XX", "SX", "S ", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"XX", "XS", " S", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"XX", "SX", "S ", 'X', material, 'S', stick});
 			}
-			if (type == 1)
+			if(type == 1)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"X", "S", "S", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"X", "S", "S", 'X', material, 'S', stick});
 			}
-			if (type == 2)
+			if(type == 2)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"XX", " S", " S", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(output, new Object[] {"XX", "S ", "S ", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"XX", " S", " S", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"XX", "S ", "S ", 'X', material, 'S', stick});
 			}
-			if (type == 3)
+			if(type == 3)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"XXX", " S ", " S ", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"XXX", " S ", " S ", 'X', material, 'S', stick});
 			}
-			if (type == 4)
+			if(type == 4)
 			{
-				GameRegistry.addRecipe(output, new Object[] {"X", "X", "S", 'X', material, 'S', stick});
+				GameRegistry.addRecipe(output, new Object[]{"X", "X", "S", 'X', material, 'S', stick});
 			}
-			if (type < 0 || type > 4)
+			if(type < 0 || type > 4)
 			{
 				FFMTAPI.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
 			}
-		}
-		catch (Exception e)
+		} catch(Exception e)
 		{
 			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
-	
 
 	@IsWorking
 	public static void addAllToolsCrafting(ItemStack material, ItemStack outputAxe, ItemStack outputShovel, ItemStack outputHoe, ItemStack outputPickaxe, ItemStack outputSword, ItemStack stick)
 	{
 		try
 		{
-				GameRegistry.addRecipe(outputAxe, new Object[] {"XX", "XS", " S", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputAxe, new Object[] {"XX", "SX", "S ", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputShovel, new Object[] {"X", "S", "S", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputHoe, new Object[] {"XX", " S", " S", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputHoe, new Object[] {"XX", "S ", "S ", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputPickaxe, new Object[] {"XXX", " S ", " S ", 'X', material, 'S', stick});
-				GameRegistry.addRecipe(outputSword, new Object[] {"X", "X", "S", 'X', material, 'S', stick});
-		}
-		catch (Exception e)
+			GameRegistry.addRecipe(outputAxe, new Object[]{"XX", "XS", " S", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputAxe, new Object[]{"XX", "SX", "S ", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputShovel, new Object[]{"X", "S", "S", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputHoe, new Object[]{"XX", " S", " S", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputHoe, new Object[]{"XX", "S ", "S ", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputPickaxe, new Object[]{"XXX", " S ", " S ", 'X', material, 'S', stick});
+			GameRegistry.addRecipe(outputSword, new Object[]{"X", "X", "S", 'X', material, 'S', stick});
+		} catch(Exception e)
 		{
 			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
+		}
+	}
+
+	public static void removeRecipe(ItemStack removestack)
+	{
+		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
+		for(int i = 0; i < recipeList.size(); i++)
+		{
+			IRecipe currentRecipe = recipeList.get(i);
+			if(currentRecipe instanceof ShapedRecipes)
+			{
+				ShapedRecipes shape = (ShapedRecipes)currentRecipe;
+				ItemStack output = shape.getRecipeOutput();
+				if(ItemStack.areItemStacksEqual(removestack, output))
+				{
+					recipeList.remove(i);
+				}
+			}
+
+			if(currentRecipe instanceof ShapelessRecipes)
+			{
+				ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
+				ItemStack output = shapeless.getRecipeOutput();
+				if(ItemStack.areItemStacksEqual(removestack, output))
+				{
+					recipeList.remove(i);
+				}
+			}
+		}
+	}
+
+	public static void removeRecipe(int id)
+	{
+		ItemStack removestack = new ItemStack(id, 1, -1);
+		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
+		for(int i = 0; i < recipeList.size(); i++)
+		{
+			IRecipe currentRecipe = recipeList.get(i);
+			if(currentRecipe instanceof ShapedRecipes)
+			{
+				ShapedRecipes shape = (ShapedRecipes)currentRecipe;
+				ItemStack output = shape.getRecipeOutput();
+				if(ItemStack.areItemStacksEqual(removestack, output))
+				{
+					recipeList.remove(i);
+				}
+			}
+
+			if(currentRecipe instanceof ShapelessRecipes)
+			{
+				ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
+				ItemStack output = shapeless.getRecipeOutput();
+				if(ItemStack.areItemStacksEqual(removestack, output))
+				{
+					recipeList.remove(i);
+				}
+			}
 		}
 	}
 }
