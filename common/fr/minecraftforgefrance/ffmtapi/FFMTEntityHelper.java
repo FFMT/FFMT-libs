@@ -3,6 +3,7 @@ package fr.minecraftforgefrance.ffmtapi;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -11,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.ForgeHooks;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -184,9 +186,36 @@ public class FFMTEntityHelper
     public static void throwEntityException(String message, Throwable throwable)
     {
     	//is not realy deprecated, just eclipse not reconized the real version of this line :
-    	ObfuscationReflectionHelper.setPrivateValue(java.lang.Throwable.class, throwable, "detailMessage", message);
+    	ObfuscationReflectionHelper.setPrivateValue(java.lang.Throwable.class, throwable, message, "detailMessage");
         
     	FMLCommonHandler.instance().raiseException(throwable, message, true);
     }
 	
+	
+	/**
+	 * Remove current listed loaded entity
+	 * @param world (Use worldObj entity)
+	 * @param entityToRemove (Entity to remove)
+	 * @author elias54
+	 */
+	@UnTested
+	public void removeLoadedEntityList(World world, Entity entityToRemove)
+	{
+		List list = world.getLoadedEntityList();
+		if(!list.isEmpty())
+		{
+			list.remove(entityToRemove);
+		}
+	}
+	
+	/**
+	 * Set infinite health to specified entity
+	 * @param entity (entity to set infinite health)
+	 * @author elias54
+	 */
+	@UnTested
+	public static void setInfiniteHealthToEntity(EntityLivingBase entity)
+	{
+		entity.setEntityHealth(Float.MAX_VALUE);
+	}
 }
