@@ -12,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeHooks;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
@@ -27,6 +28,15 @@ import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
 public class FFMTEntityHelper 
 {
 	protected static Random rand = new Random();
+	
+	private static FFMTEntityHelper instance;
+	
+	/**
+	 * If you want to add a creature come from leave block.
+	 * @author elias54
+	 */
+	public static EnumCreatureType leafCreature = EnumHelper.addCreatureType("leafCreature", EntityLeafCreature.class, 5, Material.leaves, true);
+	
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
 	 * @param speed
@@ -164,7 +174,19 @@ public class FFMTEntityHelper
     {
         return world.handleMaterialAcceleration(entity.boundingBox, Material.water, entity);
     }
-    
+
+	/**
+	 * Return if the entity is in specified material
+	 * @param world ("worldObj" from the entity)
+	 * @param entity (Entity instance)
+	 * @param material (e.g Material.rock)
+	 * @author elias54
+	 */
+	public static boolean isInMaterial(World world, Entity entity, Material material)
+	{
+		return world.handleMaterialAcceleration(entity.boundingBox, material, entity);
+	}
+	
     /**
      * This is just the famous "onGround" provide from the class Entity
      * @param entity (Entity instance)
@@ -217,5 +239,10 @@ public class FFMTEntityHelper
 	public static void setInfiniteHealthToEntity(EntityLivingBase entity)
 	{
 		entity.setEntityHealth(Float.MAX_VALUE);
+	}
+	
+	public static FFMTEntityHelper instance()
+	{
+		return instance;
 	}
 }
