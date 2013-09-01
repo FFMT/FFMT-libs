@@ -35,7 +35,7 @@ public class FFMTEntityHelper
 	 * If you want to add a creature come from leave block.
 	 * @author elias54
 	 */
-	public static EnumCreatureType leafCreature = EnumHelper.addCreatureType("leafCreature", EntityLeafCreature.class, 5, Material.leaves, true);
+	//public static EnumCreatureType leafCreature = EnumHelper.addCreatureType("leafCreature", EntityLeafCreature.class, 5, Material.leaves, true);
 	
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
