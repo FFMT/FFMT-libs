@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtapi.entityhelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
