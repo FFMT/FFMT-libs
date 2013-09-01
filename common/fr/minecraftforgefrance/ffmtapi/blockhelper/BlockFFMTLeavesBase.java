@@ -18,6 +18,7 @@ public class BlockFFMTLeavesBase extends BlockLeaves
 	protected BlockFFMTLeavesBase(int id)
 	{
 		super(id);
+		this.setLightOpacity(1);
 	}
 
 	public boolean isOpaqueCube()

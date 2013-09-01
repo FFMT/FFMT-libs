@@ -11,7 +11,7 @@
 
     <target name="clean">
         <delete file="${mcp.dir}\src\minecraft\mcmod.info" />
-        <delete dir="${mcp.dir}\src\minecraft\fr\mcnanotech" />
+        <delete dir="${mcp.dir}\src\minecraft\fr" />
         <delete dir="${mcp.dir}\reobf\minecraft" />
     </target>
 
