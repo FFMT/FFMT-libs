@@ -235,7 +235,7 @@ public class FFMTEntityHelper
 	@UnTested
 	public static void setInfiniteHealthToEntity(EntityLivingBase entity)
 	{
-		entity.setEntityHealth(Float.MAX_VALUE);
+		entity.setHealth(Float.MAX_VALUE);
 	}
 	
 	public static FFMTEntityHelper instance()
