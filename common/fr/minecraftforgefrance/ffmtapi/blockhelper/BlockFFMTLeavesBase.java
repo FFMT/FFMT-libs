@@ -8,6 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -40,5 +41,11 @@ public class BlockFFMTLeavesBase extends BlockLeaves
 	public void getSubBlocks(int par1, CreativeTabs creativeTabs, List list)
 	{
 		list.add(new ItemStack(par1, 1, 0));
+	}
+	
+	@Override
+	public boolean isLeaves(World world, int x, int y, int z)
+	{
+		return true;
 	}
 }
