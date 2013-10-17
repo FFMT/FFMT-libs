@@ -18,13 +18,7 @@
 
     <!-- Download and setup forge -->
     <target name="download-and-setup-forge" unless="mcp-exists">
-        <propertyfile file="build.properties">
-            <entry key="mc" type="string" default="error"/>
-        </propertyfile>
-        <propertyfile file="build.properties">
-            <entry key="forge" type="string" default="error"/>
-        </propertyfile>
-	    <property name="forge.name" value="minecraftforge-src-${buildprop.mc}-${buildprop.forge}.zip"/>
+	    <property name="forge.name" value="minecraftforge-src-${buildprop.mc_version}-${buildprop.forge_version}.zip"/>
 
         <get src="http://files.minecraftforge.net/${forge.name}" dest="..\" usetimestamp="True"/>
 
@@ -41,14 +35,14 @@
         <delete file="..\${forge.name}"/>
 
         <!-- Fix executable permissions -->
-        <chmod dir="${forge.dir}/${buildprop.forge}" perm="ugo+rx" includes="**.sh"/>
+        <chmod dir="${forge.dir}/${buildprop.forge_version}" perm="ugo+rx" includes="**.sh"/>
 
         <!-- Install forge -->
-        <exec dir="${forge.dir}/${buildprop.forge}" executable="cmd" osfamily="windows">
+        <exec dir="${forge.dir}/${buildprop.forge_version}" executable="cmd" osfamily="windows">
             <arg line="/c install.cmd"/>
         </exec>
 
-        <exec dir="${forge.dir}/${buildprop.forge}" executable="sh" osfamily="unix">
+        <exec dir="${forge.dir}/${buildprop.forge_version}" executable="sh" osfamily="unix">
             <arg value="install.sh"/>
         </exec>
     </target>
