@@ -1,4 +1,4 @@
-FFMT API
+FFMT libs
 ============
 
 ##FRENCH

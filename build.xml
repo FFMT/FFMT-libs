@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<project name="FFMT API" default="build">
+<project name="FFMT libs" default="build">
 
-    <property file="build.properties" prefix="build_number"/>
+    <property file="build.properties" prefix="buildprop"/>
     <property file="build.properties" prefix="mc_version"/>
     <property file="build.properties" prefix="forge_version"/>
-    <property file="build.properties" prefix="FFMTAPI_version"/>
+    <property file="build.properties" prefix="FFMTlibs_version"/>
     <property name="forge.dir" value="..\forge"/>
     <property name="mcp.dir" value="${forge.dir}\${forge_version.forge_version}\mcp"/>
 	<available property="forge-exists" file="${mcp.dir}"/>
@@ -13,23 +13,22 @@
         <delete file="${mcp.dir}\src\minecraft\mcmod.info" />
         <delete dir="${mcp.dir}\src\minecraft\fr" />
         <delete dir="${mcp.dir}\reobf\minecraft" />
+        <delete dir="${mcp.dir}\bin_srg\" />
     </target>
 
-    <!-- Download forge -->
-    <target name="download-forge" unless="forge-exists">
+    <!-- Download and setup forge -->
+    <target name="download-and-setup-forge" unless="mcp-exists">
         <propertyfile file="build.properties">
-            <entry key="mc_version" type="string" default="error"/>
+            <entry key="mc" type="string" default="error"/>
         </propertyfile>
         <propertyfile file="build.properties">
-            <entry key="forge_version" type="string" default="error"/>
+            <entry key="forge" type="string" default="error"/>
         </propertyfile>
-	    <property name="forge.name" value="minecraftforge-src-${mc_version.mc_version}-${forge_version.forge_version}.zip"/>
+	    <property name="forge.name" value="minecraftforge-src-${buildprop.mc}-${buildprop.forge}.zip"/>
 
         <get src="http://files.minecraftforge.net/${forge.name}" dest="..\" usetimestamp="True"/>
-    </target>
 
-    <!-- Setup forge -->
-	<target name="setup" depends="download-forge" unless="forge-exists">
+        <!-- setup -->
         <mkdir dir="..\forgetemp"/>
         <unzip dest="..\forgetemp" src="..\${forge.name}"/>
         <mkdir dir="${forge.dir}\${forge_version.forge_version}\"/>
@@ -42,23 +41,16 @@
         <delete file="..\${forge.name}"/>
 
         <!-- Fix executable permissions -->
-        <chmod dir="${forge.dir}/${forge_version.forge_version}" perm="ugo+rx" includes="**.sh"/>
+        <chmod dir="${forge.dir}/${buildprop.forge}" perm="ugo+rx" includes="**.sh"/>
 
         <!-- Install forge -->
-        <exec dir="${forge.dir}/${forge_version.forge_version}" executable="cmd" osfamily="windows">
+        <exec dir="${forge.dir}/${buildprop.forge}" executable="cmd" osfamily="windows">
             <arg line="/c install.cmd"/>
         </exec>
 
-        <exec dir="${forge.dir}/${forge_version.forge_version}" executable="sh" osfamily="unix">
+        <exec dir="${forge.dir}/${buildprop.forge}" executable="sh" osfamily="unix">
             <arg value="install.sh"/>
         </exec>
-    </target>
-
-    <!-- Build Number -->
-    <target name="increment_build_number">
-        <propertyfile file="build.properties">
-        <entry key="build_number" type="int" operation="+" default="1"/>
-        </propertyfile>
     </target>
 
     <!-- Copy source into mcp -->
@@ -71,9 +63,9 @@
     <!-- Replace version token -->
     <target name="replace_tokens">
         <propertyfile file="build.properties">
-            <entry key="FFMTAPI_version" type="string" default="error"/>
+            <entry key="FFMTlibs_version" type="string" default="error"/>
         </propertyfile>
-        <replace dir="${mcp.dir}\src\minecraft" token="@VERSION@" value="${FFMTAPI_version.FFMTAPI_version}" />
+        <replace dir="${mcp.dir}\src\minecraft" token="@VERSION@" value="${buildprop.FFMTlibs_version}" />
     </target>
 
     <!-- Recompile -->
@@ -96,8 +88,36 @@
         </exec>
     </target>
 
+    <!-- Compile with srg name -->
+    <target name="compile">
+        <mkdir dir="bin_srg\" />
+        <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
+            <arg line="/c javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
+        </exec>
+        <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
+            <arg line="/c javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
+        </exec>
+    </target>
+
+    <!-- Build the jar -->
+    <target name="build_jar">
+        <mkdir dir="dist\" />
+        <jar destfile="dist\FFMT-libs-universal-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.jar">
+            <fileset dir="resources\" />
+            <fileset dir="${mcp.dir}\reobf\minecraft" />
+        </jar>
+        <zip destfile="release\FFMT-libs-src-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.zip">
+            <fileset dir="resources\" />
+            <fileset dir="${mcp.dir}\src\minecraft" includes="fr/" />
+        </zip>
+        <jar destfile="dist\FFMT-libs-deobf-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.jar">
+            <fileset dir="${mcp.dir}\bin_srg" />
+        </jar>
+    </target>
+
     <target name="build">
         <!-- Prep for the build -->
+        <delete dir="dist\" />
         <antcall target="clean" />
         <antcall target="download-forge" />
         <antcall target="setup" />
@@ -106,17 +126,6 @@
         <antcall target="replace_tokens" />
         <antcall target="recompile" />	
         <antcall target="reobfuscate" />
-
-        <!-- Build the jar -->
-        <mkdir dir="release\" />
-        <jar destfile="release\FFMT-API-universal-${FFMTAPI_version.FFMTAPI_version}.${build_number.build_number}-mc${mc_version.mc_version}.jar">
-            <fileset dir="resources\" />
-            <fileset dir="${mcp.dir}\reobf\minecraft" />
-        </jar>
-        <zip destfile="release\FFMT-API-src-${FFMTAPI_version.FFMTAPI_version}.${build_number.build_number}-mc${mc_version.mc_version}.zip">
-            <fileset dir="resources\" />
-            <fileset dir="${mcp.dir}\src\minecraft" includes="fr/" />
-        </zip>
         <!-- Clean up the MCP source now that we are done -->
         <antcall target="clean" />
     </target>
