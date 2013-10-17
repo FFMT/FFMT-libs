@@ -84,12 +84,12 @@
 
     <!-- Compile with srg name -->
     <target name="compile">
-        <mkdir dir="bin_srg\" />
+        <mkdir dir="${mcp.dir}\bin_srg\" />
         <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-            <arg line="/c javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
+            <arg line="javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
         </exec>
         <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
-            <arg line="/c javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
+            <arg line="javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
         </exec>
     </target>
 
