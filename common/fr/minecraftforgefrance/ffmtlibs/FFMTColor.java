@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtlibs;
 
 /**
  * @author elias54, kevin_68

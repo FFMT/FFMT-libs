@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtlibs;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StatCollector;

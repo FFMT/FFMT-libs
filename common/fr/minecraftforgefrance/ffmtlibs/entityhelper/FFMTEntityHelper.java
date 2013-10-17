@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi.entityhelper;
+package fr.minecraftforgefrance.ffmtlibs.entityhelper;
 
 import java.util.List;
 import java.util.Random;
@@ -14,9 +14,9 @@ import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
-import fr.minecraftforgefrance.ffmtapi.interfaces.UnTested;
-import fr.minecraftforgefrance.ffmtapi.interfaces.UnknownTestStatus;
+import fr.minecraftforgefrance.ffmtlibs.interfaces.IsWorking;
+import fr.minecraftforgefrance.ffmtlibs.interfaces.UnTested;
+import fr.minecraftforgefrance.ffmtlibs.interfaces.UnknownTestStatus;
 
 
 /**

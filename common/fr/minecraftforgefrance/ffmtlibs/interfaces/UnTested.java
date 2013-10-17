@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi.interfaces;
+package fr.minecraftforgefrance.ffmtlibs.interfaces;
 
 /**
  * This is not tested, he can crash your game, delete your world, kill everyone and explode the Earth.

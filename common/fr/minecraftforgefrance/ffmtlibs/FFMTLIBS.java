@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.logging.Logger;
 
@@ -9,13 +9,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "FFMTAPI", name = "FFMT API", version = "@VERSION@", useMetadata = true)
+@Mod(modid = "FFMTLIBS", name = "FFMT LIBS", version = "@VERSION@", useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 
 /**
  * @authors kevin_68, elias54, robin4002
  */
-public class FFMTAPI 
+public class FFMTLIBS 
 {
 	public static Logger FFMTlog;
 	public static FFMTColor getColor = new FFMTColor();

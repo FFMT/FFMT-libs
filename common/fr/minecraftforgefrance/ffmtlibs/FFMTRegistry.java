@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.List;
 import java.util.Random;
@@ -14,8 +14,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import fr.minecraftforgefrance.ffmtapi.interfaces.IsWorking;
-import fr.minecraftforgefrance.ffmtapi.interfaces.UnTested;
+import fr.minecraftforgefrance.ffmtlibs.interfaces.IsWorking;
+import fr.minecraftforgefrance.ffmtlibs.interfaces.UnTested;
 
 /**
  * @authors kevin_68, elias54
@@ -126,7 +126,7 @@ public class FFMTRegistry
 			FurnaceRecipes.smelting().addSmelting(input, metadata, output, xp);
 		} catch(Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("Failed to register smelting whith metadata");
+			FFMTLIBS.FFMTlog.severe("Failed to register smelting whith metadata");
 		}
 	}
 
@@ -165,11 +165,11 @@ public class FFMTRegistry
 			}
 			if(type < 0 || type > 3)
 			{
-				FFMTAPI.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
+				FFMTLIBS.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
 			}
 		} catch(Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
+			FFMTLIBS.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 
@@ -197,7 +197,7 @@ public class FFMTRegistry
 			GameRegistry.addRecipe(outputBoots, new Object[]{"X X", "X X", 'X', material});
 		} catch(Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("Failed to register armor crafting");
+			FFMTLIBS.FFMTlog.severe("Failed to register armor crafting");
 		}
 	}
 
@@ -242,11 +242,11 @@ public class FFMTRegistry
 			}
 			if(type < 0 || type > 4)
 			{
-				FFMTAPI.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
+				FFMTLIBS.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
 			}
 		} catch(Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
+			FFMTLIBS.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
 
@@ -264,7 +264,7 @@ public class FFMTRegistry
 			GameRegistry.addRecipe(outputSword, new Object[]{"X", "X", "S", 'X', material, 'S', stick});
 		} catch(Exception e)
 		{
-			FFMTAPI.FFMTlog.severe("Failed to register tools crafting");
+			FFMTLIBS.FFMTlog.severe("Failed to register tools crafting");
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi.interfaces;
+package fr.minecraftforgefrance.ffmtlibs.interfaces;
 
 /**
  * I don't know if this functions have been tested

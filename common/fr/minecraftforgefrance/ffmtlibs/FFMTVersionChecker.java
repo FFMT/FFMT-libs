@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtapi;
+package fr.minecraftforgefrance.ffmtlibs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
