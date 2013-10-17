@@ -84,6 +84,7 @@
     </target>
 
     <!-- Compile with srg name -->
+    <!--
     <target name="compile">
         <mkdir dir="${mcp.dir}\bin_srg\" />
         <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
@@ -93,6 +94,7 @@
             <arg line="javac src/minecraft/fr/minecraftforgefrance/**.java -d ${mcp.dir}\bin_srg\" />
         </exec>
     </target>
+    -->
 
     <!-- Build the jar -->
     <target name="build_jar">
@@ -101,13 +103,15 @@
             <fileset dir="resources\" />
             <fileset dir="${mcp.dir}\reobf\minecraft" />
         </jar>
-        <zip destfile="release\FFMT-libs-src-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.zip">
+        <zip destfile="dist\FFMT-libs-src-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.zip">
             <fileset dir="resources\" />
             <fileset dir="${mcp.dir}\src\minecraft" includes="fr/" />
         </zip>
+        <!--
         <jar destfile="dist\FFMT-libs-deobf-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.jar">
             <fileset dir="${mcp.dir}\bin_srg" />
         </jar>
+        -->
     </target>
 
     <target name="build">
@@ -119,7 +123,7 @@
         <antcall target="replace_tokens" />
         <antcall target="recompile" />
         <antcall target="reobfuscate" />
-        <antcall target="compile" />
+        <!--<antcall target="compile" />-->
         <antcall target="build_jar" />
         <!-- Clean up the MCP source now that we are done -->
         <antcall target="clean" />
