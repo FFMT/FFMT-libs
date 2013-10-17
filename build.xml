@@ -8,6 +8,7 @@
     <property name="forge.dir" value="..\forge"/>
     <property name="mcp.dir" value="${forge.dir}\${forge_version.forge_version}\mcp"/>
     <available property="mcp-exists" file="${mcp.dir}"/>
+    <property environment="env"/>
 
     <target name="clean">
         <delete file="${mcp.dir}\src\minecraft\mcmod.info" />
