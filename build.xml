@@ -86,7 +86,7 @@
     <!-- Compile with srg name -->
     <target name="compile">
         <mkdir dir="${mcp.dir}\bin_srg\" />
-        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" debug="on" />
+        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" classpathref="${mcp.dir}\jars\libraries" debug="on" />
     </target>
 
     <!-- Build the jar -->
