@@ -90,7 +90,7 @@
             <fileset dir="${mcp.dir}\jars\libraries\" includes="**\**.jar"/>
         </path>
         <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" debug="on">
-             <compilerarg arg="-Xbootclasspath/p:${toString:lib.path.ref}"/>
+             <compilerarg line="-Xbootclasspath/p:${toString:lib.path.ref}"/>
         </javac>
     </target>
 
