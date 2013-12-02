@@ -90,7 +90,7 @@
             <arg line="/c javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\src\minecraft\**\**.java" />
         </exec>
         <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
-            <arg line="javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\src\minecraft\**\**.java" />
+            <arg line="/usr/lib/jvm/java-7-oracle/bin/javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\src\minecraft\**\**.java" />
         </exec>
     </target>
 
