@@ -86,7 +86,12 @@
     <!-- Compile with srg name -->
     <target name="compile">
         <mkdir dir="${mcp.dir}\bin_srg\" />
-        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" classpath="${mcp.dir}\jars\libraries\**\**.jar" debug="on" />
+        <path id="lib.path.ref">
+            <fileset dir="${mcp.dir}\jars\libraries\" includes="**\**.jar"/>
+        </path>
+        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" debug="on">
+             <compilerarg arg="-Xbootclasspath/p:${toString:lib.path.ref}"/>
+        </javac>
     </target>
 
     <!-- Build the jar -->
