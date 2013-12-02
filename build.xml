@@ -89,7 +89,7 @@
         <path id="lib.path.ref">
             <fileset dir="${mcp.dir}\jars\libraries\" includes="**\**.jar"/>
         </path>
-        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" debug="on">
+        <javac srcdir="${mcp.dir}\src\minecraft\" destdir="${mcp.dir}\bin_srg\" debug="off">
              <compilerarg line="-Xbootclasspath/p:${toString:lib.path.ref}"/>
         </javac>
     </target>
@@ -105,7 +105,7 @@
             <fileset dir="resources\" />
             <fileset dir="${mcp.dir}\src\minecraft" includes="fr/" />
         </zip>
-        <jar destfile="dist\FFMT-libs-deobf-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.jar">
+        <jar destfile="dist\FFMT-libs-dev-deobf-${buildprop.FFMTlibs_version}.${env.BUILD_NUMBER}-mc${buildprop.mc_version}.jar">
             <fileset dir="${mcp.dir}\bin_srg" includes="fr/" />
             <fileset dir="resources\" />
         </jar>
