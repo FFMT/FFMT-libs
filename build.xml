@@ -87,10 +87,10 @@
     <target name="compile">
         <mkdir dir="${mcp.dir}\bin_srg\" />
         <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
-            <arg line="javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\**\**.java" />
+            <arg line="/c javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\src\minecraft\**\**.java" />
         </exec>
         <exec dir="${mcp.dir}" executable="bash" osfamily="unix">
-            <arg line="javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\**\**.java" />
+            <arg line="javac -d ${mcp.dir}\bin_srg\ ${mcp.dir}\src\minecraft\**\**.java" />
         </exec>
     </target>
 
