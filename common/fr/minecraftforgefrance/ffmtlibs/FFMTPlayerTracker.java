@@ -1,6 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.IPlayerTracker;
 
@@ -24,7 +25,7 @@ public class FFMTPlayerTracker implements IPlayerTracker
 		if(!hassay)
 		{
 			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outatedmod, lastversion));
-			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + FFMTColor.blue + downloadurl);
+			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadurl);
 			hassay = true;
 		}
 	}
@@ -43,5 +44,4 @@ public class FFMTPlayerTracker implements IPlayerTracker
 	public void onPlayerRespawn(EntityPlayer player)
 	{
 	}
-
 }

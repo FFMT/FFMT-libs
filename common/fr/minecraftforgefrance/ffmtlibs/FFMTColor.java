@@ -1,241 +1,96 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
 /**
- * @author elias54, kevin_68
+ * @author elias54, kevin_68 (R*65536)+(G*256)+B
+ * ColorName = Foreground Color
+ * ColorNameB = Background Color
+ * Use this for your spawn eggs
+ * @see net.minecraft.util.EnumChatFormatting for string color
  */
+
 public class FFMTColor
 {
-	
 	/** BLACK **/
-	public static int blackInt;
-	public static String black;
+	public static final int BLACK = (0 * 65536) + (0 * 256) + 0;
 
 	/** DARK BLUE **/
-	public static int darkBlueInt;
-	public static int darkBlueIntB;
-	public static String darkBlue;
+	public static final int DARK_BLUE = (0 * 65536) + (0 * 256) + 170;
+	public static final int DARK_BLUE_B = (0 * 65536) + (0 * 256) + 42;
 
 	/** DARK GREEN **/
-	public static int darkGreenInt;
-	public static int darkGreenIntB;
-	public static String darkGreen;
+	public static final int DARK_GREEN = (0 * 65536) + (170 * 256) + 0;
+	public static final int DARK_GREEN_B = (0 * 65536) + (42 * 256) + 0;
 
 	/** DARK AQUA **/
-	public static int darkAquaInt;
-	public static int darkAquaIntB;
-	public static String darkAqua;
+	public static final int DARK_AQUA = (0 * 65536) + (170 * 256) + 170;
+	public static final int DARK_AQUA_B = (0 * 65536) + (42 * 256) + 42;
 
 	/** DARK RED **/
-	public static int darkRedInt;
-	public static int darkRedIntB;
-	public static String darkRed;
-	
-	/** DARK PURPLE **/
-	public static int darkPurpleInt;
+	public static final int DARK_RED = (170 * 65536) + (0 * 256) + 0;
+	public static final int DARK_RED_B = (42 * 65536) + (0 * 256) + 0;
 
 	/** PURPLE **/
-	public static int purpleInt;
-	public static int purpleIntB;
-	public static String purple;
+	public static final int PURPLE = (170 * 65536) + (0 * 256) + 170;
+	public static final int PURPLE_B = (42 * 65536) + (0 * 256) + 42;
+
+	/** DARK PURPLE **/
+	public static final int DARK_PURPLE = (128 * 65536) + (0 * 256) + 128;
 
 	/** GOLD **/
-	public static int goldInt;
-	public static int goldIntB;
-	public static String gold;
+	public static final int GOLD = (255 * 65536) + (170 * 256) + 0;
+	public static final int GOLD_B = (42 * 65536) + (42 * 256) + 0;
 
 	/** GRAY **/
-	public static int grayInt;
-	public static int grayIntB;
-	public static String gray;
+	public static final int GRAY = (170 * 65536) + (170 * 256) + 170;
+	public static final int GRAY_B = (42 * 65536) + (42 * 256) + 42;
 
 	/** DARK GRAY **/
-	public static int darkGrayInt;
-	public static int darkGrayIntB;
-	public static String darkGray;
+	public static final int DARK_GRAY = (85 * 65536) + (85 * 256) + 85;
+	public static final int DARK_GRAY_B = (21 * 65536) + (21 * 256) + 21;
 
 	/** BLUE **/
-	public static int blueInt;
-	public static int blueIntB;
-	public static String blue;
+	public static final int BLUE = (85 * 65536) + (85 * 256) + 255;
+	public static final int BLUE_B = (21 * 65536) + (21 * 256) + 63;
 
 	/** GREEN **/
-	public static int greenInt;
-	public static int greenIntB;
-	public static String green;
+	public static final int GREEN = (85 * 65536) + (255 * 256) + 85;
+	public static final int GREEN_B = (21 * 65536) + (63 * 256) + 21;
 
 	/** AQUA **/
-	public static int aquaInt;
-	public static int aquaIntB;
-	public static String aqua;
+	public static final int AQUA = (85 * 65536) + (255 * 256) + 255;
+	public static final int AQUA_B = (21 * 65536) + (63 * 256) + 63;
 
 	/** RED **/
-	public static int redInt;
-	public static int redIntB;
-	public static String red;
+	public static final int RED = (255 * 65536) + (85 * 256) + 85;
+	public static final int RED_B = (63 * 65536) + (21 * 256) + 21;
 
 	/** LIGHT PURPLE **/
-	public static int lightPurpleInt;
-	public static int lightPurpleIntB;
-	public static String lightPurple;
-	
+	public static final int LIGHT_PURPLE = (255 * 65536) + (85 * 256) + 255;
+	public static final int LIGHT_PURPLE_B = (63 * 65536) + (21 * 256) + 63;
+
 	/** LIGHT RED **/
-	public static int lightRedInt;
-	
+	public static final int LIGHT_RED = (255 * 65536) + (99 * 256) + 71;
+
 	/** LIGHT GREEN **/
-	public static int lightGreenInt;
-	
+	public static final int LIGHT_GREEN = (0 * 65536) + (255 * 256) + 0;
+
 	/** LIGHT BLUE **/
-	public static int lightBlueInt;
+	public static final int LIGHT_BLUE = (173 * 65536) + (216 * 256) + 230;
 
 	/** YELLOW **/
-	public static int yellowInt;
-	public static int yellowIntB;
-	public static String yellow;
+	public static final int YELLOW = (255 * 65536) + (255 * 256) + 85;
+	public static final int YELLOW_B = (63 * 65536) + (63 * 256) + 21;
 
 	/** WHITE **/
-	public static int whiteInt;
-	public static int whiteIntB;
-	public static String white;
-	
+	public static final int WHITE = (255 * 65536) + (255 * 256) + 255;
+	public static final int WHITE_B = (63 * 65536) + (63 * 256) + 63;
+
 	/** PINK **/
-	public static int pinkInt;
-	
+	public static final int PINK = (255 * 65536) + (192 * 256) + 203;
+
 	/** ORANGE **/
-	public static int orangeInt;
-	
+	public static final int ORANGE = (255 * 65536) + (165 * 256) + 0;
+
 	/** DARK ORANGE **/
-	public static int darkOrangeInt;
-	
-	/** SPECIALS **/
-	public static String obfuscated;
-	public static String bold;
-	public static String strike;
-	public static String underline;
-	public static String italic;
-
-	//(R*65536)+(G*256)+B
-	/**
-	 * ColorName = Foreground Color
-	 * ColorNameB = Background Color
-	 */
-	public FFMTColor()
-	{
-		/** BLACK **/
-		blackInt = (0*65536)+(0*256)+0;
-		black = "\2470";
-
-		/** DARK BLUE **/
-		darkBlueInt = (0*65536)+(0*256)+170;
-		darkBlueIntB = (0*65536)+(0*256)+42;
-		darkBlue = "\2471";
-
-		/** DARK GREEN **/
-		darkGreenInt = (0*65536)+(170*256)+0;
-		darkGreenIntB = (0*65536)+(42*256)+0;
-		darkGreen = "\2472";
-
-		/** DARK AQUA **/
-		darkAquaInt = (0*65536)+(170*256)+170;
-		darkAquaIntB = (0*65536)+(42*256)+42;
-		darkAqua = "\2473";
-
-		/** DARK RED **/
-		darkRedInt = (170*65536)+(0*256)+0;
-		darkRedIntB = (42*65536)+(0*256)+0;
-		darkRed = "\2474";
-
-		/** PURPLE **/
-		purpleInt = (170*65536)+(0*256)+170;
-		purpleIntB = (42*65536)+(0*256)+42;
-		purple = "\2475";
-		
-		/** DARK PURPLE **/
-		darkPurpleInt = (128*65536)+(0*256)+128;
-
-		/** GOLD **/
-		goldInt = (255*65536)+(170*256)+0;
-		goldIntB = (42*65536)+(42*256)+0;
-		gold = "\2476";
-
-		/** GRAY **/
-		grayInt = (170*65536)+(170*256)+170;
-		grayIntB = (42*65536)+(42*256)+42;
-		gray = "\2477";
-
-		/** DARK GRAY **/
-		darkGrayInt = (85*65536)+(85*256)+85;
-		darkGrayIntB = (21*65536)+(21*256)+21;
-		darkGray = "\2478";
-
-		/** BLUE **/
-		blueInt = (85*65536)+(85*256)+255;
-		blueIntB = (21*65536)+(21*256)+63;
-		blue = "\2479";
-
-		/** GREEN **/
-		greenInt = (85*65536)+(255*256)+85;
-		greenIntB = (21*65536)+(63*256)+21;
-		green = "\247a";
-
-		/** AQUA **/
-		aquaInt = (85*65536)+(255*256)+255;
-		aquaIntB = (21*65536)+(63*256)+63;
-		aqua = "\247b";
-
-		/** RED **/
-		redInt = (255*65536)+(85*256)+85;
-		redIntB = (63*65536)+(21*256)+21;
-		red = "\247c";
-
-		/** LIGHT PURPLE **/
-		lightPurpleInt = (255*65536)+(85*256)+255;
-		lightPurpleIntB = (63*65536)+(21*256)+63;
-		lightPurple = "\247d";
-		
-		/** LIGHT RED **/
-		lightRedInt = (255*65536)+(99*256)+71;
-
-		/** LIGHT GREEN **/
-		lightGreenInt = (0*65536)+(255*256)+0;
-
-		/** LIGHT BLUE **/
-		lightBlueInt = 	(173*65536)+(216*256)+230;
-
-		/** YELLOW **/
-		yellowInt = (255*65536)+(255*256)+85;
-		yellowIntB = (63*65536)+(63*256)+21;
-		yellow = "\247e";
-
-		/** WHITE **/
-		whiteInt = (255*65536)+(255*256)+255;
-		whiteIntB = (63*65536)+(63*256)+63;
-		white = "\247f";
-		
-		/** PINK **/
-		pinkInt = (255*65536)+(192*256)+203;
-		
-		/** ORANGE **/
-		orangeInt = (255*65536)+(165*256)+0;
-		
-		/** DARK ORANGE **/
-		darkOrangeInt = (255*65536)+(120*256)+0;
-
-		/** SPECIALS **/
-		obfuscated = "\247k";
-		bold = "\247l";
-		strike = "\247m";
-		underline = "\247n";
-		italic = "\247o";
-	}
-
-	public static FFMTColor instance()
-	{
-		return new FFMTColor(); 
-	}
-	
-	public static String test()
-	{
-		return black + "Black " + darkBlue + "Dark Blue " + darkGreen + "Dark Green " + darkAqua + "Dark Aqua " + darkRed + "Dark Red " + purple + "Purple " + gold + "Gold " + gray + "Gray " + darkGray + "Dark Gray " + blue + "Blue " + green + "Green " + aqua + "Aqua " + red + "Red " + lightPurple + "Light Purple " + yellow + "Yellow " + white + "White ";
-	}
-
+	public static final int DARK_ORANGE = (255 * 65536) + (120 * 256) + 0;
 }
