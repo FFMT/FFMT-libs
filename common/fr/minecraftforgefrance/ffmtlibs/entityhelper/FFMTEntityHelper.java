@@ -14,9 +14,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import fr.minecraftforgefrance.ffmtlibs.interfaces.IsWorking;
-import fr.minecraftforgefrance.ffmtlibs.interfaces.UnTested;
-import fr.minecraftforgefrance.ffmtlibs.interfaces.UnknownTestStatus;
 
 
 /**
@@ -42,7 +39,6 @@ public class FFMTEntityHelper
 	 * @param velY
 	 * @param velZ
 	 */
-	@UnknownTestStatus
 	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ)
 	{
 		for(int i = 0; i < speed; i++)
@@ -62,7 +58,6 @@ public class FFMTEntityHelper
 	 * @param yPosition	(If not specified, by default is 0)
 	 * @param zPosition (If not specified, by default is 0)
 	 */
-	@UnknownTestStatus
 	public static void spawnSmokeParticles(int speed, EntityLiving entity, double xVel, double yVel, double zVel, double xPosition, double yPosition, double zPosition)
 	{
 		for(int i = 0; i < speed; i++)
@@ -85,7 +80,6 @@ public class FFMTEntityHelper
 	 * @param updateFrequency (Number update frequency)
 	 * @param sendsVelocityUpdates (Send velocity updates or not)
 	 */
-	@UnknownTestStatus
 	public static void addOtherEntity(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
 	{
 		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
@@ -110,7 +104,6 @@ public class FFMTEntityHelper
 	 * @param minSpawn (Minimum spawn per chunk)
 	 * @param maxSpawn (Maximum spawn per chunk)
 	 */
-	@IsWorking
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
@@ -134,7 +127,6 @@ public class FFMTEntityHelper
 	 * @param maxSpawn (Maximum spawn per chunk)
 	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
 	 */
-	@IsWorking
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, EntityRegistry.findGlobalUniqueEntityId(), backGroundEggColour, foreGroundEggColour);
@@ -149,7 +141,6 @@ public class FFMTEntityHelper
 	 * @param classToAttack (The entity to attack)
 	 * @author elias54
 	 **/
-	@UnTested
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class <? extends EntityLivingBase> classToAttack)
 	{
 		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
@@ -166,7 +157,6 @@ public class FFMTEntityHelper
 	 * @param entity (Entity instance)
 	 * @author elias54
 	 */
-	@UnTested
     public static boolean inWater(World world, Entity entity)
     {
         return world.handleMaterialAcceleration(entity.boundingBox, Material.water, entity);
@@ -189,7 +179,6 @@ public class FFMTEntityHelper
      * @param entity (Entity instance)
      * @author elias54
      */
-	@UnTested
 	public static boolean entityOnGround(Entity entity)
 	{
 		return entity.onGround;
@@ -201,7 +190,6 @@ public class FFMTEntityHelper
 	 * @param throwable (The Throwable instance)
 	 * @author elias54
 	 */
-	@UnTested
     public static void throwEntityException(String message, Throwable throwable)
     {
     	//is not realy deprecated, just eclipse not reconized the real version of this line :
@@ -217,7 +205,6 @@ public class FFMTEntityHelper
 	 * @param entityToRemove (Entity to remove)
 	 * @author elias54
 	 */
-	@UnTested
 	public void removeLoadedEntityList(World world, Entity entityToRemove)
 	{
 		List list = world.getLoadedEntityList();
@@ -232,7 +219,6 @@ public class FFMTEntityHelper
 	 * @param entity (entity to set infinite health)
 	 * @author elias54
 	 */
-	@UnTested
 	public static void setInfiniteHealthToEntity(EntityLivingBase entity)
 	{
 		entity.setHealth(Float.MAX_VALUE);

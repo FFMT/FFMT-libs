@@ -14,8 +14,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import fr.minecraftforgefrance.ffmtlibs.interfaces.IsWorking;
-import fr.minecraftforgefrance.ffmtlibs.interfaces.UnTested;
 
 /**
  * @authors kevin_68, elias54
@@ -39,7 +37,6 @@ public class FFMTRegistry
 	 * @param posZ
 	 * @param random
 	 */
-	@UnTested
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random)
 	{
@@ -71,7 +68,6 @@ public class FFMTRegistry
 	 * @param velZ
 	 *            (If not specified, by default is 0.0D)
 	 */
-	@UnTested
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)
 	{
@@ -100,7 +96,6 @@ public class FFMTRegistry
 	 * @param modname
 	 * @param actuallyversion
 	 */
-	@IsWorking
 	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
 	{
 		FFMTVersionChecker.Check(event, versionUrl, downloadurl, modname, actuallyversion);
@@ -118,7 +113,6 @@ public class FFMTRegistry
 	 * @param output
 	 * @param xp
 	 */
-	@IsWorking
 	public static void addSmeltingWithMetadata(int input, int metadata, ItemStack output, float xp)
 	{
 		try
@@ -142,7 +136,6 @@ public class FFMTRegistry
 	 *            Helmet:0 Chestplate:1 Leggings:2 Boots:3
 	 * @param output
 	 */
-	@IsWorking
 	public static void addArmorCrafting(ItemStack material, int type, ItemStack output)
 	{
 		try
@@ -186,7 +179,6 @@ public class FFMTRegistry
 	 * @param outputLeggings
 	 * @param outputBoots
 	 */
-	@IsWorking
 	public static void addAllArmorCrafting(ItemStack material, ItemStack outputHelmet, ItemStack outputChestPlate, ItemStack outputLeggings, ItemStack outputBoots)
 	{
 		try
@@ -213,7 +205,6 @@ public class FFMTRegistry
 	 *            Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
 	 * @param output
 	 */
-	@IsWorking
 	public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
 	{
 		try
@@ -250,7 +241,6 @@ public class FFMTRegistry
 		}
 	}
 
-	@IsWorking
 	public static void addAllToolsCrafting(ItemStack material, ItemStack outputAxe, ItemStack outputShovel, ItemStack outputHoe, ItemStack outputPickaxe, ItemStack outputSword, ItemStack stick)
 	{
 		try
