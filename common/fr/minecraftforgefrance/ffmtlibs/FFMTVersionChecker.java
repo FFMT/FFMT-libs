@@ -1,65 +1,85 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Logger;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
+import com.google.common.io.InputSupplier;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
- * @author robin4002, elias
+ * @author robin4002
  */
 public class FFMTVersionChecker
 {
-	public static void Check(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
+	public static void check(String versionUrl, String downloadUrl, String modName, String actuallyVersion)
 	{
-		try
+		List<String> versionList = getRemoteFile(versionUrl);
+		if(versionList.isEmpty())
 		{
-			String lastversion = lastVersion(new URL(versionUrl));
-			String lastversiondebug = lastversion.substring(0, lastversion.length() - 1);
-			if(!lastversiondebug.equals(actuallyversion))
+			FFMTLibs.FFMTlog.severe("");
+			return;
+		}
+		for(String version : versionList)
+		{
+			if(version.contains(Loader.instance().getMCVersionString()))
 			{
-				event.getModLog().info("A new update for " + modname + " is available (" + lastversiondebug + ")");
-				if(event.getSide().isClient())
+				String[] line = version.split(":");
+				if(line.length == 2)
 				{
-					GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modname, lastversiondebug, downloadurl));
+					String remoteVersion = line[1];
+					if(!remoteVersion.equals(actuallyVersion))
+					{
+						FFMTLibs.FFMTlog.info("A new update for " + modName + " is available (" + remoteVersion + ")");
+						GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modName, remoteVersion, downloadUrl));
+					}
 				}
 			}
 		}
-		catch(FileNotFoundException e)
+	}
+
+	public static List<String> getRemoteFile(String fileURL)
+	{
+		try
 		{
-			event.getModLog().info("FAILED TO CHECK FOR UPDATE (url not found)");
-		} 
-		catch(MalformedURLException e)
-		{
-			event.getModLog().info("FAILED TO CHECK FOR UPDATE (url not found)");
-		} 
-		catch(IOException e)
+			URL url = new URL(fileURL);
+			URLConnection connection = url.openConnection();
+			connection.setConnectTimeout(5000);
+			connection.setReadTimeout(5000);
+			InputSupplier<InputStream> urlSupplier = new URLISSupplier(connection);
+			return CharStreams.readLines(CharStreams.newReaderSupplier(urlSupplier, Charsets.UTF_8));
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
+			return Collections.emptyList();
 		}
 	}
 
-	public static String lastVersion(URL url) throws IOException
+	static class URLISSupplier implements InputSupplier<InputStream>
 	{
-		HttpURLConnection httpurlconnection = (HttpURLConnection)url.openConnection();
-		httpurlconnection.setRequestMethod("GET");
-		BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(httpurlconnection.getInputStream()));
-		StringBuilder stringbuilder = new StringBuilder();
-		String s;
+		private final URLConnection connection;
 
-		while((s = bufferedreader.readLine()) != null)
+		private URLISSupplier(URLConnection connection)
 		{
-			stringbuilder.append(s);
-			stringbuilder.append('\r');
+			this.connection = connection;
 		}
 
-		bufferedreader.close();
-		return stringbuilder.toString();
+		@Override
+		public InputStream getInput() throws IOException
+		{
+			return connection.getInputStream();
+		}
 	}
 }

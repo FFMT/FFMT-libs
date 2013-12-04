@@ -7,14 +7,14 @@ import cpw.mods.fml.common.IPlayerTracker;
 
 public class FFMTPlayerTracker implements IPlayerTracker
 {
-	public final String outatedmod;
+	public final String outdatedmod;
 	public final String lastversion;
 	public final String downloadurl;
 	public boolean hassay = false;
 
 	public FFMTPlayerTracker(String modid, String last, String download)
 	{
-		outatedmod = modid;
+		outdatedmod = modid;
 		lastversion = last;
 		downloadurl = download;
 	}
@@ -24,7 +24,7 @@ public class FFMTPlayerTracker implements IPlayerTracker
 	{
 		if(!hassay)
 		{
-			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outatedmod, lastversion));
+			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outdatedmod, lastversion));
 			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadurl);
 			hassay = true;
 		}
@@ -32,16 +32,13 @@ public class FFMTPlayerTracker implements IPlayerTracker
 
 	@Override
 	public void onPlayerLogout(EntityPlayer player)
-	{
-	}
+	{}
 
 	@Override
 	public void onPlayerChangedDimension(EntityPlayer player)
-	{
-	}
+	{}
 
 	@Override
 	public void onPlayerRespawn(EntityPlayer player)
-	{
-	}
+	{}
 }

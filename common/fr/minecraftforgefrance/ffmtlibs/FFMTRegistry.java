@@ -10,6 +10,8 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -84,21 +86,48 @@ public class FFMTRegistry
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Separator
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+	
 	/**
 	 * Adding version checker rewritten by robin4002 original by elias
 	 * 
-	 * @param event
-	 *            (FMLPreInitializationEvent put it in preinit)
-	 * @param versionUrl
-	 *            (your txt url with the last version number)
+	 * @param event (FMLPreInitializationEvent put it in preinit)
+	 * @param versionUrl (your txt url with the last version number)
+	 * @param downloadurl
+	 * @param modname
+	 * @param actuallyversion
+	 * @see FFMTRegistry#registerVersionCheck(String, String, String, String)
+	 */
+	@Deprecated
+	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
+	{
+		FFMTVersionChecker.check(versionUrl, downloadurl, modname, actuallyversion);
+	}
+	
+	/**
+	 * Adding version checker rewritten by robin4002 original by elias
+	 * @param versionUrl (your txt url with the last version number)
 	 * @param downloadurl
 	 * @param modname
 	 * @param actuallyversion
 	 */
-	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
+	public static void registerVersionCheck(String versionUrl, String downloadurl, String modname, String actuallyversion)
 	{
-		FFMTVersionChecker.Check(event, versionUrl, downloadurl, modname, actuallyversion);
+		FFMTVersionChecker.check(versionUrl, downloadurl, modname, actuallyversion);
+	}
+	
+	/**
+	 * Adding version checker using mcmod.info. Put the txt file link in "updateUrl"
+	 * @param modid - your modid (no case sensitive)
+	 */
+	public static void registerVersionCheck(String modid)
+	{
+		for(ModContainer mod : Loader.instance().getActiveModList())
+		{
+			if(mod.getModId().equalsIgnoreCase(modid))
+			{
+				FFMTVersionChecker.check(mod.getMetadata().url, mod.getMetadata().updateUrl, mod.getName(), mod.getVersion());
+			}
+		}
 	}
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
