@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTGuiContainerSliderBase extends GuiContainer
+public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 {
 	private GuiButton selectedButton;
 
@@ -45,19 +45,7 @@ public class FFMTGuiContainerSliderBase extends GuiContainer
 		}
 	}
 
-	public void handlerSliderAction(int sliderId, float sliderValue)
-	{
-		
-	}
+	public abstract void handlerSliderAction(int sliderId, float sliderValue);
 
-	public String getSliderName(int sliderId, float sliderValue)
-	{
-		return "";
-	}
-
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
-	{
-		
-	}
+	public abstract String getSliderName(int sliderId, float sliderValue);
 }
