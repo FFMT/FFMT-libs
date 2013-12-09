@@ -4,12 +4,12 @@ FFMT libs
 ##FRENCH
 ###Comment installer
 ####Version universel pour les utilisateurs :
-* Téchargez la version universel [ici](http://dl.mcnanotech.fr/FFMT/API/download/)
+* Téchargez la version universel [ici](http://ci.mcnanotech.fr/job/FFMT-libs/)
 * Placez l'archive dans votre dossier .minecraft/mods/
 
 ####Source pour les moddeurs :
 Méthode 1 :
-* Téchargez les sources [ici](http://dl.mcnanotech.fr/FFMT/API/download/).
+* Téchargez les sources [ici](http://ci.mcnanotech.fr/job/FFMT-libs/).
 * Désarchivez le fichier dans votre dossier forge/mcp/src/minecraft/
 
 Méthode 2 (plus complexe, mais mieux):
@@ -23,14 +23,14 @@ Méthode 2 (plus complexe, mais mieux):
 ##ENGLISH
 ###How to install
 ####Universal for users :
-* Download the universal version [here](http://dl.mcnanotech.fr/FFMT/API/download/)
+* Download the universal version [here](http://ci.mcnanotech.fr/job/FFMT-libs/)
 * Place the file in the folder .minecraft/mods/
 
 
 ####Source for modder :
 
 1st method :
-* Download the source [here](http://dl.mcnanotech.fr/FFMT/API/download/).
+* Download the source [here](http://ci.mcnanotech.fr/job/FFMT-libs/).
 * Unzip the file in the folder forge/mcp/src/minecraft/
  
 2nd method (harder but better):
