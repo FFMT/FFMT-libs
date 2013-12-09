@@ -53,7 +53,7 @@ public class FFMTRegistry
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random)
 	{
-		spawnParticles(speed, particles, world, posX, posY, posZ, random, 0,0,0)
+		spawnParticles(speed, particles, world, posX, posY, posZ, random, 0,0,0);
 	}
 
 	/**
