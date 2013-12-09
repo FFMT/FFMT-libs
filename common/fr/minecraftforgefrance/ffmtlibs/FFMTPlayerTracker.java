@@ -7,16 +7,16 @@ import cpw.mods.fml.common.IPlayerTracker;
 
 public class FFMTPlayerTracker implements IPlayerTracker
 {
-	public final String outdatedmod;
-	public final String lastversion;
-	public final String downloadurl;
+	public final String outdatedMod;
+	public final String lastestVersion;
+	public final String downloadURL;
 	public boolean hassay = false;
 
 	public FFMTPlayerTracker(String modid, String last, String download)
 	{
-		outdatedmod = modid;
-		lastversion = last;
-		downloadurl = download;
+		outdatedMod = modid;
+		lastestVersion = last;
+		downloadURL = download;
 	}
 
 	@Override
@@ -24,8 +24,8 @@ public class FFMTPlayerTracker implements IPlayerTracker
 	{
 		if(!hassay)
 		{
-			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outdatedmod, lastversion));
-			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadurl);
+			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outdatedMod, lastestVersion));
+			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadURL);
 			hassay = true;
 		}
 	}

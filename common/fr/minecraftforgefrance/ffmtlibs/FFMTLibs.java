@@ -10,7 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import fr.minecraftforgefrance.ffmtlibs.renderer.TESRInventoryRenderHandler;
 
-@Mod(modid = "FFMTLIBS", name = "FFMT Librarie", version = "@VERSION@", useMetadata = true)
+@Mod(modid = "FFMTLIBS", name = "FFMT Library", version = "@VERSION@", useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 /**
  * @authors kevin_68, elias54, robin4002
@@ -26,7 +26,7 @@ public class FFMTLibs
 		FFMTlog = event.getModLog();
 		event.getModMetadata().version = "@VERSION@";
 
-		FFMTRegistry.registerVersionCheck("http://dl.mcnanotech.fr/FFMT/libs/version.txt", "http://ci.mcnanotech.fr/job/FFMT-libs/", "FFMT Librarie", "@VERSION@");
+		FFMTRegistry.registerVersionCheck("http://dl.mcnanotech.fr/FFMT/libs/version.txt", "http://ci.mcnanotech.fr/job/FFMT-libs/", "FFMT Library", "@VERSION@");
 	}
 
 	@EventHandler

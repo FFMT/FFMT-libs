@@ -22,13 +22,24 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class FFMTRegistry
 {
+	public static final int HELMET_TYPE = 0;
+	public static final int CHESTPLATE_TYPE = 1;
+	public static final int LEGGINS_TYPE = 2;
+	public static final int BOOTS_TYPE = 3;
 
+	public static final int AXE_TYPE = 0;
+	public static final int SHOVEL_TYPE = 1;
+	public static final int HOE_TYPE = 2;
+	public static final int PICKAXE_TYPE = 3;
+	public static final int SWORD_TYPE = 4;
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Separator
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Spawn particles (Blocks only)
+	 * Just a call of <code>spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)</code>
+	 * where velX, velY and velZ are equal to 0D
 	 * 
 	 * @param speed
 	 * @param particles
@@ -42,14 +53,7 @@ public class FFMTRegistry
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random)
 	{
-		float var7 = (float)posX + random.nextFloat();
-		float var8 = (float)posY + random.nextFloat() * 0.1F;
-		float var9 = (float)posZ + random.nextFloat();
-
-		for(int i = 0; i < speed; i++)
-		{
-			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, 0.0D, 0.0D, 0.0D);
-		}
+		spawnParticles(speed, particles, world, posX, posY, posZ, random, 0,0,0)
 	}
 
 	/**
@@ -63,23 +67,20 @@ public class FFMTRegistry
 	 * @param posY
 	 * @param posZ
 	 * @param random
-	 * @param velX
-	 *            (If not specified, by default is 0.0D)
-	 * @param velY
-	 *            (If not specified, by default is 0.0D)
-	 * @param velZ
-	 *            (If not specified, by default is 0.0D)
+	 * @param velX Velocity on X-axis
+	 * @param velY Velocity on Y-axis
+	 * @param velZ Velocity on Z-axis
 	 */
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)
 	{
-		float var7 = (float)posX + random.nextFloat();
-		float var8 = (float)posY + random.nextFloat() * 0.1F;
-		float var9 = (float)posZ + random.nextFloat();
+		float x = (float)posX + random.nextFloat();
+		float y = (float)posY + random.nextFloat() * 0.1F;
+		float z = (float)posZ + random.nextFloat();
 
 		for(int i = 0; i < speed; i++)
 		{
-			world.spawnParticle(particles, (double)var7, (double)var8, (double)var9, velX, velY, velZ);
+			world.spawnParticle(particles, (double)x, (double)y, (double)z, velX, velY, velZ);
 		}
 	}
 
@@ -98,9 +99,9 @@ public class FFMTRegistry
 	 * @see FFMTRegistry#registerVersionCheck(String, String, String, String)
 	 */
 	@Deprecated
-	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionUrl, String downloadurl, String modname, String actuallyversion)
+	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionURL, String downloadURL, String modName, String currentVersion)
 	{
-		FFMTVersionChecker.check(versionUrl, downloadurl, modname, actuallyversion);
+		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
 	}
 	
 	/**
@@ -110,9 +111,9 @@ public class FFMTRegistry
 	 * @param modname
 	 * @param actuallyversion
 	 */
-	public static void registerVersionCheck(String versionUrl, String downloadurl, String modname, String actuallyversion)
+	public static void registerVersionCheck(String versionURL, String downloadURL, String modName, String currentVersion)
 	{
-		FFMTVersionChecker.check(versionUrl, downloadurl, modname, actuallyversion);
+		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
 	}
 	
 	/**
@@ -147,9 +148,10 @@ public class FFMTRegistry
 		try
 		{
 			FurnaceRecipes.smelting().addSmelting(input, metadata, output, xp);
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register smelting whith metadata");
+			FFMTLibs.FFMTlog.severe("Failed to register smelting for id "+input+"with metadata "+metadata);
 		}
 	}
 
@@ -173,23 +175,24 @@ public class FFMTRegistry
 			{
 				GameRegistry.addRecipe(output, new Object[]{"XXX", "X X", 'X', material});
 			}
-			if(type == 1)
+			else if(type == 1)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"X X", "XXX", "XXX", 'X', material});
 			}
-			if(type == 2)
+			else if(type == 2)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"XXX", "X X", "X X", 'X', material});
 			}
-			if(type == 3)
+			else if(type == 3)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"X X", "X X", 'X', material});
 			}
-			if(type < 0 || type > 3)
+			else
 			{
-				FFMTLibs.FFMTlog.severe("Failed to register armor crafting, wrong 'type'");
+				FFMTLibs.FFMTlog.severe("Failed to register armor crafting, couldn't handle type "+type);
 			}
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			FFMTLibs.FFMTlog.severe("Failed to register armor crafting");
 		}
@@ -216,7 +219,8 @@ public class FFMTRegistry
 			GameRegistry.addRecipe(outputChestPlate, new Object[]{"X X", "XXX", "XXX", 'X', material});
 			GameRegistry.addRecipe(outputLeggings, new Object[]{"XXX", "X X", "X X", 'X', material});
 			GameRegistry.addRecipe(outputBoots, new Object[]{"X X", "X X", 'X', material});
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			FFMTLibs.FFMTlog.severe("Failed to register armor crafting");
 		}
@@ -243,28 +247,29 @@ public class FFMTRegistry
 				GameRegistry.addRecipe(output, new Object[]{"XX", "XS", " S", 'X', material, 'S', stick});
 				GameRegistry.addRecipe(output, new Object[]{"XX", "SX", "S ", 'X', material, 'S', stick});
 			}
-			if(type == 1)
+			else if(type == 1)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"X", "S", "S", 'X', material, 'S', stick});
 			}
-			if(type == 2)
+			else if(type == 2)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"XX", " S", " S", 'X', material, 'S', stick});
 				GameRegistry.addRecipe(output, new Object[]{"XX", "S ", "S ", 'X', material, 'S', stick});
 			}
-			if(type == 3)
+			else if(type == 3)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"XXX", " S ", " S ", 'X', material, 'S', stick});
 			}
-			if(type == 4)
+			else if(type == 4)
 			{
 				GameRegistry.addRecipe(output, new Object[]{"X", "X", "S", 'X', material, 'S', stick});
 			}
-			if(type < 0 || type > 4)
+			else
 			{
-				FFMTLibs.FFMTlog.severe("Failed to register tools crafting, wrong 'type'");
+				FFMTLibs.FFMTlog.severe("Failed to register tools crafting, couldn't handle type "+type);
 			}
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			FFMTLibs.FFMTlog.severe("Failed to register tools crafting");
 		}
@@ -281,7 +286,8 @@ public class FFMTRegistry
 			GameRegistry.addRecipe(outputHoe, new Object[]{"XX", "S ", "S ", 'X', material, 'S', stick});
 			GameRegistry.addRecipe(outputPickaxe, new Object[]{"XXX", " S ", " S ", 'X', material, 'S', stick});
 			GameRegistry.addRecipe(outputSword, new Object[]{"X", "X", "S", 'X', material, 'S', stick});
-		} catch(Exception e)
+		} 
+		catch(Exception e)
 		{
 			FFMTLibs.FFMTlog.severe("Failed to register tools crafting");
 		}
