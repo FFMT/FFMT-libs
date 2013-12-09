@@ -23,5 +23,20 @@ Méthode 2 (plus complexe, mais mieux):
 ##ENGLISH
 ###How to install
 ####Universal for users :
+* Download the universal version [here](http://dl.mcnanotech.fr/FFMT/API/download/)
+* Place the file in the folder .minecraft/mods/
+
 
 ####Source for modder :
+
+1st method :
+* Download the source [here](http://dl.mcnanotech.fr/FFMT/API/download/).
+* Unzip the file in the folder forge/mcp/src/minecraft/
+ 
+2nd method (harder but better):
+* Click on "download zip" or fork the project and clone it in local.
+* In eclipse, right-click on your Minecraft project and click "new folder".
+* A page appears, name the folder "FFMT API", click on next, choose "Link to alternate location" and choose the common folder on the GitHub project
+* Do the same for the resouces folder, and name the folder "FFMT API resources"
+* Now, right click on the Minecraft again and choose "new source folder"
+* Click on "FFMT API" and do the same thing for "FFMT API resources"
