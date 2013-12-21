@@ -25,7 +25,7 @@ public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 			{
 				GuiButton guibutton = (GuiButton)this.buttonList.get(l);
 
-				if(guibutton.mousePressed(this.mc, x, y))
+				if(guibutton.mousePressed(this.mc, x, y) && guibutton instanceof FFMTGuiSliderForContainer)
 				{
 					this.selectedButton = guibutton;
 					this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
