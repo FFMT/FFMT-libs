@@ -20,13 +20,23 @@ public class FFMTGuiSliderForContainer extends GuiButton
 	{
 		this(containerSliderBase, id, x, y, 150, 20, name, value);
 	}
-	
+
 	public FFMTGuiSliderForContainer(FFMTGuiContainerSliderBase containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
 	{
 		super(id, x, y, xSize, ySize, name);
 		this.sliderValue = value;
 		this.sliderId = id;
 		this.container = containerSliderBase;
+	}
+
+	public void disable()
+	{
+		this.enabled = false;
+	}
+
+	public void enable()
+	{
+		this.enabled = true;
 	}
 
 	protected int getHoverState(boolean b)

@@ -17,6 +17,11 @@ public class FFMTGuiBooleanButton extends GuiButton
 	private boolean active;
 	private int buttonHeight;
 
+	public FFMTGuiBooleanButton(int id, int x, int y, String s, boolean active)
+	{
+		this(id, x, y, 150, 20, s, active);
+	}
+
 	public FFMTGuiBooleanButton(int id, int x, int y, int width, int height, String s, boolean active)
 	{
 		super(id, x, y, width, height, s);
@@ -28,27 +33,27 @@ public class FFMTGuiBooleanButton extends GuiButton
 	{
 		this.active = (!this.getIsActive());
 	}
-	
+
 	public boolean getIsActive()
 	{
 		return active;
 	}
-	
-    protected int getHoverState(boolean mouseIsInButton)
-    {
-        byte b0 = 1;
 
-        if (!this.enabled || !getIsActive())
-        {
-            b0 = 0;
-        }
-        else if (mouseIsInButton)
-        {
-            b0 = 2;
-        }
+	protected int getHoverState(boolean mouseIsInButton)
+	{
+		byte b0 = 1;
 
-        return b0;
-    }
+		if(!this.enabled || !getIsActive())
+		{
+			b0 = 0;
+		}
+		else if(mouseIsInButton)
+		{
+			b0 = 2;
+		}
+
+		return b0;
+	}
 
 	public void drawButton(Minecraft mc, int x, int y)
 	{
@@ -72,7 +77,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 			{
 				l = 16777120;
 			}
-			
+
 			if(!getIsActive())
 			{
 				l = 6579300;
