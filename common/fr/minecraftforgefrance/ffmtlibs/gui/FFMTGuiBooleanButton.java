@@ -80,7 +80,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 
 			if(!getIsActive())
 			{
-				l = 6579300;
+				l = 6316128;
 			}
 
 			this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);

@@ -1,6 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 
 import org.lwjgl.opengl.GL11;
@@ -102,5 +103,5 @@ public class FFMTGuiSliderForContainer extends GuiButton
 	public void mouseReleased(int x, int y)
 	{
 		this.dragging = false;
-	}
+	}	
 }
