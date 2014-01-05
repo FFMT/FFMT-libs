@@ -92,7 +92,6 @@ public class FFMTRegistry
 	 * @param actuallyversion
 	 * @see FFMTRegistry#registerVersionCheck(String, String, String, String)
 	 */
-	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionURL, String downloadURL, String modName, String currentVersion)
 	{
 		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
@@ -105,7 +104,6 @@ public class FFMTRegistry
 	 * @param modname
 	 * @param actuallyversion
 	 */
-	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(String versionURL, String downloadURL, String modName, String currentVersion)
 	{
 		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
@@ -115,7 +113,6 @@ public class FFMTRegistry
 	 * Adding version checker using mcmod.info. Put the txt file link in "updateUrl"
 	 * @param modid - your modid (no case sensitive)
 	 */
-	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(String modid)
 	{
 		for(ModContainer mod : Loader.instance().getActiveModList())

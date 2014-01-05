@@ -24,10 +24,7 @@ public class FFMTLibs
 		FFMTlog = event.getModLog();
 		event.getModMetadata().version = "@VERSION@";
 
-		// TODO: fix version check
-		// FFMTRegistry.registerVersionCheck("http://dl.mcnanotech.fr/FFMT/libs/version.txt",
-		// "http://ci.mcnanotech.fr/job/FFMT-libs/", "FFMT Library",
-		// "@VERSION@");
+		FFMTRegistry.registerVersionCheck("http://dl.mcnanotech.fr/FFMT/libs/version.txt", "http://ci.mcnanotech.fr/job/FFMT-libs/", "FFMT Library", "@VERSION@");
 	}
 
 	@EventHandler

@@ -19,7 +19,6 @@ import cpw.mods.fml.common.Loader;
  */
 public class FFMTVersionChecker
 {
-	@Deprecated//TODO: fix PlayerTracker
 	public static void check(String versionUrl, String downloadUrl, String modName, String actuallyVersion)
 	{
 		List<String> versionList = getRemoteFile(versionUrl);
