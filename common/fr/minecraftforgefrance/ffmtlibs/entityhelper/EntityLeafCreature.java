@@ -1,8 +1,6 @@
 package fr.minecraftforgefrance.ffmtlibs.entityhelper;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 /**
@@ -18,12 +16,15 @@ public class EntityLeafCreature extends EntityCreature {
 		super(par1World);
 	}
 	
+	@Deprecated //TODO: fix
 	public boolean getCanSpawnHere()
 	{
-		int i = MathHelper.floor_double(posX);
+		/*int i = MathHelper.floor_double(posX);
 		int j = MathHelper.floor_double(posY);
 		int k = MathHelper.floor_double(posZ);
 		int j2 = MathHelper.floor_double(boundingBox.maxY);
 		return super.getCanSpawnHere() && worldObj.getBlockId(i, j - 1, k) == Block.leaves.blockID && this.getBlockPathWeight(j, j2, k) >= 0.0F;
+		*/
+		return false;
 	}
 }

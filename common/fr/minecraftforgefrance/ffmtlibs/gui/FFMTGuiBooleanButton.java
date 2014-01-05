@@ -15,7 +15,6 @@ public class FFMTGuiBooleanButton extends GuiButton
 {
 	protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
 	private boolean active;
-	private int buttonHeight;
 
 	public FFMTGuiBooleanButton(int id, int x, int y, String s, boolean active)
 	{
@@ -26,7 +25,6 @@ public class FFMTGuiBooleanButton extends GuiButton
 	{
 		super(id, x, y, width, height, s);
 		this.active = active;
-		this.buttonHeight = height;
 	}
 
 	public void toggle()
@@ -43,7 +41,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 	{
 		byte b0 = 1;
 
-		if(!this.enabled || !getIsActive())
+		if(!this.field_146124_l || !getIsActive())
 		{
 			b0 = 0;
 		}
@@ -57,23 +55,23 @@ public class FFMTGuiBooleanButton extends GuiButton
 
 	public void drawButton(Minecraft mc, int x, int y)
 	{
-		if(this.drawButton)
+		if(this.field_146125_m)
 		{
 			FontRenderer fontrenderer = mc.fontRenderer;
 			mc.getTextureManager().bindTexture(buttonTextures);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			this.field_82253_i = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
-			int k = this.getHoverState(this.field_82253_i);
-			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, 46 + k * 20, this.width / 2, this.height);
-			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + k * 20, this.width / 2, this.height);
-			this.mouseDragged(mc, x, y);
+			this.field_146123_n = x >= this.field_146128_h && y >= this.field_146129_i && x < this.field_146128_h + this.field_146120_f && y < this.field_146129_i + this.field_146121_g;
+			int k = this.getHoverState(this.field_146123_n);
+			this.drawTexturedModalRect(this.field_146128_h, this.field_146129_i, 0, 46 + k * 20, this.field_146120_f / 2, this.field_146121_g);
+			this.drawTexturedModalRect(this.field_146128_h + this.field_146120_f / 2, this.field_146129_i, 200 - this.field_146120_f / 2, 46 + k * 20, this.field_146120_f / 2, this.field_146121_g);
+			this.func_146119_b(mc, x, y);
 			int l = 14737632;
 
-			if(!this.enabled)
+			if(!this.field_146124_l)
 			{
 				l = -6250336;
 			}
-			else if(this.field_82253_i)
+			else if(this.field_146123_n)
 			{
 				l = 16777120;
 			}
@@ -83,7 +81,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 				l = 6316128;
 			}
 
-			this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
+			this.drawCenteredString(fontrenderer, this.field_146126_j, this.field_146128_h + this.field_146120_f / 2, this.field_146129_i + (this.field_146121_g - 8) / 2, l);
 		}
 	}
 }

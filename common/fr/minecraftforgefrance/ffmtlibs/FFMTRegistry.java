@@ -1,14 +1,8 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
@@ -98,7 +92,7 @@ public class FFMTRegistry
 	 * @param actuallyversion
 	 * @see FFMTRegistry#registerVersionCheck(String, String, String, String)
 	 */
-	@Deprecated
+	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionURL, String downloadURL, String modName, String currentVersion)
 	{
 		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
@@ -111,6 +105,7 @@ public class FFMTRegistry
 	 * @param modname
 	 * @param actuallyversion
 	 */
+	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(String versionURL, String downloadURL, String modName, String currentVersion)
 	{
 		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
@@ -120,6 +115,7 @@ public class FFMTRegistry
 	 * Adding version checker using mcmod.info. Put the txt file link in "updateUrl"
 	 * @param modid - your modid (no case sensitive)
 	 */
+	@Deprecated//TODO: fix playerTracker
 	public static void registerVersionCheck(String modid)
 	{
 		for(ModContainer mod : Loader.instance().getActiveModList())
@@ -143,15 +139,16 @@ public class FFMTRegistry
 	 * @param output
 	 * @param xp
 	 */
+	@Deprecated//TODO: fix
 	public static void addSmeltingWithMetadata(int input, int metadata, ItemStack output, float xp)
 	{
 		try
 		{
-			FurnaceRecipes.smelting().addSmelting(input, metadata, output, xp);
+			//FurnaceRecipes.smelting().addSmelting(input, metadata, output, xp);
 		} 
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register smelting for id "+input+"with metadata "+metadata);
+			FFMTLibs.FFMTlog.error("Failed to register smelting for id "+input+"with metadata "+metadata);
 		}
 	}
 
@@ -189,12 +186,12 @@ public class FFMTRegistry
 			}
 			else
 			{
-				FFMTLibs.FFMTlog.severe("Failed to register armor crafting, couldn't handle type "+type);
+				FFMTLibs.FFMTlog.error("Failed to register armor crafting, couldn't handle type "+type);
 			}
 		} 
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register armor crafting");
+			FFMTLibs.FFMTlog.error("Failed to register armor crafting");
 		}
 	}
 
@@ -222,7 +219,7 @@ public class FFMTRegistry
 		} 
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register armor crafting");
+			FFMTLibs.FFMTlog.error("Failed to register armor crafting");
 		}
 	}
 
@@ -266,12 +263,12 @@ public class FFMTRegistry
 			}
 			else
 			{
-				FFMTLibs.FFMTlog.severe("Failed to register tools crafting, couldn't handle type "+type);
+				FFMTLibs.FFMTlog.error("Failed to register tools crafting, couldn't handle type "+type);
 			}
 		} 
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register tools crafting");
+			FFMTLibs.FFMTlog.error("Failed to register tools crafting");
 		}
 	}
 
@@ -289,7 +286,7 @@ public class FFMTRegistry
 		} 
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.severe("Failed to register tools crafting");
+			FFMTLibs.FFMTlog.error("Failed to register tools crafting");
 		}
 	}
 	
@@ -303,9 +300,11 @@ public class FFMTRegistry
 	 * @author Moritz
 	 * @see http://www.minecraftforge.net/forum/index.php/topic,7146.msg58748.html#msg58748
 	 */
+	@Deprecated
 	public static void removeRecipe(ItemStack removestack)
 	{
-		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
+		return;//TODO: fix
+		/*List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
 		for(int i = 0; i < recipeList.size(); i++)
 		{
 			IRecipe currentRecipe = recipeList.get(i);
@@ -328,7 +327,7 @@ public class FFMTRegistry
 					recipeList.remove(i);
 				}
 			}
-		}
+		}*/
 	}
 
 	/**
@@ -338,9 +337,11 @@ public class FFMTRegistry
 	 *            The id of the block or item
 	 * @author robin4002
 	 */
+	@Deprecated
 	public static void removeRecipe(int id)
 	{
-		ItemStack removestack = new ItemStack(id, 1, -1);
+		return;//TODO: fix
+		/*ItemStack removestack = new ItemStack(id, 1, -1);
 		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
 		for(int i = 0; i < recipeList.size(); i++)
 		{
@@ -364,6 +365,6 @@ public class FFMTRegistry
 					recipeList.remove(i);
 				}
 			}
-		}
+		}*/
 	}
 }

@@ -1,11 +1,12 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import cpw.mods.fml.common.IPlayerTracker;
 
-public class FFMTPlayerTracker implements IPlayerTracker
+public class FFMTPlayerTracker 
 {
 	public final String outdatedMod;
 	public final String lastestVersion;
@@ -19,26 +20,15 @@ public class FFMTPlayerTracker implements IPlayerTracker
 		downloadURL = download;
 	}
 
-	@Override
-	public void onPlayerLogin(EntityPlayer player)
+	@SubscribeEvent
+	public void PlayerLoggedInEvent(EntityPlayer player)
 	{
 		if(!hassay)
 		{
-			player.addChatMessage(String.format(StatCollector.translateToLocal("update.available"), outdatedMod, lastestVersion));
-			player.addChatMessage(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadURL);
+			player.func_145747_a(new ChatComponentText((String.format(StatCollector.translateToLocal("update.available"), outdatedMod, lastestVersion))));
+			player.func_145747_a(new ChatComponentText(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadURL));
 			hassay = true;
 		}
 	}
 
-	@Override
-	public void onPlayerLogout(EntityPlayer player)
-	{}
-
-	@Override
-	public void onPlayerChangedDimension(EntityPlayer player)
-	{}
-
-	@Override
-	public void onPlayerRespawn(EntityPlayer player)
-	{}
 }

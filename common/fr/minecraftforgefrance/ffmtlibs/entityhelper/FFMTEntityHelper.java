@@ -1,6 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.entityhelper;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
@@ -141,14 +140,16 @@ public class FFMTEntityHelper
 	 * @param classToAttack (The entity to attack)
 	 * @author elias54
 	 **/
+	@Deprecated // TODO: fix
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class <? extends EntityLivingBase> classToAttack)
 	{
-		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+		/*List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
 		Entity entityToAttack = (Entity)list.get(rand.nextInt(list.size()));
 		if(!list.isEmpty())
 		{
 			entityHostAttack.setTarget(entityToAttack);
-		}
+		}*/
+		return;
 	}
 	
 	/**
@@ -158,8 +159,8 @@ public class FFMTEntityHelper
 	 * @author elias54
 	 */
     public static boolean inWater(World world, Entity entity)
-    {
-        return world.handleMaterialAcceleration(entity.boundingBox, Material.water, entity);
+    {															  //Material.water
+        return world.handleMaterialAcceleration(entity.boundingBox, Material.field_151586_h, entity);
     }
 
 	/**
@@ -205,13 +206,15 @@ public class FFMTEntityHelper
 	 * @param entityToRemove (Entity to remove)
 	 * @author elias54
 	 */
+    @Deprecated // TODO fix
 	public void removeLoadedEntityList(World world, Entity entityToRemove)
 	{
-		List list = world.getLoadedEntityList();
+		/*List list = world.getLoadedEntityList();
 		if(!list.isEmpty())
 		{
 			list.remove(entityToRemove);
-		}
+		}*/
+		return;
 	}
 	
 	/**

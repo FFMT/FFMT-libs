@@ -21,15 +21,16 @@ public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 		super.mouseClicked(x, y, id);
 		if(id == 0)
 		{
-			for(int l = 0; l < this.buttonList.size(); ++l)
+			for(int l = 0; l < this.field_146292_n.size(); ++l)
 			{
-				GuiButton guibutton = (GuiButton)this.buttonList.get(l);
+				GuiButton guibutton = (GuiButton)this.field_146292_n.get(l);
 
-				if(guibutton.mousePressed(this.mc, x, y) && guibutton instanceof FFMTGuiSliderForContainer)
+				if(guibutton.func_146116_c(this.field_146297_k, x, y) && guibutton instanceof FFMTGuiSliderForContainer)
 				{
 					this.selectedButton = guibutton;
-					this.mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
-					this.actionPerformed(guibutton);
+					//TODO: find sndManager
+					//this.field_146297_k.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+					this.func_146284_a(guibutton);
 				}
 			}
 		}
@@ -37,10 +38,10 @@ public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 
 	protected void mouseMovedOrUp(int x, int y, int id)
 	{
-		super.mouseMovedOrUp(x, y, id);
+		super.func_146286_b(x, y, id);
 		if(this.selectedButton != null && id == 0)
 		{
-			this.selectedButton.mouseReleased(x, y);
+			this.selectedButton.func_146118_a(x, y);
 			this.selectedButton = null;
 		}
 	}

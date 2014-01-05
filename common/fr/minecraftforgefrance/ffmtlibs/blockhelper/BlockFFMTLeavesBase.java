@@ -1,20 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.blockhelper;
 
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-public class BlockFFMTLeavesBase extends BlockLeaves
+@Deprecated // TODO: redo
+public class BlockFFMTLeavesBase //extends BlockLeaves
 {
-	protected Icon fastIcon;
+	/*protected Icon fastIcon;
 
 	protected BlockFFMTLeavesBase(int id)
 	{
@@ -47,5 +36,5 @@ public class BlockFFMTLeavesBase extends BlockLeaves
 	public boolean isLeaves(World world, int x, int y, int z)
 	{
 		return true;
-	}
+	}*/
 }
