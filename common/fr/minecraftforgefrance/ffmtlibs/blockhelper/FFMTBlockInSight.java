@@ -15,7 +15,7 @@ public class FFMTBlockInSight
 	 * @param player - the player's object
 	 * @return an array of int, 0 = x, 1 = y, 2 = z
 	 */
-	@Deprecated // TODO fix EnumMovingObjectType
+	@Deprecated // TODO fix (this never really work)
 	public static int[] getBlockInSight(int distance, EntityPlayer player)
 	{
 		@SuppressWarnings("unused")

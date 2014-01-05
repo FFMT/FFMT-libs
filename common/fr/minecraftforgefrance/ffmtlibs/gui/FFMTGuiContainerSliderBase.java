@@ -1,8 +1,10 @@
 package fr.minecraftforgefrance.ffmtlibs.gui;
 
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,8 +30,7 @@ public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 				if(guibutton.func_146116_c(this.field_146297_k, x, y) && guibutton instanceof FFMTGuiSliderForContainer)
 				{
 					this.selectedButton = guibutton;
-					//TODO: find sndManager
-					//this.field_146297_k.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+					this.field_146297_k.func_147118_V().func_147682_a(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 					this.func_146284_a(guibutton);
 				}
 			}
