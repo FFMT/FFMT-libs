@@ -2,12 +2,14 @@ package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.logging.Logger;
 
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import fr.minecraftforgefrance.ffmtlibs.event.EventPlayerRender;
 import fr.minecraftforgefrance.ffmtlibs.renderer.TESRInventoryRenderHandler;
 
 @Mod(modid = "FFMTLIBS", name = "FFMT Library", version = "@VERSION@", useMetadata = true)
@@ -36,6 +38,8 @@ public class FFMTLibs
 		{
 			FFMTClientRegistry.tesrRenderId = RenderingRegistry.getNextAvailableRenderId();
 			RenderingRegistry.registerBlockHandler(new TESRInventoryRenderHandler());
+			
+			MinecraftForge.EVENT_BUS.register(new EventPlayerRender());
 		}
 	}
 }
