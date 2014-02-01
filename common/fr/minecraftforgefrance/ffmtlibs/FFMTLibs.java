@@ -9,6 +9,8 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import fr.minecraftforgefrance.ffmtlibs.blockhelper.EntityFFMTBlockSittable;
 import fr.minecraftforgefrance.ffmtlibs.event.EventPlayerRender;
 import fr.minecraftforgefrance.ffmtlibs.renderer.TESRInventoryRenderHandler;
 
@@ -34,6 +36,7 @@ public class FFMTLibs
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
+		EntityRegistry.registerModEntity(EntityFFMTBlockSittable.class, "EntityFFMTBlockSittable", 1, this, 500, 5, false);
 		if(event.getSide().isClient())
 		{
 			FFMTClientRegistry.tesrRenderId = RenderingRegistry.getNextAvailableRenderId();
