@@ -24,57 +24,57 @@ public class FFMTBlockSittable extends Block
 		super(x, material);
 	}
 
-	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int par6, float par7, float par8, float par9)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
-		return onBlockActivated(world, i, j, k, entityplayer, 0.5F, 1.0F, 0.5F, 0, 0, 0, 0);
+		return onBlockActivated(world, x, y, z, player, 0.5F, 1.0F, 0.5F, 0, 0, 0, 0);
 	}
 
-	public static boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, float y)
+	public static boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, float Yy)
 	{
-		return onBlockActivated(world, i, j, k, entityplayer, 0.5F, y, 0.5F, 0, 0, 0, 0);
+		return onBlockActivated(world, x, y, z, player, 0.5F, Yy, 0.5F, 0, 0, 0, 0);
 	}
 
-	public static boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, float x, float y, float z, int north, int south, int east, int west)
+	public static boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, float Xx, float Yy, float Zz, int north, int south, int east, int west)
 	{
 		if(!world.isRemote)
 		{
-			List<EntityFFMTBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityFFMTBlockSittable.class, AxisAlignedBB.getBoundingBox(i, j, k, i + 1.0D, j + 1.0D, k + 1.0D).expand(1.0D, 1.0D, 1.0D));
+			List<EntityFFMTBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityFFMTBlockSittable.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1.0D, 1.0D, 1.0D));
 			for(EntityFFMTBlockSittable entitytocheck : listEMB)
 			{
-				if((entitytocheck.orgBlockPosX == i) && (entitytocheck.orgBlockPosY == j) && (entitytocheck.orgBlockPosZ == k))
+				if((entitytocheck.blockPosX == x) && (entitytocheck.blockPosY == y) && (entitytocheck.blockPosZ == z))
 				{
-					entitytocheck.interact(entityplayer);
+					entitytocheck.interact(player);
 					return true;
 				}
 			}
 
-			float mountingX = i + x;
-			float mountingY = j + y;
-			float mountingZ = k + z;
+			float mountingX = x + Xx;
+			float mountingY = y + Yy;
+			float mountingZ = z + Zz;
 
 			if(north != south)
 			{
-				int md = world.getBlockMetadata(i, j, k);
+				int md = world.getBlockMetadata(x, y, z);
 				if(md == east)
 				{
-					mountingX = i + 1 - z;
-					mountingZ = k + x;
+					mountingX = x + 1 - Zz;
+					mountingZ = z + Xx;
 				}
 				else if(md == south)
 				{
-					mountingX = i + 1 - x;
-					mountingZ = k + 1 - z;
+					mountingX = x + 1 - Xx;
+					mountingZ = z + 1 - Zz;
 				}
 				else if(md == west)
 				{
-					mountingX = i + z;
-					mountingZ = k + 1 - x;
+					mountingX = x + Zz;
+					mountingZ = z + 1 - Xx;
 				}
 			}
 
-			EntityFFMTBlockSittable nemb = new EntityFFMTBlockSittable(world, entityplayer, i, j, k, mountingX, mountingY, mountingZ);
-			world.spawnEntityInWorld(nemb);
-			nemb.interact(entityplayer);
+			EntityFFMTBlockSittable entity = new EntityFFMTBlockSittable(world, player, x, y, z, mountingX, mountingY, mountingZ);
+			world.spawnEntityInWorld(entity);
+			entity.interact(player);
 			return true;
 		}
 		return true;
