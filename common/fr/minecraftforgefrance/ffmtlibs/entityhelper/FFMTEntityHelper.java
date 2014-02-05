@@ -143,7 +143,6 @@ public class FFMTEntityHelper
 	 **/
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class <? extends EntityLivingBase> classToAttack)
 	{
-		@SuppressWarnings({"rawtypes", "static-access"})
 		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
 		Entity entityToAttack = (Entity)list.get(rand.nextInt(list.size()));
 		if(!list.isEmpty())
@@ -159,8 +158,8 @@ public class FFMTEntityHelper
 	 * @author elias54
 	 */
     public static boolean inWater(World world, Entity entity)
-    {															  //Material.water
-        return world.handleMaterialAcceleration(entity.boundingBox, Material.field_151586_h, entity);
+    {
+        return world.handleMaterialAcceleration(entity.boundingBox, Material.water, entity);
     }
 
 	/**
@@ -208,13 +207,11 @@ public class FFMTEntityHelper
 	 */
 	public void removeLoadedEntityList(World world, Entity entityToRemove)
 	{
-		@SuppressWarnings("rawtypes")
 		List list = world.getLoadedEntityList();
 		if(!list.isEmpty())
 		{
 			list.remove(entityToRemove);
 		}
-		return;
 	}
 	
 	/**

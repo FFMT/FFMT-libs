@@ -1,19 +1,25 @@
 package fr.minecraftforgefrance.ffmtlibs.blockhelper;
 
-@Deprecated // TODO: redo
-public class BlockFFMTLeavesBase //extends BlockLeaves
-{
-	/*protected Icon fastIcon;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-	protected BlockFFMTLeavesBase(int id)
+public class BlockFFMTLeavesBase extends BlockLeaves
+{
+	protected IIcon fastIcon;
+
+	protected BlockFFMTLeavesBase()
 	{
-		super(id);
+		super();
 		this.setLightOpacity(1);
 	}
 
 	public boolean isOpaqueCube()
 	{
-		return Block.leaves.isOpaqueCube();
+		return Blocks.leaves.isOpaqueCube();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -21,20 +27,28 @@ public class BlockFFMTLeavesBase //extends BlockLeaves
 	{
 		return !this.isOpaqueCube() ? true : super.shouldSideBeRendered(blockaccess, x, y, z, side);
 	}
-
-	public Icon getIcon(int side, int metadata)
+	
+	@Override
+	public IIcon getIcon(int side, int metadata)
 	{
 		return(isOpaqueCube() ? fastIcon : blockIcon);
 	}
 
+	/*@Override
 	public void getSubBlocks(int par1, CreativeTabs creativeTabs, List list)
 	{
 		list.add(new ItemStack(par1, 1, 0));
-	}
-	
-	@Override
-	public boolean isLeaves(World world, int x, int y, int z)
-	{
-		return true;
 	}*/
+	
+    @Override
+    public boolean isLeaves(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+
+	@Override
+	public String[] func_150125_e()
+	{
+		return null;
+	}
 }

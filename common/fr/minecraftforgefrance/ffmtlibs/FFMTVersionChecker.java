@@ -6,13 +6,17 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * @author robin4002
@@ -37,9 +41,8 @@ public class FFMTVersionChecker
 					String remoteVersion = line[1];
 					if(!remoteVersion.equals(actuallyVersion))
 					{
-						FFMTLibs.FFMTlog.error("A new update for " + modName + " is available (" + remoteVersion + ")");
-						//GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modName, remoteVersion, downloadUrl));
-						FMLCommonHandler.instance().bus().register(new FFMTPlayerTracker(modName, remoteVersion, downloadUrl));
+						FFMTLibs.FFMTlog.info("A new update for " + modName + " is available (" + remoteVersion + ")");
+						//TODO fix GameRegistry.registerPlayerTracker(new FFMTPlayerTracker(modName, remoteVersion, downloadUrl));
 					}
 				}
 			}
