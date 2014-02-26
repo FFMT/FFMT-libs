@@ -35,10 +35,8 @@ public class FFMTRegistry
 	public static final int HOE_TYPE = 2;
 	public static final int PICKAXE_TYPE = 3;
 	public static final int SWORD_TYPE = 4;
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+	
+	
 	/**
 	 * Spawn particles (Blocks only)
 	 * Just a call of <code>spawnParticles(int speed, String particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ)</code>
@@ -87,26 +85,7 @@ public class FFMTRegistry
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-	/**
-	 * Adding version checker rewritten by robin4002 original by elias
-	 * 
-	 * @param event (FMLPreInitializationEvent put it in preinit)
-	 * @param versionUrl (your txt url with the last version number)
-	 * @param downloadurl
-	 * @param modname
-	 * @param actuallyversion
-	 * @see FFMTRegistry#registerVersionCheck(String, String, String, String)
-	 */
-	@Deprecated
-	public static void registerVersionCheck(FMLPreInitializationEvent event, String versionURL, String downloadURL, String modName, String currentVersion)
-	{
-		FFMTVersionChecker.check(versionURL, downloadURL, modName, currentVersion);
-	}
-	
+
 	/**
 	 * Adding version checker rewritten by robin4002 original by elias
 	 * @param versionUrl (your txt url with the last version number)
@@ -134,9 +113,6 @@ public class FFMTRegistry
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Add smelting for blocks/items with metadata
@@ -158,9 +134,6 @@ public class FFMTRegistry
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Helper for crafting armors
@@ -201,9 +174,6 @@ public class FFMTRegistry
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Helper for crafting all armors
@@ -229,10 +199,7 @@ public class FFMTRegistry
 		}
 	}
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	// Separator
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+	
 	/**
 	 * Helper for crafting tools
 	 * 
@@ -296,17 +263,16 @@ public class FFMTRegistry
 		}
 	}
 	
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	/**
 	 * Remove a recipe
 	 * 
-	 * @param removestack 
+	 * @param stack 
 	 *            The removed ItemStack
 	 * @author Moritz
 	 * @see http://www.minecraftforge.net/forum/index.php/topic,7146.msg58748.html#msg58748
 	 */
-	public static void removeRecipe(ItemStack removestack)
+	public static void removeRecipe(ItemStack stack)
 	{
 		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
 		for(int i = 0; i < recipeList.size(); i++)
@@ -316,7 +282,7 @@ public class FFMTRegistry
 			{
 				ShapedRecipes shape = (ShapedRecipes)currentRecipe;
 				ItemStack output = shape.getRecipeOutput();
-				if(ItemStack.areItemStacksEqual(removestack, output))
+				if(ItemStack.areItemStacksEqual(stack, output))
 				{
 					recipeList.remove(i);
 				}
@@ -326,44 +292,7 @@ public class FFMTRegistry
 			{
 				ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
 				ItemStack output = shapeless.getRecipeOutput();
-				if(ItemStack.areItemStacksEqual(removestack, output))
-				{
-					recipeList.remove(i);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Remove a recipe
-	 * 
-	 * @param id 
-	 *            The id of the block or item
-	 * @author robin4002
-	 */
-	@Deprecated
-	public static void removeRecipe(int id)
-	{
-		ItemStack removestack = new ItemStack(Blocks.bedrock);//new ItemStack(id, 1, -1);
-		List<IRecipe> recipeList = CraftingManager.getInstance().getRecipeList();
-		for(int i = 0; i < recipeList.size(); i++)
-		{
-			IRecipe currentRecipe = recipeList.get(i);
-			if(currentRecipe instanceof ShapedRecipes)
-			{
-				ShapedRecipes shape = (ShapedRecipes)currentRecipe;
-				ItemStack output = shape.getRecipeOutput();
-				if(ItemStack.areItemStacksEqual(removestack, output))
-				{
-					recipeList.remove(i);
-				}
-			}
-
-			if(currentRecipe instanceof ShapelessRecipes)
-			{
-				ShapelessRecipes shapeless = (ShapelessRecipes)currentRecipe;
-				ItemStack output = shapeless.getRecipeOutput();
-				if(ItemStack.areItemStacksEqual(removestack, output))
+				if(ItemStack.areItemStacksEqual(stack, output))
 				{
 					recipeList.remove(i);
 				}

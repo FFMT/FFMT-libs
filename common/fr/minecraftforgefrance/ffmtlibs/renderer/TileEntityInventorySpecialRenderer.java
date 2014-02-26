@@ -15,5 +15,5 @@ public abstract class TileEntityInventorySpecialRenderer extends TileEntitySpeci
 	public abstract void renderInventory(double x, double y, double z);
 
 	@Override
-	public abstract void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f);
+	public abstract void renderTileEntityAt(TileEntity tile, double x, double y, double z, float tick);
 }
