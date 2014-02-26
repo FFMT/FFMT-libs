@@ -11,7 +11,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import fr.minecraftforgefrance.ffmtlibs.blockhelper.EntityFFMTBlockSittable;
-import fr.minecraftforgefrance.ffmtlibs.event.EventPlayerRender;
+import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.renderer.TESRInventoryRenderHandler;
 
 @Mod(modid = "FFMTLIBS", name = "FFMT Library", version = "@VERSION@", useMetadata = true)
@@ -42,7 +42,7 @@ public class FFMTLibs
 			FFMTClientRegistry.tesrRenderId = RenderingRegistry.getNextAvailableRenderId();
 			RenderingRegistry.registerBlockHandler(new TESRInventoryRenderHandler());
 			
-			MinecraftForge.EVENT_BUS.register(new EventPlayerRender());
+			MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
 		}
 	}
 }
