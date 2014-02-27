@@ -1,27 +1,29 @@
 package fr.minecraftforgefrance.ffmtlibs.blockhelper;
 
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-
 /**
- For use, add this in your block: (change heightOfThePlayer with a float) 
- Pour l'utiliser, ajoutez ceci dans votre bloc: (changez heightOfThePlayer avec un float)
- 
- public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
- {
- 	return FFMTBlockSittable.onBlockActivated(world, x, y, z, player, 0.5F, heightOfThePlayer, 0.5F, 0, 0, 0, 0);
- }
+ * For use, add this in your block: (change heightOfThePlayer with a float)
+ * Pour l'utiliser, ajoutez ceci dans votre bloc: (changez heightOfThePlayer avec un float)
+ * 
+ * <pre>
+ * public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+ * {
+ * 	return FFMTBlockSittable.onBlockActivated(world, x, y, z, player, 0.5F, heightOfThePlayer, 0.5F, 0, 0, 0, 0);
+ * }
+ * </pre>
  **/
 public class FFMTBlockSittable extends Block
 {
-	public FFMTBlockSittable(int x, Material material)
+	public FFMTBlockSittable(Material material)
 	{
-		super(x, material);
+		super(material);
 	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)

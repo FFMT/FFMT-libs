@@ -12,7 +12,7 @@ public class InventoryTESRIndex
 		this.block = block;
 		this.metadata = metadata;
 	}
-	
+
 	@Override
 	public int hashCode()
 	{

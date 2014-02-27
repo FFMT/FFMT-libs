@@ -1,37 +1,30 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class PlayerEventHandler
+public class FFMTCapePlayerEventHandler
 {
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onPlayerRender(RenderPlayerEvent.Specials.Pre event)
 	{
-		if(event.entityPlayer.username != null && !event.entityPlayer.username.isEmpty())
+		if(event.entityPlayer.getCommandSenderName() != null && !event.entityPlayer.getCommandSenderName().isEmpty())
 		{
 			FFMTCustomPlayerProp player = FFMTCustomPlayerProp.get(event.entityPlayer);
 			if(player.downloadImageCape == null)
 			{
-				player.downloadImageCape = player.getDownloadImageCape(player.getLocationCape(event.entityPlayer.username), event.entityPlayer.username);
+				player.downloadImageCape = player.getDownloadImageCape(player.getLocationCape(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
 			}
 			else
 			{
@@ -43,7 +36,7 @@ public class PlayerEventHandler
 
 				if(flag && playerVisible && capeVisible)
 				{
-					Minecraft.getMinecraft().renderEngine.bindTexture(player.getLocationCape(event.entityPlayer.username));
+					Minecraft.getMinecraft().renderEngine.bindTexture(player.getLocationCape(event.entityPlayer.getCommandSenderName()));
 					GL11.glPushMatrix();
 					GL11.glTranslatef(0.0F, 0.0F, 0.125F);
 					double d0 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * (double)event.partialRenderTick - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * (double)event.partialRenderTick);
@@ -91,8 +84,8 @@ public class PlayerEventHandler
 			}
 		}
 	}
-	
-	@ForgeSubscribe
+
+	@SubscribeEvent
 	public void onEntityConstructing(EntityEvent.EntityConstructing event)
 	{
 		if(event.entity instanceof EntityPlayer)

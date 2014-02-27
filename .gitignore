@@ -1,4 +1,8 @@
-/dist
-
+build/
+.classpath
+.project
+.gradle/
+eclipse/
+bin/
 Thumbs.db
-*.DS_Store
+.DS_Store

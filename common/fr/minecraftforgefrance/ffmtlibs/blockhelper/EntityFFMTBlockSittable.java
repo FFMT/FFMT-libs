@@ -1,9 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.blockhelper;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.profiler.Profiler;
 import net.minecraft.world.World;
 
 public class EntityFFMTBlockSittable extends Entity
@@ -11,7 +11,7 @@ public class EntityFFMTBlockSittable extends Entity
 	protected int blockPosX;
 	protected int blockPosY;
 	protected int blockPosZ;
-	protected int blockID;
+	protected Block block;
 
 	public EntityFFMTBlockSittable(World world)
 	{
@@ -43,8 +43,7 @@ public class EntityFFMTBlockSittable extends Entity
 		this.blockPosX = x;
 		this.blockPosY = y;
 		this.blockPosZ = z;
-		this.blockID = world.getBlockId(x, y, z);
-
+		this.block = world.getBlock(x, y, z);
 		setPosition(Xx, Yy, Zz);
 	}
 
@@ -69,7 +68,7 @@ public class EntityFFMTBlockSittable extends Entity
 		{
 			setDead();
 		}
-		else if(this.worldObj.getBlockId(this.blockPosX, this.blockPosY, this.blockPosZ) != this.blockID)
+		else if(this.worldObj.getBlock(this.blockPosX, this.blockPosY, this.blockPosZ).equals(block))
 		{
 			interact((EntityPlayer)this.riddenByEntity);
 		}

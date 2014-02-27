@@ -57,13 +57,13 @@ public class FFMTGuiBooleanButton extends GuiButton
 
 	public void drawButton(Minecraft mc, int x, int y)
 	{
-		if(this.drawButton)
+		if(this.visible)
 		{
 			FontRenderer fontrenderer = mc.fontRenderer;
 			mc.getTextureManager().bindTexture(buttonTextures);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			this.field_82253_i = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
-			int k = this.getHoverState(this.field_82253_i);
+			this.field_146123_n = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
+			int k = this.getHoverState(this.field_146123_n);
 			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, 46 + k * 20, this.width / 2, this.height);
 			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + k * 20, this.width / 2, this.height);
 			this.mouseDragged(mc, x, y);
@@ -73,7 +73,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 			{
 				l = -6250336;
 			}
-			else if(this.field_82253_i)
+			else if(this.field_146123_n)
 			{
 				l = 16777120;
 			}

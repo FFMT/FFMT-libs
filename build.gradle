@@ -1,0 +1,92 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+ext.buildnumber = 0
+
+version = "1.3.0"
+modversion = project.version
+group= "fr.minecraftforgefrance.ffmtlibs"
+archivesBaseName = "FFMT-libs"
+
+if (System.getenv().BUILD_NUMBER) {
+    project.buildnumber = System.getenv().BUILD_NUMBER
+	version += "." + System.getenv().BUILD_NUMBER
+}
+else {
+    logger.lifecycle "SETTING BUILDNUMBER TO 0"
+}
+
+version += "-mc1.7.2"
+
+minecraft {
+    version = "1.7.2-10.12.0.1024"
+    assetDir = "run/assets"
+	
+    replace '@VERSION@', project.modversion
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'common'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+processResources
+{
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.modversion, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    appendix = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    appendix = 'deobf-dev'
+}
+
+build.dependsOn sourceJar, javadocJar, deobfJar
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
+    archives javadocJar
+}

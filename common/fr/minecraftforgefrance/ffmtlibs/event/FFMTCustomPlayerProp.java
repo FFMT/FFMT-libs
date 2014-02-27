@@ -3,8 +3,8 @@ package fr.minecraftforgefrance.ffmtlibs.event;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
+import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,17 +12,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 {
 	public static final String ENTITY_PROP_NAME = "FFMTCustomPlayerProp";
 	private final EntityPlayer player;
-	
+
 	public ResourceLocation locationCape;
 	public ThreadDownloadImageData downloadImageCape;
-	
+
 	public FFMTCustomPlayerProp(EntityPlayer player)
 	{
 		this.player = player;
@@ -45,12 +43,12 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	{
 
 	}
-	
+
 	public static final FFMTCustomPlayerProp get(EntityPlayer player)
 	{
 		return (FFMTCustomPlayerProp)player.getExtendedProperties(ENTITY_PROP_NAME);
 	}
-	
+
 	public ThreadDownloadImageData getTextureCape()
 	{
 		return this.downloadImageCape;
@@ -69,7 +67,7 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 		if(object == null)
 		{
 			object = new ThreadDownloadImageData(link, defRes, image);
-			texturemanager.loadTexture(res, (TextureObject)object);
+			texturemanager.loadTexture(res, (ITextureObject)object);
 		}
 
 		return (ThreadDownloadImageData)object;

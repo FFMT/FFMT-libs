@@ -1,10 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
 /**
- * @author elias54, kevin_68 (R*65536)+(G*256)+B
- * ColorName = Foreground Color
- * ColorNameB = Background Color
- * Use this for your spawn eggs
+ * @author elias54, kevin_68 (R*65536)+(G*256)+B ColorName = Foreground Color ColorNameB = Background Color Use this for your spawn eggs
  * @see net.minecraft.util.EnumChatFormatting for string color
  */
 

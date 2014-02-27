@@ -1,6 +1,6 @@
 package fr.minecraftforgefrance.ffmtlibs.renderer;
 
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
@@ -8,12 +8,12 @@ public abstract class TileEntityInventorySpecialRenderer extends TileEntitySpeci
 {
 	public TileEntityInventorySpecialRenderer()
 	{
-		this.setTileEntityRenderer(TileEntityRenderer.instance);
+		this.func_147497_a(TileEntityRendererDispatcher.instance);
 	}
 
 	@Override
 	public abstract void renderInventory(double x, double y, double z);
 
 	@Override
-	public abstract void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f);
+	public abstract void renderTileEntityAt(TileEntity tile, double x, double y, double z, float tick);
 }
