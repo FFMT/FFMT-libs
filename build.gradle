@@ -19,13 +19,18 @@ apply plugin: 'forge'
 
 ext.buildnumber = 0
 
-if (System.getenv().BUILD_NUMBER)
-    project.buildnumber = System.getenv().BUILD_NUMBER
-
 modversion = "1.3.0"
-version = project.version + project.minecraft.version
+version = "1.3.0-mc1.7.2"
 group= "fr.minecraftforgefrance.ffmtlibs"
 archivesBaseName = "FFMT-libs"
+
+if (System.getenv().BUILD_NUMBER) {
+    project.buildnumber = System.getenv().BUILD_NUMBER
+	version += "." + System.getenv().BUILD_NUMBER
+}
+else {
+    logger.lifecycle "SETTING BUILDNUMBER TO 0"
+}
 
 minecraft {
     version = "1.7.2-10.12.0.1024"
@@ -63,19 +68,20 @@ processResources
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
-    appendix = 'src'
+    classifier = 'src'
 }
 
-
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    appendix = 'javadoc'
+    classifier = 'javadoc'
     from 'build/docs/javadoc'
 }
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-    appendix = 'deobf'
+    classifier = 'deobf-dev'
 }
+
+build.dependsOn sourceJar, javadocJar, deobfJar
 
 artifacts {
     archives sourceJar
