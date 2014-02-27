@@ -27,8 +27,6 @@ public class FFMTLibs
 	public void preload(FMLPreInitializationEvent event)
 	{
 		FFMTlog = event.getModLog();
-		event.getModMetadata().version = "@VERSION@";
-
 		FFMTRegistry.registerVersionCheck("http://dl.mcnanotech.fr/FFMT/libs/version.txt", "http://ci.mcnanotech.fr/job/FFMT-libs/", "FFMT Library", "@VERSION@");
 	}
 
