@@ -15,6 +15,7 @@ import com.google.common.io.InputSupplier;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
+import fr.minecraftforgefrance.ffmtlibs.event.FFMTVersionCheckPlayerEventHandler;
 
 /**
  * @author robin4002
@@ -40,7 +41,7 @@ public class FFMTVersionChecker
 					if(!remoteVersion.equals(actuallyVersion))
 					{
 						FFMTLibs.FFMTlog.info("A new update for " + modName + " is available (" + remoteVersion + ")");
-						FMLCommonHandler.instance().bus().register(new FFMTPlayerEventHandler(modName, remoteVersion, downloadUrl));
+						FMLCommonHandler.instance().bus().register(new FFMTVersionCheckPlayerEventHandler(modName, remoteVersion, downloadUrl));
 					}
 				}
 			}
