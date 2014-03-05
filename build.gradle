@@ -90,3 +90,9 @@ artifacts {
     archives deobfJar
     archives javadocJar
 }
+
+uploadArchives {
+    // make sure this happens after reobfuscation
+    dependsOn 'reobf'
+	add project.repositories.mavenLocal()
+}

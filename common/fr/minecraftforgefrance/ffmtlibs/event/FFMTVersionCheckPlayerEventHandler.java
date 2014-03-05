@@ -1,6 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -25,8 +26,8 @@ public class FFMTVersionCheckPlayerEventHandler
 	{
 		if(!hassay)
 		{
-			event.player.addChatMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("update.available"), outdatedMod, lastestVersion)));
-			event.player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("update.download") + " " + EnumChatFormatting.BLUE + downloadURL));
+			event.player.addChatMessage(new ChatComponentTranslation("update.available", outdatedMod, lastestVersion));
+			event.player.addChatMessage(new ChatComponentTranslation("update.download", downloadURL));
 			hassay = true;
 		}
 	}
