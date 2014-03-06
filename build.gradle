@@ -94,5 +94,7 @@ artifacts {
 uploadArchives {
     // make sure this happens after reobfuscation
     dependsOn 'reobf'
-	add project.repositories.mavenLocal()
+	repositories {
+	    add project.repositories.mavenLocal()
+	}
 }
