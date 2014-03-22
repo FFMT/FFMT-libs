@@ -74,16 +74,19 @@ jar {
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     appendix = 'src'
+    version = "${project.version}-mc${project.minecraft.version}"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    appendix = 'javadoc'
     from 'build/docs/javadoc'
+    appendix = 'javadoc'
+    version = "${project.version}-mc${project.minecraft.version}"
 }
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     appendix = 'deobf-dev'
+    version = "${project.version}-mc${project.minecraft.version}"
 }
 
 build.dependsOn sourceJar, javadocJar, deobfJar
