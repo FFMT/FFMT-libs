@@ -6,12 +6,8 @@ import java.util.Random;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
@@ -23,6 +19,12 @@ import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTArmor;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTAxe;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTHoe;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTPickaxe;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTSpade;
+import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTSword;
 
 /**
  * @authors kevin_68, elias54
@@ -272,7 +274,7 @@ public class FFMTRegistry
 	 * Helper for register all armors
 	 * 
 	 * @param armorMaterial
-	 * @param name e.g. iron, gold, stone, wood, diamand
+	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
 	 * @param helmet
 	 * @param chestplate
@@ -284,29 +286,47 @@ public class FFMTRegistry
 	 */
 	public static void registerAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, CreativeTabs creativeTabs)
 	{
+		registerAllArmors(armorMaterial, name, modid, helmet, chestplate, leggings, boots, null, creativeTabs);
+	}
+	
+	/**
+	 * Helper for register all armors.
+	 * 
+	 * @param armorMaterial
+	 * @param name e.g. iron, gold, stone, wood, diamond
+	 * @param modid
+	 * @param helmet
+	 * @param chestplate
+	 * @param leggings
+	 * @param boots
+	 * @param repair the item to repair your armor in an anvil
+	 * @param creativeTabs
+	 */
+	public static void registerAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, Item repair, CreativeTabs creativeTabs)
+	{
 		try
 		{
-			helmet = new ItemArmor(armorMaterial, 0, 0).setUnlocalizedName(name + "Helmet").setTextureName(modid + name + "_helmet").setCreativeTab(creativeTabs);
-			chestplate = new ItemArmor(armorMaterial, 0, 1).setUnlocalizedName(name + "Chestplate").setTextureName(modid + name + "_chestplate").setCreativeTab(creativeTabs);
-			leggings = new ItemArmor(armorMaterial, 0, 2).setUnlocalizedName(name + "Leggings").setTextureName(modid + name + "_leggings").setCreativeTab(creativeTabs);
-			boots = new ItemArmor(armorMaterial, 0, 3).setUnlocalizedName(name + "Boots").setTextureName(modid + name + "_boots").setCreativeTab(creativeTabs);
+			helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setTextureName(modid + ":" + name + "_helmet").setCreativeTab(creativeTabs);
+			chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setTextureName(modid + ":" + name + "_chestplate").setCreativeTab(creativeTabs);
+			leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setTextureName(modid + ":" + name + "_leggings").setCreativeTab(creativeTabs);
+			boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setTextureName(modid + ":" + name + "_boots").setCreativeTab(creativeTabs);
 			
-			GameRegistry.registerItem(helmet, name + "Helmet");
-			GameRegistry.registerItem(chestplate, name + "Chestplate");
-			GameRegistry.registerItem(leggings, name + "Leggings");
-			GameRegistry.registerItem(boots, name + "Boots");
+			GameRegistry.registerItem(helmet, "item_" + name + "_helmet");
+			GameRegistry.registerItem(chestplate, "item_" + name + "_chestplate");
+			GameRegistry.registerItem(leggings, "item_" + name + "_leggings");
+			GameRegistry.registerItem(boots, "item_" + name + "_boots");
 		}
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.error("Failed to register armors");
+			FFMTLibs.FFMTlog.error("Failed to register armor " + name + " from " + modid);
 		}
 	}
 	
 	/**
-	 * Helper for register all armors
+	 * Helper for register all tool
 	 * 
 	 * @param toolMaterial
-	 * @param name e.g. iron, gold, stone, wood, diamand
+	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
 	 * @param sword
 	 * @param shovel
@@ -315,26 +335,42 @@ public class FFMTRegistry
 	 * 
 	 * @author superloup10
 	 */
-	public static void registerAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, /*Item pickaxe, Item axe,*/ Item shovel, Item hoe, CreativeTabs creativeTabs)
+	public static void registerAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, CreativeTabs creativeTabs)
+	{
+		registerAllTools(toolMaterial, name, modid, sword, pickaxe, axe, shovel, hoe, null, creativeTabs);
+	}
+	
+	/**
+	 * Helper for register all tool
+	 * 
+	 * @param toolMaterial
+	 * @param name e.g. iron, gold, stone, wood, diamond
+	 * @param modid
+	 * @param sword
+	 * @param shovel
+	 * @param hoe
+	 * @param repair the item to repair yours tools in an anvil
+	 * @param creativeTabs
+	 */
+	public static void registerAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, Item repair, CreativeTabs creativeTabs)
 	{
 		try
 		{
-			sword = new ItemSword(toolMaterial).setUnlocalizedName(name + "Sword").setTextureName(modid + name + "_sword").setCreativeTab(creativeTabs);
-			//TODO @Robin ou @Kevin, regardez pourquoi le constructeur d'ItemPickaxe et d'ItemAxe n'est pas visible?
-			/*pickaxe = new ItemPickaxe(toolMaterial).setUnlocalizedName(name + "Pickaxe").setTextureName(modid + name + "_pickaxe").setCreativeTab(creativeTabs);
-			axe = new ItemAxe(toolMaterial).setUnlocalizedName(name + "Axe").setTextureName(modid + name + "_axe").setCreativeTab(creativeTabs);*/
-			shovel = new ItemSpade(toolMaterial).setUnlocalizedName(name + "Shovel").setTextureName(modid + name + "shovel").setCreativeTab(creativeTabs);
-			hoe = new ItemHoe(toolMaterial).setUnlocalizedName(name + "Hoe").setTextureName(modid + name + "_hoe").setCreativeTab(creativeTabs);
+			sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setTextureName(modid + ":" + name + "_sword").setCreativeTab(creativeTabs);
+			pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setTextureName(modid + ":" + name + "_pickaxe").setCreativeTab(creativeTabs);
+			axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setTextureName(modid + ":" + name + "_axe").setCreativeTab(creativeTabs);
+			shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setTextureName(modid + ":" + name + "shovel").setCreativeTab(creativeTabs);
+			hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setTextureName(modid + ":" + name + "_hoe").setCreativeTab(creativeTabs);
 			
-			GameRegistry.registerItem(sword, name + "Sword");
-			//GameRegistry.registerItem(pickaxe, name + "Pickaxe");
-			//GameRegistry.registerItem(axe, name + "Axe");
-			GameRegistry.registerItem(shovel, name + "Shovel");
-			GameRegistry.registerItem(hoe, name + "Hoe");
+			GameRegistry.registerItem(sword, "item_" + name + "_sword");
+			GameRegistry.registerItem(pickaxe, "item_" + name + "_pickaxe");
+			GameRegistry.registerItem(axe, "item_" + name + "_axe");
+			GameRegistry.registerItem(shovel, "item_" + name + "_shovel");
+			GameRegistry.registerItem(hoe, "item_" + name + "_hoe");
 		}
 		catch(Exception e)
 		{
-			FFMTLibs.FFMTlog.error("Failed to register tools");
+			FFMTLibs.FFMTlog.error("Failed to register tools " + name + "from " + modid);
 		}
 	}
 
