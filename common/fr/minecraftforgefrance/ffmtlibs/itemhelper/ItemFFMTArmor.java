@@ -1,6 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.itemhelper;
 
-import fr.minecraftforgefrance.tutoriel.common.ModTutoriel;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
