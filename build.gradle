@@ -21,7 +21,7 @@ apply plugin: 'maven'
 ext.buildnumber = 0
 
 version = "1.3.0"
-group= "fr.minecraftforgefrance.ffmtlibs"
+group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
 if (System.getenv().BUILD_NUMBER) {
