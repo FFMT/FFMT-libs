@@ -91,12 +91,6 @@ task deobfJar(type: Jar) {
 
 build.dependsOn sourceJar, javadocJar, deobfJar
 
-artifacts {
-    archives sourceJar
-    archives deobfJar
-    archives javadocJar
-}
-
 configurations {
     deployerJars
 }
@@ -104,84 +98,93 @@ configurations {
 dependencies {
     deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
 }
-	
-uploadArchives {
-    dependsOn 'reobf'
-    repositories {
-        add project.repositories.mavenLocal()
-    }
-    repositories.mavenDeployer {
-        configuration = configurations.deployJars
 
+artifacts {
+    archives sourceJar
+    archives deobfJar
+    archives javadocJar
+}
+
+uploadArchives {
+    // make sure this happens after reobfuscation
+    dependsOn 'reobf'
+
+    repositories {
         if (project.hasProperty("filesmaven")) {
             logger.info('Publishing to files server')
-            repository(url: project.filesmaven.url) {
-                authentication(userName: project.filesmaven.username, privateKey: project.filesmaven.key)
+
+            mavenDeployer {
+                configuration = configurations.deployerJars
+
+                repository(url: project.filesmaven.url) {
+                    authentication(userName: project.filesmaven.username, privateKey: project.filesmaven.key)
+                }
+
+                pom {
+                    groupId = project.group
+                    version = project.version
+                    artifactId = project.archivesBaseName
+                    project {
+                        name project.archivesBaseName
+                        packaging 'jar'
+                        description 'Lib by the FFMT'
+                        url 'https://github.com/FFMT/FFMT-libs'
+
+                        scm {
+                            url 'https://github.com/FFMT/FFMT-libs'
+                            connection 'scm:git:git://github.com/FFMT/FFMT-libs.git'
+                            developerConnection 'scm:git:git@github.com:FFMT/FFMT-libs.git'
+                        }
+
+                        issueManagement {
+                            system 'github'
+                            url 'https://github.com/FFMT/FFMT-libs/issues'
+                        }
+
+                        developers {
+                            developer {
+                                id 'robin4002'
+                                name 'robin4002'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'kevin_68'
+                                name 'kevin_68'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'elias54'
+                                name 'elias54'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'gugu42'
+                                name 'gugu42'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'letherman255'
+                                name 'letherman255'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'jglrxavpok'
+                                name 'jglrxavpok'
+                                roles { role 'developer' }
+                            }
+                            developer {
+                                id 'Superloup10'
+                                name 'Superloup10'
+                                roles { role 'developer' }
+                            }
+                        }
+                    }
+                }
             }
-        } else {
-            logger.info('Publishing to repo folder')
-            repository(url: 'file://localhost/' + project.file('repo').getAbsolutePath())
         }
-
-        pom {
-            groupId = project.group
-            version = project.version
-            artifactId = project.archivesBaseName
+        else
+        {
+            add project.repositories.mavenLocal()
         }
-        pom.project {
-            name project.archivesBaseName
-            packaging 'jar'
-            description 'FFMT libs'
-            url 'https://github.com/FFMT/FFMT-libs'
-
-            scm {
-                url 'https://github.com/FFMT/FFMT-libs'
-                connection 'scm:git:git://github.com/FFMT/FFMT-libs.git'
-                developerConnection 'scm:git:git@github.com:FFMT/FFMT-libs.git'
-            }
-
-            issueManagement {
-                system 'github'
-                url 'https://github.com/FFMT/FFMT-libs/issues'
-            }
-
-            developers {
-                developer {
-                    id 'robin4002'
-                    name 'robin4002'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'kevin_68'
-                    name 'kevin_68'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'elias54'
-                    name 'elias54'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'gugu42'
-                    name 'gugu42'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'letherman255'
-                    name 'letherman255'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'jglrxavpok'
-                    name 'jglrxavpok'
-                    roles { role 'developer' }
-                }
-                developer {
-                    id 'Superloup10'
-                    name 'Superloup10'
-                    roles { role 'developer' }
-                }
-            }
-        }
-    }	
+    }
 }
