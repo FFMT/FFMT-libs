@@ -10,9 +10,9 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
-import fr.minecraftforgefrance.ffmtlibs.blockhelper.EntityFFMTBlockSittable;
+import fr.minecraftforgefrance.ffmtlibs.block.EntityFFMTBlockSittable;
+import fr.minecraftforgefrance.ffmtlibs.client.renderer.TESRInventoryRenderHandler;
 import fr.minecraftforgefrance.ffmtlibs.event.FFMTCapePlayerEventHandler;
-import fr.minecraftforgefrance.ffmtlibs.renderer.TESRInventoryRenderHandler;
 
 @Mod(modid = "FFMTLIBS", name = "FFMT Library", version = "@VERSION@", useMetadata = true)
 /**

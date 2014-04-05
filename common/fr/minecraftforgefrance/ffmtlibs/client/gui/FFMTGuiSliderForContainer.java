@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.gui;
+package fr.minecraftforgefrance.ffmtlibs.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -9,19 +9,19 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTGuiSliderForScreen extends GuiButton
+public class FFMTGuiSliderForContainer extends GuiButton
 {
 	public float sliderValue;
 	public boolean dragging;
 	private int sliderId;
-	private FFMTGuiScreenSliderBase container;
+	private FFMTGuiContainerSliderBase container;
 
-	public FFMTGuiSliderForScreen(FFMTGuiScreenSliderBase containerSliderBase, int id, int x, int y, String name, float value)
+	public FFMTGuiSliderForContainer(FFMTGuiContainerSliderBase containerSliderBase, int id, int x, int y, String name, float value)
 	{
 		this(containerSliderBase, id, x, y, 150, 20, name, value);
 	}
 
-	public FFMTGuiSliderForScreen(FFMTGuiScreenSliderBase containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
+	public FFMTGuiSliderForContainer(FFMTGuiContainerSliderBase containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
 	{
 		super(id, x, y, xSize, ySize, name);
 		this.sliderValue = value;

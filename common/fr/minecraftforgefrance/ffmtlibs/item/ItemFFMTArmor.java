@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.itemhelper;
+package fr.minecraftforgefrance.ffmtlibs.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;

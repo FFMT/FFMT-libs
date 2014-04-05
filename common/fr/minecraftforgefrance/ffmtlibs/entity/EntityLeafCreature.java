@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.entityhelper;
+package fr.minecraftforgefrance.ffmtlibs.entity;
 
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.entity.EntityCreature;

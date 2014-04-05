@@ -5,9 +5,9 @@ import java.util.HashMap;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import fr.minecraftforgefrance.ffmtlibs.renderer.ITESRInventoryRenderer;
-import fr.minecraftforgefrance.ffmtlibs.renderer.InventoryTESRIndex;
-import fr.minecraftforgefrance.ffmtlibs.renderer.TileEntityInventorySpecialRenderer;
+import fr.minecraftforgefrance.ffmtlibs.client.renderer.ITESRInventoryRenderer;
+import fr.minecraftforgefrance.ffmtlibs.client.renderer.InventoryTESRIndex;
+import fr.minecraftforgefrance.ffmtlibs.client.renderer.TileEntityInventorySpecialRenderer;
 
 public class FFMTClientRegistry
 {

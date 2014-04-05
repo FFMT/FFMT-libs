@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.entityhelper;
+package fr.minecraftforgefrance.ffmtlibs.entity;
 
 import java.util.List;
 import java.util.Random;

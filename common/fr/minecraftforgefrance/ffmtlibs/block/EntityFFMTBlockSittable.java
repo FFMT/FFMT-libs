@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.blockhelper;
+package fr.minecraftforgefrance.ffmtlibs.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

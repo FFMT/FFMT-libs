@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.blockhelper;
+package fr.minecraftforgefrance.ffmtlibs.block;
 
 import java.util.List;
 

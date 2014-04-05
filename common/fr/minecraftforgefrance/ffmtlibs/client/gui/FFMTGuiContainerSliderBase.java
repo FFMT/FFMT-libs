@@ -1,16 +1,22 @@
-package fr.minecraftforgefrance.ffmtlibs.gui;
+package fr.minecraftforgefrance.ffmtlibs.client.gui;
 
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public abstract class FFMTGuiScreenSliderBase extends GuiScreen
+public abstract class FFMTGuiContainerSliderBase extends GuiContainer
 {
 	private GuiButton selectedButton;
+
+	public FFMTGuiContainerSliderBase(Container container)
+	{
+		super(container);
+	}
 
 	protected void mouseClicked(int x, int y, int id)
 	{

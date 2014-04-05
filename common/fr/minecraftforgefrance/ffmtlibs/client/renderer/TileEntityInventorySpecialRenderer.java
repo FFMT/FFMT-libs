@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.renderer;
+package fr.minecraftforgefrance.ffmtlibs.client.renderer;
 
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

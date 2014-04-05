@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.itemhelper;
+package fr.minecraftforgefrance.ffmtlibs.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

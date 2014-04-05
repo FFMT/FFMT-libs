@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.blockhelper;
+package fr.minecraftforgefrance.ffmtlibs.block;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;

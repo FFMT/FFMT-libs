@@ -1,14 +1,14 @@
-package fr.minecraftforgefrance.ffmtlibs.itemhelper;
+package fr.minecraftforgefrance.ffmtlibs.item;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 
-public class ItemFFMTPickaxe extends ItemPickaxe
+public class ItemFFMTHoe extends ItemHoe
 {
 	private final Item repairItem;
 
-	public ItemFFMTPickaxe(ToolMaterial material, Item repair)
+	public ItemFFMTHoe(ToolMaterial material, Item repair)
 	{
 		super(material);
 		this.repairItem = repair;

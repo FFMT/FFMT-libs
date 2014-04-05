@@ -19,12 +19,12 @@ import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTArmor;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTAxe;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTHoe;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTPickaxe;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTSpade;
-import fr.minecraftforgefrance.ffmtlibs.itemhelper.ItemFFMTSword;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTArmor;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTAxe;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTHoe;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTPickaxe;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSpade;
+import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSword;
 
 /**
  * @authors kevin_68, elias54
