@@ -6,7 +6,7 @@ import net.minecraft.world.IBlockAccess;
 public class FFMTConnectTextureHelper
 {
   
-  /**
+	/**
 	 * 
 	 * @param IBlockAccess
 	 * @param xCoord
@@ -16,6 +16,12 @@ public class FFMTConnectTextureHelper
 	 * @param block
 	 * @param metadata
 	 * @return int : case of the array for the textures
+	 *
+	 *   Array for return value
+	 *  {"All", "BottomRight", "TopRight", "TopLeft", "BottomLeft", "TopLeftTopRight", "TopLeftBottomLeft", "TopLeftBottomRight", "TopRightBottomLeft", "TopRightBottomRight", "BottomLeftBottomRight", "TopLeftTopRightBottomLeft", "TopLeftTopRightBottomRight", "TopLeftBottomLeftBottomRight", "TopRightBottomLeftBottomRight", "Top", "Bottom", "Left", "Right", "TopBottomLeft", "TopBottomRight", "BottomTopLeft", "BottomTopRight", "LeftTopRight", "LeftBottomRight",
+	 *	"RightTopLeft", "LeftBottomLeft", "TopRightLeftBottom", "CornerBottomLeft", "CornerBottomRight", "CornerTopRight", "CornerTopLeft", "BottomTopLeftTopRight", "TopBottomLeftBottomRight", "LeftTopRightBottomRight", "RightTopLeftBottomLeft", "TopBottom", "LeftRight", "CornerTopLeftBottomRight", "CornerTopRightBottomLeft", "CornerBottomLeftTopRight", "CornerBottomRightTopLeft", "DTopBottomRight", "DTopBottomLeft", "DBottomLeftRight", "DTopLeftRight", "Nothing"};
+	 *
+	 *
 	 */
   
   public static int getTexturefromSide(IBlockAccess iba, int x, int y, int z, int side, Block block, int damage)
