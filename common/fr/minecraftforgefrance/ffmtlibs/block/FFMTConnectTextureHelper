@@ -1,0 +1,367 @@
+package fr.minecraftforgefrance.ffmtlibs.block;
+
+import net.minecraft.block.Block;
+import net.minecraft.world.IBlockAccess;
+
+public class FFMTConnectTextureHelper
+{
+  
+  /**
+	 * 
+	 * @param IBlockAccess
+	 * @param xCoord
+	 * @param yCoord
+	 * @param zCoord
+	 * @param Side
+	 * @param block
+	 * @param metadata
+	 * @return int : case of the array for the textures
+	 */
+  
+  public static int getTexturefromSide(IBlockAccess iba, int x, int y, int z, int side, Block block, int damage)
+	{
+		int[] cU, cUR, cR, cDR, cD, cDL, cL, cUL; // coordinates of test blocks
+
+		if(side == 0 || side == 1 || side == 3 || side == 4)
+		{	
+			if(side == 3) { cU = new int[] {x, y+1, z}; cUR = new int[] {x+1, y+1, z}; cR = new int[] {x+1, y, z}; cDR = new int[] {x+1, y-1, z}; cD = new int[] {x, y-1, z}; cDL = new int[] {x-1, y-1, z}; cL = new int[] {x-1,y,z}; cUL = new int[] {x-1,y+1,z}; }
+			else if(side == 4) { cU = new int[] {x, y+1, z}; cUR = new int[] {x, y+1, z+1}; cR = new int[] {x, y, z+1}; cDR = new int[] {x, y-1, z+1}; cD = new int[] {x, y-1, z}; cDL = new int[] {x, y-1, z-1}; cL = new int[] {x,y,z-1}; cUL = new int[] {x,y+1,z-1}; }
+			else { cU = new int[] {x, y, z-1}; cUR = new int[] {x+1, y, z-1}; cR = new int[] {x+1, y, z}; cDR = new int[] {x+1, y, z+1}; cD = new int[] {x, y, z+1}; cDL = new int[] {x-1, y, z+1}; cL = new int[] {x-1,y,z}; cUL = new int[] {x-1,y,z-1}; }
+			
+			// 8
+			if(isB(iba, cU, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 0;
+			// 7
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 1;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage))
+				return 2;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage))
+				return 3;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 4;
+			// 6
+			if(isB(iba, cU , block, damage) && isB(iba, cD , block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 5;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 6;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDL, block, damage))
+				return 7;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDR, block, damage))
+				return 8;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 9;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 10;
+			// 5
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage))
+				return 11;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage))
+				return 12;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage))
+				return 13;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 14;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 15;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 16;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 17;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 18;
+			// 4
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage))
+				return 19;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage))
+				return 20;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 21;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage))
+				return 22;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 23;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage))
+				return 24;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 25;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage))
+				return 26;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage))
+				return 27;
+			// 3
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 28;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 29;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 30;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 31;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 32;
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 33;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 34;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 35;
+			// 2
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 36;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage))
+				return 37;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 38;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 39;
+			if(isB(iba, cR, block, damage) && isB(iba, cU, block, damage))
+				return 40;
+			if(isB(iba, cL, block, damage) && isB(iba, cU, block, damage))
+				return 41;
+			// 1
+			if(isB(iba, cL, block, damage))
+				return 42;
+			if(isB(iba, cR, block, damage))
+				return 43;
+			if(isB(iba, cU, block, damage))
+				return 44;
+			if(isB(iba, cD, block, damage))
+				return 45;
+			// 0
+			return 46;
+		}
+		if(side == 2 || side == 5)
+		{
+			if(side == 2) {cU = new int[] {x, y+1, z}; cUR = new int[] {x-1, y+1, z}; cR = new int[] {x-1, y, z}; cDR = new int[] {x-1, y-1, z}; cD = new int[] {x, y-1, z}; cDL = new int[] {x+1, y-1, z}; cL = new int[] {x+1,y,z}; cUL = new int[] {x+1,y+1,z}; }
+			else { cU = new int[] {x, y+1, z}; cUR = new int[] {x, y+1, z-1}; cR = new int[] {x, y, z-1}; cDR = new int[] {x, y-1, z-1}; cD = new int[] {x, y-1, z}; cDL = new int[] {x, y-1, z+1}; cL = new int[] {x,y,z+1}; cUL = new int[] {x,y+1,z+1}; } 		
+
+			// 8
+			if(isB(iba, cU, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 0;
+			// 7
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 1;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage))
+				return 2;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage))
+				return 3;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 4;
+			// 6
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 5;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 6;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDR, block, damage))
+				return 7;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDL, block, damage))
+				return 8;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 9;			
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 10;
+			// 5
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage))
+				return 11;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage))
+				return 12;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 13;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage))
+				return 14;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 15;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 16;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 17;			
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 18;
+			// 4
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage))
+				return 19;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage))
+				return 20;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage))
+				return 21;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 22;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 23;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage))
+				return 24;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 25;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage))
+				return 26;	
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage))
+				return 27;
+			// 3
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 28;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 29;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 30;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 31;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 32;
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 33;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 34;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 35;
+			// 2
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 36;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage))
+				return 37;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 39;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 38;
+			if(isB(iba, cR, block, damage) && isB(iba, cU, block, damage))
+				return 41;
+			if(isB(iba, cL, block, damage) && isB(iba, cU, block, damage))
+				return 40;
+			// 1
+			if(isB(iba, cR, block, damage))
+				return 42;
+			if(isB(iba, cL, block, damage))
+				return 43;
+			if(isB(iba, cU, block, damage))
+				return 44;
+			if(isB(iba, cD, block, damage))
+				return 45;
+			// 0
+			return 46;
+		}
+		if(side == 4)
+		{
+			cU = new int[] {x, y+1, z}; cUR = new int[] {x, y+1, z+1}; cR = new int[] {x, y, z+1}; cDR = new int[] {x, y-1, z+1}; cD = new int[] {x, y-1, z}; cDL = new int[] {x, y-1, z-1}; cL = new int[] {x,y,z-1}; cUL = new int[] {x,y+1,z-1}; 		
+			// 8
+			if(isB(iba, cU, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 0;
+			// 7
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 1;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cUL, block, damage))
+				return 2;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage) && isB(iba, cDL, block, damage))
+				return 3;
+			if(isB(iba, cU , block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 4;
+			// 6
+			if(isB(iba, cU , block, damage) && isB(iba, cD , block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 5;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 6;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDL, block, damage))
+				return 7;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDR, block, damage))
+				return 8;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 9;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 10;
+			// 5
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDR, block, damage))
+				return 11;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cDL, block, damage))
+				return 12;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUR, block, damage))
+				return 13;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 14;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage) && isB(iba, cDR, block, damage))
+				return 15;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cUR, block, damage))
+				return 16;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage) && isB(iba, cDR, block, damage))
+				return 17;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage) && isB(iba, cDL, block, damage))
+				return 18;
+			// 4
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDR, block, damage))
+				return 19;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cDL, block, damage))
+				return 20;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 21;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUL, block, damage))
+				return 22;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 23;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUR, block, damage))
+				return 24;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 25;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cUL, block, damage))
+				return 26;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage) && isB(iba, cR, block, damage) && isB(iba, cL, block, damage))
+				return 27;
+			// 3
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cUR, block, damage))
+				return 28;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cUL, block, damage))
+				return 29;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDL, block, damage))
+				return 30;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage) && isB(iba, cDR, block, damage))
+				return 31;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 32;
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 33;
+			if(isB(iba, cU, block, damage) && isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 34;
+			if(isB(iba, cU, block, damage) && isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 35;
+			// 2
+			if(isB(iba, cL, block, damage) && isB(iba, cR, block, damage))
+				return 36;
+			if(isB(iba, cU, block, damage) && isB(iba, cD, block, damage))
+				return 37;
+			if(isB(iba, cR, block, damage) && isB(iba, cD, block, damage))
+				return 38;
+			if(isB(iba, cL, block, damage) && isB(iba, cD, block, damage))
+				return 39;
+			if(isB(iba, cR, block, damage) && isB(iba, cU, block, damage))
+				return 40;
+			if(isB(iba, cL, block, damage) && isB(iba, cU, block, damage))
+				return 41;
+			// 1
+			if(isB(iba, cL, block, damage))
+				return 42;
+			if(isB(iba, cR, block, damage))
+				return 43;
+			if(isB(iba, cU, block, damage))
+				return 44;
+			if(isB(iba, cD, block, damage))
+				return 45;
+			// 0
+			return 46;
+		} 
+		return 0;
+	}
+	
+	public static boolean isB(IBlockAccess iba, int[] c, Block block, int damage)
+	{
+		Block testBlock = iba.getBlock(c[0], c[1], c[2]);
+		if(testBlock == block)
+		{
+			if( iba.getBlockMetadata(c[0], c[1], c[2]) == damage)
+			{
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+	
+}
