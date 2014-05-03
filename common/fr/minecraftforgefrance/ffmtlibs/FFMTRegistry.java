@@ -409,4 +409,53 @@ public class FFMTRegistry
 			}
 		}
 	}
+	
+	/**
+	 * Remove a recipe
+	 * @param item
+	 */
+	
+	public static void removeRecipe(Item item)
+	{
+		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+		Iterator<IRecipe> iterator = recipes.iterator();          
+		while (iterator.hasNext())
+		{
+			ItemStack is = iterator.next().getRecipeOutput();
+			if (is != null && is.getItem() == item)
+				iterator.remove();
+		};
+	}
+	
+	/**
+	 * Remove a recipe
+	 * @param block
+	 */
+	public static void removeRecipe(Block block)
+	{
+		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+		Iterator<IRecipe> iterator = recipes.iterator();          
+		while (iterator.hasNext())
+		{
+			ItemStack is = iterator.next().getRecipeOutput();
+			if (is != null && is.getItem() == Item.getItemFromBlock(block))
+				iterator.remove();
+		};
+	}
+	
+	/**
+	 * Remove a recipe
+	 * @param stack
+	 */
+	public static void removeRecipe(ItemStack stack)
+	{
+		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+		Iterator<IRecipe> iterator = recipes.iterator();          
+		while (iterator.hasNext())
+		{
+			ItemStack is = iterator.next().getRecipeOutput();
+			if (is != null && is == stack)
+				iterator.remove();
+		};
+	}
 }
