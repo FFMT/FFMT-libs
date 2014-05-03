@@ -412,6 +412,7 @@ public class FFMTRegistry
 	
 	/**
 	 * Remove a recipe
+	 * ex : removeRecipe(Items.stick);
 	 * @param item
 	 */
 	
@@ -429,6 +430,7 @@ public class FFMTRegistry
 	
 	/**
 	 * Remove a recipe
+	 * ex : removeRecipe(Blocks.planks);
 	 * @param block
 	 */
 	public static void removeRecipe(Block block)
@@ -445,6 +447,7 @@ public class FFMTRegistry
 	
 	/**
 	 * Remove a recipe
+	 * ex : removeRecipe(new ItemStack(Blocks.wool, 1, 0);
 	 * @param stack
 	 */
 	public static void removeRecipe(ItemStack stack)
