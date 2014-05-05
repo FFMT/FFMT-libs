@@ -47,6 +47,7 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 	private LinkedList<Class<? extends AbstractPacket>> packets = new LinkedList<Class<? extends AbstractPacket>>();
 	private boolean isPostInitialised = false;
 
+	@Deprecated
 	public FFMTPacketHandler(String packetsPackage)
 	{
 		try
@@ -77,10 +78,9 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 	public FFMTPacketHandler(String packetsPackage, String modid)
 	{
 		ModContainer mod = Loader.instance().getIndexedModList().get(modid);
+		System.out.println(mod.getName() + "'s path " + " is : " + mod.getSource().getAbsolutePath());
 		try
 		{
-			System.out.println("modid : " + mod.getModId());
-			System.out.println("file of the mod : " + mod.getSource().getAbsolutePath());
 			if(mod.getSource().isDirectory())
 			{
 				File packetsDir = new File(mod.getSource(), packetsPackage.replace(".", "/"));
@@ -104,19 +104,28 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 				while(entries.hasMoreElements())
 				{
 					ZipEntry entry = entries.nextElement();
-					System.out.println(entry.getName());
+					if(entry.getName().startsWith(packetsPackage.replace(".", "/")) && entry.getName().endsWith(".class"))
+					{
+						System.out.println("Found packet from " + mod.getModId() + " : " + entry.getName());
+						Class<?> c = Class.forName(entry.getName().replace(".class", "").replace("/", "."));
+						if(isInstanceof(c, AbstractPacket.class))
+						{
+							registerPacket((Class<? extends AbstractPacket>)c);
+							System.out.println("Successful register packet : " + entry.getName().replace("/", ".") + " from " + mod.getModId());
+						}
+					}
 				}
 				zipFile.close();
 			}
 		}
 		catch(IOException e)
 		{
-			FFMTLibs.FFMTlog.error("Failed to register packet for the mod : " + mod.getModId());
+			System.err.println("Failed to register packet for the mod : " + mod.getModId());
 			e.printStackTrace();
 		}
 		catch(ClassNotFoundException e)
 		{
-			FFMTLibs.FFMTlog.error("Failed to register packet for the mod : " + mod.getModId());
+			System.err.println("Failed to register packet for the mod : " + mod.getModId());
 			e.printStackTrace();
 		}
 	}
