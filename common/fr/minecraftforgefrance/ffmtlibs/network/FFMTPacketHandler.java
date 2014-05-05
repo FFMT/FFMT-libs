@@ -7,13 +7,17 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +30,8 @@ import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLOutboundHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -50,6 +56,7 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 			while(it.hasNext())
 			{
 				ClassInfo info = it.next();
+				System.out.println("register class : " + info.getName());
 				Class<?> c = Class.forName(info.getName());
 				if(isInstanceof(c, AbstractPacket.class))
 				{
@@ -63,6 +70,53 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 		}
 		catch(ClassNotFoundException e)
 		{
+			e.printStackTrace();
+		}
+	}
+	
+	public FFMTPacketHandler(String packetsPackage, String modid)
+	{
+		ModContainer mod = Loader.instance().getIndexedModList().get(modid);
+		try
+		{
+			System.out.println("modid : " + mod.getModId());
+			System.out.println("file of the mod : " + mod.getSource().getAbsolutePath());
+			if(mod.getSource().isDirectory())
+			{
+				File packetsDir = new File(mod.getSource(), packetsPackage.replace(".", "/"));
+				for(String packet : packetsDir.list())
+				{
+					packet = packet.replace(".class", "");
+					System.out.println("Found packet from " + mod.getModId() + " : " + packet);
+					Class<?> c = Class.forName(packetsPackage + "." + packet);
+					if(isInstanceof(c, AbstractPacket.class))
+					{
+						registerPacket((Class<? extends AbstractPacket>)c);
+						System.out.println("Successful register packet : " + packetsPackage + "." + packet + " from " + mod.getModId());
+					}
+				}
+			}
+			else
+			{
+				ZipFile zipFile = new ZipFile(mod.getSource());
+				Enumeration<? extends ZipEntry> entries = zipFile.entries();
+
+				while(entries.hasMoreElements())
+				{
+					ZipEntry entry = entries.nextElement();
+					System.out.println(entry.getName());
+				}
+				zipFile.close();
+			}
+		}
+		catch(IOException e)
+		{
+			FFMTLibs.FFMTlog.error("Failed to register packet for the mod : " + mod.getModId());
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e)
+		{
+			FFMTLibs.FFMTlog.error("Failed to register packet for the mod : " + mod.getModId());
 			e.printStackTrace();
 		}
 	}
