@@ -20,13 +20,10 @@ public class FFMTClientRegistry
 	/**
 	 * Register a render in inventory / hand
 	 * 
-	 * @authors robin4002
-	 * @param block
-	 *            - object of your block
-	 * @param metadata
-	 *            - metadata of the block
-	 * @param specialRenderer
-	 *            - the TileEntitySpecialRenderer class, it should be implemented ITESRInventoryRenderer
+	 * @author robin4002
+	 * @param block Object of your block
+	 * @param metadata Metadata of the block
+	 * @param specialRenderer The TileEntitySpecialRenderer class, it should be implemented ITESRInventoryRenderer
 	 */
 	public static void bindTESRInventoryRender(Block block, int metadata, ITESRInventoryRenderer specialRenderer)
 	{
@@ -34,17 +31,13 @@ public class FFMTClientRegistry
 	}
 
 	/**
-	 * Register a render in inventory / hand and world (don't use ClientRegistry.bindTileEntitySpecialRenderer if you use it)
+	 * Register a render in inventory / hand and in the world (don't use ClientRegistry.bindTileEntitySpecialRenderer if you use it)
 	 * 
-	 * @authors robin4002
-	 * @param block
-	 *            - object of your block
-	 * @param metadata
-	 *            - metadata of the block
-	 * @param tileEntityClass
-	 *            - the TileEntity class
-	 * @param specialRenderer
-	 *            - the TileEntitySpecialRenderer class, it should be extends TileEntityInventorySpecialRenderer
+	 * @author robin4002
+	 * @param block Object of your block
+	 * @param metadata Metadata of the block
+	 * @param tileEntityClass The TileEntity class
+	 * @param specialRenderer The TileEntitySpecialRenderer class, it should be extended TileEntityInventorySpecialRenderer
 	 */
 	public static void bindTESRWithInventoryRender(Block block, int metadata, Class<? extends TileEntity> tileEntityClass, TileEntityInventorySpecialRenderer specialRenderer)
 	{

@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTCapePlayerEventHandler
+public class PlayerEventHandler
 {
 	@SubscribeEvent
 	public void onPlayerRender(RenderPlayerEvent.Specials.Pre event)

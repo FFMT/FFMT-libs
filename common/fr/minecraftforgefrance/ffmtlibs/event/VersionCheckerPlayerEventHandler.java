@@ -4,14 +4,14 @@ import net.minecraft.util.ChatComponentTranslation;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-public class FFMTVersionCheckPlayerEventHandler
+public class VersionCheckerPlayerEventHandler
 {
 	public final String outdatedMod;
 	public final String lastestVersion;
 	public final String downloadURL;
 	public boolean hassay = false;
 
-	public FFMTVersionCheckPlayerEventHandler(String modid, String last, String download)
+	public VersionCheckerPlayerEventHandler(String modid, String last, String download)
 	{
 		outdatedMod = modid;
 		lastestVersion = last;

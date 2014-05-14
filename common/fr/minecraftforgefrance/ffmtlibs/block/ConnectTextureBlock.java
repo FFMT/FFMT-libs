@@ -5,14 +5,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-public abstract class FFMTConnectTextureBlock extends Block
+public abstract class ConnectTextureBlock extends Block
 {
 	/**
 	 * Array for return value
 	 */
 	protected String[] iconName = new String[] {"all", "bottom_right", "top_right", "top_left", "bottom_left", "top_left_top_right", "top_left_bottom_left", "top_left_bottom_right", "top_right_bottom_left", "top_right_bottom_right", "bottom_left_bottom_right", "top_left_top_right_bottom_left", "top_left_top_right_bottom_right", "top_left_bottom_left_bottom_right", "top_right_bottom_left_bottom_right", "top", "bottom", "left", "right", "top_bottom_left", "top_bottom_right", "bottom_top_left", "bottom_top_right", "left_top_right", "left_bottom_right", "right_top_left", "left_bottom_left", "top_right_left_bottom", "corner_bottom_left", "corner_bottom_right", "corner_top_right", "corner_top_left", "bottom_top_left_top_right", "top_bottom_left_bottom_right", "left_top_right_bottom_right", "right_top_left_bottom_left", "top_bottom", "left_right", "corner_top_left_bottom_right", "corner_top_right_bottom_left", "corner_bottom_left_top_right", "corner_bottom_right_top_left", "d_top_bottom_right", "d_top_bottom_left", "d_bottom_left_right", "d_top_left_right", "nothing"};
 
-	protected FFMTConnectTextureBlock(Material material)
+	protected ConnectTextureBlock(Material material)
 	{
 		super(material);
 	}
@@ -28,7 +28,7 @@ public abstract class FFMTConnectTextureBlock extends Block
 	 * @param metadata metadata if the block
 	 * @param side side of the block
 	 * @param block instance of the block
-	 * @return a integer for you icon array. See {@link FFMTConnectTextureBlock#getIconArray()}
+	 * @return a integer for you icon array. See {@link ConnectTextureBlock#getIconArray()}
 	 */
 	public int getTexturefromSide(IBlockAccess world, int x, int y, int z, int metadata, int side, Block block)
 	{
@@ -419,13 +419,9 @@ public abstract class FFMTConnectTextureBlock extends Block
 
 	public boolean canConnect(IBlockAccess world, int[] coord, Block block, int damage)
 	{
-		Block testBlock = world.getBlock(coord[0], coord[1], coord[2]);
-		if(testBlock == block)
+		if(world.getBlock(coord[0], coord[1], coord[2]) == block && world.getBlockMetadata(coord[0], coord[1], coord[2]) == damage)
 		{
-			if(world.getBlockMetadata(coord[0], coord[1], coord[2]) == damage)
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
@@ -437,7 +433,7 @@ public abstract class FFMTConnectTextureBlock extends Block
 	}
 
 	/**
-	 * @return your array with all icon. To register yours icons, use {@link FFMTConnectTextureBlock#iconName}
+	 * @return your array with all icon. To register yours icons, use {@link ConnectTextureBlock#iconName}
 	 */
 	public abstract IIcon[] getIconArray();
 }

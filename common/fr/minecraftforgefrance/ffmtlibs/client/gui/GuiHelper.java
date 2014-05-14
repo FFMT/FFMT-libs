@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTGuiHelper
+public class GuiHelper
 {
 	public static Minecraft mc = Minecraft.getMinecraft();
 	public static TextureManager renderEngine = mc.renderEngine;
@@ -27,8 +27,7 @@ public class FFMTGuiHelper
 	/**
 	 * Bind the given texture
 	 * 
-	 * @param texture
-	 *            ResourceLocation
+	 * @param texture ResourceLocation
 	 */
 	public static void bindTexture(ResourceLocation texture)
 	{
@@ -38,8 +37,7 @@ public class FFMTGuiHelper
 	/**
 	 * Bind the given texture by name (path)
 	 * 
-	 * @param texture
-	 *            String
+	 * @param texture String
 	 */
 	public static void bindTexture(String texture)
 	{
@@ -148,29 +146,16 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * Draw texture at given start and end cords
-	 * 
-	 * o───────────────────┐
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * └───────────────────e
+	 * Draw texture at given start and end cords o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
 	 * 
 	 * @param xo
 	 * @param yo
 	 * @param xe
 	 * @param ye
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 */
 	public static void drawTexture(int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte)
 	{
@@ -178,16 +163,7 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * Draw a texture with 4 cords:
-	 * 
-	 * 0───────────────────1
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * 3───────────────────2
+	 * Draw a texture with 4 cords: 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
 	 * 
 	 * @param x0
 	 * @param x1
@@ -197,14 +173,10 @@ public class FFMTGuiHelper
 	 * @param y1
 	 * @param y2
 	 * @param y3
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 */
 	public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte)
 	{
@@ -219,19 +191,14 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * Draw a texture based on a circle, the for points will be on the circle
-	 * with an angle of 45°
+	 * Draw a texture based on a circle, the for points will be on the circle with an angle of 45°
 	 * 
 	 * @param x
 	 * @param y
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 * @param angle
 	 * @param radius
 	 */
@@ -249,31 +216,17 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * Bind and draw texture at given start and end cords
+	 * Bind and draw texture at given start and end cords o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
 	 * 
-	 * o───────────────────┐
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * └───────────────────e
-	 *  
-	 * @param texture
-	 *            ResourceLocation
+	 * @param texture ResourceLocation
 	 * @param xo
 	 * @param yo
 	 * @param xe
 	 * @param ye
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 */
 	public static void bindAndDrawTexture(ResourceLocation texture, int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte)
 	{
@@ -282,19 +235,9 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * Bind and draw a texture with 4 cords:
+	 * Bind and draw a texture with 4 cords: 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
 	 * 
-	 * 0───────────────────1
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * │                   │
-	 * 3───────────────────2
-	 * 
-	 * @param texture
-	 *            ResourceLocation
+	 * @param texture ResourceLocation
 	 * @param x0
 	 * @param x1
 	 * @param x2
@@ -303,14 +246,10 @@ public class FFMTGuiHelper
 	 * @param y1
 	 * @param y2
 	 * @param y3
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 */
 	public static void bindAndDrawTexture(ResourceLocation texture, int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte)
 	{
@@ -319,19 +258,14 @@ public class FFMTGuiHelper
 	}
 
 	/**
-	 * bind and draw a texture based on a circle, the for points will be on the
-	 * circle with an angle of 45°
+	 * bind and draw a texture based on a circle, the for points will be on the circle with an angle of 45°
 	 * 
 	 * @param x
 	 * @param y
-	 * @param xto
-	 *            x texture start (ratio)
-	 * @param yto
-	 *            y texture start (ratio)
-	 * @param xte
-	 *            x texture end (ratio)
-	 * @param yte
-	 *            y texture end (ratio)
+	 * @param xto x texture start (ratio)
+	 * @param yto y texture start (ratio)
+	 * @param xte x texture end (ratio)
+	 * @param yte y texture end (ratio)
 	 * @param angle
 	 * @param radius
 	 */
@@ -344,18 +278,13 @@ public class FFMTGuiHelper
 	/**
 	 * Draw string with little backgroud, like when you hover an item
 	 * 
-	 * @param list
-	 *            contain text, one string by line
+	 * @param list contain text, one string by line
 	 * @param mouseX
 	 * @param mouseY
-	 * @param font
-	 *            fontrenderer
-	 * @param width
-	 *            width of the gui
-	 * @param height
-	 *            height of the gui
-	 * @param color
-	 *            color of the text
+	 * @param font fontrenderer
+	 * @param width width of the gui
+	 * @param height height of the gui
+	 * @param color color of the text
 	 */
 	public static void drawHoveringText(ArrayList<String> list, int mouseX, int mouseY, FontRenderer font, int width, int height, int color)
 	{

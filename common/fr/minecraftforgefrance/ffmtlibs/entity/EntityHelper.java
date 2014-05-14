@@ -18,18 +18,17 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 /**
  * @authors kevin_68, elias54
  */
-public class FFMTEntityHelper
+public class EntityHelper
 {
 	protected static Random rand = new Random();
 
-	private static FFMTEntityHelper instance = new FFMTEntityHelper();
+	private static EntityHelper instance = new EntityHelper();
 
 	/**
 	 * If you want to add a creature come from leave block.
 	 * 
 	 * @author elias54
 	 */
-	// Need fix in forge
 	// public static EnumCreatureType leafCreature = EnumHelper.addCreatureType("leafCreature", EntityLeafCreature.class, 5, Material.leaves, true);
 
 	/**
@@ -57,12 +56,9 @@ public class FFMTEntityHelper
 	 * @param velX
 	 * @param velY
 	 * @param velZ
-	 * @param xPosition
-	 *            (If not specified, by default is 0)
-	 * @param yPosition
-	 *            (If not specified, by default is 0)
-	 * @param zPosition
-	 *            (If not specified, by default is 0)
+	 * @param xPosition (If not specified, by default is 0)
+	 * @param yPosition (If not specified, by default is 0)
+	 * @param zPosition (If not specified, by default is 0)
 	 */
 	public static void spawnSmokeParticles(int speed, EntityLiving entity, double xVel, double yVel, double zVel, double xPosition, double yPosition, double zPosition)
 	{
@@ -73,55 +69,20 @@ public class FFMTEntityHelper
 	}
 
 	/**
-	 * Add another entity other than mob
-	 * 
-	 * @param entityClass
-	 *            (The entity class)
-	 * @param entityName
-	 *            (The entity name)
-	 * @param id
-	 *            (The entity ID)
-	 * @param mod
-	 *            (Mod instance)
-	 * @param trackingRange
-	 *            (Number of tracking range)
-	 * @param updateFrequency
-	 *            (Number update frequency)
-	 * @param sendsVelocityUpdates
-	 *            (Send velocity updates or not)
-	 */
-	public static void addOtherEntity(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
-	{
-		EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-	}
-
-	/**
 	 * Add a mob too easy
 	 * 
-	 * @param entityClass
-	 *            (The entity class)
-	 * @param entityName
-	 *            (The entity name)
-	 * @param id
-	 *            (The entity ID)
-	 * @param mod
-	 *            (Mod instance)
-	 * @param trackingRange
-	 *            (Number of tracking range)
-	 * @param updateFrequency
-	 *            (Number update frequency)
-	 * @param sendsVelocityUpdates
-	 *            (Send velocity updates or not)
-	 * @param backGroundEggColour
-	 *            (Background egg color)
-	 * @param foreGroundEggColour
-	 *            (Foreground egg color)
-	 * @param weightedProb
-	 *            (Chance to spawn)
-	 * @param minSpawn
-	 *            (Minimum spawn per chunk)
-	 * @param maxSpawn
-	 *            (Maximum spawn per chunk)
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
 	 */
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
@@ -133,32 +94,19 @@ public class FFMTEntityHelper
 	/**
 	 * Add a mob too easy
 	 * 
-	 * @param entityClass
-	 *            (The entity class)
-	 * @param entityName
-	 *            (The entity name)
-	 * @param id
-	 *            (The entity ID)
-	 * @param mod
-	 *            (Mod instance)
-	 * @param trackingRange
-	 *            (Number of tracking range)
-	 * @param updateFrequency
-	 *            (Number update frequency)
-	 * @param sendsVelocityUpdates
-	 *            (Send velocity updates or not)
-	 * @param backGroundEggColour
-	 *            (Background egg color)
-	 * @param foreGroundEggColour
-	 *            (Foreground egg color)
-	 * @param weightedProb
-	 *            (Chance to spawn)
-	 * @param minSpawn
-	 *            (Minimum spawn per chunk)
-	 * @param maxSpawn
-	 *            (Maximum spawn per chunk)
-	 * @param biome
-	 *            (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
+	 * @param entityClass (The entity class)
+	 * @param entityName (The entity name)
+	 * @param id (The entity ID)
+	 * @param mod (Mod instance)
+	 * @param trackingRange (Number of tracking range)
+	 * @param updateFrequency (Number update frequency)
+	 * @param sendsVelocityUpdates (Send velocity updates or not)
+	 * @param backGroundEggColour (Background egg color)
+	 * @param foreGroundEggColour (Foreground egg color)
+	 * @param weightedProb (Chance to spawn)
+	 * @param minSpawn (Minimum spawn per chunk)
+	 * @param maxSpawn (Maximum spawn per chunk)
+	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
 	 */
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
@@ -170,12 +118,9 @@ public class FFMTEntityHelper
 	/**
 	 * Set custom attack target ! (PUT THIS FUNCTION IN updateEntityActionState() METHOD !!!!)
 	 * 
-	 * @param world
-	 *            ("worldObj" from the entity)
-	 * @param entityHostAttack
-	 *            (The entity host the attack(like a entity instance))
-	 * @param classToAttack
-	 *            (The entity to attack)
+	 * @param world ("worldObj" from the entity)
+	 * @param entityHostAttack (The entity host the attack(like a entity instance))
+	 * @param classToAttack (The entity to attack)
 	 * @author elias54
 	 **/
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
@@ -191,10 +136,8 @@ public class FFMTEntityHelper
 	/**
 	 * Return if the entity is in water
 	 * 
-	 * @param world
-	 *            ("worldObj" from the entity)
-	 * @param entity
-	 *            (Entity instance)
+	 * @param world ("worldObj" from the entity)
+	 * @param entity (Entity instance)
 	 * @author elias54
 	 */
 	public static boolean inWater(World world, Entity entity)
@@ -205,12 +148,9 @@ public class FFMTEntityHelper
 	/**
 	 * Return if the entity is in specified material
 	 * 
-	 * @param world
-	 *            ("worldObj" from the entity)
-	 * @param entity
-	 *            (Entity instance)
-	 * @param material
-	 *            (e.g Material.rock)
+	 * @param world ("worldObj" from the entity)
+	 * @param entity (Entity instance)
+	 * @param material (e.g Material.rock)
 	 * @author elias54
 	 */
 	public static boolean isInMaterial(World world, Entity entity, Material material)
@@ -221,8 +161,7 @@ public class FFMTEntityHelper
 	/**
 	 * This is just the famous "onGround" provide from the class Entity
 	 * 
-	 * @param entity
-	 *            (Entity instance)
+	 * @param entity (Entity instance)
 	 * @author elias54
 	 */
 	public static boolean entityOnGround(Entity entity)
@@ -233,28 +172,21 @@ public class FFMTEntityHelper
 	/**
 	 * Throw entity problem exception
 	 * 
-	 * @param message
-	 *            (Your message exception)
-	 * @param throwable
-	 *            (The Throwable instance)
+	 * @param message (Your message exception)
+	 * @param throwable (The Throwable instance)
 	 * @author elias54
 	 */
 	public static void throwEntityException(String message, Throwable throwable)
 	{
-		// is not realy deprecated, just eclipse not reconized the real version
-		// of this line :
 		ObfuscationReflectionHelper.setPrivateValue(java.lang.Throwable.class, throwable, message, "detailMessage");
-
 		FMLCommonHandler.instance().raiseException(throwable, message, true);
 	}
 
 	/**
 	 * Remove current listed loaded entity
 	 * 
-	 * @param world
-	 *            (Use worldObj entity)
-	 * @param entityToRemove
-	 *            (Entity to remove)
+	 * @param world (Use worldObj entity)
+	 * @param entityToRemove (Entity to remove)
 	 * @author elias54
 	 */
 	public void removeLoadedEntityList(World world, Entity entityToRemove)
@@ -269,16 +201,15 @@ public class FFMTEntityHelper
 	/**
 	 * Set infinite health to specified entity
 	 * 
-	 * @param entity
-	 *            (entity to set infinite health)
+	 * @param entity (entity to set infinite health)
 	 * @author elias54
 	 */
-	public static void setInfiniteHealthToEntity(EntityLivingBase entity)
+	public static void setInfiniteHealth(EntityLivingBase entity)
 	{
-		entity.setHealth(Float.MAX_VALUE);
+		entity.setHealth(Float.POSITIVE_INFINITY);
 	}
 
-	public static FFMTEntityHelper instance()
+	public static EntityHelper instance()
 	{
 		return instance;
 	}

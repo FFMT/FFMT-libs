@@ -9,25 +9,25 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public abstract class FFMTGuiContainerSliderBase extends GuiContainer
+public abstract class GuiContainerSliderBase extends GuiContainer
 {
 	private GuiButton selectedButton;
 
-	public FFMTGuiContainerSliderBase(Container container)
+	public GuiContainerSliderBase(Container container)
 	{
 		super(container);
 	}
 
-	protected void mouseClicked(int x, int y, int id)
+	protected void mouseClicked(int x, int y, int action)
 	{
-		super.mouseClicked(x, y, id);
-		if(id == 0)
+		super.mouseClicked(x, y, action);
+		if(action == 0)
 		{
 			for(int l = 0; l < this.buttonList.size(); ++l)
 			{
 				GuiButton guibutton = (GuiButton)this.buttonList.get(l);
 
-				if(guibutton.mousePressed(this.mc, x, y) && guibutton instanceof FFMTGuiSliderForContainer)
+				if(guibutton.mousePressed(this.mc, x, y) && guibutton instanceof GuiSliderForContainer)
 				{
 					this.selectedButton = guibutton;
 					this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));

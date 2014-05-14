@@ -1,10 +1,10 @@
-package fr.minecraftforgefrance.ffmtlibs;
+package fr.minecraftforgefrance.ffmtlibs.container;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 
-public class FFMTContainerHelper
+public class ContainerHelper
 {
 	/**
 	 * Consume a item with medatata
@@ -12,7 +12,7 @@ public class FFMTContainerHelper
 	 * @param player
 	 * @param item
 	 * @param metadata
-	 * @return
+	 * @return true if the item was consume, false if not
 	 */
 	public static boolean consumeItemWithMetadataInInventory(EntityPlayer player, Item item, int metadata)
 	{
@@ -36,7 +36,7 @@ public class FFMTContainerHelper
 	 * @param player
 	 * @param block
 	 * @param metadata
-	 * @return
+	 * @return true if the item was consume, false if not
 	 */
 	public static boolean consumeItemWithMetadataInInventory(EntityPlayer player, Block block, int metadata)
 	{

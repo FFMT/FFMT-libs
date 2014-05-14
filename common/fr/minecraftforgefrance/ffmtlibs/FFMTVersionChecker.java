@@ -13,19 +13,19 @@ import com.google.common.io.InputSupplier;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
-import fr.minecraftforgefrance.ffmtlibs.event.FFMTVersionCheckPlayerEventHandler;
+import fr.minecraftforgefrance.ffmtlibs.event.VersionCheckerPlayerEventHandler;
 
 /**
  * @author robin4002
  */
 public class FFMTVersionChecker
 {
-	public static void check(String versionUrl, String downloadUrl, String modName, String actuallyVersion)
+	public static void check(String versionUrl, String downloadUrl, String modName, String currentVersion)
 	{
 		List<String> versionList = getRemoteFile(versionUrl);
 		if(versionList.isEmpty())
 		{
-			FFMTLibs.FFMTlog.error("couldn't get remote file");
+			FFMTLibs.ffmtLog.error("Couldn't get remote file");
 			return;
 		}
 		for(String version : versionList)
@@ -36,10 +36,10 @@ public class FFMTVersionChecker
 				if(line.length == 2)
 				{
 					String remoteVersion = line[1];
-					if(!remoteVersion.equals(actuallyVersion))
+					if(!remoteVersion.equals(currentVersion))
 					{
-						FFMTLibs.FFMTlog.info("A new update for " + modName + " is available (" + remoteVersion + ")");
-						FMLCommonHandler.instance().bus().register(new FFMTVersionCheckPlayerEventHandler(modName, remoteVersion, downloadUrl));
+						FFMTLibs.ffmtLog.info("A new update for " + modName + " is available (" + remoteVersion + "). Current version is : " + currentVersion);
+						FMLCommonHandler.instance().bus().register(new VersionCheckerPlayerEventHandler(modName, remoteVersion, downloadUrl));
 					}
 				}
 			}

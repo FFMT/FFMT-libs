@@ -1,6 +1,6 @@
 [
 {
-  "modid": "FFMTLIBS",
+  "modid": "ffmtlibs",
   "name": "FFMT Library",
   "description": "Simplify your coder life",
   "version": "${version}",

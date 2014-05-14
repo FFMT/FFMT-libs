@@ -8,7 +8,7 @@ public class ItemFFMTSpade extends ItemSpade
 {
 	private final Item repairItem;
 
-	public ItemFFMTSpade(ToolMaterial  material, Item repair)
+	public ItemFFMTSpade(ToolMaterial material, Item repair)
 	{
 		super(material);
 		this.repairItem = repair;

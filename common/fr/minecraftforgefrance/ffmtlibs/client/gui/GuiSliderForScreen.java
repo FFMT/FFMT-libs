@@ -9,19 +9,19 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTGuiSliderForContainer extends GuiButton
+public class GuiSliderForScreen extends GuiButton
 {
 	public float sliderValue;
 	public boolean dragging;
 	private int sliderId;
-	private FFMTGuiContainerSliderBase container;
+	private GuiScreenSliderBase container;
 
-	public FFMTGuiSliderForContainer(FFMTGuiContainerSliderBase containerSliderBase, int id, int x, int y, String name, float value)
+	public GuiSliderForScreen(GuiScreenSliderBase containerSliderBase, int id, int x, int y, String name, float value)
 	{
 		this(containerSliderBase, id, x, y, 150, 20, name, value);
 	}
 
-	public FFMTGuiSliderForContainer(FFMTGuiContainerSliderBase containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
+	public GuiSliderForScreen(GuiScreenSliderBase containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
 	{
 		super(id, x, y, xSize, ySize, name);
 		this.sliderValue = value;

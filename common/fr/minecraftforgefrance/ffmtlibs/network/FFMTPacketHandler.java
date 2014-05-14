@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.zip.ZipEntry;
@@ -24,11 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.NetHandlerPlayServer;
-
-import com.google.common.collect.ImmutableSet;
-import com.google.common.reflect.ClassPath;
-import com.google.common.reflect.ClassPath.ClassInfo;
-
+import net.minecraft.network.PacketBuffer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
@@ -42,43 +37,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 @ChannelHandler.Sharable
 public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, AbstractPacket>
 {
-
 	private EnumMap<Side, FMLEmbeddedChannel> channels;
 	private LinkedList<Class<? extends AbstractPacket>> packets = new LinkedList<Class<? extends AbstractPacket>>();
 	private boolean isPostInitialised = false;
 
-	@Deprecated
-	public FFMTPacketHandler(String packetsPackage)
-	{
-		try
-		{
-			ImmutableSet<ClassInfo> set = ClassPath.from(ClassLoader.getSystemClassLoader()).getTopLevelClassesRecursive(packetsPackage);
-			Iterator<ClassInfo> it = set.iterator();
-			while(it.hasNext())
-			{
-				ClassInfo info = it.next();
-				System.out.println("register class : " + info.getName());
-				Class<?> c = Class.forName(info.getName());
-				if(isInstanceof(c, AbstractPacket.class))
-				{
-					registerPacket((Class<? extends AbstractPacket>)c);
-				}
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch(ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
+	/**
+	 * Register a packet handler
+	 * 
+	 * @param packetsPackage The package where all your packet are located
+	 * @param modid The modid of your mod
+	 */
 	public FFMTPacketHandler(String packetsPackage, String modid)
 	{
 		ModContainer mod = Loader.instance().getIndexedModList().get(modid);
-		System.out.println(mod.getName() + "'s path " + " is : " + mod.getSource().getAbsolutePath());
 		try
 		{
 			if(mod.getSource().isDirectory())
@@ -87,12 +58,11 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 				for(String packet : packetsDir.list())
 				{
 					packet = packet.replace(".class", "");
-					System.out.println("Found packet from " + mod.getModId() + " : " + packet);
 					Class<?> c = Class.forName(packetsPackage + "." + packet);
 					if(isInstanceof(c, AbstractPacket.class))
 					{
 						registerPacket((Class<? extends AbstractPacket>)c);
-						System.out.println("Successful register packet : " + packetsPackage + "." + packet + " from " + mod.getModId());
+						FFMTLibs.ffmtLog.info("Successful register packet : " + packetsPackage + "." + packet + " from " + mod.getModId());
 					}
 				}
 			}
@@ -106,12 +76,11 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 					ZipEntry entry = entries.nextElement();
 					if(entry.getName().startsWith(packetsPackage.replace(".", "/")) && entry.getName().endsWith(".class"))
 					{
-						System.out.println("Found packet from " + mod.getModId() + " : " + entry.getName());
 						Class<?> c = Class.forName(entry.getName().replace(".class", "").replace("/", "."));
 						if(isInstanceof(c, AbstractPacket.class))
 						{
 							registerPacket((Class<? extends AbstractPacket>)c);
-							System.out.println("Successful register packet : " + entry.getName().replace("/", ".") + " from " + mod.getModId());
+							FFMTLibs.ffmtLog.info("Successful register packet : " + entry.getName().replace("/", ".") + " from " + mod.getModId());
 						}
 					}
 				}
@@ -166,19 +135,19 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 	{
 		if(this.packets.size() > 256)
 		{
-			FFMTLibs.FFMTlog.error("packets size > 256");
+			FFMTLibs.ffmtLog.error("packets size > 256");
 			return false;
 		}
 
 		if(this.packets.contains(clazz))
 		{
-			FFMTLibs.FFMTlog.error("packets contains clazz");
+			FFMTLibs.ffmtLog.error("Packet " + clazz.getName() + " is already registered");
 			return false;
 		}
 
 		if(this.isPostInitialised)
 		{
-			FFMTLibs.FFMTlog.error("packetshandler is postIntialised");
+			FFMTLibs.ffmtLog.error("You can't register a packet if your packet handler was post initialised");
 			return false;
 		}
 
@@ -197,9 +166,12 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 		}
 
 		byte discriminator = (byte)this.packets.indexOf(clazz);
-		buffer.writeByte(discriminator);
-		msg.encodeInto(ctx, buffer);
-		FMLProxyPacket proxyPacket = new FMLProxyPacket(buffer.copy(), ctx.channel().attr(NetworkRegistry.FML_CHANNEL).get());
+
+		PacketBuffer packetbuffer = new PacketBuffer(buffer);
+		packetbuffer.writeByte(discriminator);
+		msg.encodeInto(ctx, packetbuffer);
+
+		FMLProxyPacket proxyPacket = new FMLProxyPacket(packetbuffer.copy(), ctx.channel().attr(NetworkRegistry.FML_CHANNEL).get());
 		out.add(proxyPacket);
 	}
 
@@ -207,7 +179,10 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 	protected void decode(ChannelHandlerContext ctx, FMLProxyPacket msg, List<Object> out) throws Exception
 	{
 		ByteBuf payload = msg.payload();
-		byte discriminator = payload.readByte();
+
+		PacketBuffer packetbuffer = new PacketBuffer(payload);
+		byte discriminator = packetbuffer.readByte();
+
 		Class<? extends AbstractPacket> clazz = this.packets.get(discriminator);
 		if(clazz == null)
 		{
@@ -215,7 +190,8 @@ public class FFMTPacketHandler extends MessageToMessageCodec<FMLProxyPacket, Abs
 		}
 
 		AbstractPacket pkt = clazz.newInstance();
-		pkt.decodeInto(ctx, payload.slice());
+
+		pkt.decodeInto(ctx, packetbuffer);
 
 		EntityPlayer player;
 		switch(FMLCommonHandler.instance().getEffectiveSide())

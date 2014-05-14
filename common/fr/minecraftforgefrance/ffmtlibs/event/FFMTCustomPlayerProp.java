@@ -29,7 +29,7 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	@Override
 	public void saveNBTData(NBTTagCompound compound)
 	{
-		
+
 	}
 
 	@Override

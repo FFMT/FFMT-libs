@@ -11,18 +11,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class FFMTGuiBooleanButton extends GuiButton
+public class GuiBooleanButton extends GuiButton
 {
 	protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
 	private boolean active;
 	private int buttonHeight;
 
-	public FFMTGuiBooleanButton(int id, int x, int y, String s, boolean active)
+	public GuiBooleanButton(int id, int x, int y, String text, boolean active)
 	{
-		this(id, x, y, 150, 20, s, active);
+		this(id, x, y, 150, 20, text, active);
 	}
 
-	public FFMTGuiBooleanButton(int id, int x, int y, int width, int height, String s, boolean active)
+	public GuiBooleanButton(int id, int x, int y, int width, int height, String s, boolean active)
 	{
 		super(id, x, y, width, height, s);
 		this.active = active;
@@ -31,7 +31,7 @@ public class FFMTGuiBooleanButton extends GuiButton
 
 	public void toggle()
 	{
-		this.active = (!this.getIsActive());
+		this.active = !this.getIsActive();
 	}
 
 	public boolean getIsActive()
