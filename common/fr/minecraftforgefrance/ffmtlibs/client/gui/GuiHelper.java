@@ -146,7 +146,16 @@ public class GuiHelper
 	}
 
 	/**
-	 * Draw texture at given start and end cords o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
+	 * Draw texture at given start and end cords
+	 * 
+	 *  o───────────────────┐ 
+	 *  │                   │ 
+	 *  │                   │ 
+	 *  │                   │ 
+	 *  │                   │ 
+	 *  │                   │
+	 *  │                   │
+	 *  └───────────────────e
 	 * 
 	 * @param xo
 	 * @param yo
@@ -163,7 +172,16 @@ public class GuiHelper
 	}
 
 	/**
-	 * Draw a texture with 4 cords: 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
+	 * Draw a texture with 4 cords: 
+	 * 
+	 * 0───────────────────1
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * 3───────────────────2
 	 * 
 	 * @param x0
 	 * @param x1
@@ -216,7 +234,16 @@ public class GuiHelper
 	}
 
 	/**
-	 * Bind and draw texture at given start and end cords o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
+	 * Bind and draw texture at given start and end cords :
+	 * 
+	 * o───────────────────┐
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * └───────────────────e
 	 * 
 	 * @param texture ResourceLocation
 	 * @param xo
@@ -235,7 +262,15 @@ public class GuiHelper
 	}
 
 	/**
-	 * Bind and draw a texture with 4 cords: 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
+	 * Bind and draw a texture with 4 cords: 
+	 * 0───────────────────1
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * │                   │
+	 * 3───────────────────2
 	 * 
 	 * @param texture ResourceLocation
 	 * @param x0
@@ -392,5 +427,4 @@ public class GuiHelper
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
-
 }
