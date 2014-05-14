@@ -15,9 +15,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-/**
- * @authors kevin_68, elias54
- */
 public class EntityHelper
 {
 	protected static Random rand = new Random();
