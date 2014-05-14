@@ -53,9 +53,9 @@ public class EntityHelper
 	 * 
 	 * @param speed
 	 * @param entity
-	 * @param velX
-	 * @param velY
-	 * @param velZ
+	 * @param xVel
+	 * @param yVel
+	 * @param zVel
 	 * @param xPosition (If not specified, by default is 0)
 	 * @param yPosition (If not specified, by default is 0)
 	 * @param zPosition (If not specified, by default is 0)

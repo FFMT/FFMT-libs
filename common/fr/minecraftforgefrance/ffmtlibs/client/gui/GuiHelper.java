@@ -59,7 +59,7 @@ public class GuiHelper
 	 * Draw a string aligned on left
 	 * 
 	 * @param fontRenderer
-	 * @param str
+	 * @param string
 	 * @param x
 	 * @param y
 	 * @param color
@@ -104,7 +104,6 @@ public class GuiHelper
 	 * @param string
 	 * @param x
 	 * @param y
-	 * @param z
 	 * @param color
 	 * @param arrayObj
 	 */
@@ -120,7 +119,6 @@ public class GuiHelper
 	 * @param string
 	 * @param x
 	 * @param y
-	 * @param z
 	 * @param color
 	 * @param arrayObj
 	 */
@@ -131,12 +129,10 @@ public class GuiHelper
 
 	/**
 	 * Draw a localized string aligned on the right
-	 * 
 	 * @param font
 	 * @param string
 	 * @param x
 	 * @param y
-	 * @param z
 	 * @param color
 	 * @param arrayObj
 	 */

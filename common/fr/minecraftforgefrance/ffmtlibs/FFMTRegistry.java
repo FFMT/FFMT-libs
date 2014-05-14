@@ -19,9 +19,6 @@ import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTPickaxe;
 import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSpade;
 import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSword;
 
-/**
- * @authors kevin_68, elias54
- */
 public class FFMTRegistry
 {
 	public static final int HELMET_TYPE = 0;
