@@ -2,7 +2,7 @@ package fr.minecraftforgefrance.ffmtlibs.block;
 
 import java.util.Random;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -60,20 +60,16 @@ public class BlockHelper
 	 * 
 	 * @author letherman255, robin4002
 	 * @param distance - the distance
-	 * @param player - the player's object
-	 * @return ChunkCoordinates with the position of the block. Warning, if the block isn't found, the value will be null
+	 * @param living - the living's object
+	 * @return BlockCoords with the position of the block. Warning, if the block isn't found, the value will be null
 	 */
-	@SideOnly(Side.CLIENT)
-	public static ChunkCoordinates getBlockInSight(int distance, EntityPlayer player)
+	public static BlockCoords getBlockInSight(int distance, EntityLivingBase living)
 	{
-		MovingObjectPosition objectMouseOver = player.rayTrace(distance, 1);
+		MovingObjectPosition objectMouseOver = living.rayTrace(distance, 1);
 
 		if(objectMouseOver != null && objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
 		{
-			int x = objectMouseOver.blockX;
-			int y = objectMouseOver.blockY;
-			int z = objectMouseOver.blockZ;
-			return new ChunkCoordinates(x, y, z);
+			return new BlockCoords(objectMouseOver.blockX, objectMouseOver.blockY, objectMouseOver.blockZ);
 		}
 		return null;
 	}
