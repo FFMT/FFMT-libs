@@ -206,11 +206,6 @@ public class FFMTRegistry
 		chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setTextureName(modid + ":" + name + "_chestplate").setCreativeTab(creativeTabs);
 		leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setTextureName(modid + ":" + name + "_leggings").setCreativeTab(creativeTabs);
 		boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setTextureName(modid + ":" + name + "_boots").setCreativeTab(creativeTabs);
-
-		GameRegistry.registerItem(helmet, "item_" + name + "_helmet");
-		GameRegistry.registerItem(chestplate, "item_" + name + "_chestplate");
-		GameRegistry.registerItem(leggings, "item_" + name + "_leggings");
-		GameRegistry.registerItem(boots, "item_" + name + "_boots");
 	}
 
 	/**
