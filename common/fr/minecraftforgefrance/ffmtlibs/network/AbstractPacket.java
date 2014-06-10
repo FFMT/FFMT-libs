@@ -7,6 +7,7 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
 
+@Deprecated
 public abstract class AbstractPacket
 {
 	public abstract void encodeInto(ChannelHandlerContext ctx, PacketBuffer buffer) throws IOException;
