@@ -258,7 +258,7 @@ public class EntityHelper
 	 * @param colors = new int[colorAmount], with all different colors
 	 * @param flight time before explode 0 = short, 1 = medium, 2 = long
 	 */
-	public void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
+	public static void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
 	{
 		Random random = new Random();
 		ItemStack firework = new ItemStack(Items.fireworks);
