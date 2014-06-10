@@ -9,6 +9,11 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.item.EntityFireworkRocket;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -239,5 +244,49 @@ public class EntityHelper
 	public static EntityHelper instance()
 	{
 		return instance;
+	}
+	/**
+	 * Spawn a firework with specified values
+	 * @param world
+	 * @param x coord
+	 * @param y coord
+	 * @param z coord
+	 * @param type 0 = normal, 1 = large ball, 2 = star shaped, 3 = creeper face, 4 = burst
+	 * @param flicker
+	 * @param trail
+	 * @param colorAmount = number of colors
+	 * @param colors = new int[colorAmount], with all different colors
+	 * @param flight time before explode 0 = short, 1 = medium, 2 = long
+	 */
+	public void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
+	{
+		Random random = new Random();
+		ItemStack firework = new ItemStack(Items.fireworks);
+
+		NBTTagCompound mainTag = new NBTTagCompound();
+		NBTTagCompound fireworksTag = new NBTTagCompound();
+		NBTTagCompound explosionTag = new NBTTagCompound();
+		NBTTagList explosionList = new NBTTagList();
+
+		explosionTag.setByte("Type", type);
+		explosionTag.setBoolean("Flicker", flicker);
+		explosionTag.setBoolean("Trail", trail);
+		for(int a = 0; a < colorAmount; a++)
+		{
+			colors[a] = 255 * a;
+		}
+		explosionTag.setIntArray("Colors", colors);
+
+		explosionList.appendTag(explosionTag);
+
+		fireworksTag.setTag("Explosions", explosionList);
+		fireworksTag.setByte("Flight", flight);
+
+		mainTag.setTag("Fireworks", fireworksTag);
+
+		firework.setTagCompound(mainTag);
+
+		EntityFireworkRocket rocket = new EntityFireworkRocket(world, x, y, z, firework);
+		world.spawnEntityInWorld(rocket);
 	}
 }
