@@ -22,7 +22,7 @@ public class FFMTVersionChecker
 {
 	public static void check(String versionUrl, String downloadUrl, String modName, String currentVersion)
 	{
-		List<String> versionList = getRemoteFile(versionUrl);
+		List<String> versionList = getRemoteFile(versionUrl, false);
 		if(versionList.isEmpty())
 		{
 			FFMTLibs.ffmtLog.error("Couldn't get remote file");
@@ -46,11 +46,11 @@ public class FFMTVersionChecker
 		}
 	}
 
-	public static List<String> getRemoteFile(String fileURL)
+	public static List<String> getRemoteFile(String fileUrl, boolean silence)
 	{
 		try
 		{
-			URL url = new URL(fileURL);
+			URL url = new URL(fileUrl);
 			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(5000);
 			connection.setReadTimeout(5000);
@@ -59,7 +59,10 @@ public class FFMTVersionChecker
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			if(!silence)
+			{
+				e.printStackTrace();
+			}
 			return Collections.emptyList();
 		}
 	}

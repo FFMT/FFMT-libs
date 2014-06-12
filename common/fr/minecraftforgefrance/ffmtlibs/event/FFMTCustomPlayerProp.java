@@ -1,5 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
+import java.util.Collections;
+import java.util.List;
+
+import fr.minecraftforgefrance.ffmtlibs.FFMTVersionChecker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
@@ -19,7 +23,8 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	private final EntityPlayer player;
 
 	public ResourceLocation locationCape;
-	public ThreadDownloadImageData downloadImageCape;
+	public ThreadDownloadImageData downloadImageHat;
+	public List<String> particle;
 
 	public FFMTCustomPlayerProp(EntityPlayer player)
 	{
@@ -49,17 +54,22 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 		return (FFMTCustomPlayerProp)player.getExtendedProperties(ENTITY_PROP_NAME);
 	}
 
-	public ThreadDownloadImageData getTextureCape()
+	public ThreadDownloadImageData getTextureHat()
 	{
-		return this.downloadImageCape;
+		return this.downloadImageHat;
+	}
+	
+	public List<String> getDownloadListHat(String playerName)
+	{
+		return FFMTVersionChecker.getRemoteFile(this.getHatInfoUrl(playerName), true);
 	}
 
-	public static ThreadDownloadImageData getDownloadImageCape(ResourceLocation resourceLocation, String playerName)
+	public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String playerName)
 	{
-		return getDownloadImage(resourceLocation, getCapeUrl(playerName), (ResourceLocation)null, (IImageBuffer)null);
+		return getDownloadImage(resourceLocation, getHatUrl(playerName), (ResourceLocation)null, (IImageBuffer)null);
 	}
 
-	private static ThreadDownloadImageData getDownloadImage(ResourceLocation res, String link, ResourceLocation defRes, IImageBuffer image)
+	private ThreadDownloadImageData getDownloadImage(ResourceLocation res, String link, ResourceLocation defRes, IImageBuffer image)
 	{
 		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
 		Object object = texturemanager.getTexture(res);
@@ -73,13 +83,18 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 		return (ThreadDownloadImageData)object;
 	}
 
-	public static String getCapeUrl(String playerName)
+	public String getHatUrl(String playerName)
 	{
-		return String.format("http://files.minecraftforgefrance.fr/cape/%s.png", new Object[] {StringUtils.stripControlCodes(playerName)});
+		return String.format("http://files.minecraftforgefrance.fr/hats/%s.png", new Object[] {StringUtils.stripControlCodes(playerName)});
+	}
+	
+	public String getHatInfoUrl(String playerName)
+	{
+		return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
 	}
 
-	public static ResourceLocation getLocationCape(String playerName)
+	public ResourceLocation getLocationHat(String playerName)
 	{
-		return new ResourceLocation("ffmtlibs" + "cloaks/" + StringUtils.stripControlCodes(playerName));
+		return new ResourceLocation("ffmtlibs" + "hats/" + StringUtils.stripControlCodes(playerName));
 	}
 }
