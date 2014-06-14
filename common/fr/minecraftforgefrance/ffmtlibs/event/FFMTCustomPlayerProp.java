@@ -25,6 +25,7 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	public ResourceLocation locationCape;
 	public ThreadDownloadImageData downloadImageHat;
 	public List<String> particle;
+	public List<String> model;
 
 	public FFMTCustomPlayerProp(EntityPlayer player)
 	{
@@ -63,6 +64,11 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	{
 		return FFMTVersionChecker.getRemoteFile(this.getHatInfoUrl(playerName), true);
 	}
+	
+	public List<String> getDownloadListModelHat(String playerName)
+	{
+		return FFMTVersionChecker.getRemoteFile(this.getHatModelUrl(playerName), true);
+	}
 
 	public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String playerName)
 	{
@@ -91,6 +97,11 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	public String getHatInfoUrl(String playerName)
 	{
 		return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
+	}
+	
+	public String getHatModelUrl(String playerName)
+	{
+		return String.format("http://files.minecraftforgefrance.fr/hats/%s_model.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
 	}
 
 	public ResourceLocation getLocationHat(String playerName)
