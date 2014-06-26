@@ -1,12 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
-import java.util.Collections;
 import java.util.List;
 
-import fr.minecraftforgefrance.ffmtlibs.FFMTVersionChecker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
@@ -16,13 +13,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import fr.minecraftforgefrance.ffmtlibs.FFMTVersionChecker;
 
 public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 {
 	public static final String ENTITY_PROP_NAME = "FFMTCustomPlayerProp";
 	private final EntityPlayer player;
 
-	public ResourceLocation locationCape;
+	public ResourceLocation locationHat;
 	public ThreadDownloadImageData downloadImageHat;
 	public List<String> particle;
 	public List<String> model;

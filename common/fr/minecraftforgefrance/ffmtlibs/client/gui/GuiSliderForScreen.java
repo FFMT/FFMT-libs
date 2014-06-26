@@ -39,7 +39,7 @@ public class GuiSliderForScreen extends GuiButton
 		this.enabled = true;
 	}
 
-	protected int getHoverState(boolean b)
+	public int getHoverState(boolean b)
 	{
 		return 0;
 	}

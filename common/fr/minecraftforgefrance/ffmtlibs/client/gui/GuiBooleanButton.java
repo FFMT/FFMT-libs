@@ -39,7 +39,7 @@ public class GuiBooleanButton extends GuiButton
 		return active;
 	}
 
-	protected int getHoverState(boolean mouseIsInButton)
+	public int getHoverState(boolean mouseIsInButton)
 	{
 		byte b0 = 1;
 

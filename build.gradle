@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 ext.buildnumber = 0
 
-version = "1.4.2"
+version = "1.4.3"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
@@ -32,7 +32,7 @@ else {
 }
 
 minecraft {
-    version = "1.7.2-10.12.1.1082"
+    version = "1.7.10-10.13.0.1151"
     assetDir = "build/assets"
 	
     replace '@VERSION@', project.version
