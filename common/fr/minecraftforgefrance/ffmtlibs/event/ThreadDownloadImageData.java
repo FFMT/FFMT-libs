@@ -72,11 +72,11 @@ public class ThreadDownloadImageData extends SimpleTexture
     {
         if (this.bufferedImage == null && this.textureLocation != null)
         {
-            try
+			try
 			{
 				super.loadTexture(resource);
 			}
-			catch(IOException e)
+			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
