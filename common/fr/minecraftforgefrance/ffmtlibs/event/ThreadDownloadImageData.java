@@ -21,23 +21,23 @@ import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
+
 @SideOnly(Side.CLIENT)
 public class ThreadDownloadImageData extends SimpleTexture
 {
-    private static final Logger logger = LogManager.getLogger();
     private static final AtomicInteger threadDownloadCounter = new AtomicInteger(0);
     private final String imageUrl;
     private final IImageBuffer imageBuffer;
     private BufferedImage bufferedImage;
     private Thread imageThread;
     private boolean textureUploaded;
-    private static final String __OBFID = "CL_00001049";
 
-    public ThreadDownloadImageData(String par1Str, ResourceLocation par2ResourceLocation, IImageBuffer par3IImageBuffer)
+    public ThreadDownloadImageData(String url, ResourceLocation location, IImageBuffer image)
     {
-        super(par2ResourceLocation);
-        this.imageUrl = par1Str;
-        this.imageBuffer = par3IImageBuffer;
+        super(location);
+        this.imageUrl = url;
+        this.imageBuffer = image;
     }
 
     private void checkTextureUploaded()
@@ -63,23 +63,29 @@ public class ThreadDownloadImageData extends SimpleTexture
         return super.getGlTextureId();
     }
 
-    public void setBufferedImage(BufferedImage p_147641_1_)
+    public void setBufferedImage(BufferedImage image)
     {
-        this.bufferedImage = p_147641_1_;
+        this.bufferedImage = image;
     }
 
-    public void loadTexture(IResourceManager par1ResourceManager) throws IOException
+    public void loadTexture(IResourceManager resource)
     {
         if (this.bufferedImage == null && this.textureLocation != null)
         {
-            super.loadTexture(par1ResourceManager);
+            try
+			{
+				super.loadTexture(resource);
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
         }
 
         if (this.imageThread == null)
         {
             this.imageThread = new Thread("Texture Downloader #" + threadDownloadCounter.incrementAndGet())
             {
-                private static final String __OBFID = "CL_00001050";
                 public void run()
                 {
                     HttpURLConnection httpurlconnection = null;
@@ -106,7 +112,7 @@ public class ThreadDownloadImageData extends SimpleTexture
                     }
                     catch (Exception exception)
                     {
-                        ThreadDownloadImageData.logger.error("Couldn\'t download http texture", exception);
+                        FFMTLibs.ffmtLog.error("Couldn\'t download http texture", exception);
                         return;
                     }
                     finally
@@ -119,7 +125,7 @@ public class ThreadDownloadImageData extends SimpleTexture
                 }
             };
             this.imageThread.setDaemon(true);
-            this.imageThread.setName("Skin downloader: " + this.imageUrl);
+            this.imageThread.setName("Hat downloader: " + this.imageUrl);
             this.imageThread.start();
         }
     }
