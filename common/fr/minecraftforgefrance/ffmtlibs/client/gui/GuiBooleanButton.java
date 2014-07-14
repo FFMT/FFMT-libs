@@ -16,6 +16,7 @@ public class GuiBooleanButton extends GuiButton
 	protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
 	private boolean active;
 	private int buttonHeight;
+	private String disabled, enabledS;
 
 	public GuiBooleanButton(int id, int x, int y, String text, boolean active)
 	{
@@ -24,9 +25,16 @@ public class GuiBooleanButton extends GuiButton
 
 	public GuiBooleanButton(int id, int x, int y, int width, int height, String s, boolean active)
 	{
-		super(id, x, y, width, height, s);
+		this(id, x, y, width, height, s, s, active);
+	}
+	
+	public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active)
+	{
+		super(id, x, y, width, height, sEn);
 		this.active = active;
 		this.buttonHeight = height;
+		this.disabled = sDi;
+		this.enabledS = sEn;
 	}
 
 	public void toggle()
@@ -68,7 +76,7 @@ public class GuiBooleanButton extends GuiButton
 			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + k * 20, this.width / 2, this.height);
 			this.mouseDragged(mc, x, y);
 			int l = 14737632;
-
+			String str;
 			if(!this.enabled)
 			{
 				l = -6250336;
@@ -81,9 +89,14 @@ public class GuiBooleanButton extends GuiButton
 			if(!getIsActive())
 			{
 				l = 6316128;
+				str = disabled;
+			}
+			else
+			{
+				str = enabledS;
 			}
 
-			this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
+			this.drawCenteredString(fontrenderer, str, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
 		}
 	}
 }
