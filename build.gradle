@@ -32,8 +32,8 @@ else {
 }
 
 minecraft {
-    version = "1.7.10-10.13.0.1151"
-    assetDir = "build/assets"
+    version = "1.7.10-10.13.0.1183"
+    runDir = "build"
 	
     replace '@VERSION@', project.version
 }
@@ -74,28 +74,26 @@ jar {
     version = "${project.version}-mc${project.minecraft.version}"
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allSource
-    appendix = 'src'
+task devJar(type: Jar) {
+    from(sourceSets.main.allSource) {
+        include 'fr/**/**'
+    }
+    from(sourceSets.main.output) {
+        include '**'
+    }
+    classifier = 'dev'
     version = "${project.version}-mc${project.minecraft.version}"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     from 'build/docs/javadoc'
-    appendix = 'javadoc'
+    classifier = 'javadoc'
     version = "${project.version}-mc${project.minecraft.version}"
 }
 
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    appendix = 'deobf-dev'
-    version = "${project.version}-mc${project.minecraft.version}"
-}
-
-build.dependsOn sourceJar, javadocJar, deobfJar
+build.dependsOn devJar, javadocJar
 
 artifacts {
-    archives sourceJar
-    archives deobfJar
+    archives devJar
     archives javadocJar
 }
