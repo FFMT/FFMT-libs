@@ -12,32 +12,27 @@ import net.minecraft.util.ResourceLocation;
 public class GuiMultipleOptionButton extends GuiButton
 {
 	protected static final ResourceLocation buttonTextures = new ResourceLocation("textures/gui/widgets.png");
-	private int numberStates;
-	private ArrayList<String> changTxt;
+	private final String[] changTxt;
 	private int currentState;
 	
-	public GuiMultipleOptionButton(int id, int x, int y, String text, ArrayList<String> changingTxt, int numberOfStates, int currentState)
+	public GuiMultipleOptionButton(int id, int x, int y, String text, String[] changingTxt, int currentState)
 	{
-		this(id, x, y, 150, 20, text, changingTxt, numberOfStates, currentState);
+		this(id, x, y, 150, 20, text, changingTxt, currentState);
 	}
 
-	public GuiMultipleOptionButton(int id, int x, int y, int width, int height, String s, ArrayList<String> changingTxt, int numberOfStates, int currentState)
+	public GuiMultipleOptionButton(int id, int x, int y, int width, int height, String s, String[] changingTxt, int currentState)
 	{
 		super(id, x, y, width, height, s);
-		this.numberStates = numberOfStates;
 		this.changTxt = changingTxt;
 		this.currentState = currentState;
 	}
 	
 	public void next()
 	{
-		if(currentState == numberStates)
+		currentState++;
+		if(currentState >= changTxt.length)
 		{
 			currentState = 0;
-		}
-		else
-		{
-			currentState++;
 		}
 	}
 	
@@ -75,7 +70,7 @@ public class GuiMultipleOptionButton extends GuiButton
 			this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, 46 + k * 20, this.width / 2, this.height);
 			this.mouseDragged(mc, x, y);
 			int l = 14737632;
-			String str = this.displayString + this.changTxt.get(this.currentState);
+			String str = this.displayString + this.changTxt[currentState];
 			if(!this.enabled)
 			{
 				l = -6250336;
