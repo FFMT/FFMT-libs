@@ -46,7 +46,6 @@ public class ThreadDowloadTextData
 							while((ligne = reader.readLine()) != null)
 							{
 								list.add(ligne);
-								System.out.println(ligne);
 							}
 							reader.close();
 							in.close();
@@ -75,7 +74,6 @@ public class ThreadDowloadTextData
 
 	public boolean isTextDownloaded()
 	{
-		System.out.println(value != null);
 		return value != null;
 	}
 

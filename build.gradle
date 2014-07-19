@@ -19,7 +19,7 @@ apply plugin: 'forge'
 
 ext.buildnumber = 0
 
-version = "1.4.3"
+version = "1.4.4"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
