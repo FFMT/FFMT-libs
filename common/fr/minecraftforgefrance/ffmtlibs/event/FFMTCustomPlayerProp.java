@@ -1,7 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
-import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.texture.ITextureObject;
@@ -13,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import fr.minecraftforgefrance.ffmtlibs.FFMTVersionChecker;
 
 public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 {
@@ -22,8 +19,8 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 
 	public ResourceLocation locationHat;
 	public ThreadDownloadImageData downloadImageHat;
-	public List<String> particle;
-	public List<String> model;
+	public ThreadDowloadTextData particle;
+	public ThreadDowloadTextData model;
 
 	public FFMTCustomPlayerProp(EntityPlayer player)
 	{
@@ -57,15 +54,15 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	{
 		return this.downloadImageHat;
 	}
-	
-	public List<String> getDownloadListHat(String playerName)
+
+	public ThreadDowloadTextData getDownloadListHat(String playerName)
 	{
-		return FFMTVersionChecker.getRemoteFile(this.getHatInfoUrl(playerName), true);
+		return new ThreadDowloadTextData(this.getHatInfoUrl(playerName));
 	}
-	
-	public List<String> getDownloadListModelHat(String playerName)
+
+	public ThreadDowloadTextData getDownloadListModelHat(String playerName)
 	{
-		return FFMTVersionChecker.getRemoteFile(this.getHatModelUrl(playerName), true);
+		return new ThreadDowloadTextData(this.getHatModelUrl(playerName));
 	}
 
 	public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String playerName)
@@ -91,12 +88,12 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 	{
 		return String.format("http://files.minecraftforgefrance.fr/hats/%s.png", new Object[] {StringUtils.stripControlCodes(playerName)});
 	}
-	
+
 	public String getHatInfoUrl(String playerName)
 	{
 		return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
 	}
-	
+
 	public String getHatModelUrl(String playerName)
 	{
 		return String.format("http://files.minecraftforgefrance.fr/hats/%s_model.txt", new Object[] {StringUtils.stripControlCodes(playerName)});

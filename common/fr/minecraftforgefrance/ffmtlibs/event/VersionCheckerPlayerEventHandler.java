@@ -9,7 +9,7 @@ public class VersionCheckerPlayerEventHandler
 	public final String outdatedMod;
 	public final String lastestVersion;
 	public final String downloadURL;
-	public boolean hassay = false;
+	public boolean hasSay = false;
 
 	public VersionCheckerPlayerEventHandler(String modid, String last, String download)
 	{
@@ -21,11 +21,11 @@ public class VersionCheckerPlayerEventHandler
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		if(!hassay)
+		if(!hasSay)
 		{
 			event.player.addChatMessage(new ChatComponentTranslation("update.available", outdatedMod, lastestVersion));
 			event.player.addChatMessage(new ChatComponentTranslation("update.download", downloadURL));
-			hassay = true;
+			hasSay = true;
 		}
 	}
 }

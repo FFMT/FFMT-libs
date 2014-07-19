@@ -17,6 +17,7 @@ import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
 
 @SideOnly(Side.CLIENT)
 public class PlayerEventHandler
@@ -24,9 +25,13 @@ public class PlayerEventHandler
 	@SubscribeEvent
 	public void onPlayerRender(RenderPlayerEvent.Specials.Pre event)
 	{
-		if(event.entityPlayer.getCommandSenderName() != null && !event.entityPlayer.getCommandSenderName().isEmpty() && !event.entityPlayer.isInvisible())
+		if(event.entityPlayer.getCommandSenderName() != null && !event.entityPlayer.getCommandSenderName().isEmpty() && !event.entityPlayer.isInvisible() && !FFMTLibs.hideHat)
 		{
 			FFMTCustomPlayerProp player = FFMTCustomPlayerProp.get(event.entityPlayer);
+			if(player.downloadImageHat == null)
+			{
+				player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
+			}
 			if(player.particle == null)
 			{
 				player.particle = player.getDownloadListHat(event.entityPlayer.getCommandSenderName());
@@ -35,15 +40,11 @@ public class PlayerEventHandler
 			{
 				player.model = player.getDownloadListModelHat(event.entityPlayer.getCommandSenderName());
 			}
-			if(player.downloadImageHat == null)
-			{
-				player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
-			}
-			else if(player.getTextureHat().isTextureUploaded())
+			if(player.getTextureHat().isTextureUploaded() && player.particle.isTextDownloaded() && player.model.isTextDownloaded())
 			{
 				Minecraft.getMinecraft().renderEngine.bindTexture(player.getLocationHat(event.entityPlayer.getCommandSenderName()));
 				ModelBiped biped = ObfuscationReflectionHelper.getPrivateValue(RenderPlayer.class, event.renderer, 1);
-				ModelHat hat = new ModelHat(biped, player.model);
+				ModelHat hat = new ModelHat(biped, player.model.getValue());
 
 				float f = event.entityPlayer.limbSwing - event.entityPlayer.limbSwingAmount * (1.0F - event.partialRenderTick);
 				float f1 = event.entityPlayer.prevLimbSwingAmount + (event.entityPlayer.limbSwingAmount - event.entityPlayer.prevLimbSwingAmount) * event.partialRenderTick;
@@ -86,9 +87,9 @@ public class PlayerEventHandler
 				}
 
 				hat.render(event.entityPlayer, f, f1, f2, f3, f4, 0.03125F);
-				if(player.particle != null && !player.particle.isEmpty())
+				if(player.particle != null && !player.particle.getValue().isEmpty())
 				{
-					for(String particles : player.particle)
+					for(String particles : player.particle.getValue())
 					{
 						event.entityPlayer.worldObj.spawnParticle(particles, event.entityPlayer.posX - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posY + 1.0F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posZ - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), 0.0F, 0.2F, 0.0F);
 					}
