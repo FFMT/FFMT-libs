@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -32,7 +33,7 @@ public class PlayerEventHandler
 			{
 				player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
 			}
-			if(player.particle == null)
+			if(player.particle == null && Loader.isModLoaded("nhg"))
 			{
 				player.particle = player.getDownloadListHat(event.entityPlayer.getCommandSenderName());
 			}
