@@ -22,18 +22,6 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityHelper
 {
-	@Deprecated
-	protected static Random rand = new Random();
-
-	@Deprecated
-	private static EntityHelper instance = new EntityHelper();
-
-	/**
-	 * If you want to add a creature come from leave block.
-	 * 
-	 * @author elias54
-	 */
-	// public static EnumCreatureType leafCreature = EnumHelper.addCreatureType("leafCreature", EntityLeafCreature.class, 5, Material.leaves, true);
 
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
@@ -130,10 +118,13 @@ public class EntityHelper
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
 	{
 		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
-		Entity entityToAttack = (Entity)list.get(world.rand.nextInt(list.size()));
-		if(!list.isEmpty())
+		for(int i = 0; i< list.size(); i++)
 		{
-			entityHostAttack.setTarget(entityToAttack);
+			Entity entityToAttack = (Entity)list.get(world.rand.nextInt(i));
+			if(!list.isEmpty())
+			{
+				entityHostAttack.setTarget(entityToAttack);
+			}
 		}
 	}
 
@@ -238,12 +229,6 @@ public class EntityHelper
 	public static void setInfiniteHealth(EntityLivingBase entity)
 	{
 		entity.setHealth(Float.POSITIVE_INFINITY);
-	}
-
-	@Deprecated
-	public static EntityHelper instance()
-	{
-		return instance;
 	}
 	/**
 	 * Spawn a firework with specified values

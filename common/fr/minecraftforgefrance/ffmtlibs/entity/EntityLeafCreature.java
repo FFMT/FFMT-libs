@@ -10,7 +10,7 @@ import net.minecraft.world.World;
  * 
  * @author elias54
  */
-
+@Deprecated
 public class EntityLeafCreature extends EntityCreature
 {
 
