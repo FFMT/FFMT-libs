@@ -33,7 +33,7 @@ public class PlayerEventHandler
 			{
 				player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
 			}
-			if(player.particle == null && Loader.isModLoaded("nhg"))
+			if(player.particle == null)
 			{
 				player.particle = player.getDownloadListHat(event.entityPlayer.getCommandSenderName());
 			}
@@ -88,7 +88,7 @@ public class PlayerEventHandler
 				}
 
 				hat.render(event.entityPlayer, f, f1, f2, f3, f4, 0.03125F);
-				if(player.particle != null && !player.particle.getValue().isEmpty())
+				if(player.particle != null && !player.particle.getValue().isEmpty() && !Loader.isModLoaded("nhg"))
 				{
 					for(String particles : player.particle.getValue())
 					{
