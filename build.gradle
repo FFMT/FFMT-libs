@@ -38,8 +38,6 @@ minecraft {
     replace '@VERSION@', project.version
 }
 
-systemProperty "VERSION", "${project.version}-mc${project.minecraft.version}"
-
 sourceSets {
     main {
         java {
