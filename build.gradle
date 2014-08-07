@@ -31,8 +31,10 @@ else {
     logger.lifecycle "SETTING BUILDNUMBER TO 0"
 }
 
+environment "VERSION", "${project.version}-mc${project.minecraft.version}"
+
 minecraft {
-    version = "1.7.10-10.13.0.1183"
+    version = "1.7.10-10.13.0.1199"
     runDir = "build"
 	
     replace '@VERSION@', project.version
