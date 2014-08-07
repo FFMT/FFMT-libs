@@ -15,4 +15,10 @@ public abstract class FFMTPacket
 	public abstract void handleClientSide(EntityPlayer player);
 
 	public abstract void handleServerSide(EntityPlayer player);
+	
+	/**
+	 * 
+	 * @return discriminator of the packet,
+	 */
+	public abstract int getDiscriminator();
 }

@@ -21,7 +21,6 @@ public class PacketManager
     private EnumMap<Side, FMLEmbeddedChannel> channels;
     private ChannelHandler channelHandler;
     private PacketHandler packetHandler;
-    private int nextDiscriminator = 0;
 
     /**
      * Register a packet handler
@@ -121,16 +120,30 @@ public class PacketManager
 
     private boolean registerPacket(Class<? extends FFMTPacket> clazz)
     {
-        if(nextDiscriminator >= 256)
+        try
         {
-            FFMTLibs.ffmtLog.error("You can't add more than 256 packet in one channel");
-            return false;
-        }
-        channelHandler.addDiscriminator(this.nextDiscriminator, clazz);
-        FFMTLibs.ffmtLog.info("Successful register packet : " + clazz.getCanonicalName() + " with discriminator " + this.nextDiscriminator);
+            int discriminator = clazz.newInstance().getDiscriminator();
+            if(discriminator >= 256)
+            {
+                FFMTLibs.ffmtLog.error("You can't add more than 256 packet in one channel");
+                return false;
+            }
+            channelHandler.addDiscriminator(discriminator, clazz);
+            FFMTLibs.ffmtLog.info("Successful register packet : " + clazz.getCanonicalName() + " with discriminator " + discriminator);
 
-        this.nextDiscriminator++;
-        return true;
+            return true;
+        }
+        catch(InstantiationException e)
+        {
+            e.printStackTrace();
+            FFMTLibs.ffmtLog.error("The packet " + clazz.getCanonicalName() + " has not a blank constructor");
+        }
+        catch(IllegalAccessException e)
+        {
+            e.printStackTrace();
+            FFMTLibs.ffmtLog.error("The constructor of the packet " + clazz.getCanonicalName() + "isn't accessible");
+        }
+        return false;
     }
 
     public void sendToAll(FFMTPacket message)
