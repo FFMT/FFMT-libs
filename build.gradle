@@ -16,6 +16,7 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven'
 
 ext.buildnumber = 0
 
@@ -96,4 +97,40 @@ build.dependsOn devJar, javadocJar
 artifacts {
     archives devJar
     archives javadocJar
+}
+
+configurations {
+    deployerJars
+}
+
+repositories {
+    maven {
+        name = "mff"
+        url = "http://files.minecraftforgefrance.fr/maven/"
+    }
+}
+
+dependencies {
+    deployerJars "org.apache.maven.wagon:wagon-ftp:2.2"
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+            if (project.hasProperty('url')) {
+                version = "${project.version}-mc${project.minecraft.version}"
+                logger.info("Publishing to files server")
+        	repository(url: url) {
+            	    authentication(userName: user, password: password)
+                    addFilter('dev') { 
+                        artifact, file ->
+                        file == devJar.archivePath
+            	}
+            }
+        }
+        else {
+            logger.info('Publishing to repo folder')
+            repository(url: 'file://localhost/' + project.file('repo').getAbsolutePath())
+        }
+    }
 }
