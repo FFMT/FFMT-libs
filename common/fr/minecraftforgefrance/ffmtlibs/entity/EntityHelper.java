@@ -127,24 +127,10 @@ public class EntityHelper
 			}
 		}
 	}
-
-	/**
-	 * Return if the entity is in water
-	 * 
-	 * @param world ("worldObj" from the entity)
-	 * @param entity (Entity instance)
-	 * @author elias54
-	 */
-	@Deprecated
-	public static boolean inWater(World world, Entity entity)
-	{
-		return inWater(entity);
-	}
 	
 	/**
 	 * Return if the entity is in water
 	 * 
-	 * @param world ("worldObj" from the entity)
 	 * @param entity (Entity instance)
 	 * @author elias54
 	 */
@@ -156,21 +142,6 @@ public class EntityHelper
 	/**
 	 * Return if the entity is in specified material
 	 * 
-	 * @param world ("worldObj" from the entity)
-	 * @param entity (Entity instance)
-	 * @param material (e.g Material.rock)
-	 * @author elias54
-	 */
-	@Deprecated
-	public static boolean isInMaterial(World world, Entity entity, Material material)
-	{
-		return world.isMaterialInBB(entity.boundingBox, material);
-	}
-	
-	/**
-	 * Return if the entity is in specified material
-	 * 
-	 * @param world ("worldObj" from the entity)
 	 * @param entity (Entity instance)
 	 * @param material (e.g Material.rock)
 	 * @author elias54

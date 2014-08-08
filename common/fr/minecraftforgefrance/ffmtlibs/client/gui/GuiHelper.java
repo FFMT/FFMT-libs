@@ -60,7 +60,7 @@ public class GuiHelper
     /**
      * Draw a string aligned on left
      * 
-     * @param fontRenderer
+     * @param font
      * @param string
      * @param x
      * @param y

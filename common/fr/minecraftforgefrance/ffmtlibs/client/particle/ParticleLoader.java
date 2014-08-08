@@ -18,7 +18,7 @@ public class ParticleLoader
 	 * 
 	 * Args:
 	 * @param customParticle true for custom particle, false for vanilla particle
-	 * @param particleNamrIfVanilla just vanilla particle name if you switched to particle vanilla mode, else set "null"
+	 * @param particleNameIfVanilla just vanilla particle name if you switched to particle vanilla mode, else set "null"
 	 * @param world the world instance
 	 * @param entity the entity instance (eg. player)
 	 * @param x posX
