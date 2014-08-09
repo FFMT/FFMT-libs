@@ -147,8 +147,6 @@ public class GuiHelper
     /**
      * Draw texture at given start and end cords
      * 
-     * o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
-     * 
      * @param xo
      * @param yo
      * @param xe
@@ -167,10 +165,18 @@ public class GuiHelper
         drawTexture(xo, xe, xe, xo, ye, ye, yo, yo, xto, yto, xte, yte);
     }
 
+    public static void drawTexture(int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte, float zLevel)
+    {
+        drawTexture(xo, xe, xe, xo, ye, ye, yo, yo, xto, yto, xte, yte, zLevel);
+    }
+
+    public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte)
+    {
+        drawTexture(x0, x1, x2, x3, y0, y1, y2, y3, xto, yto, xte, yte, -90.0F);
+    }
+
     /**
      * Draw a texture with 4 cords:
-     * 
-     * 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
      * 
      * @param x0
      * @param x1
@@ -189,15 +195,14 @@ public class GuiHelper
      * @param yte
      *            y texture end (ratio)
      */
-    public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte)
+    public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {
         Tessellator tessellator = Tessellator.instance;
-        float zLevel = -90.0F;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((double)x0, (double)y0, (double)zLevel, (double)xto, (double)yte);
-        tessellator.addVertexWithUV((double)x1, (double)y1, (double)zLevel, (double)xte, (double)yte);
-        tessellator.addVertexWithUV((double)x2, (double)y2, (double)zLevel, (double)xte, (double)yto);
-        tessellator.addVertexWithUV((double)x3, (double)y3, (double)zLevel, (double)xto, (double)yto);
+        tessellator.addVertexWithUV(x0, y0, zLevel, xto, yte);
+        tessellator.addVertexWithUV(x1, y1, zLevel, xte, yte);
+        tessellator.addVertexWithUV(x2, y2, zLevel, xte, yto);
+        tessellator.addVertexWithUV(x3, y3, zLevel, xto, yto);
         tessellator.draw();
     }
 
@@ -233,8 +238,6 @@ public class GuiHelper
     /**
      * Bind and draw texture at given start and end cords :
      * 
-     * o───────────────────┐ │ │ │ │ │ │ │ │ │ │ │ │ └───────────────────e
-     * 
      * @param texture
      *            ResourceLocation
      * @param xo
@@ -257,7 +260,7 @@ public class GuiHelper
     }
 
     /**
-     * Bind and draw a texture with 4 cords: 0───────────────────1 │ │ │ │ │ │ │ │ │ │ │ │ 3───────────────────2
+     * Bind and draw a texture with 4 cords:
      * 
      * @param texture
      *            ResourceLocation
@@ -401,14 +404,14 @@ public class GuiHelper
      */
     private static void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6, float zLevel)
     {
-        float f = (float)(par5 >> 24 & 255) / 255.0F;
-        float f1 = (float)(par5 >> 16 & 255) / 255.0F;
-        float f2 = (float)(par5 >> 8 & 255) / 255.0F;
-        float f3 = (float)(par5 & 255) / 255.0F;
-        float f4 = (float)(par6 >> 24 & 255) / 255.0F;
-        float f5 = (float)(par6 >> 16 & 255) / 255.0F;
-        float f6 = (float)(par6 >> 8 & 255) / 255.0F;
-        float f7 = (float)(par6 & 255) / 255.0F;
+        float f = (par5 >> 24 & 255) / 255.0F;
+        float f1 = (par5 >> 16 & 255) / 255.0F;
+        float f2 = (par5 >> 8 & 255) / 255.0F;
+        float f3 = (par5 & 255) / 255.0F;
+        float f4 = (par6 >> 24 & 255) / 255.0F;
+        float f5 = (par6 >> 16 & 255) / 255.0F;
+        float f6 = (par6 >> 8 & 255) / 255.0F;
+        float f7 = (par6 & 255) / 255.0F;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -417,11 +420,11 @@ public class GuiHelper
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex((double)par3, (double)par2, (double)zLevel);
-        tessellator.addVertex((double)par1, (double)par2, (double)zLevel);
+        tessellator.addVertex(par3, par2, zLevel);
+        tessellator.addVertex(par1, par2, zLevel);
         tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex((double)par1, (double)par4, (double)zLevel);
-        tessellator.addVertex((double)par3, (double)par4, (double)zLevel);
+        tessellator.addVertex(par1, par4, zLevel);
+        tessellator.addVertex(par3, par4, zLevel);
         tessellator.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
