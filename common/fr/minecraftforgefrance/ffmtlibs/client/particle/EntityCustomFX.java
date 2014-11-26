@@ -3,7 +3,7 @@ package fr.minecraftforgefrance.ffmtlibs.client.particle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -30,20 +30,20 @@ public class EntityCustomFX extends EntityFX
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-		tessellator.startDrawingQuads();
-		tessellator.setBrightness(getBrightnessForRender(f));
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+//		worldrenderer.setBrightness(getBrightnessForRender(f));//TODO find new
 		float scale = 0.1F*particleScale;
 		float x = (float) (prevPosX + (prevPosX - posX) * f - interpPosX),
 			  y = (float) (prevPosY + (prevPosY - posY) * f - interpPosY),
 			  z = (float) (prevPosZ + (prevPosZ - posZ) * f - interpPosZ);
 		float f14 = getBrightness(f);
-		tessellator.setTranslation(0F, 0F, 0F);
-		tessellator.setColorOpaque_F(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);
-		tessellator.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
-		tessellator.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
-		tessellator.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);
-		tessellator.addVertexWithUV(x + f1 * scale - f4 * scale, y - f2 * scale, z + f3 * scale - f5 * scale, 0, 1);
-		tessellator.draw();
+		worldrenderer.setTranslation(0F, 0F, 0F);
+//		worldrenderer.setColorOpaque_F(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);//TODO find new
+		worldrenderer.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
+		worldrenderer.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
+		worldrenderer.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);
+		worldrenderer.addVertexWithUV(x + f1 * scale - f4 * scale, y - f2 * scale, z + f3 * scale - f5 * scale, 0, 1);
+		worldrenderer.draw();
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDepthMask(true);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);

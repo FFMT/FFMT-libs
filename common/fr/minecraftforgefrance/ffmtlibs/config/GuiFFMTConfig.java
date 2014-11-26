@@ -3,7 +3,7 @@ package fr.minecraftforgefrance.ffmtlibs.config;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfig;
 import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
 
 public class GuiFFMTConfig extends GuiConfig

@@ -8,15 +8,15 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiHelper
@@ -26,7 +26,7 @@ public class GuiHelper
 
     /**
      * Bind the given texture
-     * 
+     *
      * @param texture
      *            ResourceLocation
      */
@@ -37,7 +37,7 @@ public class GuiHelper
 
     /**
      * Bind the given texture by name (path)
-     * 
+     *
      * @param texture
      *            String
      */
@@ -48,7 +48,7 @@ public class GuiHelper
 
     /**
      * Bind the given texture by name (path) and modid
-     * 
+     *
      * @param modid
      * @param texture
      */
@@ -59,7 +59,7 @@ public class GuiHelper
 
     /**
      * Draw a string aligned on left
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -68,12 +68,12 @@ public class GuiHelper
      */
     public static void drawLeftAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
-        font.drawStringWithShadow(string, x, y, color);
+        font.drawString(string, x, y, color);
     }
 
     /**
      * Draw a string centered
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -82,12 +82,12 @@ public class GuiHelper
      */
     public static void drawCenteredString(FontRenderer font, String string, int x, int y, int color)
     {
-        font.drawStringWithShadow(string, x - font.getStringWidth(string) / 2, y, color);
+        font.drawString(string, x - font.getStringWidth(string) / 2, y, color);
     }
 
     /**
      * Draw a string aligned on right
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -96,12 +96,12 @@ public class GuiHelper
      */
     public static void drawRightAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
-        font.drawStringWithShadow(string, x - font.getStringWidth(string), y, color);
+        font.drawString(string, x - font.getStringWidth(string), y, color);
     }
 
     /**
      * Draw a localized string aligned on the left
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -116,7 +116,7 @@ public class GuiHelper
 
     /**
      * Draw a centered localized string
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -131,7 +131,7 @@ public class GuiHelper
 
     /**
      * Draw a localized string aligned on the right
-     * 
+     *
      * @param font
      * @param string
      * @param x
@@ -146,7 +146,7 @@ public class GuiHelper
 
     /**
      * Draw texture at given start and end cords
-     * 
+     *
      * @param xo
      * @param yo
      * @param xe
@@ -177,7 +177,7 @@ public class GuiHelper
 
     /**
      * Draw a texture with 4 cords:
-     * 
+     *
      * @param x0
      * @param x1
      * @param x2
@@ -197,18 +197,18 @@ public class GuiHelper
      */
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x0, y0, zLevel, xto, yte);
-        tessellator.addVertexWithUV(x1, y1, zLevel, xte, yte);
-        tessellator.addVertexWithUV(x2, y2, zLevel, xte, yto);
-        tessellator.addVertexWithUV(x3, y3, zLevel, xto, yto);
-        tessellator.draw();
+    	Tessellator tess = Tessellator.getInstance();
+    	WorldRenderer worldrenderer = tess.getWorldRenderer();
+    	worldrenderer.addVertexWithUV(x0, y0, zLevel, xto, yte);
+    	worldrenderer.addVertexWithUV(x1, y1, zLevel, xte, yte);
+    	worldrenderer.addVertexWithUV(x2, y2, zLevel, xte, yto);
+    	worldrenderer.addVertexWithUV(x3, y3, zLevel, xto, yto);
+    	worldrenderer.draw();
     }
 
     /**
      * Draw a texture based on a circle, the for points will be on the circle with an angle of 45°
-     * 
+     *
      * @param x
      * @param y
      * @param xto
@@ -237,7 +237,7 @@ public class GuiHelper
 
     /**
      * Bind and draw texture at given start and end cords :
-     * 
+     *
      * @param texture
      *            ResourceLocation
      * @param xo
@@ -261,7 +261,7 @@ public class GuiHelper
 
     /**
      * Bind and draw a texture with 4 cords:
-     * 
+     *
      * @param texture
      *            ResourceLocation
      * @param x0
@@ -289,7 +289,7 @@ public class GuiHelper
 
     /**
      * bind and draw a texture based on a circle, the for points will be on the circle with an angle of 45°
-     * 
+     *
      * @param x
      * @param y
      * @param xto
@@ -311,7 +311,7 @@ public class GuiHelper
 
     /**
      * Draw string with little backgroud, like when you hover an item
-     * 
+     *
      * @param list
      *            contain text, one string by line
      * @param mouseX
@@ -383,7 +383,7 @@ public class GuiHelper
             for(int i2 = 0; i2 < list.size(); ++i2)
             {
                 String s1 = list.get(i2);
-                font.drawStringWithShadow(s1, j2, k2, color);
+                font.drawString(s1, j2, k2, color);
 
                 if(i2 == 0)
                 {
@@ -417,15 +417,15 @@ public class GuiHelper
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex(par3, par2, zLevel);
-        tessellator.addVertex(par1, par2, zLevel);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex(par1, par4, zLevel);
-        tessellator.addVertex(par3, par4, zLevel);
-        tessellator.draw();
+    	Tessellator tess = Tessellator.getInstance();
+    	WorldRenderer worldrenderer = tess.getWorldRenderer();
+    	worldrenderer.func_178960_a(f1, f2, f3, f);//old: setColorRGBA_F
+    	worldrenderer.addVertex(par3, par2, zLevel);
+    	worldrenderer.addVertex(par1, par2, zLevel);
+    	worldrenderer.func_178960_a(f5, f6, f7, f4);
+    	worldrenderer.addVertex(par1, par4, zLevel);
+    	worldrenderer.addVertex(par3, par4, zLevel);
+        worldrenderer.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);

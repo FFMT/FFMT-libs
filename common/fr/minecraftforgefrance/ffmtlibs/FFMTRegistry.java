@@ -9,9 +9,9 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTArmor;
 import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTAxe;
 import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTHoe;
@@ -34,14 +34,14 @@ public class FFMTRegistry
 
 	/**
 	 * Add a version checker. You need a permalink (website, etc ... clould don't work). The remote file is a simple text file like that :
-	 * 
+	 *
 	 * <pre>
 	 * Minecraft 1.6.4:1.1.0
 	 * Minecraft 1.7.2:1.2.0
 	 * </pre>
-	 * 
+	 *
 	 * In this example, 1.1.0 is the last version the mod for minecraft 1.6.4, and 1.2.0 the last version for minecraft 1.7.2.
-	 * 
+	 *
 	 * @author robin4002
 	 * @param versionUrl The permalink to your remote text file
 	 * @param downloadUrl Where users can download your mod (for example your topic in minecraftforum.net)
@@ -55,15 +55,15 @@ public class FFMTRegistry
 
 	/**
 	 * Add a version checker. You need a permalink (website, etc ... clould don't work). The remote file is a simple text file like that :
-	 * 
+	 *
 	 * <pre>
 	 * Minecraft 1.6.4:1.1.0
 	 * Minecraft 1.7.2:1.2.0
 	 * </pre>
-	 * 
+	 *
 	 * In this example, 1.1.0 is the last version the mod for minecraft 1.6.4, and 1.2.0 the last version for minecraft 1.7.2. This method will use the mcmod.info of you mod, updateUrl should be
 	 * thepermalink to your remote text file and url the url where users can download you mod
-	 * 
+	 *
 	 * @author robin4002
 	 * @param modId Your modid
 	 */
@@ -75,7 +75,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper for crafting armors
-	 * 
+	 *
 	 * @param material
 	 * @param type Helmet:0 Chestplate:1 Leggings:2 Boots:3
 	 * @param output
@@ -106,7 +106,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper for crafting all armors
-	 * 
+	 *
 	 * @param material
 	 * @param outputHelmet
 	 * @param outputChestPlate
@@ -123,7 +123,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper for crafting tools
-	 * 
+	 *
 	 * @param material
 	 * @param type Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
 	 * @param output
@@ -171,7 +171,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper to add all armors. You just need to register them after.
-	 * 
+	 *
 	 * @param armorMaterial
 	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
@@ -189,7 +189,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper to add all armors. You just need to register them after.
-	 * 
+	 *
 	 * @param armorMaterial
 	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
@@ -201,16 +201,16 @@ public class FFMTRegistry
 	 * @param creativeTabs
 	 */
 	public static void addAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, Item repair, CreativeTabs creativeTabs)
-	{
-		helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setTextureName(modid + ":" + name + "_helmet").setCreativeTab(creativeTabs);
-		chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setTextureName(modid + ":" + name + "_chestplate").setCreativeTab(creativeTabs);
-		leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setTextureName(modid + ":" + name + "_leggings").setCreativeTab(creativeTabs);
-		boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setTextureName(modid + ":" + name + "_boots").setCreativeTab(creativeTabs);
+	{//TODO fix if needed
+		helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet")/*.setTextureName(modid + ":" + name + "_helmet")*/.setCreativeTab(creativeTabs);
+		chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate")/*.setTextureName(modid + ":" + name + "_chestplate")*/.setCreativeTab(creativeTabs);
+		leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings")/*.setTextureName(modid + ":" + name + "_leggings")*/.setCreativeTab(creativeTabs);
+		boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots")/*.setTextureName(modid + ":" + name + "_boots")*/.setCreativeTab(creativeTabs);
 	}
 
 	/**
 	 * Helper to add all tool. You just need to register them after.
-	 * 
+	 *
 	 * @param toolMaterial
 	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
@@ -227,7 +227,7 @@ public class FFMTRegistry
 
 	/**
 	 * Helper to add all tool. You just need to register them after.
-	 * 
+	 *
 	 * @param toolMaterial
 	 * @param name e.g. iron, gold, stone, wood, diamond
 	 * @param modid
@@ -238,17 +238,17 @@ public class FFMTRegistry
 	 * @param creativeTabs
 	 */
 	public static void addAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, Item repair, CreativeTabs creativeTabs)
-	{
-		sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setTextureName(modid + ":" + name + "_sword").setCreativeTab(creativeTabs);
-		pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setTextureName(modid + ":" + name + "_pickaxe").setCreativeTab(creativeTabs);
-		axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setTextureName(modid + ":" + name + "_axe").setCreativeTab(creativeTabs);
-		shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setTextureName(modid + ":" + name + "shovel").setCreativeTab(creativeTabs);
-		hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setTextureName(modid + ":" + name + "_hoe").setCreativeTab(creativeTabs);
+	{//TODO fix if needed
+		sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword")/*.setTextureName(modid + ":" + name + "_sword")*/.setCreativeTab(creativeTabs);
+		pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe")/*.setTextureName(modid + ":" + name + "_pickaxe")*/.setCreativeTab(creativeTabs);
+		axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe")/*.setTextureName(modid + ":" + name + "_axe")*/.setCreativeTab(creativeTabs);
+		shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel")/*.setTextureName(modid + ":" + name + "shovel")*/.setCreativeTab(creativeTabs);
+		hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe")/*.setTextureName(modid + ":" + name + "_hoe")*/.setCreativeTab(creativeTabs);
 	}
 
 	/**
 	 * Remove a recipe
-	 * 
+	 *
 	 * @param stack The removed ItemStack
 	 */
 	public static void removeRecipe(ItemStack stack)

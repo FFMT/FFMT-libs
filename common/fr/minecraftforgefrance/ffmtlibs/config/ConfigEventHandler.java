@@ -1,6 +1,6 @@
 package fr.minecraftforgefrance.ffmtlibs.config;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
 
 public class ConfigEventHandler

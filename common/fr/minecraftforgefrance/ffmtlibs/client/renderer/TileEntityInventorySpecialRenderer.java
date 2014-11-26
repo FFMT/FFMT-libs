@@ -7,6 +7,6 @@ public abstract class TileEntityInventorySpecialRenderer extends TileEntitySpeci
 {
 	public TileEntityInventorySpecialRenderer()
 	{
-		this.func_147497_a(TileEntityRendererDispatcher.instance);
+		this.setRendererDispatcher(TileEntityRendererDispatcher.instance);
 	}
 }

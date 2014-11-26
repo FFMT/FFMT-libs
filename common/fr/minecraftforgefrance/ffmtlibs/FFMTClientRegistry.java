@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import fr.minecraftforgefrance.ffmtlibs.client.renderer.ITESRInventoryRenderer;
 import fr.minecraftforgefrance.ffmtlibs.client.renderer.InventoryTESRIndex;
 import fr.minecraftforgefrance.ffmtlibs.client.renderer.TileEntityInventorySpecialRenderer;
@@ -19,7 +19,7 @@ public class FFMTClientRegistry
 
 	/**
 	 * Register a render in inventory / hand
-	 * 
+	 *
 	 * @author robin4002
 	 * @param block Object of your block
 	 * @param metadata Metadata of the block
@@ -32,7 +32,7 @@ public class FFMTClientRegistry
 
 	/**
 	 * Register a render in inventory / hand and in the world (don't use ClientRegistry.bindTileEntitySpecialRenderer if you use it)
-	 * 
+	 *
 	 * @author robin4002
 	 * @param block Object of your block
 	 * @param metadata Metadata of the block

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 /**
  * To use, add this in your block: (change heightOfThePlayer with a float)
- * 
+ *
  * <pre>
  * public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
  * {
@@ -39,7 +39,7 @@ public class BlockSittable extends Block
 	{
 		if(!world.isRemote)
 		{
-			List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1.0D, 1.0D, 1.0D));
+			List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, AxisAlignedBB.fromBounds(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1.0D, 1.0D, 1.0D));
 			for(EntityBlockSittable entitytocheck : listEMB)
 			{
 				if((entitytocheck.blockPosX == x) && (entitytocheck.blockPosY == y) && (entitytocheck.blockPosZ == z))

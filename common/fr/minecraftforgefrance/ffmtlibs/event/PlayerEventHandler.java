@@ -1,6 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -12,16 +11,16 @@ import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.event.entity.EntityEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PlayerEventHandler
@@ -29,7 +28,6 @@ public class PlayerEventHandler
     @SubscribeEvent
     public void onPlayerRender(RenderPlayerEvent.Specials.Pre event)
     {
-        if(event.entityPlayer.getCommandSenderName() != null && !event.entityPlayer.getCommandSenderName().isEmpty() && !event.entityPlayer.isInvisible() && !FFMTLibs.hideHat)
         {
             if(Loader.isModLoaded("nhg"))
             {
@@ -51,19 +49,19 @@ public class PlayerEventHandler
             FFMTCustomPlayerProp player = FFMTCustomPlayerProp.get(event.entityPlayer);
             if(player.downloadImageHat == null)
             {
-                player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getCommandSenderName()), event.entityPlayer.getCommandSenderName());
+                player.downloadImageHat = player.getDownloadImageHat(player.getLocationHat(event.entityPlayer.getDisplayNameString()), event.entityPlayer.getDisplayNameString());
             }
             if(player.particle == null)
             {
-                player.particle = player.getDownloadListHat(event.entityPlayer.getCommandSenderName());
+                player.particle = player.getDownloadListHat(event.entityPlayer.getDisplayNameString());
             }
             if(player.model == null)
             {
-                player.model = player.getDownloadListModelHat(event.entityPlayer.getCommandSenderName());
+                player.model = player.getDownloadListModelHat(event.entityPlayer.getDisplayNameString());
             }
             if(player.getTextureHat().isTextureUploaded() && player.particle.isTextDownloaded() && player.model.isTextDownloaded())
             {
-                Minecraft.getMinecraft().renderEngine.bindTexture(player.getLocationHat(event.entityPlayer.getCommandSenderName()));
+                Minecraft.getMinecraft().renderEngine.bindTexture(player.getLocationHat(event.entityPlayer.getDisplayNameString()));
                 ModelBiped biped = ObfuscationReflectionHelper.getPrivateValue(RenderPlayer.class, event.renderer, 1);
                 ModelHat hat = new ModelHat(biped, player.model.getValue());
 
@@ -112,7 +110,8 @@ public class PlayerEventHandler
                 {
                     for(String particles : player.particle.getValue())
                     {
-                        event.entityPlayer.worldObj.spawnParticle(particles, event.entityPlayer.posX - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posY + 1.0F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posZ - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), 0.0F, 0.2F, 0.0F);
+                    	//TODO fix particles
+                        event.entityPlayer.worldObj.spawnParticle(EnumParticleTypes.BARRIER, event.entityPlayer.posX - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posY + 1.0F + event.entityPlayer.worldObj.rand.nextFloat(), event.entityPlayer.posZ - 0.5F + event.entityPlayer.worldObj.rand.nextFloat(), 0.0F, 0.2F, 0.0F);
                     }
                 }
             }

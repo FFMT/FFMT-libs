@@ -1,18 +1,20 @@
 package fr.minecraftforgefrance.ffmtlibs.client.gui;
 
+import java.io.IOException;
+
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiScreenSliderBase extends GuiScreen
 {
 	private GuiButton selectedButton;
-
-	protected void mouseClicked(int x, int y, int action)
+	@Override
+	protected void mouseClicked(int x, int y, int action) throws IOException
 	{
 		super.mouseClicked(x, y, action);
 		if(action == 0)
@@ -24,19 +26,19 @@ public abstract class GuiScreenSliderBase extends GuiScreen
 				if(guibutton.mousePressed(this.mc, x, y) && guibutton instanceof GuiSliderForContainer)
 				{
 					this.selectedButton = guibutton;
-					this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
+					this.mc.getSoundHandler().playSound(PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0F));
 					this.actionPerformed(guibutton);
 				}
 			}
 		}
 	}
-
-	protected void mouseMovedOrUp(int x, int y, int id)
+	@Override
+	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
 	{
-		super.mouseMovedOrUp(x, y, id);
-		if(this.selectedButton != null && id == 0)
+		super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
+		if(this.selectedButton != null && clickedMouseButton == 0)
 		{
-			this.selectedButton.mouseReleased(x, y);
+			this.selectedButton.mouseReleased(mouseX, mouseY);
 			this.selectedButton = null;
 		}
 	}

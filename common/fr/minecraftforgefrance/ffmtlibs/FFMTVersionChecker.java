@@ -7,12 +7,13 @@ import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import com.google.common.io.InputSupplier;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import fr.minecraftforgefrance.ffmtlibs.event.VersionCheckerPlayerEventHandler;
 
 /**

@@ -14,67 +14,81 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityHelper
 {
 
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
-	 * 
+	 *
 	 * @param speed
 	 * @param entity
 	 * @param velX
 	 * @param velY
 	 * @param velZ
 	 */
-	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ)
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ, int... something)// TODO
+																																	// find
 	{
-		for(int i = 0; i < speed; i++)
-		{
-			entity.worldObj.spawnParticle("smoke", entity.posX, entity.posY, entity.posZ, velX, velY, velZ);
-		}
+		spawnSmokeParticles(speed, entity, velX, velY, velZ, 0, 0, 0, something);
 	}
 
 	/**
 	 * Spawn smoke particles(ENTITY ONLY)
-	 * 
+	 *
 	 * @param speed
 	 * @param entity
 	 * @param xVel
 	 * @param yVel
 	 * @param zVel
-	 * @param xPosition (If not specified, by default is 0)
-	 * @param yPosition (If not specified, by default is 0)
-	 * @param zPosition (If not specified, by default is 0)
+	 * @param xPosition
+	 *            (If not specified, by default is 0)
+	 * @param yPosition
+	 *            (If not specified, by default is 0)
+	 * @param zPosition
+	 *            (If not specified, by default is 0)
 	 */
-	public static void spawnSmokeParticles(int speed, EntityLiving entity, double xVel, double yVel, double zVel, double xPosition, double yPosition, double zPosition)
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, double xVel, double yVel, double zVel, double xPosition, double yPosition, double zPosition, int... something)
 	{
 		for(int i = 0; i < speed; i++)
 		{
-			entity.worldObj.spawnParticle("smoke", entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel);
+			entity.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel, something);
 		}
 	}
 
 	/**
 	 * Add a mob too easy
-	 * 
-	 * @param entityClass (The entity class)
-	 * @param entityName (The entity name)
-	 * @param id (The entity ID)
-	 * @param mod (Mod instance)
-	 * @param trackingRange (Number of tracking range)
-	 * @param updateFrequency (Number update frequency)
-	 * @param sendsVelocityUpdates (Send velocity updates or not)
-	 * @param backGroundEggColour (Background egg color)
-	 * @param foreGroundEggColour (Foreground egg color)
-	 * @param weightedProb (Chance to spawn)
-	 * @param minSpawn (Minimum spawn per chunk)
-	 * @param maxSpawn (Maximum spawn per chunk)
+	 *
+	 * @param entityClass
+	 *            (The entity class)
+	 * @param entityName
+	 *            (The entity name)
+	 * @param id
+	 *            (The entity ID)
+	 * @param mod
+	 *            (Mod instance)
+	 * @param trackingRange
+	 *            (Number of tracking range)
+	 * @param updateFrequency
+	 *            (Number update frequency)
+	 * @param sendsVelocityUpdates
+	 *            (Send velocity updates or not)
+	 * @param backGroundEggColour
+	 *            (Background egg color)
+	 * @param foreGroundEggColour
+	 *            (Foreground egg color)
+	 * @param weightedProb
+	 *            (Chance to spawn)
+	 * @param minSpawn
+	 *            (Minimum spawn per chunk)
+	 * @param maxSpawn
+	 *            (Maximum spawn per chunk)
 	 */
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
 	{
@@ -85,20 +99,34 @@ public class EntityHelper
 
 	/**
 	 * Add a mob too easy
-	 * 
-	 * @param entityClass (The entity class)
-	 * @param entityName (The entity name)
-	 * @param id (The entity ID)
-	 * @param mod (Mod instance)
-	 * @param trackingRange (Number of tracking range)
-	 * @param updateFrequency (Number update frequency)
-	 * @param sendsVelocityUpdates (Send velocity updates or not)
-	 * @param backGroundEggColour (Background egg color)
-	 * @param foreGroundEggColour (Foreground egg color)
-	 * @param weightedProb (Chance to spawn)
-	 * @param minSpawn (Minimum spawn per chunk)
-	 * @param maxSpawn (Maximum spawn per chunk)
-	 * @param biome (Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
+	 *
+	 * @param entityClass
+	 *            (The entity class)
+	 * @param entityName
+	 *            (The entity name)
+	 * @param id
+	 *            (The entity ID)
+	 * @param mod
+	 *            (Mod instance)
+	 * @param trackingRange
+	 *            (Number of tracking range)
+	 * @param updateFrequency
+	 *            (Number update frequency)
+	 * @param sendsVelocityUpdates
+	 *            (Send velocity updates or not)
+	 * @param backGroundEggColour
+	 *            (Background egg color)
+	 * @param foreGroundEggColour
+	 *            (Foreground egg color)
+	 * @param weightedProb
+	 *            (Chance to spawn)
+	 * @param minSpawn
+	 *            (Minimum spawn per chunk)
+	 * @param maxSpawn
+	 *            (Maximum spawn per chunk)
+	 * @param biome
+	 *            (Biome where you want to spawn the mob)(If not specified, this
+	 *            mob doesn't spawn naturally)
 	 */
 	public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, BiomeGenBase... biome)
 	{
@@ -108,53 +136,61 @@ public class EntityHelper
 	}
 
 	/**
-	 * Set custom attack target ! (PUT THIS FUNCTION IN updateEntityActionState() METHOD !!!!)
-	 * 
-	 * @param world ("worldObj" from the entity)
-	 * @param entityHostAttack (The entity host the attack(like a entity instance))
-	 * @param classToAttack (The entity to attack)
+	 * Set custom attack target ! (PUT THIS FUNCTION IN
+	 * updateEntityActionState() METHOD !!!!)
+	 *
+	 * @param world
+	 *            ("worldObj" from the entity)
+	 * @param entityHostAttack
+	 *            (The entity host the attack(like a entity instance))
+	 * @param classToAttack
+	 *            (The entity to attack)
 	 * @author elias54
 	 **/
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
 	{
-		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.boundingBox.getBoundingBox(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
-		for(int i = 0; i< list.size(); i++)
+		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.getBoundingBox().fromBounds(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+		for(int i = 0; i < list.size(); i++)
 		{
-			Entity entityToAttack = (Entity)list.get(world.rand.nextInt(i));
+			EntityLivingBase entityToAttack = (EntityLivingBase)list.get(world.rand.nextInt(i));
 			if(!list.isEmpty())
 			{
-				entityHostAttack.setTarget(entityToAttack);
+				entityHostAttack.setAttackTarget(entityToAttack);
 			}
 		}
 	}
-	
+
 	/**
 	 * Return if the entity is in water
-	 * 
-	 * @param entity (Entity instance)
+	 *
+	 * @param entity
+	 *            (Entity instance)
 	 * @author elias54
 	 */
 	public static boolean inWater(Entity entity)
 	{
-		return entity.worldObj.isMaterialInBB(entity.boundingBox, Material.water);
+		return entity.worldObj.isMaterialInBB(entity.getBoundingBox(), Material.water);
 	}
 
 	/**
 	 * Return if the entity is in specified material
-	 * 
-	 * @param entity (Entity instance)
-	 * @param material (e.g Material.rock)
+	 *
+	 * @param entity
+	 *            (Entity instance)
+	 * @param material
+	 *            (e.g Material.rock)
 	 * @author elias54
 	 */
 	public static boolean isInMaterial(Entity entity, Material material)
 	{
-		return entity.worldObj.isMaterialInBB(entity.boundingBox, material);
+		return entity.worldObj.isMaterialInBB(entity.getBoundingBox(), material);
 	}
 
 	/**
 	 * This is just the famous "onGround" provide from the class Entity
-	 * 
-	 * @param entity (Entity instance)
+	 *
+	 * @param entity
+	 *            (Entity instance)
 	 * @author elias54
 	 */
 	public static boolean entityOnGround(Entity entity)
@@ -164,9 +200,11 @@ public class EntityHelper
 
 	/**
 	 * Throw entity problem exception
-	 * 
-	 * @param message (Your message exception)
-	 * @param throwable (The Throwable instance)
+	 *
+	 * @param message
+	 *            (Your message exception)
+	 * @param throwable
+	 *            (The Throwable instance)
 	 * @author elias54
 	 */
 	public static void throwEntityException(String message, Throwable throwable)
@@ -177,9 +215,11 @@ public class EntityHelper
 
 	/**
 	 * Remove current listed loaded entity
-	 * 
-	 * @param world (Use worldObj entity)
-	 * @param entityToRemove (Entity to remove)
+	 *
+	 * @param world
+	 *            (Use worldObj entity)
+	 * @param entityToRemove
+	 *            (Entity to remove)
 	 * @author elias54
 	 */
 	public static void removeLoadedEntityList(World world, Entity entityToRemove)
@@ -193,26 +233,37 @@ public class EntityHelper
 
 	/**
 	 * Set infinite health to specified entity
-	 * 
-	 * @param entity (entity to set infinite health)
+	 *
+	 * @param entity
+	 *            (entity to set infinite health)
 	 * @author elias54
 	 */
 	public static void setInfiniteHealth(EntityLivingBase entity)
 	{
 		entity.setHealth(Float.POSITIVE_INFINITY);
 	}
+
 	/**
 	 * Spawn a firework with specified values
+	 *
 	 * @param world
-	 * @param x coord
-	 * @param y coord
-	 * @param z coord
-	 * @param type 0 = normal, 1 = large ball, 2 = star shaped, 3 = creeper face, 4 = burst
+	 * @param x
+	 *            coord
+	 * @param y
+	 *            coord
+	 * @param z
+	 *            coord
+	 * @param type
+	 *            0 = normal, 1 = large ball, 2 = star shaped, 3 = creeper face,
+	 *            4 = burst
 	 * @param flicker
 	 * @param trail
-	 * @param colorAmount = number of colors
-	 * @param colors = new int[colorAmount], with all different colors
-	 * @param flight time before explode 0 = short, 1 = medium, 2 = long
+	 * @param colorAmount
+	 *            = number of colors
+	 * @param colors
+	 *            = new int[colorAmount], with all different colors
+	 * @param flight
+	 *            time before explode 0 = short, 1 = medium, 2 = long
 	 */
 	public static void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
 	{

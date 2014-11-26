@@ -2,7 +2,7 @@ package fr.minecraftforgefrance.ffmtlibs.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public abstract class ConnectTextureBlock extends Block
@@ -19,7 +19,7 @@ public abstract class ConnectTextureBlock extends Block
 
 	/**
 	 * Determine the id for texture array
-	 * 
+	 *
 	 * @author Phenix246
 	 * @param world instance of the world
 	 * @param x coord x
@@ -419,21 +419,21 @@ public abstract class ConnectTextureBlock extends Block
 
 	public boolean canConnect(IBlockAccess world, int[] coord, Block block, int damage)
 	{
-		if(world.getBlock(coord[0], coord[1], coord[2]) == block && world.getBlockMetadata(coord[0], coord[1], coord[2]) == damage)
+		if(world.getBlockState(new BlockPos(coord[0], coord[1], coord[2])).getBlock() == block /*&& world.getBlockMetadata(coord[0], coord[1], coord[2]) == damage*/)//TODO
 		{
 			return true;
 		}
 		return false;
 	}
 
-	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
-	{
-		return this.getIconArray()[this.getTexturefromSide(world, x, y, z, world.getBlockMetadata(x, y, z), side, this)];
-	}
+//	@Override //TODO find new
+//	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
+//	{
+//		return this.getIconArray()[this.getTexturefromSide(world, x, y, z, world.getBlockMetadata(x, y, z), side, this)];
+//	}
 
 	/**
 	 * @return your array with all icon. To register yours icons, use {@link ConnectTextureBlock#iconName}
 	 */
-	public abstract IIcon[] getIconArray();
+//	public abstract IIcon[] getIconArray();
 }

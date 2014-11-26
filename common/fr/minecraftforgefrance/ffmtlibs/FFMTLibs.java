@@ -2,20 +2,18 @@ package fr.minecraftforgefrance.ffmtlibs;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import fr.minecraftforgefrance.ffmtlibs.block.EntityBlockSittable;
-import fr.minecraftforgefrance.ffmtlibs.client.renderer.TESRInventoryRenderHandler;
 import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
 
@@ -43,9 +41,9 @@ public class FFMTLibs
 		EntityRegistry.registerModEntity(EntityBlockSittable.class, "EntityFFMTBlockSittable", 1, this, 500, 5, false);
 		if(event.getSide().isClient())
 		{
-			FFMTClientRegistry.tesrRenderId = RenderingRegistry.getNextAvailableRenderId();
-			RenderingRegistry.registerBlockHandler(new TESRInventoryRenderHandler());
-
+//			FFMTClientRegistry.tesrRenderId = RenderingRegistry.getNextAvailableRenderId();
+//			RenderingRegistry.registerBlockHandler(new TESRInventoryRenderHandler());
+//TODO wait for render or find new
 			MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
 			FMLCommonHandler.instance().bus().register(new ConfigEventHandler());
 		}

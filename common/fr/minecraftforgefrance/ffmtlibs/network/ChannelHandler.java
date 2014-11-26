@@ -1,18 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.network;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelHandler.Sharable;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
-import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraftforge.fml.common.network.FMLIndexedMessageToMessageCodec;
 
 @Sharable
 public class ChannelHandler extends FMLIndexedMessageToMessageCodec<FFMTPacket>
