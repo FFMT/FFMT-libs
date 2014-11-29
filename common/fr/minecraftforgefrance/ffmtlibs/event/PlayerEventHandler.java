@@ -140,8 +140,8 @@ public class PlayerEventHandler
     {
         if(event.entity instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer)event.entity;
-            player.registerExtendedProperties(FFMTCustomPlayerProp.ENTITY_PROP_NAME, new FFMTCustomPlayerProp(player));
+            EntityPlayer player = (EntityPlayer)event.entity;//TODO Fix crash
+            //player.registerExtendedProperties(FFMTCustomPlayerProp.ENTITY_PROP_NAME, new FFMTCustomPlayerProp(player));
         }
     }
 

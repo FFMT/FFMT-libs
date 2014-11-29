@@ -419,6 +419,7 @@ public class GuiHelper
         GL11.glShadeModel(GL11.GL_SMOOTH);
     	Tessellator tess = Tessellator.getInstance();
     	WorldRenderer worldrenderer = tess.getWorldRenderer();
+    	worldrenderer.startDrawingQuads();
     	worldrenderer.func_178960_a(f1, f2, f3, f);//old: setColorRGBA_F
     	worldrenderer.addVertex(par3, par2, zLevel);
     	worldrenderer.addVertex(par1, par2, zLevel);
