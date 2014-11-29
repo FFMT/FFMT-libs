@@ -33,10 +33,10 @@ public class EntityHelper
 	 * @param velY
 	 * @param velZ
 	 */
-	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ, int... something)// TODO
+	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ)
 																																	// find
 	{
-		spawnSmokeParticles(speed, entity, velX, velY, velZ, 0, 0, 0, something);
+		spawnSmokeParticles(speed, entity, velX, velY, velZ, 0, 0, 0, new int[0]);
 	}
 
 	/**

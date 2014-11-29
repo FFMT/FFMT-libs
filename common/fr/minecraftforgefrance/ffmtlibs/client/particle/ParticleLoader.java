@@ -35,7 +35,7 @@ public class ParticleLoader
 	 *
 	 * @author elias54
 	 */
-	public static void spawnParticle(boolean customParticle, EnumParticleTypes particleNameIfVanilla, World world, Entity entity, double x, double y, double z, double motx, double moty, double motz, float gravity, float scale, String textureLocation, int ... something)//TODO find
+	public static void spawnParticle(boolean customParticle, EnumParticleTypes particleNameIfVanilla, World world, Entity entity, double x, double y, double z, double motx, double moty, double motz, float gravity, float scale, String textureLocation, int ... blockId)
 	{
 		EntityCustomFX customFX = null;
 		if(customParticle)
@@ -44,7 +44,7 @@ public class ParticleLoader
 		}
 		else
 		{
-			world.spawnParticle(particleNameIfVanilla, x, y, z, motx, moty, motz, something);
+			world.spawnParticle(particleNameIfVanilla, x, y, z, motx, moty, motz, blockId);
 		}
 		mcInstance.effectRenderer.addEffect(customFX);
 	}

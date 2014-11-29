@@ -23,10 +23,10 @@ public class BlockHelper
 	 * @param velX Velocity on X-axis
 	 * @param velY Velocity on Y-axis
 	 * @param velZ Velocity on Z-axis
-	 * @param something need to find TODO
+	 * @param ids of blocks (for texture)
 	 */
 	@SideOnly(Side.CLIENT)
-	public static void spawnParticles(int speed, EnumParticleTypes particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ, int ... something)//TODO find
+	public static void spawnParticles(int speed, EnumParticleTypes particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ, int ... blockId)
 	{
 		float x = (float)posX + random.nextFloat();
 		float y = (float)posY + random.nextFloat() * 0.1F;
@@ -34,7 +34,7 @@ public class BlockHelper
 
 		for(int i = 0; i < speed; i++)
 		{
-			world.spawnParticle(particles, (double)x, (double)y, (double)z, velX, velY, velZ, something);
+			world.spawnParticle(particles, (double)x, (double)y, (double)z, velX, velY, velZ, blockId);
 		}
 	}
 

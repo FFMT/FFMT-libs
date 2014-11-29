@@ -31,19 +31,20 @@ public class EntityCustomFX extends EntityFX
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
 		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-//		worldrenderer.setBrightness(getBrightnessForRender(f));//TODO find new
+		worldrenderer.startDrawingQuads();
+//		worldrenderer.setBrightness(getBrightnessForRender(f));//Apparently do not exist anymore
 		float scale = 0.1F*particleScale;
 		float x = (float) (prevPosX + (prevPosX - posX) * f - interpPosX),
 			  y = (float) (prevPosY + (prevPosY - posY) * f - interpPosY),
 			  z = (float) (prevPosZ + (prevPosZ - posZ) * f - interpPosZ);
 		float f14 = getBrightness(f);
 		worldrenderer.setTranslation(0F, 0F, 0F);
-//		worldrenderer.setColorOpaque_F(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);//TODO find new
+		worldrenderer.func_178986_b(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);//old setColorOpaque_F
 		worldrenderer.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
 		worldrenderer.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
 		worldrenderer.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);
 		worldrenderer.addVertexWithUV(x + f1 * scale - f4 * scale, y - f2 * scale, z + f3 * scale - f5 * scale, 0, 1);
-		worldrenderer.draw();
+		tessellator.draw();
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDepthMask(true);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
