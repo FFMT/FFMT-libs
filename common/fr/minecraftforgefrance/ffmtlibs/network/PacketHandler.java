@@ -33,7 +33,7 @@ public class PacketHandler extends SimpleChannelInboundHandler<FFMTPacket>
 			break;
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	private EntityPlayer getClientPlayer()
 	{
