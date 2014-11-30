@@ -33,7 +33,7 @@ else {
 }
 
 minecraft {
-    version = "1.8-11.14.0.1245-1.8"
+    version = "1.8-11.14.0.1246-1.8"
     runDir = "build"
 	
     replace '@VERSION@', project.version
