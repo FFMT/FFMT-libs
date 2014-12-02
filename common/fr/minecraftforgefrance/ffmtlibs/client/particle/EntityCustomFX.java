@@ -39,7 +39,7 @@ public class EntityCustomFX extends EntityFX
 			  z = (float) (prevPosZ + (prevPosZ - posZ) * f - interpPosZ);
 		float f14 = getBrightness(f);
 		worldrenderer.setTranslation(0F, 0F, 0F);
-		worldrenderer.func_178986_b(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);//old setColorOpaque_F
+		worldrenderer.setColorOpaque_F(f14 * particleRed, f14 * particleGreen, f14 * particleBlue);
 		worldrenderer.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
 		worldrenderer.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
 		worldrenderer.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);

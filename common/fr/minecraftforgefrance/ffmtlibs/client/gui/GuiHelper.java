@@ -199,11 +199,12 @@ public class GuiHelper
     {
     	Tessellator tess = Tessellator.getInstance();
     	WorldRenderer worldrenderer = tess.getWorldRenderer();
+    	worldrenderer.startDrawingQuads();
     	worldrenderer.addVertexWithUV(x0, y0, zLevel, xto, yte);
     	worldrenderer.addVertexWithUV(x1, y1, zLevel, xte, yte);
     	worldrenderer.addVertexWithUV(x2, y2, zLevel, xte, yto);
     	worldrenderer.addVertexWithUV(x3, y3, zLevel, xto, yto);
-    	worldrenderer.draw();
+    	tess.draw();
     }
 
     /**
@@ -420,13 +421,13 @@ public class GuiHelper
     	Tessellator tess = Tessellator.getInstance();
     	WorldRenderer worldrenderer = tess.getWorldRenderer();
     	worldrenderer.startDrawingQuads();
-    	worldrenderer.func_178960_a(f1, f2, f3, f);//old: setColorRGBA_F
+    	worldrenderer.setColorRGBA_F(f1, f2, f3, f);
     	worldrenderer.addVertex(par3, par2, zLevel);
     	worldrenderer.addVertex(par1, par2, zLevel);
-    	worldrenderer.func_178960_a(f5, f6, f7, f4);
+    	worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
     	worldrenderer.addVertex(par1, par4, zLevel);
     	worldrenderer.addVertex(par3, par4, zLevel);
-        worldrenderer.draw();
+    	tess.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
