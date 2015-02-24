@@ -17,7 +17,7 @@ import fr.minecraftforgefrance.ffmtlibs.block.EntityBlockSittable;
 import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
 
-@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory")
+@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "[@VERSION@],["+ FFMTVersionChecker.DEV_VERSION + "]")
 /**
  * @authors kevin_68, elias54, robin4002
  */

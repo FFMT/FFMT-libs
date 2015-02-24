@@ -21,8 +21,14 @@ import fr.minecraftforgefrance.ffmtlibs.event.VersionCheckerPlayerEventHandler;
  */
 public class FFMTVersionChecker
 {
+    public static final String DEV_VERSION = "@VERSION@";
+
 	public static void check(String versionUrl, String downloadUrl, String modName, String currentVersion)
 	{
+	    if(currentVersion.equals(DEV_VERSION))
+	    {
+	        return;
+	    }
 		List<String> versionList = getRemoteFile(versionUrl);
 		if(versionList.isEmpty())
 		{
