@@ -1,6 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -50,11 +51,20 @@ public class FFMTLibs
         {
             MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
             FMLCommonHandler.instance().bus().register(new ConfigEventHandler());
-            RenderPlayer renderPlayer = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, Minecraft.getMinecraft().getRenderManager(), "playerRenderer", "field_178637_m");
-            List layerRenderers = ObfuscationReflectionHelper.getPrivateValue(RendererLivingEntity.class, renderPlayer, "layerRenderers", "field_177097_h");
-            layerRenderers.add(new LayerHat(renderPlayer));
+            Map<String, RenderPlayer> skins = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, Minecraft.getMinecraft().getRenderManager(), 1);
+            for(RenderPlayer renderPlayer : skins.values())
+                updateRenderPlayer(renderPlayer);
         }
     }
+
+    private void updateRenderPlayer(RenderPlayer renderPlayer)
+    {
+        List layerRenderers = ObfuscationReflectionHelper.getPrivateValue(RendererLivingEntity.class, renderPlayer, "layerRenderers", "field_177097_h");
+        LayerHat hat = new LayerHat(renderPlayer);
+        System.out.println(hat);
+        layerRenderers.add(hat);
+    }
+
 
     public static void syncConfig()
     {
