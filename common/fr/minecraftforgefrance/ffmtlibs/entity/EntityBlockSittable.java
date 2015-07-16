@@ -1,4 +1,4 @@
-package fr.minecraftforgefrance.ffmtlibs.block;
+package fr.minecraftforgefrance.ffmtlibs.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 
 public class EntityBlockSittable extends Entity
 {
-	protected int blockPosX;
-	protected int blockPosY;
-	protected int blockPosZ;
+	public int blockPosX;
+	public int blockPosY;
+	public int blockPosZ;
 
 	public EntityBlockSittable(World world)
 	{

@@ -2,9 +2,9 @@ package fr.minecraftforgefrance.ffmtlibs.event;
 
 public class ModelRenderEntry
 {
-	private static int texX, texY, dimX, dimY, dimZ, texWidth, texHeight, var, operation, axe;
-	private static float posX, posY, posZ, rotaX, rotaY, rotaZ, value;
-	private static boolean isMirror, followHead;
+	private int texX, texY, dimX, dimY, dimZ, texWidth, texHeight, var, operation, axe;
+	private float posX, posY, posZ, rotaX, rotaY, rotaZ, value;
+	private boolean isMirror, followHead;
 
 	public ModelRenderEntry(int texX, int texY, float posX, float posY, float posZ, int dimX, int dimY, int dimZ, float rotaX, float rotaY, float rotaZ, int texWidth, int texHeight, boolean isMirror, boolean followHead, int var, int operation, float value, int axe)
 	{
@@ -29,29 +29,29 @@ public class ModelRenderEntry
 		this.axe = axe;
 	}
 	
-	public static Box getBox()
+	public Box getBox()
 	{
-		return new Box(posX, posY, posZ, dimX, dimY, dimZ);
+		return new Box(this.posX, this.posY, this.posZ, this.dimX, this.dimY, this.dimZ);
 	}
 	
-	public static int[] texture()
+	public int[] texture()
 	{
-		return new int[] {texX, texY, texWidth, texHeight};
+		return new int[] {this.texX, this.texY, this.texWidth, this.texHeight};
 	}
 	
-	public static float[] rotation()
+	public float[] rotation()
 	{
-		return new float[] {rotaX, rotaY, rotaZ};
+		return new float[] {this.rotaX, this.rotaY, this.rotaZ};
 	}
 	
-	public static boolean mirror()
+	public boolean mirror()
 	{
-		return isMirror;
+		return this.isMirror;
 	}
 	
-	public static ModelRotation getModelRota()
+	public ModelRotation getModelRota()
 	{
-		return new ModelRotation(followHead, var, operation, value, axe);
+		return new ModelRotation(this.followHead, this.var, this.operation, this.value, this.axe);
 	}
 	
 	public static class Box
@@ -71,30 +71,30 @@ public class ModelRenderEntry
 		
 		public int dimX()
 		{
-			return dimX;
+			return this.dimX;
 		}
 		
 		public int dimY()
 		{
-			return dimY;
+			return this.dimY;
 		}
 		
 		public int dimZ()
 		{
-			return dimZ;
+			return this.dimZ;
 		}
 		
 		public float posX()
 		{
-			return posX;
+			return this.posX;
 		}
 		public float posY()
 		{
-			return posY;
+			return this.posY;
 		}
 		public float posZ()
 		{
-			return posZ;
+			return this.posZ;
 		}
 	}
 	
@@ -115,27 +115,27 @@ public class ModelRenderEntry
 		
 		public int operation()
 		{
-			return operation;
+			return this.operation;
 		}
 		
 		public int var()
 		{
-			return var;
+			return this.var;
 		}
 		
 		public float value()
 		{
-			return value;
+			return this.value;
 		}
 		
 		public boolean followHead()
 		{
-			return followHead;
+			return this.followHead;
 		}
 		
 		public int axe()
 		{
-			return axe;
+			return this.axe;
 		}
 	}
 }

@@ -37,16 +37,16 @@ public class GuiMultipleOptionButton extends GuiButton
 
     public void next()
     {
-        currentState++;
-        if(currentState >= changTxt.length)
+        this.currentState++;
+        if(this.currentState >= this.changTxt.length)
         {
-            currentState = 0;
+            this.currentState = 0;
         }
     }
 
     public int getState()
     {
-        return currentState;
+        return this.currentState;
     }
 
     @Override
@@ -72,18 +72,18 @@ public class GuiMultipleOptionButton extends GuiButton
         if(this.visible)
         {
             FontRenderer fontrenderer = mc.fontRendererObj;
-            mc.getTextureManager().bindTexture(buttonTex);
+            mc.getTextureManager().bindTexture(this.buttonTex);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.hovered = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
             int k = this.getHoverState(this.hovered);
             GL11.glEnable(GL11.GL_BLEND);
             OpenGlHelper.glBlendFunc(770, 771, 1, 0);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, yTex + (useHoverState ? (k * 20) : 0), this.width / 2, this.height);
-            this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, yTex + (useHoverState ? (k * 20) : 0), this.width / 2, this.height);
+            this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, this.yTex + (this.useHoverState ? (k * 20) : 0), this.width / 2, this.height);
+            this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, this.yTex + (this.useHoverState ? (k * 20) : 0), this.width / 2, this.height);
             this.mouseDragged(mc, x, y);
             int l = 14737632;
-            String str = this.displayString + this.changTxt[currentState];
+            String str = this.displayString + this.changTxt[this.currentState];
             if(!this.enabled)
             {
                 l = -6250336;

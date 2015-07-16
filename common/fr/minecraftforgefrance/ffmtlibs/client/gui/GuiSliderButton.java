@@ -63,14 +63,14 @@ public class GuiSliderButton extends GuiButton
                 this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
                 this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
 
-                iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
-                this.displayString = iSliderButton.getSliderName(this.sliderId, this.sliderValue);
+                this.iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
+                this.displayString = this.iSliderButton.getSliderName(this.sliderId, this.sliderValue);
             }
 
-            mc.getTextureManager().bindTexture(texture);
+            mc.getTextureManager().bindTexture(this.texture);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            this.drawTexturedModalRect(this.xPosition + (int)(this.sliderValue * (this.width - 8)), this.yPosition, 0, yTexBackGround == -1 ? 66 : yTexBackGround, 4, 20);
-            this.drawTexturedModalRect(this.xPosition + (int)(this.sliderValue * (this.width - 8)) + 4, this.yPosition, 196, yTexBackGround == -1 ? 66 : yTexBackGround, 4, 20);
+            this.drawTexturedModalRect(this.xPosition + (int)(this.sliderValue * (this.width - 8)), this.yPosition, 0, this.yTexBackGround == -1 ? 66 : this.yTexBackGround, 4, 20);
+            this.drawTexturedModalRect(this.xPosition + (int)(this.sliderValue * (this.width - 8)) + 4, this.yPosition, 196, this.yTexBackGround == -1 ? 66 : this.yTexBackGround, 4, 20);
         }
     }
 
@@ -82,8 +82,8 @@ public class GuiSliderButton extends GuiButton
             this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
             this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
 
-            iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
-            this.displayString = iSliderButton.getSliderName(this.sliderId, this.sliderValue);
+            this.iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
+            this.displayString = this.iSliderButton.getSliderName(this.sliderId, this.sliderValue);
             this.dragging = true;
             return true;
         }

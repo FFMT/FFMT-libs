@@ -2,6 +2,7 @@ package fr.minecraftforgefrance.ffmtlibs.block;
 
 import java.util.List;
 
+import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

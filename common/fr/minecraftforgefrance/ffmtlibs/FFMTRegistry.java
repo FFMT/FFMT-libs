@@ -201,11 +201,11 @@ public class FFMTRegistry
 	 * @param creativeTabs
 	 */
 	public static void addAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, Item repair, CreativeTabs creativeTabs)
-	{//TODO fix if needed
-		helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet")/*.setTextureName(modid + ":" + name + "_helmet")*/.setCreativeTab(creativeTabs);
-		chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate")/*.setTextureName(modid + ":" + name + "_chestplate")*/.setCreativeTab(creativeTabs);
-		leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings")/*.setTextureName(modid + ":" + name + "_leggings")*/.setCreativeTab(creativeTabs);
-		boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots")/*.setTextureName(modid + ":" + name + "_boots")*/.setCreativeTab(creativeTabs);
+	{
+		helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setCreativeTab(creativeTabs);
+		chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setCreativeTab(creativeTabs);
+		leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setCreativeTab(creativeTabs);
+		boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setCreativeTab(creativeTabs);
 	}
 
 	/**
@@ -238,12 +238,12 @@ public class FFMTRegistry
 	 * @param creativeTabs
 	 */
 	public static void addAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, Item repair, CreativeTabs creativeTabs)
-	{//TODO fix if needed
-		sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword")/*.setTextureName(modid + ":" + name + "_sword")*/.setCreativeTab(creativeTabs);
-		pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe")/*.setTextureName(modid + ":" + name + "_pickaxe")*/.setCreativeTab(creativeTabs);
-		axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe")/*.setTextureName(modid + ":" + name + "_axe")*/.setCreativeTab(creativeTabs);
-		shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel")/*.setTextureName(modid + ":" + name + "shovel")*/.setCreativeTab(creativeTabs);
-		hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe")/*.setTextureName(modid + ":" + name + "_hoe")*/.setCreativeTab(creativeTabs);
+	{
+		sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setCreativeTab(creativeTabs);
+		pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setCreativeTab(creativeTabs);
+		axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setCreativeTab(creativeTabs);
+		shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setCreativeTab(creativeTabs);
+		hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setCreativeTab(creativeTabs);
 	}
 
 	/**

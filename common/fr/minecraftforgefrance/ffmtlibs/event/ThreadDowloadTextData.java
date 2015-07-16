@@ -74,7 +74,7 @@ public class ThreadDowloadTextData
 
 	public boolean isTextDownloaded()
 	{
-		return value != null;
+		return this.value != null;
 	}
 
 	public List<String> getValue()

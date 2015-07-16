@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -47,15 +48,15 @@ public class BlockHelper
 	 * @param living - the living's object
 	 * @return BlockCoords with the position of the block. Warning, if the block isn't found, the value will be null
 	 */
+	@SideOnly(Side.CLIENT)
 	public static BlockPos getBlockInSight(int distance, EntityLivingBase living)
-	{
-		//TODO find new
-//		MovingObjectPosition objectMouseOver = living.rayTrace(distance, 1);
-//
-//		if(objectMouseOver != null && objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-//		{
-//			return new BlockCoords(objectMouseOver.blockX, objectMouseOver.blockY, objectMouseOver.blockZ);
-//		}
+	{  
+		MovingObjectPosition objectMouseOver = living.rayTrace(distance, 1);
+
+		if(objectMouseOver != null && objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+		{
+		    return objectMouseOver.getBlockPos();
+		}
 		return null;
 	}
 }

@@ -11,8 +11,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 
 import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
-import com.google.common.io.InputSupplier;
+import com.google.common.io.ByteSource;
 
 import fr.minecraftforgefrance.ffmtlibs.event.VersionCheckerPlayerEventHandler;
 
@@ -61,8 +60,8 @@ public class FFMTVersionChecker
 			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(5000);
 			connection.setReadTimeout(5000);
-			InputSupplier<InputStream> urlSupplier = new URLISSupplier(connection);
-			return CharStreams.readLines(CharStreams.newReaderSupplier(urlSupplier, Charsets.UTF_8));
+			ByteSource byteSource = new URLISSupplier(connection);
+			return byteSource.asCharSource(Charsets.UTF_8).readLines();
 		}
 		catch(Exception e)
 		{
@@ -71,7 +70,7 @@ public class FFMTVersionChecker
 		}
 	}
 
-	static class URLISSupplier implements InputSupplier<InputStream>
+	static class URLISSupplier extends ByteSource
 	{
 		private final URLConnection connection;
 
@@ -80,10 +79,10 @@ public class FFMTVersionChecker
 			this.connection = connection;
 		}
 
-		@Override
-		public InputStream getInput() throws IOException
-		{
-			return connection.getInputStream();
-		}
+        @Override
+        public InputStream openStream() throws IOException
+        {
+            return this.connection.getInputStream();
+        }
 	}
 }

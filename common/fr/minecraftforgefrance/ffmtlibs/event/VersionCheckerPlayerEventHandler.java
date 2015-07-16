@@ -13,19 +13,19 @@ public class VersionCheckerPlayerEventHandler
 
 	public VersionCheckerPlayerEventHandler(String modid, String last, String download)
 	{
-		outdatedMod = modid;
-		lastestVersion = last;
-		downloadURL = download;
+		this.outdatedMod = modid;
+		this.lastestVersion = last;
+		this.downloadURL = download;
 	}
 
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		if(!hasSay)
+		if(!this.hasSay)
 		{
-			event.player.addChatMessage(new ChatComponentTranslation("update.available", outdatedMod, lastestVersion));
-			event.player.addChatMessage(new ChatComponentTranslation("update.download", downloadURL));
-			hasSay = true;
+			event.player.addChatMessage(new ChatComponentTranslation("update.available", this.outdatedMod, this.lastestVersion));
+			event.player.addChatMessage(new ChatComponentTranslation("update.download", this.downloadURL));
+			this.hasSay = true;
 		}
 	}
 }

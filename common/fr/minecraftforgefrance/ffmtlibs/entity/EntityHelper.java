@@ -1,7 +1,6 @@
 package fr.minecraftforgefrance.ffmtlibs.entity;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -14,6 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -34,7 +34,6 @@ public class EntityHelper
 	 * @param velZ
 	 */
 	public static void spawnSmokeParticles(int speed, EntityLiving entity, double velX, double velY, double velZ)
-																																	// find
 	{
 		spawnSmokeParticles(speed, entity, velX, velY, velZ, 0, 0, 0, new int[0]);
 	}
@@ -149,7 +148,7 @@ public class EntityHelper
 	 **/
 	public static void targetEntity(World world, EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
 	{
-		List list = world.getEntitiesWithinAABB(classToAttack, entityHostAttack.getBoundingBox().fromBounds(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+		List list = world.getEntitiesWithinAABB(classToAttack, AxisAlignedBB.fromBounds(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
 		for(int i = 0; i < list.size(); i++)
 		{
 			EntityLivingBase entityToAttack = (EntityLivingBase)list.get(world.rand.nextInt(i));
@@ -267,7 +266,6 @@ public class EntityHelper
 	 */
 	public static void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
 	{
-		Random random = new Random();
 		ItemStack firework = new ItemStack(Items.fireworks);
 
 		NBTTagCompound mainTag = new NBTTagCompound();

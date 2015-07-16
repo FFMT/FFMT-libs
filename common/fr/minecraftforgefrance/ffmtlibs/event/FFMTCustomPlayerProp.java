@@ -1,12 +1,17 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IImageBuffer;
+import net.minecraft.client.renderer.ImageBufferDownload;
+import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
@@ -14,93 +19,108 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 {
-	public static final String ENTITY_PROP_NAME = "FFMTCustomPlayerProp";
-	private final EntityPlayer player;
+    public static final String ENTITY_PROP_NAME = "FFMTCustomPlayerProp";
 
-	public ResourceLocation locationHat;
-	public ThreadDownloadImageData downloadImageHat;
-	public ThreadDowloadTextData particle;
-	public ThreadDowloadTextData model;
+    public ResourceLocation locationHat;
+    public ThreadDownloadImageData downloadImageHat;
+    public ThreadDowloadTextData downloadParticle;
+    public ThreadDowloadTextData model;
+    public EnumParticleTypes[] particules;
 
-	public FFMTCustomPlayerProp(EntityPlayer player)
-	{
-		this.player = player;
-	}
+    @Override
+    public void saveNBTData(NBTTagCompound compound)
+    {
 
-	@Override
-	public void saveNBTData(NBTTagCompound compound)
-	{
+    }
 
-	}
+    @Override
+    public void loadNBTData(NBTTagCompound compound)
+    {
 
-	@Override
-	public void loadNBTData(NBTTagCompound compound)
-	{
+    }
 
-	}
+    @Override
+    public void init(Entity entity, World world)
+    {}
 
-	@Override
-	public void init(Entity entity, World world)
-	{
+    public static final FFMTCustomPlayerProp get(EntityPlayer player)
+    {
+        return (FFMTCustomPlayerProp)player.getExtendedProperties(ENTITY_PROP_NAME);
+    }
 
-	}
+    public ThreadDownloadImageData getTextureHat()
+    {
+        return this.downloadImageHat;
+    }
 
-	public static final FFMTCustomPlayerProp get(EntityPlayer player)
-	{
-		return (FFMTCustomPlayerProp)player.getExtendedProperties(ENTITY_PROP_NAME);
-	}
+    public ThreadDowloadTextData getDownloadListHat(String uuid)
+    {
+        return new ThreadDowloadTextData(this.getHatInfoUrl(uuid));
+    }
 
-	public ThreadDownloadImageData getTextureHat()
-	{
-		return this.downloadImageHat;
-	}
+    public ThreadDowloadTextData getDownloadListModelHat(String uuid)
+    {
+        return new ThreadDowloadTextData(this.getHatModelUrl(uuid));
+    }
 
-	public ThreadDowloadTextData getDownloadListHat(String playerName)
-	{
-		return new ThreadDowloadTextData(this.getHatInfoUrl(playerName));
-	}
+    public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String uuid)
+    {
+        TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
+        Object object = texturemanager.getTexture(resourceLocation);
 
-	public ThreadDowloadTextData getDownloadListModelHat(String playerName)
-	{
-		return new ThreadDowloadTextData(this.getHatModelUrl(playerName));
-	}
+        if(object == null)
+        {
+            object = new ThreadDownloadImageData((File)null, String.format("http://files.minecraftforgefrance.fr/hats/%s.png", StringUtils.stripControlCodes(uuid)), null, new ImageBufferDownload()
+            {
+                public BufferedImage parseUserSkin(BufferedImage image)
+                {
+                    return image;
+                }
+            });
+            texturemanager.loadTexture(resourceLocation, (ITextureObject)object);
+        }
 
-	public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String playerName)
-	{
-		return getDownloadImage(resourceLocation, getHatUrl(playerName), (ResourceLocation)null, (IImageBuffer)null);
-	}
+        return (ThreadDownloadImageData)object;
+    }
 
-	private ThreadDownloadImageData getDownloadImage(ResourceLocation res, String link, ResourceLocation defRes, IImageBuffer image)
-	{
-		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-		Object object = texturemanager.getTexture(res);
+    public String getHatInfoUrl(String uuid)
+    {
+        return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(uuid)});
+    }
 
-		if(object == null)
-		{
-			object = new ThreadDownloadImageData(link, defRes, image);
-			texturemanager.loadTexture(res, (ITextureObject)object);
-		}
+    public String getHatModelUrl(String uuid)
+    {
+        return String.format("http://files.minecraftforgefrance.fr/hats/%s_model.txt", new Object[] {StringUtils.stripControlCodes(uuid)});
+    }
 
-		return (ThreadDownloadImageData)object;
-	}
+    public ResourceLocation getLocationHat(String uuid)
+    {
+        return new ResourceLocation("ffmtlibs", "hats/" + StringUtils.stripControlCodes(uuid));
+    }
 
-	public String getHatUrl(String playerName)
-	{
-		return String.format("http://files.minecraftforgefrance.fr/hats/%s.png", new Object[] {StringUtils.stripControlCodes(playerName)});
-	}
+    public EnumParticleTypes[] getParticules()
+    {
+        if(this.particules == null)
+        {
+            this.particules = new EnumParticleTypes[this.downloadParticle.getValue().size()];
+            for(int i = 0; i < this.downloadParticle.getValue().size(); i++)
+            {
+                System.out.println(this.downloadParticle.getValue().get(i));
+                this.particules[i] = this.getParticuleByName(this.downloadParticle.getValue().get(i));
+            }
+        }
+        return this.particules;
+    }
 
-	public String getHatInfoUrl(String playerName)
-	{
-		return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
-	}
-
-	public String getHatModelUrl(String playerName)
-	{
-		return String.format("http://files.minecraftforgefrance.fr/hats/%s_model.txt", new Object[] {StringUtils.stripControlCodes(playerName)});
-	}
-
-	public ResourceLocation getLocationHat(String playerName)
-	{
-		return new ResourceLocation("ffmtlibs" + "hats/" + StringUtils.stripControlCodes(playerName));
-	}
+    private EnumParticleTypes getParticuleByName(String name)
+    {
+        for(int i = 0; i < EnumParticleTypes.getParticleNames().length; i++)
+        {
+            if(EnumParticleTypes.getParticleNames()[i].equals(name))
+            {
+                return EnumParticleTypes.getParticleFromId(i);
+            }
+        }
+        return null;
+    }
 }

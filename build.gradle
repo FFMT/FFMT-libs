@@ -20,7 +20,7 @@ apply plugin: 'maven'
 
 ext.buildnumber = 0
 
-version = "1.5.0"
+version = "1.6.0"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
