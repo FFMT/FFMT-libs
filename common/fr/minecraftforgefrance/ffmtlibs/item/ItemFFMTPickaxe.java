@@ -14,7 +14,8 @@ public class ItemFFMTPickaxe extends ItemPickaxe
 		this.repairItem = repair;
 	}
 
-	public boolean getIsRepairable(ItemStack input, ItemStack repair)
+	@Override
+    public boolean getIsRepairable(ItemStack input, ItemStack repair)
 	{
 		if(this.repairItem != null && repair.getItem() == this.repairItem)
 		{

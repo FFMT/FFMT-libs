@@ -21,6 +21,7 @@ public class EntityCustomFX extends EntityFX
         this.particleScale = scale;
     }
 
+    @Override
     public int getFXLayer()
     {
         return 3;
@@ -51,6 +52,7 @@ public class EntityCustomFX extends EntityFX
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
     }
 
+    @Override
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -62,7 +64,7 @@ public class EntityCustomFX extends EntityFX
             this.setDead();
         }
 
-        this.motionY -= 0.04D * (double)this.particleGravity;
+        this.motionY -= 0.04D * this.particleGravity;
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9800000190734863D;
         this.motionY *= 0.9800000190734863D;

@@ -51,6 +51,7 @@ public class ThreadDownloadImageData extends SimpleTexture
         }
     }
 
+    @Override
     public int getGlTextureId()
     {
         this.checkTextureUploaded();
@@ -62,6 +63,7 @@ public class ThreadDownloadImageData extends SimpleTexture
         this.bufferedImage = image;
     }
 
+    @Override
     public void loadTexture(IResourceManager resource)
     {
         if (this.bufferedImage == null && this.textureLocation != null)
@@ -80,6 +82,7 @@ public class ThreadDownloadImageData extends SimpleTexture
         {
             this.imageThread = new Thread("Texture Downloader #" + threadDownloadCounter.incrementAndGet())
             {
+                @Override
                 public void run()
                 {
                     HttpURLConnection httpurlconnection = null;

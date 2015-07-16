@@ -14,7 +14,8 @@ public class ItemFFMTHoe extends ItemHoe
 		this.repairItem = repair;
 	}
 
-	public boolean getIsRepairable(ItemStack input, ItemStack repair)
+	@Override
+    public boolean getIsRepairable(ItemStack input, ItemStack repair)
 	{
 		if(this.repairItem != null && repair.getItem() == this.repairItem)
 		{

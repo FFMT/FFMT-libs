@@ -72,6 +72,7 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
         {
             object = new ThreadDownloadImageData((File)null, String.format("http://files.minecraftforgefrance.fr/hats/%s.png", StringUtils.stripControlCodes(uuid)), null, new ImageBufferDownload()
             {
+                @Override
                 public BufferedImage parseUserSkin(BufferedImage image)
                 {
                     return image;

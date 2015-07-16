@@ -30,13 +30,13 @@ public class BlockHelper
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, EnumParticleTypes particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ, int ... blockId)
 	{
-		float x = (float)posX + random.nextFloat();
-		float y = (float)posY + random.nextFloat() * 0.1F;
-		float z = (float)posZ + random.nextFloat();
+		float x = posX + random.nextFloat();
+		float y = posY + random.nextFloat() * 0.1F;
+		float z = posZ + random.nextFloat();
 
 		for(int i = 0; i < speed; i++)
 		{
-			world.spawnParticle(particles, (double)x, (double)y, (double)z, velX, velY, velZ, blockId);
+			world.spawnParticle(particles, x, y, z, velX, velY, velZ, blockId);
 		}
 	}
 

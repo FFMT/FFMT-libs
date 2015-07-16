@@ -18,7 +18,8 @@ public class ItemFFMTArmor extends ItemArmor
 		this.repairItem = repair;
 	}
 
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	@Override
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if(slot == 2)
 		{
@@ -27,7 +28,8 @@ public class ItemFFMTArmor extends ItemArmor
 		return this.modid + ":textures/models/armor/" + this.armorName + "_layer_1.png";
 	}
 
-	public boolean getIsRepairable(ItemStack input, ItemStack repair)
+	@Override
+    public boolean getIsRepairable(ItemStack input, ItemStack repair)
 	{
 		if(this.repairItem != null && repair.getItem() == this.repairItem)
 		{

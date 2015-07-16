@@ -42,7 +42,8 @@ public class EntityBlockSittable extends Entity
 		return true;
 	}
 
-	public void onEntityUpdate()
+	@Override
+    public void onEntityUpdate()
 	{
 		if(this.riddenByEntity == null || this.riddenByEntity.isDead)
 		{

@@ -25,7 +25,8 @@ public class ThreadDowloadTextData
 		{
 			this.textThread = new Thread("Text Downloader #" + threadDownloadCounter.incrementAndGet())
 			{
-				public void run()
+				@Override
+                public void run()
 				{
 					HttpURLConnection httpurlconnection = null;
 

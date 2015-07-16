@@ -87,10 +87,7 @@ public class GuiSliderButton extends GuiButton
             this.dragging = true;
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     @Override
