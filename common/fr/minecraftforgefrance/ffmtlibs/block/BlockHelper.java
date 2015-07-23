@@ -25,7 +25,7 @@ public class BlockHelper
 	 * @param velX Velocity on X-axis
 	 * @param velY Velocity on Y-axis
 	 * @param velZ Velocity on Z-axis
-	 * @param ids of blocks (for texture)
+	 * @param blockId id of blocks (for texture) (use Block.getIdFromBlock)
 	 */
 	@SideOnly(Side.CLIENT)
 	public static void spawnParticles(int speed, EnumParticleTypes particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ, int ... blockId)
