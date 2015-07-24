@@ -17,6 +17,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -57,6 +59,7 @@ public class FFMTLibs
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void updateRenderPlayer(RenderPlayer renderPlayer)
     {
         List layerRenderers = ObfuscationReflectionHelper.getPrivateValue(RendererLivingEntity.class, renderPlayer, "layerRenderers", "field_177097_h");

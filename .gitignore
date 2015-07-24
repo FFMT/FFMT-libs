@@ -7,3 +7,17 @@ bin/
 Thumbs.db
 .DS_Store
 *~
+
+config/
+logs/
+mods/
+saves/
+*.iml
+*.ipr
+*.iws
+
+options.txt
+usernamecache.json
+.idea/
+eula.txt
+server.properties
