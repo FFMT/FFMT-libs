@@ -64,7 +64,6 @@ public class FFMTLibs
     {
         List layerRenderers = ObfuscationReflectionHelper.getPrivateValue(RendererLivingEntity.class, renderPlayer, "layerRenderers", "field_177097_h");
         LayerHat hat = new LayerHat(renderPlayer);
-        System.out.println(hat);
         layerRenderers.add(hat);
     }
 
