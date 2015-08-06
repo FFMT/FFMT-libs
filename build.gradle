@@ -33,7 +33,7 @@ else {
 }
 
 minecraft {
-    version = "1.8-11.14.1.1322"
+    version = "1.8-11.14.3.1502"
     runDir = "run"
 	
     mappings = "snapshot_nodoc_20150221"

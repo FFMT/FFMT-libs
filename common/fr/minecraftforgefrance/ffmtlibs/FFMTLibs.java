@@ -1,22 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +7,20 @@ import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
 import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.render.LayerHat;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*")
+@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*", dependencies = "required-after:Forge@[11.14.3.1495,)")
 /**
  * @authors kevin_68, elias54, robin4002
  */
@@ -51,19 +46,19 @@ public class FFMTLibs
         {
             MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
             FMLCommonHandler.instance().bus().register(new ConfigEventHandler());
-            Map<String, RenderPlayer> skins = ObfuscationReflectionHelper.getPrivateValue(RenderManager.class, Minecraft.getMinecraft().getRenderManager(), 1);
-            for(RenderPlayer renderPlayer : skins.values())
-                updateRenderPlayer(renderPlayer);
+            this.addHatLayer();
         }
     }
 
-    private void updateRenderPlayer(RenderPlayer renderPlayer)
+    @SideOnly(Side.CLIENT)
+    private void addHatLayer()
     {
-        List layerRenderers = ObfuscationReflectionHelper.getPrivateValue(RendererLivingEntity.class, renderPlayer, "layerRenderers", "field_177097_h");
-        LayerHat hat = new LayerHat(renderPlayer);
-        layerRenderers.add(hat);
+        for(RenderPlayer renderPlayer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
+        {
+            LayerHat hat = new LayerHat(renderPlayer);
+            renderPlayer.addLayer(hat);
+        }
     }
-
 
     public static void syncConfig()
     {
