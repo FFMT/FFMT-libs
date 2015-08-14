@@ -33,23 +33,6 @@ public class LayerHat implements LayerRenderer
 
     public void renderHat(EntityPlayer player, FFMTCustomPlayerProp prop, float partialTicks, float scale, float f, float f1, float f2, float f3, float f4)
     {
-        if(Loader.isModLoaded("nhg"))
-        {
-            IExtendedEntityProperties nhgprop = player.getExtendedProperties("nhg_prop");
-            try
-            {
-                Method m = nhgprop.getClass().getMethod("renderHat");
-                boolean shouldRender = (Boolean)m.invoke(nhgprop);
-                if(!shouldRender)
-                {
-                    return;
-                }
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
         if(prop.downloadImageHat == null)
         {
             prop.downloadImageHat = prop.getDownloadImageHat(prop.getLocationHat(player.getUniqueID().toString()), player.getUniqueID().toString());

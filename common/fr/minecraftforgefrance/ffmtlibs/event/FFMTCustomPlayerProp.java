@@ -106,7 +106,6 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
             this.particules = new EnumParticleTypes[this.downloadParticle.getValue().size()];
             for(int i = 0; i < this.downloadParticle.getValue().size(); i++)
             {
-                System.out.println(this.downloadParticle.getValue().get(i));
                 this.particules[i] = this.getParticuleByName(this.downloadParticle.getValue().get(i));
             }
         }
