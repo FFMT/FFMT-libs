@@ -1,18 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Logger;
-
-import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
-import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
-import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
-import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
-import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
-import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
-import fr.minecraftforgefrance.ffmtlibs.render.LayerHat;
-import fr.minecraftforgefrance.ffmtlibs.render.LayerHat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,9 +11,15 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import fr.minecraftforgefrance.ffmtlibs.config.ConfigEventHandler;
+import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
+import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
+import fr.minecraftforgefrance.ffmtlibs.render.LayerHat;
 
 @Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*")
 /**

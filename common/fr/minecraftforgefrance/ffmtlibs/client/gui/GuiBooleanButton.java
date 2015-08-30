@@ -16,7 +16,7 @@ public class GuiBooleanButton extends GuiButton
     private boolean active;
     private String disabled, enabledS;
     private int yTex;
-    private boolean useHoverState;
+    private boolean useHoverState, otherTextureWhenActive;
 
     public GuiBooleanButton(int id, int x, int y, String text, boolean active)
     {
@@ -30,10 +30,10 @@ public class GuiBooleanButton extends GuiButton
 
     public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active)
     {
-        this(id, x, y, width, height, sEn, sDi, active, new ResourceLocation("textures/gui/widgets.png"), 46, true);
+        this(id, x, y, width, height, sEn, sDi, active, new ResourceLocation("textures/gui/widgets.png"), 46, true, true);
     }
 
-    public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active, ResourceLocation tex, int yTex, boolean useHoverState)
+    public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active, ResourceLocation tex, int yTex, boolean useHoverState, boolean otherTextureWhenActive)
     {
         super(id, x, y, width, height, sEn);
         this.active = active;
@@ -42,6 +42,7 @@ public class GuiBooleanButton extends GuiButton
         this.buttonTex = tex;
         this.yTex = yTex;
         this.useHoverState = useHoverState;
+        this.otherTextureWhenActive = otherTextureWhenActive;
     }
 
     public void toggle()
@@ -57,8 +58,17 @@ public class GuiBooleanButton extends GuiButton
     @Override
     public int getHoverState(boolean mouseIsInButton)
     {
-        byte b0 = 1;
 
+        return getHoverState(mouseIsInButton, true);
+    }
+    
+    public int getHoverState(boolean mouseIsInButton, boolean otherActive)
+    {
+        byte b0 = 1;
+        if((isActive() || this.active) && otherActive)
+        {
+            b0 = 1;
+        }
         if(mouseIsInButton)
         {
             b0 = 2;
@@ -76,7 +86,7 @@ public class GuiBooleanButton extends GuiButton
             mc.getTextureManager().bindTexture(this.buttonTex);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             this.hovered = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
-            int k = this.getHoverState(this.hovered);
+            int k = this.getHoverState(this.hovered, this.otherTextureWhenActive);
             this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, this.yTex + (this.useHoverState ? (k * 20) : 0), this.width / 2, this.height);
             this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, this.yTex + (this.useHoverState ? (k * 20) : 0), this.width / 2, this.height);
             this.mouseDragged(mc, x, y);

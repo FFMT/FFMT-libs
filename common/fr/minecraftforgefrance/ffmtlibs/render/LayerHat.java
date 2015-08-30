@@ -1,7 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.render;
 
-import java.lang.reflect.Method;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -9,7 +7,6 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.fml.common.Loader;
 import fr.minecraftforgefrance.ffmtlibs.event.FFMTCustomPlayerProp;
 
@@ -50,7 +47,7 @@ public class LayerHat implements LayerRenderer
             GlStateManager.pushMatrix();
             Minecraft.getMinecraft().renderEngine.bindTexture(prop.getLocationHat(player.getGameProfile().getId().toString()));
             ModelHat hat = new ModelHat(this.render.getPlayerModel(), prop.model.getValue());
-            
+
             if(player.isSneaking())
             {
                 GlStateManager.translate(0.0F, 0.3F, 0.0F);
