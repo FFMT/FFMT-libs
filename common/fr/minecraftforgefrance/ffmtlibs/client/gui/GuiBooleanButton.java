@@ -46,10 +46,10 @@ public class GuiBooleanButton extends GuiButton
 
     public void toggle()
     {
-        this.active = !this.getIsActive();
+        this.active = !this.isActive();
     }
 
-    public boolean getIsActive()
+    public boolean isActive()
     {
         return this.active;
     }
@@ -59,11 +59,7 @@ public class GuiBooleanButton extends GuiButton
     {
         byte b0 = 1;
 
-        if(!this.enabled || !getIsActive())
-        {
-            b0 = 0;
-        }
-        else if(mouseIsInButton)
+        if(mouseIsInButton)
         {
             b0 = 2;
         }
@@ -95,7 +91,7 @@ public class GuiBooleanButton extends GuiButton
                 l = 16777120;
             }
 
-            if(!getIsActive())
+            if(!isActive())
             {
                 l = 6316128;
                 str = this.disabled;
