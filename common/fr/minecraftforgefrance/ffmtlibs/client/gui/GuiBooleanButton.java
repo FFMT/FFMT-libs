@@ -14,9 +14,9 @@ public class GuiBooleanButton extends GuiButton
 {
     protected ResourceLocation buttonTex;
     private boolean active;
-    private String disabled, enabledS;
+    public String disabled, enabledS;
     private int yTex;
-    private boolean useHoverState, otherTextureWhenActive;
+    private boolean useHoverState, otherTextureWhenActive, doNotChangeTextColor;
 
     public GuiBooleanButton(int id, int x, int y, String text, boolean active)
     {
@@ -43,6 +43,7 @@ public class GuiBooleanButton extends GuiButton
         this.yTex = yTex;
         this.useHoverState = useHoverState;
         this.otherTextureWhenActive = otherTextureWhenActive;
+        this.doNotChangeTextColor = false;
     }
 
     public void toggle()
@@ -61,7 +62,7 @@ public class GuiBooleanButton extends GuiButton
 
         return getHoverState(mouseIsInButton, true);
     }
-    
+
     public int getHoverState(boolean mouseIsInButton, boolean otherActive)
     {
         byte b0 = 1;
@@ -75,6 +76,11 @@ public class GuiBooleanButton extends GuiButton
         }
 
         return b0;
+    }
+
+    public void shouldNotChangeTextColor(boolean b)
+    {
+        this.doNotChangeTextColor = b;
     }
 
     @Override
@@ -103,7 +109,7 @@ public class GuiBooleanButton extends GuiButton
 
             if(!isActive())
             {
-                l = 6316128;
+                l = this.doNotChangeTextColor ? 14737632 : 6316128;
                 str = this.disabled;
             }
             else
