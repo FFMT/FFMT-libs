@@ -15,7 +15,7 @@ public class GuiBooleanButton extends GuiButton
     private ResourceLocation buttonTex = new ResourceLocation("textures/gui/widgets.png");
     private boolean active;
     private String textNotActive, textActive;
-    private int yTex;
+    private int yTex = 46;
     private boolean useHoverState = true, otherTextureWhenActive = true, doNotChangeTextColor = false;
     
     /**
