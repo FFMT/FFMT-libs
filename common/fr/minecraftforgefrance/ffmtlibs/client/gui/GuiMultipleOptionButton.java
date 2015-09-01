@@ -10,35 +10,38 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiMultipleOptionButton extends GuiButton
 {
-    protected ResourceLocation buttonTex;
-    private final String[] changTxt;
-    private int currentState, yTex;
-    private boolean useHoverState;
+    protected ResourceLocation buttonTex =  new ResourceLocation("textures/gui/widgets.png");
+    private String[] changTxt;
+    private int currentState, yTex = 46, stateCount;
+    private boolean useHoverState = true;
 
-    public GuiMultipleOptionButton(int id, int x, int y, String text, String[] changingTxt, int currentState)
-    {
-        this(id, x, y, 150, 20, text, changingTxt, currentState);
-    }
-
-    public GuiMultipleOptionButton(int id, int x, int y, int width, int height, String s, String[] changingTxt, int currentState)
-    {
-        this(id, x, y, width, height, s, changingTxt, currentState, new ResourceLocation("textures/gui/widgets.png"), 46, true);
-    }
-
-    public GuiMultipleOptionButton(int id, int x, int y, int width, int height, String s, String[] changingTxt, int currentState, ResourceLocation custom, int yTex, boolean useHoverState)
+    public GuiMultipleOptionButton(int id, int x, int y, int width, int height, String s, int currentState, int stateCount)
     {
         super(id, x, y, width, height, s);
-        this.changTxt = changingTxt;
         this.currentState = currentState;
-        this.buttonTex = custom;
-        this.yTex = yTex;
-        this.useHoverState = useHoverState;
+        this.stateCount = stateCount;
+    }
+    
+    public void shouldUseHoverState(boolean should)
+    {
+        this.useHoverState = should;
+    }
+    
+    public void setTexts(String[] texts)
+    {
+        this.changTxt = texts;
+    }
+    
+    public void setCutomTexture(ResourceLocation loc, int textureY)
+    {
+        this.buttonTex = loc;
+        this.yTex = textureY;
     }
 
     public void next()
     {
         this.currentState++;
-        if(this.currentState >= this.changTxt.length)
+        if(this.currentState+1 >= this.stateCount)
         {
             this.currentState = 0;
         }
@@ -83,7 +86,11 @@ public class GuiMultipleOptionButton extends GuiButton
             this.drawTexturedModalRect(this.xPosition + this.width / 2, this.yPosition, 200 - this.width / 2, this.yTex + (this.useHoverState ? (k * 20) : 0), this.width / 2, this.height);
             this.mouseDragged(mc, x, y);
             int l = 14737632;
-            String str = this.displayString + this.changTxt[this.currentState];
+            String str = this.displayString;
+            if(this.currentState < this.changTxt.length)
+            {
+                str = this.changTxt[this.currentState];
+            }
             if(!this.enabled)
             {
                 l = -6250336;

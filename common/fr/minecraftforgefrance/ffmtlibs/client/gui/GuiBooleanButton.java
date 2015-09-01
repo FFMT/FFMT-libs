@@ -18,24 +18,11 @@ public class GuiBooleanButton extends GuiButton
     private int yTex = 46;
     private boolean useHoverState = true, otherTextureWhenActive = true, doNotChangeTextColor = false;
     
-    /**
-     * Constructor
-     * @param id
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param text
-     */
-    public GuiBooleanButton(int id , int x, int y,int width, int height, String text)
+    public GuiBooleanButton(int id , int x, int y,int width, int height, String text, boolean active)
     {
         super(id, x, y, width, height, text);
-        this.textActive = this.textNotActive = text;
-    }
-    
-    public void setActive(boolean active)
-    {
         this.active = active;
+        this.textActive = this.textNotActive = text;
     }
     
     public void setTexts(String active, String notActive)
