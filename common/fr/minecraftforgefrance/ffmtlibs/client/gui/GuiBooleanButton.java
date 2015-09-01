@@ -12,38 +12,62 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiBooleanButton extends GuiButton
 {
-    protected ResourceLocation buttonTex;
+    private ResourceLocation buttonTex = new ResourceLocation("textures/gui/widgets.png");
     private boolean active;
-    public String disabled, enabledS;
+    private String textNotActive, textActive;
     private int yTex;
-    private boolean useHoverState, otherTextureWhenActive, doNotChangeTextColor;
-
-    public GuiBooleanButton(int id, int x, int y, String text, boolean active)
+    private boolean useHoverState = true, otherTextureWhenActive = true, doNotChangeTextColor = false;
+    
+    /**
+     * Constructor
+     * @param id
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param text
+     */
+    public GuiBooleanButton(int id , int x, int y,int width, int height, String text)
     {
-        this(id, x, y, 150, 20, text, active);
+        super(id, x, y, width, height, text);
+        this.textActive = this.textNotActive = text;
     }
-
-    public GuiBooleanButton(int id, int x, int y, int width, int height, String s, boolean active)
+    
+    public void setActive(boolean active)
     {
-        this(id, x, y, width, height, s, s, active);
-    }
-
-    public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active)
-    {
-        this(id, x, y, width, height, sEn, sDi, active, new ResourceLocation("textures/gui/widgets.png"), 46, true, true);
-    }
-
-    public GuiBooleanButton(int id, int x, int y, int width, int height, String sEn, String sDi, boolean active, ResourceLocation tex, int yTex, boolean useHoverState, boolean otherTextureWhenActive)
-    {
-        super(id, x, y, width, height, sEn);
         this.active = active;
-        this.disabled = sDi;
-        this.enabledS = sEn;
-        this.buttonTex = tex;
-        this.yTex = yTex;
-        this.useHoverState = useHoverState;
-        this.otherTextureWhenActive = otherTextureWhenActive;
-        this.doNotChangeTextColor = false;
+    }
+    
+    public void setTexts(String active, String notActive)
+    {
+        this.textActive = active;
+        this.textNotActive = notActive;
+    }
+    
+    /**
+     * Follow the default texture model!
+     * @param loc
+     * @param textureY
+     */
+    public void setCustomTexture(ResourceLocation loc, int textureY)
+    {
+        this.yTex = textureY;
+        this.buttonTex = loc;
+    }
+
+    public void shouldUseHoverState(boolean should)
+    {
+        this.useHoverState = should;
+    }
+    
+    public void shouldChangeTextureOnToggle(boolean should)
+    {
+        this.otherTextureWhenActive = should;
+    }
+    
+    public void changeTextColorWhenNotActive(boolean change)
+    {
+        this.doNotChangeTextColor = change;
     }
 
     public void toggle()
@@ -59,7 +83,6 @@ public class GuiBooleanButton extends GuiButton
     @Override
     public int getHoverState(boolean mouseIsInButton)
     {
-
         return getHoverState(mouseIsInButton, true);
     }
 
@@ -110,11 +133,11 @@ public class GuiBooleanButton extends GuiButton
             if(!isActive())
             {
                 l = this.doNotChangeTextColor ? 14737632 : 6316128;
-                str = this.disabled;
+                str = this.textNotActive;
             }
             else
             {
-                str = this.enabledS;
+                str = this.textActive;
             }
 
             this.drawCenteredString(fontrenderer, str, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
