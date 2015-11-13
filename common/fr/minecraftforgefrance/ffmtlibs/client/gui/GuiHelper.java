@@ -25,46 +25,12 @@ public class GuiHelper
     public static TextureManager renderEngine = mc.renderEngine;
 
     /**
-     * Bind the given texture
-     *
-     * @param texture
-     *            ResourceLocation
-     */
-    public static void bindTexture(ResourceLocation texture)
-    {
-        renderEngine.bindTexture(texture);
-    }
-
-    /**
-     * Bind the given texture by name (path)
-     *
-     * @param texture
-     *            String
-     */
-    public static void bindTexture(String texture)
-    {
-        bindTexture(new ResourceLocation(texture));
-    }
-
-    /**
-     * Bind the given texture by name (path) and modid
-     *
-     * @param modid
-     * @param texture
-     */
-    public static void bindTexture(String modid, String texture)
-    {
-        bindTexture(new ResourceLocation(modid, texture));
-    }
-
-    /**
      * Draw a string aligned on left
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
      */
     public static void drawLeftAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -73,12 +39,11 @@ public class GuiHelper
 
     /**
      * Draw a string centered
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
      */
     public static void drawCenteredString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -87,12 +52,11 @@ public class GuiHelper
 
     /**
      * Draw a string aligned on right
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
      */
     public static void drawRightAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -101,13 +65,12 @@ public class GuiHelper
 
     /**
      * Draw a localized string aligned on the left
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
-     * @param arrayObj
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
+     * @param arrayObj object to format
      */
     public static void drawLeftAlignedLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -116,13 +79,12 @@ public class GuiHelper
 
     /**
      * Draw a centered localized string
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
-     * @param arrayObj
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
+     * @param arrayObj object to format
      */
     public static void drawCenteredLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -131,13 +93,12 @@ public class GuiHelper
 
     /**
      * Draw a localized string aligned on the right
-     *
-     * @param font
-     * @param string
-     * @param x
-     * @param y
-     * @param color
-     * @param arrayObj
+     * @param font fondrenderer instance
+     * @param string text
+     * @param x x coord
+     * @param y y coord
+     * @param color text color
+     * @param arrayObj object to format
      */
     public static void drawRightAlignedLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -146,19 +107,14 @@ public class GuiHelper
 
     /**
      * Draw texture at given start and end cords
-     *
-     * @param xo
-     * @param yo
-     * @param xe
-     * @param ye
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
+     * @param xo start x coord
+     * @param yo start y coord
+     * @param xe end x coord
+     * @param ye end y coord
+     * @param xto x texture start (ratio)
+     * @param yto y texture start (ratio)
+     * @param xte x texture end (ratio)
+     * @param yte y texture end (ratio)
      */
     public static void drawTexture(int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte)
     {
@@ -177,51 +133,41 @@ public class GuiHelper
 
     /**
      * Draw a texture with 4 cords:
-     *
-     * @param x0
-     * @param x1
-     * @param x2
-     * @param x3
-     * @param y0
-     * @param y1
-     * @param y2
-     * @param y3
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
+     * @param x0 first x
+     * @param x1 second x
+     * @param x2 third x
+     * @param x3 fourth x
+     * @param y0 first y
+     * @param y1 second y
+     * @param y2 third y
+     * @param y3 fourth y
+     * @param xto x texture start (ratio)
+     * @param yto y texture start (ratio)
+     * @param xte x texture end (ratio)
+     * @param yte y texture end (ratio)
      */
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {
-    	Tessellator tess = Tessellator.getInstance();
-    	WorldRenderer worldrenderer = tess.getWorldRenderer();
-    	worldrenderer.startDrawingQuads();
-    	worldrenderer.addVertexWithUV(x0, y0, zLevel, xto, yte);
-    	worldrenderer.addVertexWithUV(x1, y1, zLevel, xte, yte);
-    	worldrenderer.addVertexWithUV(x2, y2, zLevel, xte, yto);
-    	worldrenderer.addVertexWithUV(x3, y3, zLevel, xto, yto);
-    	tess.draw();
+        Tessellator tess = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tess.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.addVertexWithUV(x0, y0, zLevel, xto, yte);
+        worldrenderer.addVertexWithUV(x1, y1, zLevel, xte, yte);
+        worldrenderer.addVertexWithUV(x2, y2, zLevel, xte, yto);
+        worldrenderer.addVertexWithUV(x3, y3, zLevel, xto, yto);
+        tess.draw();
     }
 
     /**
      * Draw a texture based on a circle, the for points will be on the circle with an angle of 45°
-     *
-     * @param x
-     * @param y
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
-     * @param angle
-     * @param radius
+     * @param x x coord
+     * @param y y coord
+     * @param xto x texture start (ratio)
+     * @param yto y texture start (ratio)
+     * @param xte x texture end (ratio)
+     * @param yte y texture end (ratio)
+     * @param angle angle
+     * @param radius picture size (radius of the circle for the rotation)
      */
     public static void drawTextureWithRotation(int x, int y, float xto, float yto, float xte, float yte, double angle, double radius)
     {
@@ -237,94 +183,14 @@ public class GuiHelper
     }
 
     /**
-     * Bind and draw texture at given start and end cords :
-     *
-     * @param texture
-     *            ResourceLocation
-     * @param xo
-     * @param yo
-     * @param xe
-     * @param ye
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
-     */
-    public static void bindAndDrawTexture(ResourceLocation texture, int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte)
-    {
-        bindTexture(texture);
-        drawTexture(xo, yo, xe, ye, xto, yto, xte, yte);
-    }
-
-    /**
-     * Bind and draw a texture with 4 cords:
-     *
-     * @param texture
-     *            ResourceLocation
-     * @param x0
-     * @param x1
-     * @param x2
-     * @param x3
-     * @param y0
-     * @param y1
-     * @param y2
-     * @param y3
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
-     */
-    public static void bindAndDrawTexture(ResourceLocation texture, int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte)
-    {
-        bindTexture(texture);
-        drawTexture(x0, x1, x2, x3, y0, y1, y2, y3, xto, yto, xte, yte);
-    }
-
-    /**
-     * bind and draw a texture based on a circle, the for points will be on the circle with an angle of 45°
-     *
-     * @param x
-     * @param y
-     * @param xto
-     *            x texture start (ratio)
-     * @param yto
-     *            y texture start (ratio)
-     * @param xte
-     *            x texture end (ratio)
-     * @param yte
-     *            y texture end (ratio)
-     * @param angle
-     * @param radius
-     */
-    public static void bindAndDrawTextureWithRotation(ResourceLocation texture, int x, int y, float xto, float yto, float xte, float yte, double angle, double radius)
-    {
-        bindTexture(texture);
-        drawTextureWithRotation(x, y, xto, yto, xte, yte, angle, radius);
-    }
-
-    /**
      * Draw string with little backgroud, like when you hover an item
-     *
-     * @param list
-     *            contain text, one string by line
-     * @param mouseX
-     * @param mouseY
-     * @param font
-     *            fontrenderer
-     * @param width
-     *            width of the gui
-     * @param height
-     *            height of the gui
-     * @param color
-     *            color of the text
+     * @param list contain text, one string by line
+     * @param mouseX coord x of the mouse
+     * @param mouseY coord y of the mouse
+     * @param font fontrenderer
+     * @param width width of the gui
+     * @param height height of the gui
+     * @param color color of the text
      */
     public static void drawHoveringText(ArrayList<String> list, int mouseX, int mouseY, FontRenderer font, int width, int height, int color)
     {
@@ -418,16 +284,16 @@ public class GuiHelper
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
-    	Tessellator tess = Tessellator.getInstance();
-    	WorldRenderer worldrenderer = tess.getWorldRenderer();
-    	worldrenderer.startDrawingQuads();
-    	worldrenderer.setColorRGBA_F(f1, f2, f3, f);
-    	worldrenderer.addVertex(par3, par2, zLevel);
-    	worldrenderer.addVertex(par1, par2, zLevel);
-    	worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
-    	worldrenderer.addVertex(par1, par4, zLevel);
-    	worldrenderer.addVertex(par3, par4, zLevel);
-    	tess.draw();
+        Tessellator tess = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tess.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.setColorRGBA_F(f1, f2, f3, f);
+        worldrenderer.addVertex(par3, par2, zLevel);
+        worldrenderer.addVertex(par1, par2, zLevel);
+        worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
+        worldrenderer.addVertex(par1, par4, zLevel);
+        worldrenderer.addVertex(par3, par4, zLevel);
+        tess.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);

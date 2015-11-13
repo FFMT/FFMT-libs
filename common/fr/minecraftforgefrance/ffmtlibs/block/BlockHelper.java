@@ -15,26 +15,25 @@ public class BlockHelper
 	/**
 	 * Spawn particles
 	 *
-	 * @param speed
-	 * @param particles
-	 * @param world
-	 * @param posX
-	 * @param posY
-	 * @param posZ
-	 * @param random
+	 * @param quantity high value = more particle
+	 * @param particles particle type
+	 * @param world instance of world
+	 * @param posX x coord
+	 * @param posY y coord
+	 * @param posZ z coord
 	 * @param velX Velocity on X-axis
 	 * @param velY Velocity on Y-axis
 	 * @param velZ Velocity on Z-axis
 	 * @param blockId id of blocks (for texture) (use Block.getIdFromBlock)
 	 */
 	@SideOnly(Side.CLIENT)
-	public static void spawnParticles(int speed, EnumParticleTypes particles, World world, int posX, int posY, int posZ, Random random, double velX, double velY, double velZ, int ... blockId)
+	public static void spawnParticles(int quantity, EnumParticleTypes particles, World world, int posX, int posY, int posZ, double velX, double velY, double velZ, int ... blockId)
 	{
-		float x = posX + random.nextFloat();
-		float y = posY + random.nextFloat() * 0.1F;
-		float z = posZ + random.nextFloat();
+		float x = posX + world.rand.nextFloat();
+		float y = posY + world.rand.nextFloat() * 0.1F;
+		float z = posZ + world.rand.nextFloat();
 
-		for(int i = 0; i < speed; i++)
+		for(int i = 0; i < quantity; i++)
 		{
 			world.spawnParticle(particles, x, y, z, velX, velY, velZ, blockId);
 		}

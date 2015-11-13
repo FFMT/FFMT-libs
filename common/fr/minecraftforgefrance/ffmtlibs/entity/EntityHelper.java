@@ -163,15 +163,15 @@ public class EntityHelper
 
     /**
      * Spawn a firework with specified values
-     * @param world
+     * @param world the instance of the world
      * @param x coord x
      * @param y coord y
      * @param z coord z
      * @param type
      *        0 = normal, 1 = large ball, 2 = star shaped, 3 = creeper face,
      *        4 = burst
-     * @param flicker
-     * @param trail
+     * @param flicker set to true to enable sparkle at the end
+     * @param trail set to true for particle under the firework
      * @param colorAmount number of colors
      * @param colors new int[colorAmount], with all different colors
      * @param flight time before explode 0 = short, 1 = medium, 2 = long

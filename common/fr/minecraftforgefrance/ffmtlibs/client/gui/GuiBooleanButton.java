@@ -33,8 +33,8 @@ public class GuiBooleanButton extends GuiButton
     
     /**
      * Follow the default texture model!
-     * @param loc
-     * @param textureY
+     * @param loc the resource location of the texture
+     * @param textureY y coord of the texture in the file
      */
     public void setCustomTexture(ResourceLocation loc, int textureY)
     {
