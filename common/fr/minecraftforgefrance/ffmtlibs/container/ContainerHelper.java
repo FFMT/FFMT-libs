@@ -9,9 +9,9 @@ public class ContainerHelper
 	/**
 	 * Consume a item with medatata
 	 * 
-	 * @param player
-	 * @param item
-	 * @param metadata
+	 * @param player the player
+	 * @param item the item to consume
+	 * @param metadata the metadata of the item
 	 * @return true if the item was consume, false if not
 	 */
 	public static boolean consumeItemWithMetadataInInventory(EntityPlayer player, Item item, int metadata)
@@ -33,9 +33,9 @@ public class ContainerHelper
 	/**
 	 * Consume a block with medatata
 	 * 
-	 * @param player
-	 * @param block
-	 * @param metadata
+	 * @param player the player
+	 * @param block the block to consume
+	 * @param metadata the metadata of the block
 	 * @return true if the item was consume, false if not
 	 */
 	public static boolean consumeItemWithMetadataInInventory(EntityPlayer player, Block block, int metadata)

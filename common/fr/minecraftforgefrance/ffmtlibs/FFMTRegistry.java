@@ -83,6 +83,7 @@ public class FFMTRegistry
      * @param material the item or block used for the craft
      * @param type Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
      * @param output the instance of your tool
+     * @param stick the stick of the tool
      */
     public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
     {
@@ -168,6 +169,8 @@ public class FFMTRegistry
      * @param name e.g. iron, gold, stone, wood, diamond
      * @param modid your modid
      * @param sword the object of your sword (non initialized)
+     * @param pickaxe the object of your pickaxe (non initialized)
+     * @param axe the object of your axe (non initialized)
      * @param shovel the object of your shovel (non initialized)
      * @param hoe the object of your hoe (non initialized)
      * @param creativeTabs where the item will be display
@@ -184,6 +187,8 @@ public class FFMTRegistry
      * @param name e.g. iron, gold, stone, wood, diamond
      * @param modid your modid
      * @param sword the object of your sword (non initialized)
+     * @param pickaxe the object of your pickaxe (non initialized)
+     * @param axe the object of your axe (non initialized)
      * @param shovel the object of your shovel (non initialized)
      * @param hoe the object of your hoe (non initialized)
      * @param repair the item to repair yours tools in an anvil

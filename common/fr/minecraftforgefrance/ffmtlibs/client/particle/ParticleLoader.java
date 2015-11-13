@@ -30,6 +30,7 @@ public class ParticleLoader
 	 * @param gravity particle gravity (only for custom particle)
 	 * @param scale particle scale (only for custom particle)
 	 * @param textureLocation the particle texture location (eg. "modid:textures/folder/texture.png") (only for custom particle)
+	 * @param blockId id of a block for the texture (use Block.getIdFromBlock)
 	 *
 	 * [WARNING] If you want to use it in a entity class, don't forget the worldObj.isRemote condition, because the game will crash when you try to spawn it !
 	 *
