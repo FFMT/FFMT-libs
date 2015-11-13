@@ -11,16 +11,16 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.0-SNAPSHOT'
     }
 }
 
-apply plugin: 'forge'
+apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 
 ext.buildnumber = 0
 
-version = "1.6.0"
+version = "1.6.1"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
@@ -33,13 +33,14 @@ else {
 }
 
 minecraft {
-    version = "1.8-11.14.3.1502"
+    version = "1.8-11.14.4.1563"
     runDir = "run"
-	
-    mappings = "snapshot_nodoc_20150221"
-	
+
+    mappings = "snapshot_20151113"
+
     replace "@VERSION@", project.version
     replaceIn "FFMTLibs.java"
+    makeObfSourceJar = false
 }
 
 sourceSets {

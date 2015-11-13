@@ -33,47 +33,6 @@ public class FFMTRegistry
 	public static final int SWORD_TYPE = 4;
 
 	/**
-	 * Add a version checker. You need a permalink (website, etc ... clould don't work). The remote file is a simple text file like that :
-	 *
-	 * <pre>
-	 * Minecraft 1.6.4:1.1.0
-	 * Minecraft 1.7.2:1.2.0
-	 * </pre>
-	 *
-	 * In this example, 1.1.0 is the last version the mod for minecraft 1.6.4, and 1.2.0 the last version for minecraft 1.7.2.
-	 *
-	 * @author robin4002
-	 * @param versionUrl The permalink to your remote text file
-	 * @param downloadUrl Where users can download your mod (for example your topic in minecraftforum.net)
-	 * @param modId Your modid
-	 */
-	public static void registerVersionCheck(String versionUrl, String downloadUrl, String modId)
-	{
-		ModContainer mod = Loader.instance().getIndexedModList().get(modId);
-		FFMTVersionChecker.check(versionUrl, downloadUrl, mod.getName(), mod.getVersion());
-	}
-
-	/**
-	 * Add a version checker. You need a permalink (website, etc ... clould don't work). The remote file is a simple text file like that :
-	 *
-	 * <pre>
-	 * Minecraft 1.6.4:1.1.0
-	 * Minecraft 1.7.2:1.2.0
-	 * </pre>
-	 *
-	 * In this example, 1.1.0 is the last version the mod for minecraft 1.6.4, and 1.2.0 the last version for minecraft 1.7.2. This method will use the mcmod.info of you mod, updateUrl should be
-	 * thepermalink to your remote text file and url the url where users can download you mod
-	 *
-	 * @author robin4002
-	 * @param modId Your modid
-	 */
-	public static void registerVersionCheck(String modId)
-	{
-		ModContainer mod = Loader.instance().getIndexedModList().get(modId);
-		FFMTVersionChecker.check(mod.getMetadata().updateUrl, mod.getMetadata().url, mod.getName(), mod.getVersion());
-	}
-
-	/**
 	 * Helper for crafting armors
 	 *
 	 * @param material

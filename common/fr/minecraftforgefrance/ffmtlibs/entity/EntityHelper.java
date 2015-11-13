@@ -160,32 +160,6 @@ public class EntityHelper
 	}
 
 	/**
-	 * Return if the entity is in water
-	 *
-	 * @param entity
-	 *            (Entity instance)
-	 * @author elias54
-	 */
-	public static boolean inWater(Entity entity)
-	{
-		return entity.worldObj.isMaterialInBB(entity.getBoundingBox(), Material.water);
-	}
-
-	/**
-	 * Return if the entity is in specified material
-	 *
-	 * @param entity
-	 *            (Entity instance)
-	 * @param material
-	 *            (e.g Material.rock)
-	 * @author elias54
-	 */
-	public static boolean isInMaterial(Entity entity, Material material)
-	{
-		return entity.worldObj.isMaterialInBB(entity.getBoundingBox(), material);
-	}
-
-	/**
 	 * This is just the famous "onGround" provide from the class Entity
 	 *
 	 * @param entity
