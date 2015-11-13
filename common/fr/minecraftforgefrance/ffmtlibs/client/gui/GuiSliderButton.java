@@ -12,27 +12,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiSliderButton extends GuiButton
 {
     public float sliderValue;
-    public boolean dragging;
-    private int sliderId, yTexBackGround;
+    private float prevValue;
+    private boolean dragging, shouldReset;
+    private int sliderId, yTexBackGround = -1;
     private ISliderButton iSliderButton;
-    private ResourceLocation texture;
+    private ResourceLocation texture = buttonTextures;
 
-    public GuiSliderButton(ISliderButton containerSliderBase, int id, int x, int y, String name, float value)
+    public GuiSliderButton(ISliderButton containerSliderBase, int id, int x, int y, int width, int height, String name, float value)
     {
-        this(containerSliderBase, id, x, y, 150, 20, name, value);
-    }
-
-    public GuiSliderButton(ISliderButton containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value)
-    {
-        this(containerSliderBase, id, x, y, xSize, ySize, name, value, buttonTextures, -1);
-    }
-
-    public GuiSliderButton(ISliderButton containerSliderBase, int id, int x, int y, int xSize, int ySize, String name, float value, ResourceLocation customTexture, int yTexBackGround)
-    {
-        super(id, x, y, xSize, ySize, name);
+        super(id, x, y, width, height, name);
         this.sliderValue = value;
         this.sliderId = id;
         this.iSliderButton = containerSliderBase;
+    }
+
+    public void shouldResetOnEnd(boolean should)
+    {
+        this.shouldReset = should;
+    }
+
+    public void setCustomTexture(ResourceLocation customTexture, int yTexBackGround)
+    {
         this.texture = customTexture;
         this.yTexBackGround = yTexBackGround;
     }
@@ -61,10 +61,19 @@ public class GuiSliderButton extends GuiButton
             if(this.dragging)
             {
                 this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
+                if(this.prevValue < this.sliderValue && this.sliderValue >= 1.0F && this.shouldReset)
+                {
+                    this.sliderValue = 0.0F;
+                }
+                else if(this.prevValue > this.sliderValue && this.sliderValue <= 0.0F && this.shouldReset)
+                {
+                    this.sliderValue = 1.0F;
+                }
                 this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
 
                 this.iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
                 this.displayString = this.iSliderButton.getSliderName(this.sliderId, this.sliderValue);
+                this.prevValue = this.sliderValue;
             }
 
             mc.getTextureManager().bindTexture(this.texture);

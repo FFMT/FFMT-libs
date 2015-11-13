@@ -41,7 +41,7 @@ public class GuiMultipleOptionButton extends GuiButton
     public void next()
     {
         this.currentState++;
-        if(this.currentState+1 >= this.stateCount)
+        if(this.currentState >= this.stateCount)
         {
             this.currentState = 0;
         }
