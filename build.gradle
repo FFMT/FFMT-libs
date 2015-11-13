@@ -121,15 +121,15 @@ dependencies {
 uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
-            if (project.hasProperty('url')) {
-                version = "${project.version}-mc${project.minecraft.version}"
-                logger.info("Publishing to files server")
+        if (project.hasProperty('url')) {
+            version = "${project.version}-mc${project.minecraft.version}"
+            logger.info("Publishing to files server")
         	repository(url: url) {
-            	    authentication(userName: user, password: password)
-                    addFilter('dev') { 
-                        artifact, file ->
-                        file == devJar.archivePath
-            	}
+            	authentication(userName: user, password: password)
+                addFilter('dev') { 
+                    artifact, file ->
+                    file == devJar.archivePath
+                }
             }
         }
         else {
