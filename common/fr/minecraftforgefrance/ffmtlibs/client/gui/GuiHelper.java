@@ -236,6 +236,16 @@ public class GuiHelper
             {
                 k2 = height - i1 - 6;
             }
+            
+            if(k2 < 5)
+            {
+                k2 = 5;
+            }
+            
+            if(j2 < 5)
+            {
+                j2 = 5;
+            }
 
             float zLevel = 300.0F;
             int j1 = -267386864;
