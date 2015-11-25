@@ -34,18 +34,18 @@ public class EntityCustomFX extends EntityFX
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.startDrawingQuads();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();//TODO fix
+//        worldrenderer.startDrawingQuads();
         // worldrenderer.setBrightness(getBrightnessForRender(f));//Apparently do not exist anymore
         float scale = 0.1F * this.particleScale;
         float x = (float)(this.prevPosX + (this.prevPosX - this.posX) * f - interpPosX), y = (float)(this.prevPosY + (this.prevPosY - this.posY) * f - interpPosY), z = (float)(this.prevPosZ + (this.prevPosZ - this.posZ) * f - interpPosZ);
         float f14 = getBrightness(f);
         worldrenderer.setTranslation(0F, 0F, 0F);
-        worldrenderer.setColorOpaque_F(f14 * this.particleRed, f14 * this.particleGreen, f14 * this.particleBlue);
-        worldrenderer.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
-        worldrenderer.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
-        worldrenderer.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);
-        worldrenderer.addVertexWithUV(x + f1 * scale - f4 * scale, y - f2 * scale, z + f3 * scale - f5 * scale, 0, 1);
+//        worldrenderer.setColorOpaque_F(f14 * this.particleRed, f14 * this.particleGreen, f14 * this.particleBlue);
+//        worldrenderer.addVertexWithUV(x - f1 * scale - f4 * scale, y - f2 * scale, z - f3 * scale - f5 * scale, 1, 1);
+//        worldrenderer.addVertexWithUV(x - f1 * scale + f4 * scale, y + f2 * scale, z - f3 * scale + f5 * scale, 1, 0);
+//        worldrenderer.addVertexWithUV(x + f1 * scale + f4 * scale, y + f2 * scale, z + f3 * scale + f5 * scale, 0, 0);
+//        worldrenderer.addVertexWithUV(x + f1 * scale - f4 * scale, y - f2 * scale, z + f3 * scale - f5 * scale, 0, 1);
         tessellator.draw();
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glDepthMask(true);

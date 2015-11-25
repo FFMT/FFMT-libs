@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
 
@@ -20,7 +20,7 @@ apply plugin: 'maven'
 
 ext.buildnumber = 0
 
-version = "1.6.1"
+version = "1.6.2"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
@@ -33,10 +33,10 @@ else {
 }
 
 minecraft {
-    version = "1.8-11.14.4.1563"
+    version = "1.8.8-11.14.4.1589-1.8.8"
     runDir = "run"
 
-    mappings = "snapshot_20151113"
+    mappings = "snapshot_20151122"
 
     replace "@VERSION@", project.version
     replaceIn "FFMTLibs.java"

@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -148,14 +149,16 @@ public class GuiHelper
      * @param zLevel zLevel
      */
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
-    {
+    {        
+    	float f = 0.00390625F;
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
-        worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV(x0, y0, zLevel, xto, yte);
-        worldrenderer.addVertexWithUV(x1, y1, zLevel, xte, yte);
-        worldrenderer.addVertexWithUV(x2, y2, zLevel, xte, yto);
-        worldrenderer.addVertexWithUV(x3, y3, zLevel, xto, yto);
+        
+        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181706_f);//TODO check
+        worldrenderer.func_181662_b(x0, y0, zLevel).func_181673_a((double)(xto * f), (double)((yte * f))).func_181675_d();//TODO check
+        worldrenderer.func_181662_b(x1, y1, zLevel).func_181673_a((double)(xte * f), (double)((yte * f))).func_181675_d();//TODO check
+        worldrenderer.func_181662_b(x2, y2, zLevel).func_181673_a((double)(xte * f), (double)((yto * f))).func_181675_d();//TODO check
+        worldrenderer.func_181662_b(x3, y3, zLevel).func_181673_a((double)(xto * f), (double)((yto * f))).func_181675_d();//TODO check
         tess.draw();
     }
 
@@ -270,16 +273,16 @@ public class GuiHelper
     /**
      * Function for drawHoveringText.
      */
-    private static void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6, float zLevel)
+    private static void drawGradientRect(int xs, int ys, int xe, int ye, int startColor, int endColor, float zLevel)
     {
-        float f = (par5 >> 24 & 255) / 255.0F;
-        float f1 = (par5 >> 16 & 255) / 255.0F;
-        float f2 = (par5 >> 8 & 255) / 255.0F;
-        float f3 = (par5 & 255) / 255.0F;
-        float f4 = (par6 >> 24 & 255) / 255.0F;
-        float f5 = (par6 >> 16 & 255) / 255.0F;
-        float f6 = (par6 >> 8 & 255) / 255.0F;
-        float f7 = (par6 & 255) / 255.0F;
+        float f = (float)(startColor >> 24 & 255) / 255.0F;
+        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
+        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
+        float f3 = (float)(startColor & 255) / 255.0F;
+        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
+        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
+        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
+        float f7 = (float)(endColor & 255) / 255.0F;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -287,13 +290,11 @@ public class GuiHelper
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
-        worldrenderer.startDrawingQuads();
-        worldrenderer.setColorRGBA_F(f1, f2, f3, f);
-        worldrenderer.addVertex(par3, par2, zLevel);
-        worldrenderer.addVertex(par1, par2, zLevel);
-        worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
-        worldrenderer.addVertex(par1, par4, zLevel);
-        worldrenderer.addVertex(par3, par4, zLevel);
+        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181706_f);
+        worldrenderer.func_181662_b(xe, ys, zLevel).func_181666_a(f1, f2, f3, f).func_181675_d();
+        worldrenderer.func_181662_b(xs, ys, zLevel).func_181666_a(f1, f2, f3, f).func_181675_d();
+        worldrenderer.func_181662_b(xs, ye, zLevel).func_181666_a(f5, f6, f7, f4).func_181675_d();
+        worldrenderer.func_181662_b(xe, ye, zLevel).func_181666_a(f5, f6, f7, f4).func_181675_d();
         tess.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);

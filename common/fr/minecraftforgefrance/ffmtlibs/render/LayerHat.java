@@ -46,7 +46,7 @@ public class LayerHat implements LayerRenderer
         {
             GlStateManager.pushMatrix();
             Minecraft.getMinecraft().renderEngine.bindTexture(prop.getLocationHat(player.getGameProfile().getId().toString()));
-            ModelHat hat = new ModelHat(this.render.getPlayerModel(), prop.model.getValue());
+            ModelHat hat = new ModelHat(this.render.getMainModel(), prop.model.getValue());
 
             if(player.isSneaking())
             {
