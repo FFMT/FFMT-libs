@@ -154,11 +154,11 @@ public class GuiHelper
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
         
-        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181706_f);//TODO check
-        worldrenderer.func_181662_b(x0, y0, zLevel).func_181673_a((double)(xto * f), (double)((yte * f))).func_181675_d();//TODO check
-        worldrenderer.func_181662_b(x1, y1, zLevel).func_181673_a((double)(xte * f), (double)((yte * f))).func_181675_d();//TODO check
-        worldrenderer.func_181662_b(x2, y2, zLevel).func_181673_a((double)(xte * f), (double)((yto * f))).func_181675_d();//TODO check
-        worldrenderer.func_181662_b(x3, y3, zLevel).func_181673_a((double)(xto * f), (double)((yto * f))).func_181675_d();//TODO check
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);//TODO check
+        worldrenderer.pos(x0, y0, zLevel).tex((double)(xto * f), (double)((yte * f))).endVertex();//TODO check
+        worldrenderer.pos(x1, y1, zLevel).tex((double)(xte * f), (double)((yte * f))).endVertex();//TODO check
+        worldrenderer.pos(x2, y2, zLevel).tex((double)(xte * f), (double)((yto * f))).endVertex();//TODO check
+        worldrenderer.pos(x3, y3, zLevel).tex((double)(xto * f), (double)((yto * f))).endVertex();//TODO check
         tess.draw();
     }
 
@@ -300,11 +300,11 @@ public class GuiHelper
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
-        worldrenderer.func_181668_a(7, DefaultVertexFormats.field_181706_f);
-        worldrenderer.func_181662_b(xe, ys, zLevel).func_181666_a(f1, f2, f3, f).func_181675_d();
-        worldrenderer.func_181662_b(xs, ys, zLevel).func_181666_a(f1, f2, f3, f).func_181675_d();
-        worldrenderer.func_181662_b(xs, ye, zLevel).func_181666_a(f5, f6, f7, f4).func_181675_d();
-        worldrenderer.func_181662_b(xe, ye, zLevel).func_181666_a(f5, f6, f7, f4).func_181675_d();
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        worldrenderer.pos(xe, ys, zLevel).color(f1, f2, f3, f).endVertex();
+        worldrenderer.pos(xs, ys, zLevel).color(f1, f2, f3, f).endVertex();
+        worldrenderer.pos(xs, ye, zLevel).color(f5, f6, f7, f4).endVertex();
+        worldrenderer.pos(xe, ye, zLevel).color(f5, f6, f7, f4).endVertex();
         tess.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
