@@ -150,15 +150,14 @@ public class GuiHelper
      */
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {        
-    	float f = 0.00390625F;
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
         
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);//TODO check
-        worldrenderer.pos(x0, y0, zLevel).tex((double)(xto * f), (double)((yte * f))).endVertex();//TODO check
-        worldrenderer.pos(x1, y1, zLevel).tex((double)(xte * f), (double)((yte * f))).endVertex();//TODO check
-        worldrenderer.pos(x2, y2, zLevel).tex((double)(xte * f), (double)((yto * f))).endVertex();//TODO check
-        worldrenderer.pos(x3, y3, zLevel).tex((double)(xto * f), (double)((yto * f))).endVertex();//TODO check
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.pos(x0, y0, zLevel).tex(xto, yte).endVertex();
+        worldrenderer.pos(x1, y1, zLevel).tex(xte, yte).endVertex();
+        worldrenderer.pos(x2, y2, zLevel).tex(xte, yto).endVertex();
+        worldrenderer.pos(x3, y3, zLevel).tex(xto, yto).endVertex();
         tess.draw();
     }
 
