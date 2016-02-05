@@ -44,7 +44,7 @@ public class FFMTLibs
         if(event.getSide().isClient())
         {
             MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());
-            FMLCommonHandler.instance().bus().register(new ConfigEventHandler());
+            MinecraftForge.EVENT_BUS.register(new ConfigEventHandler());
             this.addHatLayer();
         }
     }
