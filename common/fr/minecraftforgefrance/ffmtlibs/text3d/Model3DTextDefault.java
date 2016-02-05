@@ -79,21 +79,21 @@ public class Model3DTextDefault extends Model3DTextBase
         this.models.put('8', fromPattern("01110:10001:10001:01110:10001:10001:01110"));
         this.models.put('9', fromPattern("01110:10001:10001:01111:00001:00010:01100"));
         
-        this.models.put('à', fromPattern("00011:00000:01110:00001:01111:10001:01111"));
-        this.models.put('â', fromPattern("01110:10001:01110:00001:01111:10001:01111"));
-        this.models.put('ä', fromPattern("01010:00000:01110:00001:01111:10001:01111"));
-        this.models.put('è', fromPattern("11000:00000:01110:10001:11111:10000:01111"));
-        this.models.put('ê', fromPattern("01110:10001:01110:10001:11111:10000:01111"));
-        this.models.put('é', fromPattern("00011:00000:01110:10001:11111:10000:01111"));
-        this.models.put('ë', fromPattern("01010:00000:01110:10001:11111:10000:01111"));
-        this.models.put('î', fromPattern("00100:01010:00000:00100:00100:00100:00100"));
-        this.models.put('ï', fromPattern("00000:01010:00000:00100:00100:00100:00100"));
-        this.models.put('ô', fromPattern("01110:10001:01110:10001:10001:10001:01110"));
-        this.models.put('ö', fromPattern("01010:00000:01110:10001:10001:10001:01110"));
-        this.models.put('œ', fromPattern("000000:000000:010110:101001:101110:101000:010111"));
-        this.models.put('ç', fromPattern("00000:00000:00000:00000:00000:01110:10001:10000:10001:01110:00001:00110:00011"));
-        this.models.put('ù', fromPattern("11000:00000:10001:10001:10001:10001:01111"));
-        this.models.put('µ', fromPattern("00000:00000:00000:00000:10001:10001:10001:10001:11111:10000:10000"));
+        this.models.put('Ã ', fromPattern("00011:00000:01110:00001:01111:10001:01111"));
+        this.models.put('Ã¢', fromPattern("01110:10001:01110:00001:01111:10001:01111"));
+        this.models.put('Ã¤', fromPattern("01010:00000:01110:00001:01111:10001:01111"));
+        this.models.put('Ã¨', fromPattern("11000:00000:01110:10001:11111:10000:01111"));
+        this.models.put('Ãª', fromPattern("01110:10001:01110:10001:11111:10000:01111"));
+        this.models.put('Ã©', fromPattern("00011:00000:01110:10001:11111:10000:01111"));
+        this.models.put('Ã«', fromPattern("01010:00000:01110:10001:11111:10000:01111"));
+        this.models.put('Ã®', fromPattern("00100:01010:00000:00100:00100:00100:00100"));
+        this.models.put('Ã¯', fromPattern("00000:01010:00000:00100:00100:00100:00100"));
+        this.models.put('Ã´', fromPattern("01110:10001:01110:10001:10001:10001:01110"));
+        this.models.put('Ã¶', fromPattern("01010:00000:01110:10001:10001:10001:01110"));
+        this.models.put('Å“', fromPattern("000000:000000:010110:101001:101110:101000:010111"));
+        this.models.put('Ã§', fromPattern("00000:00000:00000:00000:00000:01110:10001:10000:10001:01110:00001:00110:00011"));
+        this.models.put('Ã¹', fromPattern("11000:00000:10001:10001:10001:10001:01111"));
+        this.models.put('Âµ', fromPattern("00000:00000:00000:00000:10001:10001:10001:10001:11111:10000:10000"));
 
         this.models.put('!', fromPattern("10000:10000:10000:10000:10000:00000:10000"));
         this.models.put('"', fromPattern("01010:01010:10100:00000:00000:00000:00000"));
@@ -125,9 +125,9 @@ public class Model3DTextDefault extends Model3DTextBase
         this.models.put('{', fromPattern("0011:0100:0100:1000:0100:0100:0011"));
         this.models.put('|', fromPattern("1:1:1:1:1:1:1"));
         this.models.put('}', fromPattern("1100:0010:0010:0001:0010:0010:1100"));
-        this.models.put('°', fromPattern("010:101:010:000:000:000:000"));
+        this.models.put('Â°', fromPattern("010:101:010:000:000:000:000"));
         this.models.put('~', fromPattern("000000:000000:011001:100110:000000:000000"));
-        this.models.put('£', fromPattern("00110:01001:01000:11110:01000:01000:11111"));
+        this.models.put('Â£', fromPattern("00110:01001:01000:11110:01000:01000:11111"));
         //this.models.put('', fromPattern("::::::"));
     }
 
