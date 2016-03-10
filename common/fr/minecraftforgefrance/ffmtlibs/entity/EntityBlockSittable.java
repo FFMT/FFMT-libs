@@ -30,14 +30,14 @@ public class EntityBlockSittable extends Entity
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		if(this.riddenByEntity != null)
+		if(this.func_184187_bx() != null)//func_184187_bx -> mounted entity
 		{
 			return true;
 		}
 
 		if(!this.worldObj.isRemote)
 		{
-			entityplayer.mountEntity(this);
+			entityplayer.func_184220_m(this);//func_184220_m -> mountEntity
 		}
 		return true;
 	}
@@ -45,7 +45,7 @@ public class EntityBlockSittable extends Entity
 	@Override
     public void onEntityUpdate()
 	{
-		if(this.riddenByEntity == null || this.riddenByEntity.isDead)
+		if(this.func_184187_bx() == null || this.func_184187_bx().isDead)//func_184187_bx -> mounted entity
 		{
 			this.setDead();
 		}

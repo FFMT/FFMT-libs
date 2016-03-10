@@ -1,7 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
+import fr.minecraftforgefrance.ffmtlibs.FFMTCapabilityProvider;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -10,12 +12,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class PlayerEventHandler
 {
     @SubscribeEvent
-    public void onEntityConstructing(EntityEvent.EntityConstructing event)
+    public void onCapabilityAttachPlayer(AttachCapabilitiesEvent.Entity event)
     {
-        if(event.entity instanceof EntityPlayer)
+        if(event.getEntity() instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer)event.entity;
-            player.registerExtendedProperties(FFMTCustomPlayerProp.ENTITY_PROP_NAME, new FFMTCustomPlayerProp());
+            event.addCapability(new ResourceLocation("ffmtlibs:ffmtcaps"), new FFMTCapabilityProvider());
         }
     }
 }

@@ -9,15 +9,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTArmor;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTAxe;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTHoe;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTPickaxe;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSpade;
-import fr.minecraftforgefrance.ffmtlibs.item.ItemFFMTSword;
 
 public class FFMTRegistry
 {
@@ -155,12 +147,13 @@ public class FFMTRegistry
      * @param creativeTabs where the item will be display
      * @param repair the item to repair your armor in an anvil
      */
+    @Deprecated
     public static void addAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, Item repair, CreativeTabs creativeTabs)
     {
-        helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setCreativeTab(creativeTabs);
-        chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setCreativeTab(creativeTabs);
-        leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setCreativeTab(creativeTabs);
-        boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setCreativeTab(creativeTabs);
+//        helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setCreativeTab(creativeTabs);
+//        chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setCreativeTab(creativeTabs);
+//        leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setCreativeTab(creativeTabs);
+//        boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setCreativeTab(creativeTabs);
     }
 
     /**
@@ -194,13 +187,14 @@ public class FFMTRegistry
      * @param repair the item to repair yours tools in an anvil
      * @param creativeTabs where the item will be display
      */
+    @Deprecated
     public static void addAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, Item repair, CreativeTabs creativeTabs)
     {
-        sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setCreativeTab(creativeTabs);
-        pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setCreativeTab(creativeTabs);
-        axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setCreativeTab(creativeTabs);
-        shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setCreativeTab(creativeTabs);
-        hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setCreativeTab(creativeTabs);
+//        sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setCreativeTab(creativeTabs);
+//        pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setCreativeTab(creativeTabs);
+//        axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setCreativeTab(creativeTabs);
+//        shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setCreativeTab(creativeTabs);
+//        hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setCreativeTab(creativeTabs);
     }
 
     /**

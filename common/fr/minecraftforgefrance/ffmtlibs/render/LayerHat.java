@@ -1,5 +1,7 @@
 package fr.minecraftforgefrance.ffmtlibs.render;
 
+import fr.minecraftforgefrance.ffmtlibs.FFMTCapabilityProvider;
+import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -8,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.common.Loader;
-import fr.minecraftforgefrance.ffmtlibs.event.FFMTCustomPlayerProp;
 
 public class LayerHat implements LayerRenderer
 {
@@ -24,29 +25,32 @@ public class LayerHat implements LayerRenderer
     {
         if(entityliving instanceof EntityPlayer)
         {
-            this.renderHat((EntityPlayer)entityliving, FFMTCustomPlayerProp.get((EntityPlayer)entityliving), partialTicks, scale, f1, f1, f2, f3, f4);
+            if(entityliving.hasCapability(FFMTLibs.TEST_CAP, null))
+            {
+                this.renderHat((EntityPlayer)entityliving, (FFMTCapabilityProvider)entityliving.getCapability(FFMTLibs.TEST_CAP, null), partialTicks, scale, f1, f1, f2, f3, f4);
+            }
         }
     }
 
-    public void renderHat(EntityPlayer player, FFMTCustomPlayerProp prop, float partialTicks, float scale, float f, float f1, float f2, float f3, float f4)
+    public void renderHat(EntityPlayer player, FFMTCapabilityProvider cap, float partialTicks, float scale, float f, float f1, float f2, float f3, float f4)
     {
-        if(prop.downloadImageHat == null)
+        if(cap.downloadImageHat == null)
         {
-            prop.downloadImageHat = prop.getDownloadImageHat(prop.getLocationHat(player.getUniqueID().toString()), player.getUniqueID().toString());
+            cap.downloadImageHat = cap.getDownloadImageHat(cap.getLocationHat(player.getUniqueID().toString()), player.getUniqueID().toString());
         }
-        if(prop.downloadParticle == null)
+        if(cap.downloadParticle == null)
         {
-            prop.downloadParticle = prop.getDownloadListHat(player.getUniqueID().toString());
+            cap.downloadParticle = cap.getDownloadListHat(player.getUniqueID().toString());
         }
-        if(prop.model == null)
+        if(cap.model == null)
         {
-            prop.model = prop.getDownloadListModelHat(player.getUniqueID().toString());
+            cap.model = cap.getDownloadListModelHat(player.getUniqueID().toString());
         }
-        if(!player.isInvisible() && prop.getLocationHat(player.getGameProfile().getId().toString()) != null && prop.downloadParticle.isTextDownloaded() && prop.model.isTextDownloaded())
+        if(!player.isInvisible() && cap.getLocationHat(player.getGameProfile().getId().toString()) != null && cap.downloadParticle.isTextDownloaded() && cap.model.isTextDownloaded())
         {
             GlStateManager.pushMatrix();
-            Minecraft.getMinecraft().renderEngine.bindTexture(prop.getLocationHat(player.getGameProfile().getId().toString()));
-            ModelHat hat = new ModelHat(this.render.getMainModel(), prop.model.getValue());
+            Minecraft.getMinecraft().renderEngine.bindTexture(cap.getLocationHat(player.getGameProfile().getId().toString()));
+            ModelHat hat = new ModelHat(this.render.getMainModel(), cap.model.getValue());
 
             if(player.isSneaking())
             {
@@ -54,15 +58,15 @@ public class LayerHat implements LayerRenderer
             }
 
             hat.render(player, f, f1, f2, f3, f4, 0.03125F);
-            if(prop.downloadParticle.getValue() != null && !prop.downloadParticle.getValue().isEmpty())
+            if(cap.downloadParticle.getValue() != null && !cap.downloadParticle.getValue().isEmpty())
             {
-                if(prop.particules == null)
+                if(cap.particules == null)
                 {
-                    prop.getParticules();
+                    cap.getParticules();
                 }
                 if(!Loader.isModLoaded("nhg"))
                 {
-                    for(EnumParticleTypes particles : prop.particules)
+                    for(EnumParticleTypes particles : cap.particules)
                     {
                         if(particles != null && player.worldObj.rand.nextInt(10) == 0)
                         {

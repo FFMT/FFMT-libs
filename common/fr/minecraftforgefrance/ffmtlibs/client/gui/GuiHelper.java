@@ -3,21 +3,20 @@ package fr.minecraftforgefrance.ffmtlibs.client.gui;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 @SideOnly(Side.CLIENT)
 public class GuiHelper
@@ -213,13 +212,13 @@ public class GuiHelper
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {
         Tessellator tess = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tess.getWorldRenderer();
+        VertexBuffer worldrenderer = tess.getWorldRenderer();
 
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(x0, y0, zLevel).tex(xto, yte).endVertex();
-        worldrenderer.pos(x1, y1, zLevel).tex(xte, yte).endVertex();
-        worldrenderer.pos(x2, y2, zLevel).tex(xte, yto).endVertex();
-        worldrenderer.pos(x3, y3, zLevel).tex(xto, yto).endVertex();
+        worldrenderer.pos(x0, y0, zLevel).func_187315_a(xto, yte).endVertex();//func_187315_a -> tex
+        worldrenderer.pos(x1, y1, zLevel).func_187315_a(xte, yte).endVertex();
+        worldrenderer.pos(x2, y2, zLevel).func_187315_a(xte, yto).endVertex();
+        worldrenderer.pos(x3, y3, zLevel).func_187315_a(xto, yto).endVertex();
         tess.draw();
     }
 
@@ -377,7 +376,7 @@ public class GuiHelper
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tess = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tess.getWorldRenderer();
+        VertexBuffer worldrenderer = tess.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
         worldrenderer.pos(xe, ys, zLevel).color(f1, f2, f3, f).endVertex();
         worldrenderer.pos(xs, ys, zLevel).color(f1, f2, f3, f).endVertex();

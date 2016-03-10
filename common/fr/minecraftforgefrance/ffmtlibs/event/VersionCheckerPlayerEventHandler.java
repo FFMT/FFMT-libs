@@ -1,6 +1,6 @@
 package fr.minecraftforgefrance.ffmtlibs.event;
 
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
@@ -23,8 +23,8 @@ public class VersionCheckerPlayerEventHandler
 	{
 		if(!this.hasSay)
 		{
-			event.player.addChatMessage(new ChatComponentTranslation("update.available", this.outdatedMod, this.lastestVersion));
-			event.player.addChatMessage(new ChatComponentTranslation("update.download", this.downloadURL));
+			event.player.addChatMessage(new TextComponentTranslation("update.available", this.outdatedMod, this.lastestVersion));
+			event.player.addChatMessage(new TextComponentTranslation("update.download", this.downloadURL));
 			this.hasSay = true;
 		}
 	}

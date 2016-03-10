@@ -1,11 +1,9 @@
 package fr.minecraftforgefrance.ffmtlibs.block;
 
-import java.util.Random;
-
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,10 +47,10 @@ public class BlockHelper
 	 */
 	@SideOnly(Side.CLIENT)
 	public static BlockPos getBlockInSight(int distance, EntityLivingBase living)
-	{  
-		MovingObjectPosition objectMouseOver = living.rayTrace(distance, 1);
+	{
+		RayTraceResult objectMouseOver = living.rayTrace(distance, 1);
 
-		if(objectMouseOver != null && objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+		if(objectMouseOver != null && objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK)
 		{
 		    return objectMouseOver.getBlockPos();
 		}

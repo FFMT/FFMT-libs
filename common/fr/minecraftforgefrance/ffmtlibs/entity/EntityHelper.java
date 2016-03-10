@@ -2,7 +2,6 @@ package fr.minecraftforgefrance.ffmtlibs.entity;
 
 import java.util.List;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -13,8 +12,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -113,7 +112,7 @@ public class EntityHelper
      **/
     public static void targetEntity(EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
     {
-        List list = entityHostAttack.worldObj.getEntitiesWithinAABB(classToAttack, AxisAlignedBB.fromBounds(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+        List list = entityHostAttack.worldObj.getEntitiesWithinAABB(classToAttack, new AxisAlignedBB(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
         for(int i = 0; i < list.size(); i++)
         {
             EntityLivingBase entityToAttack = (EntityLivingBase)list.get(entityHostAttack.worldObj.rand.nextInt(i));

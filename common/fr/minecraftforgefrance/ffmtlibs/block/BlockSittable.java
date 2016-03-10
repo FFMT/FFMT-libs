@@ -6,7 +6,7 @@ import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 /**
@@ -40,7 +40,7 @@ public class BlockSittable extends Block
 	{
 		if(!world.isRemote)
 		{
-			List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, AxisAlignedBB.fromBounds(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1.0D, 1.0D, 1.0D));
+			List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1.0D, 1.0D, 1.0D));
 			for(EntityBlockSittable entitytocheck : listEMB)
 			{
 				if((entitytocheck.blockPosX == x) && (entitytocheck.blockPosY == y) && (entitytocheck.blockPosZ == z))

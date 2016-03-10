@@ -1,26 +1,24 @@
-package fr.minecraftforgefrance.ffmtlibs.event;
+package fr.minecraftforgefrance.ffmtlibs;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import fr.minecraftforgefrance.ffmtlibs.event.ThreadDowloadTextData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
-import net.minecraft.world.World;
-import net.minecraftforge.common.IExtendedEntityProperties;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-public class FFMTCustomPlayerProp implements IExtendedEntityProperties
+public class FFMTCapabilityProvider implements ICapabilityProvider, IFFMTCapability
 {
-    public static final String ENTITY_PROP_NAME = "FFMTCustomPlayerProp";
-
     public ResourceLocation locationHat;
     public ThreadDownloadImageData downloadImageHat;
     public ThreadDowloadTextData downloadParticle;
@@ -28,24 +26,19 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
     public EnumParticleTypes[] particules;
 
     @Override
-    public void saveNBTData(NBTTagCompound compound)
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
-
+        return FFMTLibs.TEST_CAP != null && capability == FFMTLibs.TEST_CAP;
     }
 
     @Override
-    public void loadNBTData(NBTTagCompound compound)
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-
-    }
-
-    @Override
-    public void init(Entity entity, World world)
-    {}
-
-    public static final FFMTCustomPlayerProp get(EntityPlayer player)
-    {
-        return (FFMTCustomPlayerProp)player.getExtendedProperties(ENTITY_PROP_NAME);
+        if(FFMTLibs.TEST_CAP != null && capability == FFMTLibs.TEST_CAP)
+        {
+            return (T)this;
+        }
+        return null;
     }
 
     public ThreadDownloadImageData getTextureHat()
@@ -114,9 +107,9 @@ public class FFMTCustomPlayerProp implements IExtendedEntityProperties
 
     private EnumParticleTypes getParticuleByName(String name)
     {
-        for(int i = 0; i < EnumParticleTypes.getParticleNames().length; i++)
+        for(int i = 0; i < EnumParticleTypes.values().length; i++)
         {
-            if(EnumParticleTypes.getParticleNames()[i].equals(name))
+            if(EnumParticleTypes.values()[i].getParticleName().equals(name))
             {
                 return EnumParticleTypes.getParticleFromId(i);
             }
