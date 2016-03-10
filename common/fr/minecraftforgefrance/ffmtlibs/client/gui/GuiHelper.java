@@ -27,11 +27,17 @@ public class GuiHelper
 
     /**
      * Draw a string aligned on left
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
      */
     public static void drawLeftAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -40,11 +46,17 @@ public class GuiHelper
 
     /**
      * Draw a string centered
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
      */
     public static void drawCenteredString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -53,11 +65,17 @@ public class GuiHelper
 
     /**
      * Draw a string aligned on right
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
      */
     public static void drawRightAlignedString(FontRenderer font, String string, int x, int y, int color)
     {
@@ -66,12 +84,19 @@ public class GuiHelper
 
     /**
      * Draw a localized string aligned on the left
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
-     * @param arrayObj object to format
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
+     * @param arrayObj
+     *            object to format
      */
     public static void drawLeftAlignedLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -80,12 +105,19 @@ public class GuiHelper
 
     /**
      * Draw a centered localized string
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
-     * @param arrayObj object to format
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
+     * @param arrayObj
+     *            object to format
      */
     public static void drawCenteredLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -94,12 +126,19 @@ public class GuiHelper
 
     /**
      * Draw a localized string aligned on the right
-     * @param font fondrenderer instance
-     * @param string text
-     * @param x x coord
-     * @param y y coord
-     * @param color text color
-     * @param arrayObj object to format
+     *
+     * @param font
+     *            fondrenderer instance
+     * @param string
+     *            text
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param color
+     *            text color
+     * @param arrayObj
+     *            object to format
      */
     public static void drawRightAlignedLocalizedString(FontRenderer font, String string, int x, int y, int color, Object... arrayObj)
     {
@@ -108,14 +147,23 @@ public class GuiHelper
 
     /**
      * Draw texture at given start and end cords
-     * @param xo start x coord
-     * @param yo start y coord
-     * @param xe end x coord
-     * @param ye end y coord
-     * @param xto x texture start (ratio)
-     * @param yto y texture start (ratio)
-     * @param xte x texture end (ratio)
-     * @param yte y texture end (ratio)
+     *
+     * @param xo
+     *            start x coord
+     * @param yo
+     *            start y coord
+     * @param xe
+     *            end x coord
+     * @param ye
+     *            end y coord
+     * @param xto
+     *            x texture start (ratio)
+     * @param yto
+     *            y texture start (ratio)
+     * @param xte
+     *            x texture end (ratio)
+     * @param yte
+     *            y texture end (ratio)
      */
     public static void drawTexture(int xo, int yo, int xe, int ye, float xto, float yto, float xte, float yte)
     {
@@ -134,25 +182,39 @@ public class GuiHelper
 
     /**
      * Draw a texture with 4 cords:
-     * @param x0 first x
-     * @param x1 second x
-     * @param x2 third x
-     * @param x3 fourth x
-     * @param y0 first y
-     * @param y1 second y
-     * @param y2 third y
-     * @param y3 fourth y
-     * @param xto x texture start (ratio)
-     * @param yto y texture start (ratio)
-     * @param xte x texture end (ratio)
-     * @param yte y texture end (ratio)
-     * @param zLevel zLevel
+     *
+     * @param x0
+     *            first x
+     * @param x1
+     *            second x
+     * @param x2
+     *            third x
+     * @param x3
+     *            fourth x
+     * @param y0
+     *            first y
+     * @param y1
+     *            second y
+     * @param y2
+     *            third y
+     * @param y3
+     *            fourth y
+     * @param xto
+     *            x texture start (ratio)
+     * @param yto
+     *            y texture start (ratio)
+     * @param xte
+     *            x texture end (ratio)
+     * @param yte
+     *            y texture end (ratio)
+     * @param zLevel
+     *            zLevel
      */
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
-    {        
+    {
         Tessellator tess = Tessellator.getInstance();
         WorldRenderer worldrenderer = tess.getWorldRenderer();
-        
+
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
         worldrenderer.pos(x0, y0, zLevel).tex(xto, yte).endVertex();
         worldrenderer.pos(x1, y1, zLevel).tex(xte, yte).endVertex();
@@ -163,14 +225,23 @@ public class GuiHelper
 
     /**
      * Draw a texture based on a circle, the for points will be on the circle with an angle of 45°
-     * @param x x coord
-     * @param y y coord
-     * @param xto x texture start (ratio)
-     * @param yto y texture start (ratio)
-     * @param xte x texture end (ratio)
-     * @param yte y texture end (ratio)
-     * @param angle angle
-     * @param radius picture size (radius of the circle for the rotation)
+     *
+     * @param x
+     *            x coord
+     * @param y
+     *            y coord
+     * @param xto
+     *            x texture start (ratio)
+     * @param yto
+     *            y texture start (ratio)
+     * @param xte
+     *            x texture end (ratio)
+     * @param yte
+     *            y texture end (ratio)
+     * @param angle
+     *            angle
+     * @param radius
+     *            picture size (radius of the circle for the rotation)
      */
     public static void drawTextureWithRotation(int x, int y, float xto, float yto, float xte, float yte, double angle, double radius)
     {
@@ -187,13 +258,21 @@ public class GuiHelper
 
     /**
      * Draw string with little backgroud, like when you hover an item
-     * @param list contain text, one string by line
-     * @param mouseX coord x of the mouse
-     * @param mouseY coord y of the mouse
-     * @param font fontrenderer
-     * @param width width of the gui
-     * @param height height of the gui
-     * @param color color of the text
+     *
+     * @param list
+     *            contain text, one string by line
+     * @param mouseX
+     *            coord x of the mouse
+     * @param mouseY
+     *            coord y of the mouse
+     * @param font
+     *            fontrenderer
+     * @param width
+     *            width of the gui
+     * @param height
+     *            height of the gui
+     * @param color
+     *            color of the text
      */
     public static void drawHoveringText(ArrayList<String> list, int mouseX, int mouseY, FontRenderer font, int width, int height, int color)
     {
@@ -235,12 +314,12 @@ public class GuiHelper
             {
                 k2 = height - i1 - 6;
             }
-            
+
             if(k2 < 5)
             {
                 k2 = 5;
             }
-            
+
             if(j2 < 5)
             {
                 j2 = 5;
@@ -272,7 +351,7 @@ public class GuiHelper
 
                 k2 += 10;
             }
-            GL11.glEnable(GL11.GL_LIGHTING);
+            // GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             RenderHelper.enableStandardItemLighting();
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);

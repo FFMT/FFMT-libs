@@ -9,6 +9,7 @@ public class Text3D
 {
     private final ResourceLocation texture = new ResourceLocation("ffmtlibs", "textures/white.png");
     private Model3DTextBase font;
+    private final Minecraft mc = Minecraft.getMinecraft();
 
     public Text3D(Model3DTextBase font)
     {
@@ -30,7 +31,7 @@ public class Text3D
         if(text != null && text.length() > 0)
         {
             GlStateManager.color(red, green, blue);
-            Minecraft.getMinecraft().renderEngine.bindTexture(this.texture);
+            this.mc.renderEngine.bindTexture(this.texture);
             char[] str = text.toCharArray();
             float prevspacing = 0;
             for(int i = 0; i < str.length; i++)
@@ -57,7 +58,7 @@ public class Text3D
         if(text != null && text.length() > 0)
         {
             GlStateManager.color(red, green, blue);
-            Minecraft.getMinecraft().renderEngine.bindTexture(this.texture);
+            this.mc.renderEngine.bindTexture(this.texture);
             char[] str = text.toCharArray();
             float prevspacing = 0;
             for(int i = str.length-1; i >=0 ; i--)
@@ -84,7 +85,7 @@ public class Text3D
         if(text != null && text.length() > 0)
         {
             GlStateManager.color(red, green, blue);
-            Minecraft.getMinecraft().renderEngine.bindTexture(this.texture);
+            this.mc.renderEngine.bindTexture(this.texture);
             char[] str = text.toCharArray();
             float prevspacing = 0;
             float tLen = 0;
