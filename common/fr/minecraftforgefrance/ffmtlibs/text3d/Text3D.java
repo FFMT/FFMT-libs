@@ -1,6 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs.text3d;
 
-import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;

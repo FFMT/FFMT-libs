@@ -30,7 +30,7 @@ public class EntityBlockSittable extends Entity
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		if(this.func_184187_bx() != null)//func_184187_bx -> mounted entity
+		if(this.func_184187_bx() != null)//func_184187_bx -> get riddenByEntity
 		{
 			return true;
 		}

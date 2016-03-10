@@ -2,11 +2,11 @@ package fr.minecraftforgefrance.ffmtlibs.render;
 
 import java.util.List;
 
+import fr.minecraftforgefrance.ffmtlibs.event.ModelRenderEntry;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import fr.minecraftforgefrance.ffmtlibs.event.ModelRenderEntry;
 
 public class ModelHat extends ModelBase
 {

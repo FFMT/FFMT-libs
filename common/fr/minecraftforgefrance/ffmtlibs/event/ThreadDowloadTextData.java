@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import net.minecraft.client.Minecraft;
 import fr.minecraftforgefrance.ffmtlibs.FFMTLibs;
+import net.minecraft.client.Minecraft;
 
 public class ThreadDowloadTextData
 {
