@@ -39,7 +39,7 @@ public class ThreadDowloadTextData
 
 						if(httpurlconnection.getResponseCode() / 100 == 2)
 						{
-							List<String> list = new ArrayList();
+							List<String> list = new ArrayList<String>();
 							InputStreamReader in = new InputStreamReader(httpurlconnection.getInputStream());
 							BufferedReader reader = new BufferedReader(in);
 

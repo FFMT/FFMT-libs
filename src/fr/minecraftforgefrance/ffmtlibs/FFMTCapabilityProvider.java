@@ -31,6 +31,7 @@ public class FFMTCapabilityProvider implements ICapabilityProvider, IFFMTCapabil
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
         if(FFMTLibs.TEST_CAP != null && capability == FFMTLibs.TEST_CAP)
@@ -40,21 +41,25 @@ public class FFMTCapabilityProvider implements ICapabilityProvider, IFFMTCapabil
         return null;
     }
 
+    @Override
     public ThreadDownloadImageData getTextureHat()
     {
         return this.downloadImageHat;
     }
 
+    @Override
     public ThreadDowloadTextData getDownloadListHat(String uuid)
     {
         return new ThreadDowloadTextData(this.getHatInfoUrl(uuid));
     }
 
+    @Override
     public ThreadDowloadTextData getDownloadListModelHat(String uuid)
     {
         return new ThreadDowloadTextData(this.getHatModelUrl(uuid));
     }
 
+    @Override
     public ThreadDownloadImageData getDownloadImageHat(ResourceLocation resourceLocation, String uuid)
     {
         TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
@@ -76,21 +81,25 @@ public class FFMTCapabilityProvider implements ICapabilityProvider, IFFMTCapabil
         return (ThreadDownloadImageData)object;
     }
 
+    @Override
     public String getHatInfoUrl(String uuid)
     {
         return String.format("http://files.minecraftforgefrance.fr/hats/%s.txt", new Object[] {StringUtils.stripControlCodes(uuid)});
     }
 
+    @Override
     public String getHatModelUrl(String uuid)
     {
         return String.format("http://files.minecraftforgefrance.fr/hats/%s_model.txt", new Object[] {StringUtils.stripControlCodes(uuid)});
     }
 
+    @Override
     public ResourceLocation getLocationHat(String uuid)
     {
         return new ResourceLocation("ffmtlibs", "hats/" + StringUtils.stripControlCodes(uuid));
     }
 
+    @Override
     public EnumParticleTypes[] getParticules()
     {
         if(this.particules == null)

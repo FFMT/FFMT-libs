@@ -112,10 +112,10 @@ public class EntityHelper
      **/
     public static void targetEntity(EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
     {
-        List list = entityHostAttack.worldObj.getEntitiesWithinAABB(classToAttack, new AxisAlignedBB(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+        List<? extends EntityLivingBase> list = entityHostAttack.worldObj.getEntitiesWithinAABB(classToAttack, new AxisAlignedBB(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
         for(int i = 0; i < list.size(); i++)
         {
-            EntityLivingBase entityToAttack = (EntityLivingBase)list.get(entityHostAttack.worldObj.rand.nextInt(i));
+            EntityLivingBase entityToAttack = list.get(entityHostAttack.worldObj.rand.nextInt(i));
             if(!list.isEmpty())
             {
                 entityHostAttack.setAttackTarget(entityToAttack);
@@ -143,7 +143,7 @@ public class EntityHelper
      */
     public static void removeLoadedEntityList(World world, Entity entityToRemove)
     {
-        List list = world.getLoadedEntityList();
+        List<Entity> list = world.getLoadedEntityList();
         if(!list.isEmpty())
         {
             list.remove(entityToRemove);

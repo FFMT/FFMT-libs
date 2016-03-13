@@ -73,7 +73,7 @@ public class Model3DTextDefault extends Model3DTextBase
         this.models.put('Y', fromPattern("10001:01010:00100:00100:00100:00100:00100"));
         this.models.put('z', fromPattern("00000:00000:11111:00010:00100:01000:11111"));
         this.models.put('Z', fromPattern("11111:00001:00010:00100:01000:10000:11111"));
-        
+
         this.models.put('0', fromPattern("01110:10001:10011:10101:11001:10001:01110"));
         this.models.put('1', fromPattern("00100:01100:00100:00100:00100:00100:11111"));
         this.models.put('2', fromPattern("01110:10001:00001:00110:01000:10001:11111"));
@@ -84,7 +84,7 @@ public class Model3DTextDefault extends Model3DTextBase
         this.models.put('7', fromPattern("11111:10001:00001:00010:00100:00100:00100"));
         this.models.put('8', fromPattern("01110:10001:10001:01110:10001:10001:01110"));
         this.models.put('9', fromPattern("01110:10001:10001:01111:00001:00010:01100"));
-        
+
         this.models.put('à', fromPattern("11000:00000:01110:00001:01111:10001:01111"));
         this.models.put('â', fromPattern("01110:10001:01110:00001:01111:10001:01111"));
         this.models.put('ä', fromPattern("01010:00000:01110:00001:01111:10001:01111"));
@@ -156,7 +156,7 @@ public class Model3DTextDefault extends Model3DTextBase
     {
         renderAll(this.models.get(ch), scale, x);
     }
-    
+
     private ModelRenderer[] fromPattern(String pattern)
     {
         if(pattern != null && pattern.length() > 0 && pattern.contains(":"))
@@ -177,8 +177,8 @@ public class Model3DTextDefault extends Model3DTextBase
                 tab[i] = lines[i].toCharArray();
             }
 
-            float xOff = ((float)lineLen) / -2.0F;
-            float yOff = ((float)lines.length) / -2.0F;
+            float xOff = (lineLen) / -2.0F;
+            float yOff = (lines.length) / -2.0F;
 
             List<ModelRenderer> out = new ArrayList<ModelRenderer>();
 

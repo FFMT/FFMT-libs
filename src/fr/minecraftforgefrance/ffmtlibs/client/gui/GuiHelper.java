@@ -212,13 +212,13 @@ public class GuiHelper
     public static void drawTexture(int x0, int x1, int x2, int x3, int y0, int y1, int y2, int y3, float xto, float yto, float xte, float yte, float zLevel)
     {
         Tessellator tess = Tessellator.getInstance();
-        VertexBuffer worldrenderer = tess.getWorldRenderer();
+        VertexBuffer worldrenderer = tess.getBuffer();
 
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos(x0, y0, zLevel).func_187315_a(xto, yte).endVertex();//TODO func_187315_a -> tex
-        worldrenderer.pos(x1, y1, zLevel).func_187315_a(xte, yte).endVertex();
-        worldrenderer.pos(x2, y2, zLevel).func_187315_a(xte, yto).endVertex();
-        worldrenderer.pos(x3, y3, zLevel).func_187315_a(xto, yto).endVertex();
+        worldrenderer.pos(x0, y0, zLevel).tex(xto, yte).endVertex();
+        worldrenderer.pos(x1, y1, zLevel).tex(xte, yte).endVertex();
+        worldrenderer.pos(x2, y2, zLevel).tex(xte, yto).endVertex();
+        worldrenderer.pos(x3, y3, zLevel).tex(xto, yto).endVertex();
         tess.draw();
     }
 
@@ -282,11 +282,11 @@ public class GuiHelper
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
             int k = 0;
-            Iterator iterator = list.iterator();
+            Iterator<String> iterator = list.iterator();
 
             while(iterator.hasNext())
             {
-                String s = (String)iterator.next();
+                String s = iterator.next();
                 int l = font.getStringWidth(s);
 
                 if(l > k)
@@ -362,21 +362,21 @@ public class GuiHelper
      */
     private static void drawGradientRect(int xs, int ys, int xe, int ye, int startColor, int endColor, float zLevel)
     {
-        float f = (float)(startColor >> 24 & 255) / 255.0F;
-        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
-        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
-        float f3 = (float)(startColor & 255) / 255.0F;
-        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
-        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
-        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
-        float f7 = (float)(endColor & 255) / 255.0F;
+        float f = (startColor >> 24 & 255) / 255.0F;
+        float f1 = (startColor >> 16 & 255) / 255.0F;
+        float f2 = (startColor >> 8 & 255) / 255.0F;
+        float f3 = (startColor & 255) / 255.0F;
+        float f4 = (endColor >> 24 & 255) / 255.0F;
+        float f5 = (endColor >> 16 & 255) / 255.0F;
+        float f6 = (endColor >> 8 & 255) / 255.0F;
+        float f7 = (endColor & 255) / 255.0F;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tess = Tessellator.getInstance();
-        VertexBuffer worldrenderer = tess.getWorldRenderer();
+        VertexBuffer worldrenderer = tess.getBuffer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
         worldrenderer.pos(xe, ys, zLevel).color(f1, f2, f3, f).endVertex();
         worldrenderer.pos(xs, ys, zLevel).color(f1, f2, f3, f).endVertex();

@@ -6,12 +6,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.fml.common.Loader;
 
-public class LayerHat implements LayerRenderer
+public class LayerHat implements LayerRenderer<EntityPlayer>
 {
     private RenderPlayer render;
 
@@ -21,14 +20,11 @@ public class LayerHat implements LayerRenderer
     }
 
     @Override
-    public void doRenderLayer(EntityLivingBase entityliving, float f, float f1, float partialTicks, float f2, float f3, float f4, float scale)
+    public void doRenderLayer(EntityPlayer player, float f, float f1, float partialTicks, float f2, float f3, float f4, float scale)
     {
-        if(entityliving instanceof EntityPlayer)
+        if(player.hasCapability(FFMTLibs.TEST_CAP, null))
         {
-            if(entityliving.hasCapability(FFMTLibs.TEST_CAP, null))
-            {
-                this.renderHat((EntityPlayer)entityliving, (FFMTCapabilityProvider)entityliving.getCapability(FFMTLibs.TEST_CAP, null), partialTicks, scale, f1, f1, f2, f3, f4);
-            }
+            this.renderHat(player, (FFMTCapabilityProvider)player.getCapability(FFMTLibs.TEST_CAP, null), partialTicks, scale, f1, f1, f2, f3, f4);
         }
     }
 

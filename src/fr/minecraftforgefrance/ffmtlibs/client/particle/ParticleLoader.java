@@ -36,6 +36,7 @@ public class ParticleLoader
 	 *
 	 * @author elias54
 	 */
+	@Deprecated
 	public static void spawnParticle(boolean customParticle, EnumParticleTypes particleNameIfVanilla, World world, Entity entity, double x, double y, double z, double motx, double moty, double motz, float gravity, float scale, String textureLocation, int ... blockId)
 	{
 		EntityCustomFX customFX = null;
