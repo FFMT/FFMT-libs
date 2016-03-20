@@ -24,11 +24,11 @@ public class LayerHat implements LayerRenderer<EntityPlayer>
     {
         if(player.hasCapability(FFMTLibs.TEST_CAP, null))
         {
-            this.renderHat(player, (FFMTCapabilityProvider)player.getCapability(FFMTLibs.TEST_CAP, null), partialTicks, scale, f1, f1, f2, f3, f4);
+            this.renderHat(player, (FFMTCapabilityProvider)player.getCapability(FFMTLibs.TEST_CAP, null), f, f1, f2, f3, f4);
         }
     }
 
-    public void renderHat(EntityPlayer player, FFMTCapabilityProvider cap, float partialTicks, float scale, float f, float f1, float f2, float f3, float f4)
+    public void renderHat(EntityPlayer player, FFMTCapabilityProvider cap, float f, float f1, float f2, float f3, float f4)
     {
         if(cap.downloadImageHat == null)
         {

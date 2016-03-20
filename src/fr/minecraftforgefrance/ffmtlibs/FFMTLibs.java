@@ -40,12 +40,6 @@ public class FFMTLibs
     @CapabilityInject(IFFMTCapability.class)
     public static final Capability<IFFMTCapability> TEST_CAP = null;
 
-    @CapabilityInject(IFFMTCapability.class)
-    private static void capRegistered(Capability<IFFMTCapability> cap)
-    {
-        System.out.println("IExampleCapability was registered wheeeeee!");
-    }
-
     public class Storage implements IStorage<IFFMTCapability>
     {
         @Override

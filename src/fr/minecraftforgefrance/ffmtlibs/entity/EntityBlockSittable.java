@@ -3,6 +3,7 @@ package fr.minecraftforgefrance.ffmtlibs.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityBlockSittable extends Entity
@@ -19,12 +20,12 @@ public class EntityBlockSittable extends Entity
 		this.setSize(0.0F, 0.0F);
 	}
 
-	public EntityBlockSittable(World world, EntityPlayer entityplayer, int x, int y, int z, float entityX, float entityY, float entityZ)
+	public EntityBlockSittable(World world, BlockPos pos, float entityX, float entityY, float entityZ)
 	{
 		this(world);
-		this.blockPosX = x;
-		this.blockPosY = y;
-		this.blockPosZ = z;
+		this.blockPosX = pos.getX();
+		this.blockPosY = pos.getY();
+		this.blockPosZ = pos.getZ();
 		this.setPosition(entityX, entityY, entityZ);
 	}
 
