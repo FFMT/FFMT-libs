@@ -20,7 +20,7 @@ apply plugin: 'maven'
 
 ext.buildnumber = 0
 
-version = "1.6.2"
+version = "1.6.3"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
@@ -33,7 +33,7 @@ else {
 }
 
 minecraft {
-    version = "1.8.9-11.15.0.1669"
+    version = "1.9-12.16.0.1770-1.9"
     runDir = "run"
 
     mappings = "snapshot_20160102"
@@ -46,7 +46,7 @@ minecraft {
 sourceSets {
     main {
         java {
-            srcDir 'common'
+            srcDir 'src'
         }
         resources {
             srcDir 'resources'
