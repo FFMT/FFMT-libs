@@ -1,8 +1,5 @@
 package fr.minecraftforgefrance.ffmtlibs;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,9 +8,7 @@ import fr.minecraftforgefrance.ffmtlibs.entity.EntityBlockSittable;
 import fr.minecraftforgefrance.ffmtlibs.event.PlayerEventHandler;
 import fr.minecraftforgefrance.ffmtlibs.render.LayerHat;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
