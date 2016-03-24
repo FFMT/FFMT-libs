@@ -36,7 +36,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class FFMTLibs
 {
-    // CAP test
     @CapabilityInject(IFFMTCapability.class)
     public static final Capability<IFFMTCapability> TEST_CAP = null;
 
@@ -54,11 +53,6 @@ public class FFMTLibs
 
         }
     }
-
-    // public static class DefaultImpl implements IFFMTCapability
-    // {
-    // }
-    // CAP test
 
     public static Logger ffmtLog = LogManager.getLogger("FFMTLibs");
     public static Configuration cfg;
@@ -89,33 +83,7 @@ public class FFMTLibs
     {
         for(RenderPlayer renderPlayer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
         {
-            LayerHat hat = new LayerHat(renderPlayer);
-            try
-            {
-                Method m = RenderLivingBase.class.getDeclaredMethod("addLayer", LayerRenderer.class);
-                m.setAccessible(true);
-                m.invoke(renderPlayer, hat);
-            }
-            catch(NoSuchMethodException e)
-            {
-                e.printStackTrace();
-            }
-            catch(SecurityException e)
-            {
-                e.printStackTrace();
-            }
-            catch(IllegalAccessException e)
-            {
-                e.printStackTrace();
-            }
-            catch(IllegalArgumentException e)
-            {
-                e.printStackTrace();
-            }
-            catch(InvocationTargetException e)
-            {
-                e.printStackTrace();
-            }
+            renderPlayer.addLayer(new LayerHat(renderPlayer));
         }
     }
 
