@@ -2,10 +2,7 @@ package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.List;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -52,6 +49,19 @@ public class FFMTRegistry
         {
             FFMTLibs.ffmtLog.error("Failed to register armor crafting, couldn't handle type " + type);
         }
+    }
+
+    /**
+     * Helper for crafting all armors
+     * @param material the item used for the craft
+     * @param outputHelmet your helmet
+     * @param outputChestPlate your chest plate
+     * @param outputLeggings your leggings
+     * @param outputBoots your boots
+     */
+    public static void addAllArmorCrafting(Item material, Item outputHelmet, Item outputChestPlate, Item outputLeggings, Item outputBoots)
+    {
+        addAllArmorCrafting(new ItemStack(material), new ItemStack(outputHelmet), new ItemStack(outputChestPlate), new ItemStack(outputLeggings), new ItemStack(outputBoots));
     }
 
     /**
@@ -107,6 +117,11 @@ public class FFMTRegistry
         }
     }
 
+    public static void addAllToolsCrafting(Item material, Item outputAxe, Item outputShovel, Item outputHoe, Item outputPickaxe, Item outputSword, Item stick)
+    {
+        addAllToolsCrafting(new ItemStack(material), new ItemStack(outputAxe), new ItemStack(outputShovel), new ItemStack(outputHoe), new ItemStack(outputPickaxe), new ItemStack(outputSword), new ItemStack(stick));
+    }
+
     public static void addAllToolsCrafting(ItemStack material, ItemStack outputAxe, ItemStack outputShovel, ItemStack outputHoe, ItemStack outputPickaxe, ItemStack outputSword, ItemStack stick)
     {
         GameRegistry.addRecipe(outputAxe, new Object[] {"XX", "XS", " S", 'X', material, 'S', stick});
@@ -116,85 +131,6 @@ public class FFMTRegistry
         GameRegistry.addRecipe(outputHoe, new Object[] {"XX", "S ", "S ", 'X', material, 'S', stick});
         GameRegistry.addRecipe(outputPickaxe, new Object[] {"XXX", " S ", " S ", 'X', material, 'S', stick});
         GameRegistry.addRecipe(outputSword, new Object[] {"X", "X", "S", 'X', material, 'S', stick});
-    }
-
-    /**
-     * Helper to add all armors. You just need to register them after.
-     * @param armorMaterial material of the armor
-     * @param name e.g. iron, gold, stone, wood, diamond
-     * @param modid your modid
-     * @param helmet the object of your helmet (non initialized)
-     * @param chestplate the object of your chest plate (non initialized)
-     * @param leggings the object of your leggings (non initialized)
-     * @param boots the object of your boots (non initialized)
-     * @param creativeTabs where the item will be display
-     * @author superloup10
-     */
-    public static void addAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, CreativeTabs creativeTabs)
-    {
-        addAllArmors(armorMaterial, name, modid, helmet, chestplate, leggings, boots, null, creativeTabs);
-    }
-
-    /**
-     * Helper to add all armors. You just need to register them after.
-     * @param armorMaterial material of the armor
-     * @param name e.g. iron, gold, stone, wood, diamond
-     * @param modid your modid
-     * @param helmet the object of your helmet (non initialized)
-     * @param chestplate the object of your chest plate (non initialized)
-     * @param leggings the object of your leggings (non initialized)
-     * @param boots the object of your boots (non initialized)
-     * @param creativeTabs where the item will be display
-     * @param repair the item to repair your armor in an anvil
-     */
-    @Deprecated
-    public static void addAllArmors(ArmorMaterial armorMaterial, String name, String modid, Item helmet, Item chestplate, Item leggings, Item boots, Item repair, CreativeTabs creativeTabs)
-    {
-//        helmet = new ItemFFMTArmor(armorMaterial, 0, modid, name, repair).setUnlocalizedName(name + "Helmet").setCreativeTab(creativeTabs);
-//        chestplate = new ItemFFMTArmor(armorMaterial, 1, modid, name, repair).setUnlocalizedName(name + "Chestplate").setCreativeTab(creativeTabs);
-//        leggings = new ItemFFMTArmor(armorMaterial, 2, modid, name, repair).setUnlocalizedName(name + "Leggings").setCreativeTab(creativeTabs);
-//        boots = new ItemFFMTArmor(armorMaterial, 3, modid, name, repair).setUnlocalizedName(name + "Boots").setCreativeTab(creativeTabs);
-    }
-
-    /**
-     * Helper to add all tool. You just need to register them after.
-     * @param toolMaterial material of the tool
-     * @param name e.g. iron, gold, stone, wood, diamond
-     * @param modid your modid
-     * @param sword the object of your sword (non initialized)
-     * @param pickaxe the object of your pickaxe (non initialized)
-     * @param axe the object of your axe (non initialized)
-     * @param shovel the object of your shovel (non initialized)
-     * @param hoe the object of your hoe (non initialized)
-     * @param creativeTabs where the item will be display
-     * @author superloup10
-     */
-    public static void addAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, CreativeTabs creativeTabs)
-    {
-        addAllTools(toolMaterial, name, modid, sword, pickaxe, axe, shovel, hoe, null, creativeTabs);
-    }
-
-    /**
-     * Helper to add all tool. You just need to register them after.
-     * @param toolMaterial
-     * @param name e.g. iron, gold, stone, wood, diamond
-     * @param modid your modid
-     * @param sword the object of your sword (non initialized)
-     * @param pickaxe the object of your pickaxe (non initialized)
-     * @param axe the object of your axe (non initialized)
-     * @param shovel the object of your shovel (non initialized)
-     * @param hoe the object of your hoe (non initialized)
-     * @param repair the item to repair yours tools in an anvil
-     * @param creativeTabs where the item will be display
-     */
-    @Deprecated
-    public static void addAllTools(ToolMaterial toolMaterial, String name, String modid, Item sword, Item pickaxe, Item axe, Item shovel, Item hoe, Item repair, CreativeTabs creativeTabs)
-    {
-//        sword = new ItemFFMTSword(toolMaterial, repair).setUnlocalizedName(name + "Sword").setCreativeTab(creativeTabs);
-//        pickaxe = new ItemFFMTPickaxe(toolMaterial, repair).setUnlocalizedName(name + "Pickaxe").setCreativeTab(creativeTabs);
-//        axe = new ItemFFMTAxe(toolMaterial, repair).setUnlocalizedName(name + "Axe").setCreativeTab(creativeTabs);
-//        shovel = new ItemFFMTSpade(toolMaterial, repair).setUnlocalizedName(name + "Shovel").setCreativeTab(creativeTabs);
-//        hoe = new ItemFFMTHoe(toolMaterial, repair).setUnlocalizedName(name + "Hoe").setCreativeTab(creativeTabs);
     }
 
     /**
