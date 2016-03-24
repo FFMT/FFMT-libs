@@ -7,7 +7,7 @@ public class ConfigEventHandler
 {
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-		if(event.modID.equals("ffmtlibs"))
+		if(event.getModID().equals("ffmtlibs"))
 		{
 			FFMTLibs.syncConfig();
 		}
