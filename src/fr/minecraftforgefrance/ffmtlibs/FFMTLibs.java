@@ -52,6 +52,15 @@ public class FFMTLibs
     public static Logger ffmtLog = LogManager.getLogger("FFMTLibs");
     public static Configuration cfg;
     public static boolean hideHat = false;
+    private static boolean hardHideHat = false;
+
+    /**
+     * Call this in your FMLPreInitializationEvent to disable hats
+     */
+    public static void disableHats()
+    {
+        hardHideHat = true;
+    }
 
     @EventHandler
     public void preload(FMLPreInitializationEvent event)
@@ -76,9 +85,12 @@ public class FFMTLibs
     @SideOnly(Side.CLIENT)
     private void addHatLayer()
     {
-        for(RenderPlayer renderPlayer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
+        if(!hardHideHat)
         {
-            renderPlayer.addLayer(new LayerHat(renderPlayer));
+            for(RenderPlayer renderPlayer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
+            {
+                renderPlayer.addLayer(new LayerHat(renderPlayer));
+            }
         }
     }
 
