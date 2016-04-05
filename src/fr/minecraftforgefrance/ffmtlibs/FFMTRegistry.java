@@ -2,7 +2,9 @@ package fr.minecraftforgefrance.ffmtlibs;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -21,11 +23,27 @@ public class FFMTRegistry
     public static final int PICKAXE_TYPE = 3;
     public static final int SWORD_TYPE = 4;
 
+    public static void registerBlock(Block block, String name)
+    {
+        registerBlock(block, new ItemBlock(block), name);
+    }
+
+    public static void registerBlock(Block block, ItemBlock itemblock, String name)
+    {
+        block.setRegistryName(name);
+        GameRegistry.<Block>register(block);
+        GameRegistry.<Item>register(itemblock, block.getRegistryName());
+    }
+
     /**
      * Helper for crafting armors
-     * @param material the item or block used for the craft
-     * @param type Helmet:0 Chestplate:1 Leggings:2 Boots:3
-     * @param output your helmet or your chest plate, etc ...
+     * 
+     * @param material
+     *            the item or block used for the craft
+     * @param type
+     *            Helmet:0 Chestplate:1 Leggings:2 Boots:3
+     * @param output
+     *            your helmet or your chest plate, etc ...
      */
     public static void addArmorCrafting(ItemStack material, int type, ItemStack output)
     {
@@ -53,11 +71,17 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting all armors
-     * @param material the item used for the craft
-     * @param outputHelmet your helmet
-     * @param outputChestPlate your chest plate
-     * @param outputLeggings your leggings
-     * @param outputBoots your boots
+     * 
+     * @param material
+     *            the item used for the craft
+     * @param outputHelmet
+     *            your helmet
+     * @param outputChestPlate
+     *            your chest plate
+     * @param outputLeggings
+     *            your leggings
+     * @param outputBoots
+     *            your boots
      */
     public static void addAllArmorCrafting(Item material, Item outputHelmet, Item outputChestPlate, Item outputLeggings, Item outputBoots)
     {
@@ -66,11 +90,17 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting all armors
-     * @param material the item or block used for the craft
-     * @param outputHelmet an itemstack with your helmet
-     * @param outputChestPlate an itemstack with your chest plate
-     * @param outputLeggings an itemstack with your leggings
-     * @param outputBoots an itemstack with your boots
+     * 
+     * @param material
+     *            the item or block used for the craft
+     * @param outputHelmet
+     *            an itemstack with your helmet
+     * @param outputChestPlate
+     *            an itemstack with your chest plate
+     * @param outputLeggings
+     *            an itemstack with your leggings
+     * @param outputBoots
+     *            an itemstack with your boots
      */
     public static void addAllArmorCrafting(ItemStack material, ItemStack outputHelmet, ItemStack outputChestPlate, ItemStack outputLeggings, ItemStack outputBoots)
     {
@@ -82,10 +112,15 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting tools
-     * @param material the item or block used for the craft
-     * @param type Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
-     * @param output the instance of your tool
-     * @param stick the stick of the tool
+     * 
+     * @param material
+     *            the item or block used for the craft
+     * @param type
+     *            Axe:0 Shovel:1 Hoe:2 Pickaxe:3 Sword:4
+     * @param output
+     *            the instance of your tool
+     * @param stick
+     *            the stick of the tool
      */
     public static void addToolsCrafting(ItemStack material, int type, ItemStack output, ItemStack stick)
     {
@@ -135,7 +170,9 @@ public class FFMTRegistry
 
     /**
      * Remove a recipe
-     * @param stack The removed ItemStack
+     * 
+     * @param stack
+     *            The removed ItemStack
      */
     public static void removeRecipe(ItemStack stack)
     {
