@@ -23,11 +23,22 @@ public class FFMTRegistry
     public static final int PICKAXE_TYPE = 3;
     public static final int SWORD_TYPE = 4;
 
+    /**
+     * Register the block and the item associated
+     * @param block
+     * @param name
+     */
     public static void registerBlock(Block block, String name)
     {
         registerBlock(block, new ItemBlock(block), name);
     }
 
+    /**
+     * Register the block and the item associated
+     * @param block
+     * @param itemblock
+     * @param name
+     */
     public static void registerBlock(Block block, ItemBlock itemblock, String name)
     {
         block.setRegistryName(name);
@@ -37,7 +48,7 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting armors
-     * 
+     *
      * @param material
      *            the item or block used for the craft
      * @param type
@@ -71,7 +82,7 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting all armors
-     * 
+     *
      * @param material
      *            the item used for the craft
      * @param outputHelmet
@@ -90,7 +101,7 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting all armors
-     * 
+     *
      * @param material
      *            the item or block used for the craft
      * @param outputHelmet
@@ -112,7 +123,7 @@ public class FFMTRegistry
 
     /**
      * Helper for crafting tools
-     * 
+     *
      * @param material
      *            the item or block used for the craft
      * @param type
@@ -170,7 +181,7 @@ public class FFMTRegistry
 
     /**
      * Remove a recipe
-     * 
+     *
      * @param stack
      *            The removed ItemStack
      */
