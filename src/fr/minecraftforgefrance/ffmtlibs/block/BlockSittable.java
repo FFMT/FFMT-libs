@@ -19,40 +19,60 @@ import net.minecraft.world.World;
  **/
 public class BlockSittable extends Block
 {
-	public BlockSittable(Material material)
-	{
-		super(material);
-	}
+    public BlockSittable(Material material)
+    {
+        super(material);
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		return sitPlayer(worldIn, pos, playerIn, 1.0F);
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        return sitPlayer(worldIn, pos, playerIn, 1.0F);
+    }
 
-	public static boolean sitPlayer(World world, BlockPos pos, EntityPlayer player, float entityY)
-	{
-		return sitPlayer(world, pos, player, 0.5F, entityY, 0.5F);
-	}
+    /**
+     * Call this in onBlockActivated
+     *
+     * @param world
+     * @param pos
+     * @param player
+     * @param entityY
+     * @return
+     */
+    public static boolean sitPlayer(World world, BlockPos pos, EntityPlayer player, float entityY)
+    {
+        return sitPlayer(world, pos, player, 0.5F, entityY, 0.5F);
+    }
 
-	public static boolean sitPlayer(World world, BlockPos pos, EntityPlayer player, float entityX, float entityY, float entityZ)
-	{
-		if(!world.isRemote)
-		{
-			List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D).expand(1.0D, 1.0D, 1.0D));
-			for(EntityBlockSittable entitytocheck : listEMB)
-			{
-				if((entitytocheck.blockPosX == pos.getX()) && (entitytocheck.blockPosY == pos.getY()) && (entitytocheck.blockPosZ == pos.getZ()))
-				{
-					entitytocheck.interact(player);
-					return true;
-				}
-			}
+    /**
+     * Call this in onBlockActivated
+     *
+     * @param world
+     * @param pos
+     * @param player
+     * @param entityX
+     * @param entityY
+     * @param entityZ
+     * @return
+     */
+    public static boolean sitPlayer(World world, BlockPos pos, EntityPlayer player, float entityX, float entityY, float entityZ)
+    {
+        if(!world.isRemote)
+        {
+            List<EntityBlockSittable> listEMB = world.getEntitiesWithinAABB(EntityBlockSittable.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D).expand(1.0D, 1.0D, 1.0D));
+            for(EntityBlockSittable entitytocheck : listEMB)
+            {
+                if((entitytocheck.blockPosX == pos.getX()) && (entitytocheck.blockPosY == pos.getY()) && (entitytocheck.blockPosZ == pos.getZ()))
+                {
+                    entitytocheck.interact(player);
+                    return true;
+                }
+            }
 
-			EntityBlockSittable entity = new EntityBlockSittable(world, pos, pos.getX() + entityX, pos.getY() + entityY, pos.getZ() + entityZ);
-			world.spawnEntityInWorld(entity);
-			entity.interact(player);
-		}
-		return true;
-	}
+            EntityBlockSittable entity = new EntityBlockSittable(world, pos, pos.getX() + entityX, pos.getY() + entityY, pos.getZ() + entityZ);
+            world.spawnEntityInWorld(entity);
+            entity.interact(player);
+        }
+        return true;
+    }
 }

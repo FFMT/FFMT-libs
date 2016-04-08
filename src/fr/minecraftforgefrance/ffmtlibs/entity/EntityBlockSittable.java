@@ -31,9 +31,9 @@ public class EntityBlockSittable extends Entity
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		if(this.isRiding())
+		if(this.isBeingRidden())
 		{
-			return true;
+			return false;
 		}
 
 		if(!this.worldObj.isRemote)
@@ -46,10 +46,16 @@ public class EntityBlockSittable extends Entity
 	@Override
     public void onEntityUpdate()
 	{
-		if(this.getRidingEntity() == null || this.getRidingEntity().isDead)
+		if(this.getPassengers().isEmpty())
 		{
 			this.setDead();
 		}
+
+		if(!this.worldObj.isRemote && this.worldObj.isAirBlock(new BlockPos(this.blockPosX, this.blockPosY, this.blockPosZ)))
+		{
+		    this.setDead();
+		}
+
 		super.onEntityUpdate();
 	}
 
