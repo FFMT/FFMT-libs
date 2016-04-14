@@ -177,7 +177,7 @@ public class EntityHelper
      */
     public static void spawnFireWorks(World world, double x, double y, double z, byte type, boolean flicker, boolean trail, int colorAmount, int[] colors, byte flight)
     {
-        ItemStack firework = new ItemStack(Items.fireworks);
+        ItemStack firework = new ItemStack(Items.FIREWORKS);
 
         NBTTagCompound mainTag = new NBTTagCompound();
         NBTTagCompound fireworksTag = new NBTTagCompound();
