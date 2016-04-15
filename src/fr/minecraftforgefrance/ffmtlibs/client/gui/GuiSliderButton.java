@@ -19,7 +19,7 @@ public class GuiSliderButton extends GuiButton
     private boolean dragging, shouldReset;
     private int sliderId, yTexBackGround = -1;
     private ISliderButton iSliderButton;
-    private ResourceLocation texture = buttonTextures;
+    private ResourceLocation texture = BUTTON_TEXTURES;
 
     public GuiSliderButton(ISliderButton containerSliderBase, int id, int x, int y, int width, int height, String name, float value)
     {
@@ -89,7 +89,7 @@ public class GuiSliderButton extends GuiButton
                         try
                         {
                             Robot robot = new Robot();
-                            int x = org.lwjgl.opengl.Display.getX() + (mouseX + this.width+10) * (org.lwjgl.opengl.Display.getWidth() / mc.currentScreen.width);
+                            int x = org.lwjgl.opengl.Display.getX() + (mouseX + this.width + 10) * (org.lwjgl.opengl.Display.getWidth() / mc.currentScreen.width);
                             robot.mouseMove(x, MouseInfo.getPointerInfo().getLocation().y);
                         }
                         catch(AWTException e)
