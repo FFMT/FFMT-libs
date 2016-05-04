@@ -33,10 +33,10 @@ else {
 }
 
 minecraft {
-    version = "1.9-12.16.0.1864-1.9"
+    version = "1.9-12.16.1.1887"
     runDir = "run"
 
-    mappings = "snapshot_20160414"
+    mappings = "snapshot_20160504"
 
     replace "@VERSION@", project.version
     replaceIn "FFMTLibs.java"
