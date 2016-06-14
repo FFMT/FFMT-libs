@@ -20,7 +20,7 @@ apply plugin: 'maven'
 
 ext.buildnumber = 0
 
-version = "1.6.3"
+version = "1.6.4"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
@@ -33,10 +33,10 @@ else {
 }
 
 minecraft {
-    version = "1.9.4-12.17.0.1940"
+    version = "1.9.4-12.17.0.1962"
     runDir = "run"
 
-    mappings = "snapshot_20160602"
+    mappings = "snapshot_20160613"
 
     replace "@VERSION@", project.version
     replaceIn "FFMTLibs.java"
