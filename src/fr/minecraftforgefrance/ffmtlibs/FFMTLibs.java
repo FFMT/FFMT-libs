@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", dependencies = "required-after:Forge@[11.14.4,)", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*", updateJSON = "http://dl.mcnanotech.fr/FFMT/libs/version.json")
+@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", dependencies = "required-after:Forge@[12.17.0,)", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*", updateJSON = "http://dl.mcnanotech.fr/FFMT/libs/version.json")
 /**
  * @authors kevin_68, elias54, robin4002
  */
