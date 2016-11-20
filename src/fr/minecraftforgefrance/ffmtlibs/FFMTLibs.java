@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
@@ -25,7 +26,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", dependencies = "required-after:Forge@[12.17.0,)", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*", updateJSON = "http://dl.mcnanotech.fr/FFMT/libs/version.json")
+@Mod(modid = "ffmtlibs", name = "FFMT Library", version = "@VERSION@", dependencies = "required-after:Forge@[13.19.0,)", guiFactory = "fr.minecraftforgefrance.ffmtlibs.config.FFMTGuiConfigFactory", acceptableRemoteVersions = "*", updateJSON = "http://dl.mcnanotech.fr/FFMT/libs/version.json")
 /**
  * @authors kevin_68, elias54, robin4002
  */
@@ -64,7 +65,7 @@ public class FFMTLibs
     @EventHandler
     public void load(FMLInitializationEvent event)
     {
-        EntityRegistry.registerModEntity(EntityBlockSittable.class, "EntityFFMTBlockSittable", 1, this, 500, 5, false);
+        EntityRegistry.registerModEntity(new ResourceLocation("ffmtlibs", "EntityFFMTBlockSittable"), EntityBlockSittable.class, "EntityFFMTBlockSittable", 1, this, 500, 5, false);
         if(event.getSide().isClient())
         {
             MinecraftForge.EVENT_BUS.register(new PlayerEventHandler());

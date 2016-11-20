@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Robot;
 
+import org.lwjgl.opengl.Display;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
@@ -72,7 +74,7 @@ public class GuiSliderButton extends GuiButton
                         try
                         {
                             Robot robot = new Robot();
-                            int x = org.lwjgl.opengl.Display.getX() + (mouseX - this.width) * (org.lwjgl.opengl.Display.getWidth() / mc.currentScreen.width);
+                            int x = Display.getX() + (mouseX - this.width) * (Display.getWidth() / mc.currentScreen.width);
                             robot.mouseMove(x, MouseInfo.getPointerInfo().getLocation().y);
                         }
                         catch(AWTException e)
@@ -89,7 +91,7 @@ public class GuiSliderButton extends GuiButton
                         try
                         {
                             Robot robot = new Robot();
-                            int x = org.lwjgl.opengl.Display.getX() + (mouseX + this.width + 10) * (org.lwjgl.opengl.Display.getWidth() / mc.currentScreen.width);
+                            int x = Display.getX() + (mouseX + this.width + 10) * (Display.getWidth() / mc.currentScreen.width);
                             robot.mouseMove(x, MouseInfo.getPointerInfo().getLocation().y);
                         }
                         catch(AWTException e)
@@ -98,7 +100,7 @@ public class GuiSliderButton extends GuiButton
                         }
                     }
                 }
-                this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
+                this.sliderValue = MathHelper.clamp(this.sliderValue, 0.0F, 1.0F);
 
                 this.iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
                 this.displayString = this.iSliderButton.getSliderName(this.sliderId, this.sliderValue);
@@ -117,7 +119,7 @@ public class GuiSliderButton extends GuiButton
         if(super.mousePressed(mc, mouseX, mouseY))
         {
             this.sliderValue = (float)(mouseX - (this.xPosition + 4)) / (float)(this.width - 8);
-            this.sliderValue = MathHelper.clamp_float(this.sliderValue, 0.0F, 1.0F);
+            this.sliderValue = MathHelper.clamp(this.sliderValue, 0.0F, 1.0F);
 
             this.iSliderButton.handlerSliderAction(this.sliderId, this.sliderValue);
             this.displayString = this.iSliderButton.getSliderName(this.sliderId, this.sliderValue);

@@ -8,76 +8,76 @@ import net.minecraft.world.World;
 
 public class EntityBlockSittable extends Entity
 {
-	public int blockPosX;
-	public int blockPosY;
-	public int blockPosZ;
+    public int blockPosX;
+    public int blockPosY;
+    public int blockPosZ;
 
-	public EntityBlockSittable(World world)
-	{
-		super(world);
-		this.noClip = true;
-		this.preventEntitySpawning = true;
-		this.setSize(0.0F, 0.0F);
-	}
+    public EntityBlockSittable(World world)
+    {
+        super(world);
+        this.noClip = true;
+        this.preventEntitySpawning = true;
+        this.setSize(0.0F, 0.0F);
+    }
 
-	public EntityBlockSittable(World world, BlockPos pos, float entityX, float entityY, float entityZ)
-	{
-		this(world);
-		this.blockPosX = pos.getX();
-		this.blockPosY = pos.getY();
-		this.blockPosZ = pos.getZ();
-		this.setPosition(entityX, entityY, entityZ);
-	}
+    public EntityBlockSittable(World world, BlockPos pos, float entityX, float entityY, float entityZ)
+    {
+        this(world);
+        this.blockPosX = pos.getX();
+        this.blockPosY = pos.getY();
+        this.blockPosZ = pos.getZ();
+        this.setPosition(entityX, entityY, entityZ);
+    }
 
-	public boolean interact(EntityPlayer entityplayer)
-	{
-		if(this.isBeingRidden())
-		{
-			return false;
-		}
+    public boolean interact(EntityPlayer entityplayer)
+    {
+        if(this.isBeingRidden())
+        {
+            return false;
+        }
 
-		if(!this.worldObj.isRemote)
-		{
-			entityplayer.startRiding(this);
-		}
-		return true;
-	}
+        if(!this.world.isRemote)
+        {
+            entityplayer.startRiding(this);
+        }
+        return true;
+    }
 
-	@Override
+    @Override
     public void onEntityUpdate()
-	{
-		if(this.getPassengers().isEmpty())
-		{
-			this.setDead();
-		}
+    {
+        if(this.getPassengers().isEmpty())
+        {
+            this.setDead();
+        }
 
-		if(!this.worldObj.isRemote && this.worldObj.isAirBlock(new BlockPos(this.blockPosX, this.blockPosY, this.blockPosZ)))
-		{
-		    this.setDead();
-		}
+        if(!this.world.isRemote && this.world.isAirBlock(new BlockPos(this.blockPosX, this.blockPosY, this.blockPosZ)))
+        {
+            this.setDead();
+        }
 
-		super.onEntityUpdate();
-	}
+        super.onEntityUpdate();
+    }
 
-	@Override
-	public void readEntityFromNBT(NBTTagCompound compound)
-	{
-		this.blockPosX = compound.getInteger("blockPosX");
-		this.blockPosY = compound.getInteger("blockPosY");
-		this.blockPosZ = compound.getInteger("blockPosZ");
-	}
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        this.blockPosX = compound.getInteger("blockPosX");
+        this.blockPosY = compound.getInteger("blockPosY");
+        this.blockPosZ = compound.getInteger("blockPosZ");
+    }
 
-	@Override
-	public void writeEntityToNBT(NBTTagCompound compound)
-	{
-		compound.setInteger("blockPosX", this.blockPosX);
-		compound.setInteger("blockPosY", this.blockPosY);
-		compound.setInteger("blockPosZ", this.blockPosZ);
-	}
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        compound.setInteger("blockPosX", this.blockPosX);
+        compound.setInteger("blockPosY", this.blockPosY);
+        compound.setInteger("blockPosZ", this.blockPosZ);
+    }
 
-	@Override
-	protected void entityInit()
-	{
+    @Override
+    protected void entityInit()
+    {
 
-	}
+    }
 }

@@ -64,9 +64,9 @@ public class LayerHat implements LayerRenderer<EntityPlayer>
                 {
                     for(EnumParticleTypes particles : cap.particules)
                     {
-                        if(particles != null && player.worldObj.rand.nextInt(10) == 0)
+                        if(particles != null && player.world.rand.nextInt(10) == 0)
                         {
-                            player.worldObj.spawnParticle(particles, player.posX - 0.5F + player.worldObj.rand.nextFloat(), player.posY + 1.5F + player.worldObj.rand.nextFloat(), player.posZ - 0.5F + player.worldObj.rand.nextFloat(), 0.0F, 0.2F, 0.0F);
+                            player.world.spawnParticle(particles, player.posX - 0.5F + player.world.rand.nextFloat(), player.posY + 1.5F + player.world.rand.nextFloat(), player.posZ - 0.5F + player.world.rand.nextFloat(), 0.0F, 0.2F, 0.0F);
                         }
                     }
                 }

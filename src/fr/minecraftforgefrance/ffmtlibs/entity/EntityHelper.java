@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -52,7 +53,7 @@ public class EntityHelper
     {
         for(int i = 0; i < speed; i++)
         {
-            entity.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel, something);
+            entity.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + xPosition, entity.posY + yPosition, entity.posZ + zPosition, xVel, yVel, zVel, something);
         }
     }
 
@@ -72,10 +73,10 @@ public class EntityHelper
      * @param maxSpawn Maximum of entity per spawn
      * @param creatureType type of the entity
      */
-    public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
+    public static void addMob(ResourceLocation registryName,Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType)
     {
-        EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-        EntityRegistry.registerEgg(entityClass, backGroundEggColour, foreGroundEggColour);
+        EntityRegistry.registerModEntity(registryName, entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerEgg(registryName, backGroundEggColour, foreGroundEggColour);
         EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType);
     }
 
@@ -96,10 +97,10 @@ public class EntityHelper
      * @param creatureType type of the entity
      * @param biome Biome where you want to spawn the mob)(If not specified, this mob doesn't spawn naturally)
      */
-    public static void addMob(Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, Biome... biome)
+    public static void addMob(ResourceLocation registryName, Class<? extends Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int backGroundEggColour, int foreGroundEggColour, int weightedProb, int minSpawn, int maxSpawn, EnumCreatureType creatureType, Biome... biome)
     {
-        EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
-        EntityRegistry.registerEgg(entityClass, backGroundEggColour, foreGroundEggColour);
+        EntityRegistry.registerModEntity(registryName, entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerEgg(registryName, backGroundEggColour, foreGroundEggColour);
         EntityRegistry.addSpawn(entityName, weightedProb, minSpawn, maxSpawn, creatureType, biome);
     }
 
@@ -112,10 +113,10 @@ public class EntityHelper
      **/
     public static void targetEntity(EntityCreature entityHostAttack, Class<? extends EntityLivingBase> classToAttack)
     {
-        List<? extends EntityLivingBase> list = entityHostAttack.worldObj.getEntitiesWithinAABB(classToAttack, new AxisAlignedBB(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
+        List<? extends EntityLivingBase> list = entityHostAttack.world.getEntitiesWithinAABB(classToAttack, new AxisAlignedBB(entityHostAttack.posX, entityHostAttack.posY, entityHostAttack.posZ, entityHostAttack.posX + 1, entityHostAttack.posY + 1, entityHostAttack.posZ + 1).expand(16D, 4D, 16D));
         for(int i = 0; i < list.size(); i++)
         {
-            EntityLivingBase entityToAttack = list.get(entityHostAttack.worldObj.rand.nextInt(i));
+            EntityLivingBase entityToAttack = list.get(entityHostAttack.world.rand.nextInt(i));
             if(!list.isEmpty())
             {
                 entityHostAttack.setAttackTarget(entityToAttack);
@@ -203,6 +204,6 @@ public class EntityHelper
         firework.setTagCompound(mainTag);
 
         EntityFireworkRocket rocket = new EntityFireworkRocket(world, x, y, z, firework);
-        world.spawnEntityInWorld(rocket);
+        world.spawnEntity(rocket);
     }
 }
