@@ -21,13 +21,9 @@ public class ContainerHelper
     {
         for(int j = 0; j < player.inventory.mainInventory.size(); ++j)
         {
-            if(player.inventory.mainInventory.get(j) != null && player.inventory.mainInventory.get(j).getItem().equals(item) && player.inventory.mainInventory.get(j).getItemDamage() == metadata)
+            if(!player.inventory.mainInventory.get(j).isEmpty() && player.inventory.mainInventory.get(j).getItem().equals(item) && player.inventory.mainInventory.get(j).getItemDamage() == metadata)
             {
-                // FIXME Je ne sais pas comment le fixer @Superloup10
-                if(--player.inventory.mainInventory[j].stackSize <= 0)
-                {
-                    player.inventory.mainInventory[j] = null;
-                }
+                player.inventory.mainInventory.get(j).shrink(1);
                 return true;
             }
         }
