@@ -24,6 +24,11 @@ version = "1.8.0"
 group= "fr.minecraftforgefrance"
 archivesBaseName = "FFMT-libs"
 
+sourceCompatibility = targetCompatibility = "1.6" // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.6"
+}
+
 if (System.getenv().BUILD_NUMBER) {
     project.buildnumber = System.getenv().BUILD_NUMBER
 	version += "." + System.getenv().BUILD_NUMBER
@@ -33,13 +38,14 @@ else {
 }
 
 minecraft {
-    version = "1.11-13.19.1.2189"
+    version = "1.11.2-13.20.0.2226"
     runDir = "run"
-    mappings = "snapshot_20161210"
+    mappings = "snapshot_20170130"
 
     replace "@VERSION@", project.version
     replaceIn "FFMTLibs.java"
-    makeObfSourceJar = false
+
+    makeObfSourceJar = true 
 }
 
 sourceSets {
@@ -74,32 +80,12 @@ processResources
 }
 
 jar {
-    appendix = 'universal'
+    classifier = 'universal'
     version = "${project.version}-mc${project.minecraft.version}"
 }
 
-task devJar(type: Jar) {
-    from(sourceSets.main.allSource) {
-        include 'fr/**/**'
-    }
-    from(sourceSets.main.output) {
-        include '**'
-    }
-    classifier = 'dev'
+sourceJar {
     version = "${project.version}-mc${project.minecraft.version}"
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from 'build/docs/javadoc'
-    classifier = 'javadoc'
-    version = "${project.version}-mc${project.minecraft.version}"
-}
-
-build.dependsOn devJar, javadocJar
-
-artifacts {
-    archives devJar
-    archives javadocJar
 }
 
 configurations {
@@ -117,6 +103,7 @@ dependencies {
     deployerJars "org.apache.maven.wagon:wagon-ftp:2.2"
 }
 
+
 uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
@@ -125,10 +112,6 @@ uploadArchives {
             logger.info("Publishing to files server")
         	repository(url: url) {
             	authentication(userName: user, password: password)
-                addFilter('dev') {
-                    artifact, file ->
-                    file == devJar.archivePath
-                }
             }
         }
         else {
