@@ -18,7 +18,8 @@ repositories {
 }
 
 dependencies {
-   compile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:dev'
+   deobfCompile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:universal'
+   deobfCompile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:sources'
 }
 ```
 La liste des versions disponibles est [ici](http://files.minecraftforgefrance.fr/maven/fr/minecraftforgefrance/FFMT-libs/)
@@ -42,7 +43,8 @@ repositories {
 }
 
 dependencies {
-   compile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:dev'
+   deobfCompile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:universal'
+   deobfCompile 'fr.minecraftforgefrance:FFMT-libs:${version}-mc${mcversion}:sources'
 }
 ```
 The list of available versions ​​is [here](http://files.minecraftforgefrance.fr/maven/fr/minecraftforgefrance/FFMT-libs/)
