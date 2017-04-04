@@ -31,4 +31,16 @@ public class FFMTGuiConfigFactory implements IModGuiFactory
 	{
 		return null;
 	}
+
+	@Override
+	public boolean hasConfigGui()
+	{
+		return false;
+	}
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen)
+	{
+		return null;
+	}
 }
